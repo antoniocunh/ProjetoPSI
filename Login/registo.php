@@ -18,76 +18,84 @@
                         <div class="row">
                             <div class="col text-center">
                                 <h1>Registar</h1>
-
                             </div>
                         </div>
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder="Nome">
-                            </div>
-                        </div>
-
-                        <div class="row align-items-center">
-                            <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder="Sobrenome">
+                                <input name="nome" type="text" class="form-control is-invalid" placeholder="Nome">
+                                <small id="passwordHelp" class="text-danger">
+                                    Must be 8-20 characters long.
+                                </small>     
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder="Morada">
+                                <input name="ultimoNome" type="text" class="form-control" placeholder="Sobrenome">
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder="Número de Telemóvel">
+                                <input name="ambito" type="text" class="form-control" placeholder="Âmbito">
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder=" País">
+                                <input name="morada"type="text" class="form-control" placeholder="Morada">
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder=" Cidade">
+                                <input name="telefone" type="text" class="form-control" placeholder="Número de Telemóvel">
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder=" Código Postal">
+                                <input name="pais" type="text" class="form-control" placeholder=" País">
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder=" Organização">
+                                <input name="cidade" type="text" class="form-control" placeholder=" Cidade">
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col mt-4">
+                                <input name="codPostal" type="text" class="form-control" placeholder=" Código Postal">
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col mt-4">
+                                <input name="organizacao" type="text" class="form-control" placeholder=" Organização">
                             </div>
                         </div>
 
 
                         <div class="row align-items-center mt-4">
                             <div class="col">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input name="email" type="email" class="form-control" placeholder="Email">
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col mt-4">
-                                <input type="text" class="form-control" placeholder=" Username">
+                                <input name="username" type="text" class="form-control" placeholder=" Username">
                             </div>
                         </div>
 
                         <div class="row align-items-center mt-4">
                             <div class="col">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input name="pass1" type="password" class="form-control" placeholder="Password">
                             </div>
                             <div class="col">
-                                <input type="password" class="form-control" placeholder="Confirm Password">
+                                <input name="pass2" type="password" class="form-control" placeholder="Confirmar Password">
                             </div>
                         </div>
                         <div class="row justify-content-start mt-4">
