@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('config.php');
+require('../connection/config.php');
 
 function fnDiminuirAutoIncrement($conn)
 {
@@ -81,4 +81,4 @@ try {
     fnDiminuirAutoIncrement($conn);
     //echo "Erro ao registrar";
 }
-header('Location: /ProjetoPSI/Login/registo.php');
+header('Location: ../Registo/registo.php');
