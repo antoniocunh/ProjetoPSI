@@ -82,3 +82,5 @@ try {
     //echo "Erro ao registrar";
 }
 header('Location: ../Registo/registo.php');
+
+?>
