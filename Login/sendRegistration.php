@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('config.php');
 
 function fnDiminuirAutoIncrement($conn)
@@ -19,14 +20,16 @@ function fnDiminuirAutoIncrement($conn)
 function fnValidateVariable($sName)
 {
     if (isset($_POST[$sName]) && $_POST[$sName] != "") {
-        $_SESSION[$sName] = true;
+        $temp = array(true, $_POST[$sName]);
+        $_SESSION[$sName] = $temp;
         return $_POST[$sName];
     }
-    $_SESSION[$sName] = false;
+    $temp = array(false, "");
+    $_SESSION[$sName] = $temp;
     return " ";
 }
-echo "insert into tb_User(vcName, vcLastName, iIdScope,  vcAddress, vcPhoneNumber, vcCountry, vcCity, vcPostalCode, vcAfiliation, vcEmail, vcUsername, vcPassword) 
-values(";
+/*echo "insert into tb_User(vcName, vcLastName, iIdScope,  vcAddress, vcPhoneNumber, vcCountry, vcCity, vcPostalCode, vcAfiliation, vcEmail, vcUsername, vcPassword) 
+values(";*/
 try {
     $registoValido = true;
     $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope,  vcAddress, vcPhoneNumber, vcCountry, vcCity, vcPostalCode, vcAfiliation, vcEmail, vcUsername, vcPassword) 
@@ -39,7 +42,6 @@ try {
         switch ($key) {
             case "ambito":
                 $tipo = PDO::PARAM_INT | PDO::PARAM_INPUT_OUTPUT;
-                echo $temp . " dsd ";
                 break;
             case "nome":
 
@@ -54,28 +56,29 @@ try {
                 break;
         }
 
-        /*echo $tipo . " - ";
+        echo $tipo . " - ";
         echo $count . " - ";
         echo $key;
         if ($_SESSION[$key]) {
             echo " = " .  $temp . " - true <br/>";
         } else {
             echo " = " .  $temp . " - false <br/>";
-        }*/
+        }
 
 
         $registoValido = $registoValido && $_SESSION[$key];
         if ($key != "pass2") {
-            echo $temp . ", ";
+            //echo $temp . ", ";
             $stmt->bindValue($count++, $temp, $tipo);
         }
     }
     if ($registoValido) {
         $stmt->execute();
-        echo "Utilizador Adicionado";
+        //echo "Utilizador Adicionado";
+        
     }
 } catch (PDOException $e) {
-    echo $e;
     fnDiminuirAutoIncrement($conn);
-    echo "Erro ao registrar";
+    //echo "Erro ao registrar";
 }
+header('Location: /ProjetoPSI/Login/registo.php');
