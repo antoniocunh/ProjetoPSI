@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Registo/registo.php
 <?php
 session_start();
 require('../connection/config.php');
@@ -96,6 +95,7 @@ if (isset($_POST['submit'])) {
         <title>Registo</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="default.css">
+        <link rel="stylesheet" href="../asset/css/paper-kit.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     </head>
@@ -106,25 +106,6 @@ if (isset($_POST['submit'])) {
         {
             if (isset($_SESSION[$name])) {
                 if (!$_SESSION[$name][0]) {
-=======
-<!DOCTYPE html>
-<html lang="pt">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="../asset/css/paper-kit.css?v=2.2.0" rel="stylesheet"/>
-</head>
-
-<body>
-<?php 
-        session_start();
-        function fnValidateInput($name){
-            if (isset($_SESSION[$name])){
-                 if (!$_SESSION[$name][0]){ 
->>>>>>> 74a84edd3667d57e8ed81ae6fe2f3828f8f50b57:Registo/index.php
                     echo ' is-invalid " value="' . $_SESSION[$name][1] . '"';
                 } else {
                     echo '" value="' . $_SESSION[$name][1] . '"';
@@ -201,7 +182,7 @@ if (isset($_POST['submit'])) {
 
                             <div class="row align-items-center">
                                 <div class="col mt-4">
-                                    <input name="organizacao" type="text" placeholder=" Organização" class="form-control">
+                                    <input name="organizacao" type="text" placeholder=" Afiliação" class="form-control">
                                 </div>
                             </div>
 
@@ -223,7 +204,7 @@ if (isset($_POST['submit'])) {
                                     <input name="pass1" type="password" placeholder="Password" class="form-control">
                                 </div>
                                 <div class="col">
-                                    <input name="pass2" type="password" placeholder="Confirmar Password" class="form-control">
+                                    <input id="pass2" name="pass2" type="password" placeholder="Confirmar Password" class="form-control">
                                 </div>
                             </div>
                             <div class="row justify-content-start mt-4">
