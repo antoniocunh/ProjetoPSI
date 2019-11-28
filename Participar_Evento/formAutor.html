@@ -10,6 +10,8 @@
         type="text/css">
     <link href="../asset/css/paper-kit.css?v=2.2.0" rel="stylesheet" type="text/css">
     <link href="../Participar_Evento/submeterTrabalho.css" rel="stylesheet" type="text/css">
+    <link href="../asset/css/dropzone.css" type="text/css" rel="stylesheet" />
+    <script src="../asset/js/dropzone.js"></script>
     <title>Submeter Trabalho</title>
 </head>
 
@@ -19,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="" method="POST">
+                <form action="teste.php" method="POST">
                     <div class="row">
                         <div class="col">
                             <label>Tipo</label><br>
@@ -39,11 +41,17 @@
                             <label>Resumo</label><br />
                             <textarea class="form-control" rows="5" id="comment" placeholder="Resumo do trabalho submetido..."></textarea>
                         </div>
-                        <div class="col-md-4">
-                            <input type="submit" class="form-control" id="submit">
+                        <div class="fallback col-md-4">
+                                <div id="upload-widget" method="post" action="teste.php" class="dropzone">
+                                </div>
                         </div>
+
+                    </div>
+                    <div class="col" id="drop">
+                        <input type="submit" class="form-control" id="submit">
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
