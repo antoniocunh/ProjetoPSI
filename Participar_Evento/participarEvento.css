@@ -1,0 +1,23 @@
+.spacer{
+    display: block;
+    min-height: 100px;
+    max-height: 200px;
+    min-width: 100px;
+    max-width: 200px;
+}
+
+img {
+    display: block;
+    max-height:350px;
+    max-width: 400px;
+    min-width: 250px;
+    min-height: 250px;
+    height: 350px;
+    width:100%;
+    object-fit: cover;
+    padding-top: 25px;
+}
+
+.col{
+    width: 100%;;
+}
