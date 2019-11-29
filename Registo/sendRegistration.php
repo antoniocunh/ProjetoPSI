@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../connection/config.php');
+require('../assets/php/library/configDatabase.php');
 
 function fnDiminuirAutoIncrement($conn)
 {
