@@ -1,6 +1,7 @@
 $(function() {
     $('form[name="registo"]').validate(
     {
+        errorElement: "div",
         rules: {
             nome: 'required',
             ultimoNome: 'required',
@@ -41,7 +42,7 @@ $(function() {
             },
             username: {
                 required : 'Por favor introduza um username.',
-                minlength : 'O user tem de ter pelo menos 6 catactéres.'
+                minlength : 'O user tem de ter pelo menos 6 caracteres.'
             },
             pass1: {
                 required: 'Por favor introduza uma palavra-passe.',
@@ -50,9 +51,9 @@ $(function() {
             pass2: {
                 required: 'Por favor introduza uma palavra-passe.',
                 equalTo: 'A palavra-passe não é igual á introduzida anteriormente'
-            }
+            },
+            agree: "Por favor aceite as nossas politicas",
         },
-        agree: "Por favor aceite as nossas politicas",
         submitHandler: function (form) {
             form.submit();
         }
