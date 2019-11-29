@@ -81,6 +81,6 @@ try {
     fnDiminuirAutoIncrement($conn);
     //echo "Erro ao registrar";
 }
-header('Location: ../Registo/registo.php');
+header('Location: ../Registo/index.html');
 
 ?>

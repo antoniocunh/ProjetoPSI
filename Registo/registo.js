@@ -38,9 +38,8 @@ $(function () {
                 },
                 pass2: {
                     required: true,
-                    equalTo: "#pass2"
+                    equalTo: "#pass1"
                 },
-                agree: "required"
             },
             messages: {
                 nome: 'Por favor introduza um nome.',
@@ -67,7 +66,6 @@ $(function () {
                     required: 'Por favor introduza uma palavra-passe.',
                     equalTo: 'A palavra-passe não é igual á introduzida anteriormente'
                 },
-                agree: "Por favor aceite as nossas politicas",
             },
             submitHandler: function (form) {
                 form.submit();
