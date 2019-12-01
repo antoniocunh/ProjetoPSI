@@ -5,17 +5,7 @@
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img//apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img//favicon.png">
-    <!-- Style -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
-  
-    <!-- Fonts and icons -->
-    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Conferência UA
-  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -24,23 +14,23 @@
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet"/>
-</script> 
+  <link href="../assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+  <title>
+        Conferência UA
+  </title>
+  
 </head>
 
 <body>
+  <div id="nav-placeholder"></div>
+
   <div class="page-header" data-parallax="true" style="background-image: url('../assets/img/daniel-olahh.jpg');">
-    <div class="filter"></div>
     <div class="container">
-            <div class="fresh-table toolbar-color-orange">
+        <div class="fresh-table toolbar-color-orange">
                     <!--
                       Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
                       Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                     -->
-                  
-                    <div class="toolbar">
-                      <button id="alertBtn" class="btn btn-default">Alert</button>
-                    </div>
-                  
                     <table id="fresh-table" class="table">
                       <thead>
                         <th data-field="id">ID</th>
@@ -205,12 +195,11 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>                  
+        </div>                  
     </div>
-    </div>
+  </div>
 
-
-       
+  <div id="footer-placeholder"></div>
 
   <!---------------------------------------------------------------------------------------------------------------->
   <!--   Core JS Files   -->
@@ -231,10 +220,21 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.min.js"></script>
+ 
+  <!-- Scrool Animation -->
+  <script src="../assets/js/plugins/scrool-animation.js"></script>
+  
+   
+  <script> 
+          $(function(){
+          $("#nav-placeholder").load("../Common/navbar-user.html"); 
+          $("#footer-placeholder").load("../Common/footer-custom.html"); 
+        });
+  </script>
 
   <script type="text/javascript">
     var $table = $('#fresh-table')
-    var $alertBtn = $('#alertBtn')
+    var $refreshBtn = $('#refreshBtn')
   
     window.operateEvents = {
       'click .like': function (e, value, row, index) {
@@ -271,44 +271,28 @@
       $table.bootstrapTable({
         classes: 'table table-hover table-striped',
         toolbar: '.toolbar',
-  
         search: true,
-        showRefresh: true,
-        showToggle: true,
-        showColumns: true,
         pagination: true,
         striped: true,
         sortable: true,
-        pageSize: 8,
-        pageList: [8, 10, 25, 50, 100],
+        pageSize: 10,
+        pageList: [8, 10, 25],
   
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
           return ''
         },
         formatRecordsPerPage: function (pageNumber) {
-          return pageNumber + ' rows visible'
+          return 'Mostrar ' + pageNumber + ' por página'
         }
       })
   
-      $alertBtn.click(function () {
-        alert('You pressed on Alert')
+      $refreshBtn.click(function () {
+        location.reload();
       })
     })
   
-    </script>
-  
-    <!-- Scrool Animation -->
-    <script src="../assets/js/plugins/scrool-animation.js"></script>
-  
-      <script> 
-              $(function(){
-              $("#nav-placeholder").load("../Common/nav-placeholder.html"); 
-              $("#footer-placeholder").load("../Common/footer-placeholder.html"); 
-          });
-      </script>
-  
-  
-    <!---------------------------------------------------------------------------------------------------------------->~
-   </script>
+  </script>
+  <!---------------------------------------------------------------------------------------------------------------->
+
   </body>
 </html>
