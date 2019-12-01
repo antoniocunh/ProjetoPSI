@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../connection/config.php');
+require('../assets/php/library/configDatabase.php');
 
 function fnDiminuirAutoIncrement($conn)
 {
@@ -32,7 +32,7 @@ function fnValidateVariable($sName)
 values(";*/
 try {
     $registoValido = true;
-    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope,  vcAddress, vcPhoneNumber, vcCountry, vcCity, vcPostalCode, vcAfiliation, vcEmail, vcUsername, vcPassword) 
+    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope, vcPhoneNumber, dtBirth, vcCountry, vcCity, vcAddress, vcPostalCode, vcAfiliation,vcUsername, vcEmail , vcPassword) 
     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $count = 1;
     foreach ($_POST as $key => $value) {
@@ -81,6 +81,6 @@ try {
     fnDiminuirAutoIncrement($conn);
     //echo "Erro ao registrar";
 }
-header('Location: ../Registo/registo.php');
+header('Location: ../Registo/index.html');
 
 ?>

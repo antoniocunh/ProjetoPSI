@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registo</title>
+    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/paper-kit.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+</head>
+
+<body>
+    <section>
+        <div class="container card py-5 mt-5 border border-default">
+            <div class="row justify-content-center">
+                <div class="col rounded mx-4" id="image">
+                </div>
+                <div class="col-12 col-md-8 col-lg-8 col-xl-6 px-4">
+                    <form name=registo action="sendRegistration.php" method="post">
+                        <div class="row">
+                            <div class="col text-center">
+                                <h1>Registar</h1>
+                            </div>
+                        </div>
+                        <div class="row align-top ">
+                            <div class="col mt-2">
+                                <input name="nome" type="text" placeholder="Nome" class="form-control">
+                            </div>
+                            <div class="col mt-2">
+                                <input name="ultimoNome" type="text" placeholder="Sobrenome" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col mt-2">
+                                <select id="scope" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row align-top">
+                            <div class="col-md-7 mt-2">
+                                <input name="telefone" type="text" placeholder="Número de Telemóvel"class="form-control">
+                            </div>
+                            <div class="col-md-5 mt-2">
+                                <input name="dataNascimento" type="date" placeholder="Data de Nascimento"class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row align-top ">
+                            <div class="col mt-2">
+                                <input name="pais" type="text" placeholder=" País" class="form-control">
+                            </div>
+                            <div class="col mt-2">
+                                <input name="cidade" type="text" placeholder=" Cidade" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row align-top ">
+                            <div class="col-md-8 mt-2">
+                                <input name="morada" type="text" placeholder="Morada" class="form-control">
+                            </div>
+                            <div class="col mt-2">
+                                <input name="codPostal" type="text" placeholder=" Código Postal" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col mt-2">
+                                <input name="organizacao" type="text" placeholder=" Afiliação" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row align-top ">
+                            <div class="col-md-4 mt-2">
+                                <input name="username" type="text" placeholder=" Username" class="form-control">
+                            </div>
+                            <div class="col-md-8 mt-2">
+                                <input name="email" type="email" placeholder="Email" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row align-top mt-2">
+                            <div class="col">
+                                <input name="pass1" type="password" placeholder="Password" class="form-control">
+                            </div>
+                            <div class="col">
+                                <input id="pass2" name="pass2" type="password" placeholder="Confirmar Password"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="row float-right mt-2">
+                            <div class="col justify-content-center mt-2">
+                                <input type="submit" name="submit" value="Registar"
+                                    class="btn btn-default btn-round px-5" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="registo.js"></script>
+</body>
+
+</html>
