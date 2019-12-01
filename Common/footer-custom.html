@@ -21,12 +21,12 @@
       </div>
       <div class="row justify-content-center credits">
           <span class="copyright" style="color:#c9aa71">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+            , made with <i class="fa fa-heart heart"></i> by Creative Tim
           </span>
         </div>
     </div>
+    <script>
+      $(".copyright").prepend("©" + new Date().getFullYear());
+    </script>
   </footer>
   <!-- End Footer -->
