@@ -1,5 +1,4 @@
 <?php
-session_start();
 require('../assets/php/library/configDatabase.php');
 
 function fnDiminuirAutoIncrement($conn)
@@ -14,73 +13,79 @@ function fnDiminuirAutoIncrement($conn)
     $newAuto = $result['AUTO_INCREMENT'] - 1;
     $stmt->bindParam(1, $newAuto, PDO::PARAM_INT);
     $stmt->execute();
-    echo $newAuto;
 }
 
-function fnValidateVariable($sName)
+function fnValidateVariable($sName, &$list)
 {
-    if (isset($_POST[$sName]) && $_POST[$sName] != "") {
-        $temp = array(true, $_POST[$sName]);
-        $_SESSION[$sName] = $temp;
-        return $_POST[$sName];
-    }
-    $temp = array(false, "");
-    $_SESSION[$sName] = $temp;
-    return " ";
-}
-/*echo "insert into tb_User(vcName, vcLastName, iIdScope,  vcAddress, vcPhoneNumber, vcCountry, vcCity, vcPostalCode, vcAfiliation, vcEmail, vcUsername, vcPassword) 
-values(";*/
-try {
-    $registoValido = true;
-    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope, vcPhoneNumber, dtBirth, vcCountry, vcCity, vcAddress, vcPostalCode, vcAfiliation,vcUsername, vcEmail , vcPassword) 
-    values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $count = 1;
-    foreach ($_POST as $key => $value) {
-        $temp = fnValidateVariable($key);
+    if (isset($_POST[$sName])) {
+        $temp = $_POST[$sName];
         $tipo = PDO::PARAM_STR;
-
-        switch ($key) {
+        $valid = true;
+        switch ($sName) {
             case "ambito":
-                $tipo = PDO::PARAM_INT | PDO::PARAM_INPUT_OUTPUT;
-                break;
-            case "nome":
-
+                $tipo = PDO::PARAM_INT;
                 break;
             case "email":
                 if (!filter_var($temp, FILTER_VALIDATE_EMAIL)) {
-                    $_SESSION[$key] = false;
+                    $valid = false;
+                }
+                break;
+            case "organizacao":
+            case "codPostal":
+                $valid = true;
+                break;
+            case "pass1":
+            case "username":
+            case "dataNascimento":
+                $list[$sName] = $_POST[$sName];
+                break;
+            case "pass2";
+                $tipo = -1;
+                if ($temp != $list["pass1"][1]) {
+                    $valid = false;
+                } else {
+                    $saltedPassword = $list['pass1'][1] . "_" . $list["dataNascimento"][1];
+                    $list["pass1"][1] = hash("sha512", $saltedPassword);
                 }
                 break;
             default:
-
                 break;
         }
-
-        echo $tipo . " - ";
-        echo $count . " - ";
-        echo $key;
-        if ($_SESSION[$key]) {
-            echo " = " .  $temp . " - true <br/>";
-        } else {
-            echo " = " .  $temp . " - false <br/>";
-        }
-
-
-        $registoValido = $registoValido && $_SESSION[$key];
-        if ($key != "pass2") {
-            //echo $temp . ", ";
-            $stmt->bindValue($count++, $temp, $tipo);
-        }
+        return array($valid, $temp, $tipo);
     }
-    if ($registoValido) {
+}
+function formatData()
+{
+    $registoValido = true;
+    foreach ($_POST as $key => $value) {
+        $newUser[$key] = fnValidateVariable($key, $newUser);
+        $registoValido = $registoValido && $newUser[$key][0];
+    }
+    $newUser['valid'] = $registoValido;
+    return $newUser;
+}
+try {
+    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope, vcPhoneNumber, dtBirth, vcCountry, vcCity, vcAddress, vcPostalCode, vcAfiliation,vcUsername, vcEmail , vcPassword) 
+    values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $count = 1;
+    $newUser = formatData();
+    if ($newUser['valid']) {
+        foreach ($newUser as $key => $value) {
+            if (isset($newUser[$key][2])) {
+                if ($newUser[$key][2] != -1) {
+                    $stmt->bindValue($count++, $newUser[$key][1], $newUser[$key][2]);
+                }
+            }
+        }
         $stmt->execute();
-        //echo "Utilizador Adicionado";
-        
+        session_start();
+        $_SESSION["username"] = $newUser["username"][1];
+        $_SESSION["password"] = $newUser["pass1"][1];
+        header("location: ../index.html");
+    }else{
+        header("location: index.html");
     }
 } catch (PDOException $e) {
     fnDiminuirAutoIncrement($conn);
-    //echo "Erro ao registrar";
+    echo $e->getMessage();
 }
-header('Location: ../Registo/index.html');
-
-?>
