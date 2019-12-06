@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="login.css">
-    <title>Login</title>
+    <title>login</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
-    <div class="container-fluid justify-content-center">
-        <div class="row">
-            <div class="col">
-                <div class="col">
-                    <div class="col text-center">
-                        <h2 class="h2">Iniciar Sessão</h2>
-                    </div>
-                    <form action="sendLogin.php" method="POST">
+    <div class="signin-form">
 
-                        <div class="row">
-                            <div class="col mt-4">
-                                <input class="form-control form-control-user" type="text" name="user"
-                                    placeholder="Utilizador"><br />
-                            </div>
-                        </div>
-                        <input class="form-control" type="password" name="pass" placeholder="Palavra-Passe"><br />
-                        <div>
-                            <input type="checkbox">
-                            <label>Lembrar de mim</label>
-                        </div>
-                        <input class="btn btn-primary" type="submit" value="Iniciar Sessão">
-                    </form>
-                </div>
-                <div id="rightImage" class="col" style="background-image: url('Images/login.jpg');">
-                </div>
-            </div>
+ <div class="container">
+     
+        
+       <form class="form-signin" method="post" id="login-form">
+      
+        <h2 class="form-signin-heading">Log In </h2><hr />
+        
+        <div id="error">
+        <!-- div para ver o erro ! -->
         </div>
-</body>
+        
+        <div class="form-group">
+        <input type="text" class="form-control" placeholder="username" name="username" id="username" />
+        <span id="check-e"></span>
+        </div>
+        
+        <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" name="password" id="password" />
+        </div>
+       
+      <hr />
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-default" name="btn-login" id="btn-login">
+      <span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign In
+   </button> 
+        </div>  
+      
+      </form>
 
+    </div>
+    
+</div>
+</body>
 </html>
