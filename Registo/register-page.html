@@ -46,7 +46,7 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="container card card-register-dark py-5 mt-5 border border-default">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-8 col-xl-6 px-4">
-                    <form name=registo action="" method="post">
+                    <form name=registo action="sendRegistration.php" method="post">
                         <div class="row">
                             <div class="col text-center">
                                 <h1>Registar</h1>
@@ -55,37 +55,35 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="row align-top ">
                             <div class="col mt-2">
                                 <input name="nome" type="text" placeholder="Nome" class="form-control">
-                                <div id="#messageBox"></div>
                             </div>
                             <div class="col mt-2">
                                 <input name="ultimoNome" type="text" placeholder="Sobrenome" class="form-control">
-                                <div id="#messageBox"></div>
                             </div>
                         </div>
 
-                        <div class="row align-items-center">
+                        <div class="row">
                             <div class="col mt-2">
-                                <input name="ambito" type="text" placeholder="Âmbito" class="form-control">
-                                <div id="#messageBox"></div>
+                                <select name="scope" id="scope" class="form-control">
+                                </select>
                             </div>
                         </div>
 
-                        <div class="row align-items-center">
-                            <div class="col mt-2">
-                                <input name="telefone" type="text" placeholder="Número de Telemóvel"
-                                    class="form-control">
-                                <div id="#messageBox"></div>
+                        <div class="row align-top">
+                            <div class="col-md-7 mt-2">
+                                <input name="telefone" type="text" placeholder="Número de Telemóvel"class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
+                            </div>
+                            <div class="col-md-5 mt-2">
+                                <!--<label>Data de Nascimento</label>-->
+                                <input name="dataNascimento" id="dataNascimento" type="date" placeholder="Data de Nascimento" class="form-control">
                             </div>
                         </div>
 
                         <div class="row align-top ">
                             <div class="col mt-2">
                                 <input name="pais" type="text" placeholder=" País" class="form-control">
-                                <div id="#messageBox"></div>
                             </div>
                             <div class="col mt-2">
                                 <input name="cidade" type="text" placeholder=" Cidade" class="form-control">
-                                <div id="#messageBox"></div>
                             </div>
                         </div>
 
@@ -106,7 +104,7 @@ The above copyright notice and this permission notice shall be included in all c
 
                         <div class="row align-top ">
                             <div class="col-md-4 mt-2">
-                                    <input name="username" type="text" placeholder=" Username" class="form-control">
+                                <input name="username" id="username" type="text" placeholder=" Username" class="form-control"  pattern="^[A-Za-z0-9_]{1,32}$">
                             </div>
                             <div class="col-md-8 mt-2">
                                 <input name="email" type="email" placeholder="Email" class="form-control">
@@ -115,24 +113,23 @@ The above copyright notice and this permission notice shall be included in all c
 
                         <div class="row align-top mt-2">
                             <div class="col">
-                                <input name="pass1" type="password" placeholder="Password" class="form-control">
+                                <input id="pass1" name="pass1" type="password" placeholder="Password" class="form-control">
                             </div>
                             <div class="col">
-                                    <input id="pass2" name="pass2" type="password" placeholder="Confirmar Password"
-                                        class="form-control">
+                                <input id="pass2" name="pass2" type="password" placeholder="Confirmar Password"
+                                    class="form-control">
                             </div>
                         </div>
-                            <div class="row float-right mt-2">
-                                <div class="col justify-content-center mt-2">
-                                    <input type="submit" name="submit" value="Registar"
-                                        class="btn btn-default btn-round px-5" />
-                                </div>
+                        <div class="row float-right mt-2">
+                            <div class="col justify-content-center mt-2">
+                                <input type="submit" value="Registar"
+                                    class="btn btn-default btn-round px-5" />
                             </div>
-                        
+                        </div>
                     </form>
                 </div>
             </div>
-    </div>
+        </div>
     <div class="footer register-footer text-center">
       <h6>©
         <script>
