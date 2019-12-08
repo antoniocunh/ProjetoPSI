@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("db_connect.php");
+require_once("../assets/php/library/configDatabase.php");
 if(isset($_POST['login_button'])) {
 	$user_email = trim($_POST['user_email']);
 	$user_password = trim($_POST['password']);
