@@ -35,11 +35,9 @@ $('document').ready(function() {
 				if(teste.one =='ok'){										
 					$("#login_button").html('<img src="ajax-loader.gif" /> &nbsp; Signing In ...');
 					setTimeout(' window.location.href = "../Users/home-user-page.html"; ',0);
-							
-				console.log(response);	
 				} else {									
 					$("#error").fadeIn(1000, function(){						
-						$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+response+' !</div>');
+						$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+teste.one+' !</div>');
 						$("#login_button").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign In');
 					});
 				}
