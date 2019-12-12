@@ -4,7 +4,7 @@ require_once("../assets/php/library/configDatabase.php");
 ?>
 <title>pagina login</title>
 <script type="text/javascript" src="script/validation.min.js"></script>
-<script type="text/javascript" src="script/login.js"></script>
+<script type="text/javascript" src="script/login.js?v=2"></script>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen">
 
 <div class="container">
@@ -14,7 +14,7 @@ require_once("../assets/php/library/configDatabase.php");
 		<div id="error">
 		</div>
 		<div class="form-group">
-			<input type="email" class="form-control" placeholder="Email address" name="user_email" id="user_email" />
+			<input class="form-control" placeholder="Email address" name="username" id="user_email" />
 			<span id="check-e"></span>
 		</div>
 		<div class="form-group">
