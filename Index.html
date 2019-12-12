@@ -40,7 +40,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="landing-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-mixed-theme " color-on-scroll="300">
     <div class="container-fluid">
       <div class="navbar-translate">
         <a class="navbar-brand" href="" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom" target="_blank">
@@ -55,49 +55,47 @@ The above copyright notice and this permission notice shall be included in all c
 
       <div class="collapse navbar-collapse justify-content-center" style="justify-content:flex-end!important" id="navigation">
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="#mu-hero">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#hp-about-us">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="#mu-speakers">Speakers</a></li>
-            <li class="nav-item"><a class="nav-link" href="#mu-pricing">Price</a></li>
-            <li class="nav-item"><a class="nav-link" href="#mu-contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hp-home">Pagina Principal</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hp-about-us">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hp-speakers">Oradores</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hp-info">Informações</a></li>
+            <li class="nav-item"><a class="nav-link" href="#hp-contact">Contacta-nos</a></li>
         </ul>
       </div>
 
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="Login/login.html" class="nav-link"><i class="fa fa-user"></i></a>
-          </li>
+          <li class="nav-item"><a href="Login/login.php" class="nav-link"><i class="fa fa-user"></i></a></li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- End Navbar -->
-  <div class="page-header" data-parallax="true" style="background-image: url('assets/img/daniel-olahh.jpg');">
+  <div class="page-header" id="hp-home" data-parallax="true" style="background-image: url('assets/img/BackgroundImage (2).jpg');">
     <div class="filter"></div>
-    <div class="container">
+    <div  class="container">
       <div class="motto text-center">
         <h1>Conferencia Do Ze Manel</h1>
         <h3>The Biggest International IT Professional Conference</h3>
         <h5>19 - 21 February, 2018. New York, USA</h5>
         <br />
-        <button onclick="location.href='Registo/index.html';" type="button" class="btn btn-outline-neutral btn-round">Registar</button>
+        <button onclick="location.href='Registo/register-page.html';" type="button" class="btn btn-outline-neutral btn-round">Registar</button>
       </div>
     </div>
   </div>
   <div class="main">
     <!-- About Us Section -->  
-    <div class="section" id="hp-about-us">
+    <div class="section section-nude" id="hp-about-us">
       <div class="container">
           <div class="row">
             <div class="col-md-7 ml-auto mr-auto">
-                <img src="assets/img/uriel-soberanes.jpg" class="img-rounded img-responsive" alt="Rounded Image">
+                <img src="assets/img/about-us.jpg" class="img-rounded img-responsive" alt="Rounded Image">
             </div>
             <br/>
             <br/>
             <div class="col-md-5 ml-auto">
               <h2 class="title">Sobre</h2>
-              <h5 class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+              <h5 class="description-theme">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
@@ -177,7 +175,7 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
     <!-- Date And Location -->
-    <div class="section text-center" id="hp-about-us">
+    <div class="section text-center" id="hp-info">
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
@@ -215,7 +213,7 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
     <!-- Contact -->  
-    <div class="section section-dark landing-section">
+    <div class="section section-dark landing-section" id="hp-contact">
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
@@ -249,7 +247,7 @@ The above copyright notice and this permission notice shall be included in all c
               <textarea class="form-control" rows="4" placeholder="Comentários..."></textarea>
               <div class="row">
                 <div class="col-md-4 ml-auto mr-auto">
-                  <button class="btn btn-danger btn-lg btn-fill">Enviar</button>
+                  <button class="btn btn-default btn-lg btn-fill">Enviar</button>
                 </div>
               </div>
             </form>
