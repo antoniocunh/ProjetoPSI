@@ -6083,7 +6083,8 @@ License - nucleoapp.com/license/
 .card.no-transition:hover,
 .card.page-carousel:hover,
 .card.card-refine:hover,
-.card.card-register:hover {
+.card.card-register:hover,
+.card.card-register-dark:hover{
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
   transform: none;
   -webkit-transform: none;
@@ -6648,7 +6649,7 @@ License - nucleoapp.com/license/
 }
 
 .card-register {
-  background-color: #FF8F5E;
+  background-color: #121212;
   border-radius: 8px;
   color: #fff;
   max-width: 350px;
