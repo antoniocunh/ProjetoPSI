@@ -1,6 +1,6 @@
 <?php 
 include('header.php');
-require_once("../assets/php/library/configDatabase.php");
+include_once("db_connect.php");
 ?>
 <title>pagina login</title>
 <script type="text/javascript" src="script/validation.min.js"></script>
