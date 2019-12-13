@@ -2,18 +2,18 @@ $('document').ready(function() {
 	/* validação*/
 	$("#login-form").validate({
 		rules: {
-			password: {
+			idPassword: {
 				required: true,
 			},
-			user_email: {
+			idUsername: {
 				required: true,
 			},
 		},
 		messages: {
-			password:{
+			idPassword:{
 			  required: "please enter your password"
 			 },
-			user_email: "please enter your username",
+			 idUsername: "please enter your username",
 		},
 		submitHandler: submitForm	
 	});	   

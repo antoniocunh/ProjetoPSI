@@ -2,20 +2,20 @@
 session_start();
 require_once("../assets/php/library/configDatabase.php");
 if (isset($_POST["login_button"])) {
-  $user_email = trim($_POST['username']);
-  $user_password = trim($_POST['password']);
+  $username = trim($_POST['username']);
+  $userpassword = trim($_POST['password']);
   try {
-    $stmt = $conn->prepare("SELECT * FROM tb_User WHERE vcUserName=:email");
-    $stmt->execute(array(":email" => $user_email));
+    $stmt = $conn->prepare("SELECT * FROM tb_User WHERE vcUserName=:username");
+    $stmt->execute(array(":username" => $username));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $count = $stmt->rowCount();
-    if ($row['vcPassword'] == hash("sha512", $user_password . "_" . $row['dtBirth'])) {
+    if ($row['vcPassword'] == hash("sha512", $userpassword . "_" . $row['dtBirth'])) {
       $msg = "ok";
       echo json_encode(array("msg" => $msg)); // log in
       $_SESSION['user_session'] = $row['iIdUser'];
     } else {
 
-      echo "email or password does not exist."; // wrong details 
+      echo "Username or Password doesn't exist."; // wrong details 
     }
   } catch (PDOException $e) {
     echo $e->getMessage();
