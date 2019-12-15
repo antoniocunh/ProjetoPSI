@@ -15,7 +15,7 @@ require("../Base/Bridge.php");
         private $vcMainAuthor;
         private $vcSpeaker;
         
-
+        //construtor da class relationworkuser
         public function __construct(){
             parent::__construct("tb_RelationWorkUser");
         }

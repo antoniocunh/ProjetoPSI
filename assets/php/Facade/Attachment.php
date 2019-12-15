@@ -15,7 +15,7 @@ require("../Base/Bridge.php");
         private $vcTitle;
         private $vcState;
         
-
+        //construtor da class attachment
         public function __construct(){
             parent::__construct("tb_Attachment");
         }

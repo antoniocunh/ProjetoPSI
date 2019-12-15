@@ -14,7 +14,7 @@ require("../Base/Bridge.php");
         private $vcReview;
         private $iRate;
     
-        
+        //construtor da class evaluation
         public function __construct(){
             parent::__construct("tb_Evaluation");
         }

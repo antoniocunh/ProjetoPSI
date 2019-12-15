@@ -13,6 +13,8 @@ require("../Base/Bridge.php");
         private $iIdPrice;
         private $vcDescription;
        
+        
+        //construtor da class usertype
         public function __construct(){
             parent::__construct("tb_UserType");
         }

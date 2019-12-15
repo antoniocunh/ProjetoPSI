@@ -1,6 +1,7 @@
 $('document').ready(function() 
 { 
 	/* validação*/
+	
 	$("#login-form").validate({
 		rules: 
 		{
@@ -9,12 +10,14 @@ $('document').ready(function()
 		},
 		messages: 
 		{
-			idPassword:{ required: "please enter your password" },
-			idUsername:{ required:"please enter your username" },
+			idPassword:{ required: "Por Favor introduza a sua Password" },
+			idUsername:{ required:"Por Favor introduza o seu Username" },
 		},
 		submitHandler: submitForm	
 	});	   
+	
 	/* função de login */
+	
 	function submitForm() 
 	{	
 		var _Data = $("#login-form").serialize();	

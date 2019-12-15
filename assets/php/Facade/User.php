@@ -26,6 +26,8 @@
         private $dtBirth;
         private $iIdUserType;
 
+        
+        //construtor da class user
         public function __construct(){
             parent::__construct("tb_User");
         }

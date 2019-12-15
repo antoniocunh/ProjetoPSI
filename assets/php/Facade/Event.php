@@ -27,7 +27,7 @@ require("../Base/Bridge.php");
         private $dtEndEvent;
 
         
-
+        //construtor da class event
         public function __construct(){
             parent::__construct("tb_Event");
         }
