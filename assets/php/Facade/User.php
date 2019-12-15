@@ -5,7 +5,7 @@
         CLASS USER
        ====================================================================*/
     
-       require("../Base/Bridge.php");
+       require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
     
        class User extends Bridge{
       
@@ -33,13 +33,4 @@
         }
 
     }
-
-    $teste = new User();
-    echo "<pre>";
-    var_dump($teste->Update("vcName = teste", "vcName = 'António'"));
-    var_dump($teste->Update("vcName", "teste"));
-    echo "</pre>";
-
-
-    
 ?>

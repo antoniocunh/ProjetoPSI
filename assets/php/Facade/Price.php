@@ -5,7 +5,7 @@
         CLASS PRICE
 ====================================================================*/
     
-require("../Base/Bridge.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
     
        class Price extends Bridge{
         

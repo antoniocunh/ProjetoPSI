@@ -5,7 +5,7 @@
         CLASS ARTICLE
 ====================================================================*/
     
-require("../Base/Bridge.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
     
     class Article extends Bridge{
         

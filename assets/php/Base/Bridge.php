@@ -6,7 +6,7 @@ class Bridge{
     private $table;
         
     public function __construct($aTable){
-        require("../Proprieties/ConfigDB.php");
+        require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
         $this->conn = $conn;      
         $this->table = $aTable;
     }
