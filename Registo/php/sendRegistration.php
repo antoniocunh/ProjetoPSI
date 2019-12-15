@@ -1,5 +1,5 @@
 <?php
-require('../assets/php/library/configDatabase.php');
+require("../assets/php/Proprieties/ConfigDB.php");
 
 function fnDiminuirAutoIncrement($conn)
 {

@@ -1,44 +1,51 @@
-$('document').ready(function() { 
+$('document').ready(function() 
+{ 
 	/* validação*/
 	$("#login-form").validate({
-		rules: {
-			idPassword: {
-				required: true,
-			},
-			idUsername: {
-				required: true,
-			},
+		rules: 
+		{
+			idPassword: { required: true },
+			idUsername: { required: true },
 		},
-		messages: {
-			idPassword:{
-			  required: "please enter your password"
-			 },
-			 idUsername: "please enter your username",
+		messages: 
+		{
+			idPassword:{ required: "please enter your password" },
+			idUsername:{ required:"please enter your username" },
 		},
 		submitHandler: submitForm	
 	});	   
 	/* função de login */
-	function submitForm() {		
-		var data = $("#login-form").serialize();				
-		$.ajax({				
+	function submitForm() 
+	{	
+		var _Data = $("#login-form").serialize();	
+
+		$.ajax({ 
 			type : 'POST',
 			url  : 'login.php',
-			data : data,
+			data : _Data,
 			datatype: 'json',
-			beforeSend: function(){	
-				$("#error").fadeOut();
-				$("#login_button").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; sending ...');
+
+			beforeSend: function()
+			{	
+				$("#div-error").fadeOut();
+				$("#login_button").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Aguarde ...');
 			},
-			success : function(response){
-				teste = JSON.parse(response);	
+			success : function(response)
+			{
+				_Resp = JSON.parse(response);
 				console.log(response);
-				if(teste.msg =='ok'){										
-					$("#login_button").html('<img src="ajax-loader.gif" /> &nbsp; Signing In ...');
+				
+				if(_Resp.msg =='ok')
+				{										
+					$("#login_button").html('<img src="ajax-loader.gif" /> &nbsp; A autenticar...');
 					setTimeout(' window.location.href = "../Users/home-user-page.html"; ',0);
-				} else {									
-					$("#error").fadeIn(1000, function(){						
-						$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+teste.msg+' !</div>');
-						$("#login_button").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign In');
+				} 
+				else 
+				{									
+					$("#div-error").fadeIn(1000, function()
+					{						
+						$("#div-error").html('<div class="alert alert-danger">'+ _Resp.msg+'!</div>');
+						$("#login_button").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Autenticar');
 					});
 				}
 			}

@@ -1,6 +1,6 @@
 $(function () {
     $.ajax({
-            url: "../assets/php/apis/getAmbito.php",
+            url: "../assets/php/Object/Register/getAmbito.php",
             success: function (result) {
                 teste = JSON.parse(result);
                 teste.forEach(function (item) {
@@ -46,7 +46,7 @@ $(function () {
                     required: true,
                     email: true,
                     remote: {
-                        url: "../assets/php/apis/getEmail.php",
+                        url: "../assets/php/Object/Register/getEmail.php",
                         type: "post",
                         data: {
                           username: function() {
@@ -59,7 +59,7 @@ $(function () {
                     required: true,
                     minlength: 4,
                     remote: {
-                        url: "../assets/php/apis/getUsername.php",
+                        url: "../assets/php/Object/Register/getUsername.php",
                         type: "post",
                         data: {
                           username: function() {

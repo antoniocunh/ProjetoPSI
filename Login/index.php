@@ -14,7 +14,7 @@
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <?php 
-    require_once("../assets/php/library/configDatabase.php");
+    require_once("../assets/php/Proprieties/ConfigDB.php");
 ?>
 
   <meta charset="utf-8" />
@@ -30,38 +30,40 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
 
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <body class="register-page sidebar-collapse">
 
   <div id="nav-placeholder"></div>
-  <div class="page-header" style="background-image: url('../assets/img/login-image.jpg');">
+  <div class="page-header" style="background-image: url('../assets/img/home/Home (1).jpeg');">
     <div class="filter"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-4 ml-auto mr-auto">
         <div class="card card-register">
             <h3 class="title mx-auto">Bem-vindo!</h3>
-            <div id="error">
-            </div>
           
             <form class="form-login" method="post" id="login-form">
-		        <div id="error">
-		        </div>
+            <div id="div-error"></div>
 		        <div class="form-group">
 		        	<label>User</label>
-		        	<input class="form-control" placeholder="Email address" name="username" id="user_email" />
+		        	<input class="form-control" placeholder="Username" name="username" id="idUsername" />
 		        	<span id="check-e"></span>
 		        </div>
 		        <div class="form-group">
 		        	<label>Password</label>
-		        	<input type="password" class="form-control" placeholder="Password" name="password" id="password" />
-		        </div>
+		        	<input type="password" class="form-control" placeholder="Password" name="password" id="idPassword" />
+            </div>
+            
 		        <div class="form-group">
 		        	<button type="submit" class="btn btn-default btn-block btn-round" name="login_button" id="login_button">
-		        	<span class="glyphicon glyphicon-log-in"></span> &nbsp; Autenticar
+		        	 &nbsp; Autenticar
 		        	</button> 
-		        </div> 
+            </div>
 	        </form>	
           
             <div class="forgot">
