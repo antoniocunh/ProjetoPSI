@@ -2,28 +2,30 @@
 
 class Bridge{
     
-    public $conn;
+    private $conn;
     private $table;
+    private $column;
         
-    public function __construct($aTable){
+    protected function __construct($aTable, $column){
         require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
         $this->conn = $conn;      
         $this->table = $aTable;
+        $this->column = $column;
     }
 
     /* ==================================================================== 
         Query Functions 
        ====================================================================*/
 
-    public function SelectAll($aCondition = "1=1"){
+    protected function SelectAll($aCondition = "1=1"){
         return $this->QueryFetchAll("SELECT * FROM {$this->table} WHERE {$aCondition};");
     }
 
-    public function SelectColumns($column, $aCondition = "1=1"){
+    protected function SelectColumns($column, $aCondition = "1=1"){
         return $this->QueryFetchAll("SELECT {$column} FROM {$this->table} WHERE {$aCondition};");
     }
 
-    public function SelectOrderBy($aColumn, $aOrder="ASC"){
+    protected function SelectOrderBy($aColumn, $aOrder="ASC"){
         return $this->QueryFetchAll("SELECT {$aColumn} FROM {$this->table} ORDER BY {$aColumn} {$aOrder};");
     }
     
@@ -31,36 +33,38 @@ class Bridge{
         Execute Functions 
        ====================================================================*/
 
-    public function QueryFetchAll($aQuery)
+    protected function QueryFetchAll($aQuery)
     {
         $stmt = $this->conn->prepare("{$aQuery}");
         $stmt->execute();
         return $this->GetArray($stmt);
     }
 
-    public function QueryExecute($aQuery)
+    protected function QueryExecute($aQuery)
     {
         $stmt = $this->conn->prepare("{$aQuery}");
         $stmt->execute();
     }
 
-    public function GetArray($stmt){
+    protected function GetArray($stmt){
         $temp = array();
         $temp = $stmt->fetchAll(PDO::FETCH_BOTH);
         $array = array_values($temp);
         return $array;
     }
 
-    public function GetData($aObject){
-        echo "<pre>";
-        var_dump($aObject);
-        /*foreach($object as $key => $value) {
-            echo "$value\n";
-            }*/
-        echo "</pre>";
+    public function GetData($id, $vars){
+        $temp = array();
+            $result = $this->SelectAll($this->column . " = " . $id);
+            if(!empty($result)){
+                for($count = 0; $count < count($vars); ++$count){
+                    $temp[$count] = $result[0][$vars[$count]];
+                }
+                return $temp;
+            }
     }
 
-    public function GetColumns(){
+    protected function GetColumns(){
         $stmt = $this->conn->prepare("SHOW COLUMNS FROM {$this->table}");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -70,19 +74,21 @@ class Bridge{
         CRUD 
        ====================================================================*/
     
-    public function Update($aColumn, $aCondition)
+    protected function Update($aColumn, $aCondition)
     {
+        echo "UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};";
         $this->QueryExecute("UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};");
     }
 
-    public function Delete($aCondition)
+    protected function Delete($aCondition)
     {
         $this->QueryExecute("DELETE FROM {$this->table} WHERE {$aCondition};");
     }
 
-    public function Insert($aColumn, $aValues)
+    protected function Insert($aColumn, $aValues)
     {
         $this->QueryExecute("INSERT INTO {$this->table}({$aColumn}) VALUES({$aValues})");
     }
 
 }
+
