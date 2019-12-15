@@ -5,7 +5,7 @@
         CLASS PRICE
 ====================================================================*/
     
-       require("Bridge.php");
+require("../Base/Bridge.php");
     
        class Price extends Bridge{
         

@@ -5,7 +5,7 @@
         CLASS RELATION_WORK_USER
 ====================================================================*/
     
-       require("Bridge.php");
+require("../Base/Bridge.php");
     
        class RelationWorkUser extends Bridge{
         

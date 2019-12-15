@@ -5,7 +5,7 @@
         CLASS EVENT
 ====================================================================*/
     
-       require("Bridge.php");
+require("../Base/Bridge.php");
     
        class Event extends Bridge{
         

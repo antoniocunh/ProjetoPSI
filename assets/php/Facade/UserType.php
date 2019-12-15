@@ -5,7 +5,7 @@
         CLASS USER_TYPE
 ====================================================================*/
     
-       require("Bridge.php");
+require("../Base/Bridge.php");
     
        class UserType extends Bridge{
         

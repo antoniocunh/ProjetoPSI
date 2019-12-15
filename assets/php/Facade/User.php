@@ -5,7 +5,7 @@
         CLASS USER
        ====================================================================*/
     
-       require("Bridge.php");
+       require("../Base/Bridge.php");
     
        class User extends Bridge{
       

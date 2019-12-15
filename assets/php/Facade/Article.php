@@ -5,9 +5,9 @@
         CLASS ARTICLE
 ====================================================================*/
     
-       require("Bridge.php");
+require("../Base/Bridge.php");
     
-       class Article extends Bridge{
+    class Article extends Bridge{
         
         private $iIdTypeWork;
         private $iIdScope;

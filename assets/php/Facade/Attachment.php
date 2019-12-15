@@ -5,7 +5,7 @@
         CLASS ATTACHMENT
 ====================================================================*/
     
-       require("Bridge.php");
+require("../Base/Bridge.php");
     
        class Attachment extends Bridge{
         
@@ -21,3 +21,4 @@
         }
 
     }
+?>

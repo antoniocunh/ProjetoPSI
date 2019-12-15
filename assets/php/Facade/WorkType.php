@@ -5,7 +5,7 @@
         CLASS WORK_TYPE
 ====================================================================*/
     
-       require("Bridge.php");
+require("../Base/Bridge.php");
     
        class WorkType extends Bridge{
         

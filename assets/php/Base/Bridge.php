@@ -5,7 +5,7 @@ class Bridge{
     private $table;
         
     public function __construct($aTable){
-        require("../../Proprieties/ConfigDB.php");
+        require("../Proprieties/ConfigDB.php");
         $this->conn = $conn;      
         $this->table = $aTable;
     }

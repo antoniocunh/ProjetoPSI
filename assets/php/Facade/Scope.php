@@ -5,7 +5,7 @@
         CLASS SCOPE
        ====================================================================*/
     
-       require("Bridge.php");
+       require("../Base/Bridge.php");
     
     
        class Scope extends Bridge{
@@ -21,8 +21,10 @@
 
     }
 
-    var cScope = new Scope();
+    $cScope = new Scope();
+    echo "<pre>";
     var_dump($cScope->SelectAll());
+    echo "</pre>";
 
     
 ?>
