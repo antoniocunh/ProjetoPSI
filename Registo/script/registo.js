@@ -1,11 +1,10 @@
 $(function () {
     $.ajax({
             url: "../assets/php/Object/Register/getAmbito.php",
-            success: function (result) {
-                teste = JSON.parse(result);
-                teste.forEach(function (item) {
-                    $('#scope').append("<option value='" + item.iIdScope + "'> "+ item.vcName + "</option>");
-                });
+            success: function (result) 
+            {
+                _Resp = JSON.parse(result);
+                _Resp.forEach(function (item) { $('#scope').append("<option value='" + item.iIdScope + "'> "+ item.vcName + "</option>"); });
             }
         }),
 

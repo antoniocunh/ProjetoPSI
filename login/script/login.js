@@ -33,8 +33,7 @@ $('document').ready(function()
 			success : function(response)
 			{
 				_Resp = JSON.parse(response);
-				console.log(response);
-				
+
 				if(_Resp.msg =='ok')
 				{										
 					$("#login_button").html('<img src="ajax-loader.gif" /> &nbsp; A autenticar...');

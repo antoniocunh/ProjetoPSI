@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require_once("../assets/php/library/configDatabase.php");
+  require_once("../assets/php/Proprieties/ConfigDB.php");
 
   if (isset($_POST["login_button"]))
   {
