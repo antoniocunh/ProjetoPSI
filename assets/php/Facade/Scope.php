@@ -6,7 +6,13 @@
        ====================================================================*/
     
        require("Bridge.php");
-    class Scope extends Bridge{
+    
+    
+       class Scope extends Bridge{
+
+
+        private $iIdScope;
+        private $vcName;
 
 
         public function __construct(){

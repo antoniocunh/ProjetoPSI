@@ -2,22 +2,22 @@
 
 
 /* ==================================================================== 
-        CLASS ARTICLE
+        CLASS ATTACHMENT
 ====================================================================*/
     
        require("Bridge.php");
     
-       class Article extends Bridge{
+       class Attachment extends Bridge{
         
-        private $iIdTypeWork;
-        private $iIdScope;
-        private $vcWork;
+        private $iIdAttachment;
+        private $iIdArticle;
+        private $blAttachment;
         private $vcTitle;
-        private $vcSummary;
+        private $vcState;
         
 
         public function __construct(){
-            parent::__construct("tb_Article");
+            parent::__construct("tb_Attachment");
         }
 
     }

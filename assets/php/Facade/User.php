@@ -6,7 +6,10 @@
        ====================================================================*/
     
        require("Bridge.php");
-    class User extends MiddleMan{
+    
+       class User extends Bridge{
+      
+      
         private $iIdUser;
         private $iIdScope;
         private $vcName;

@@ -2,22 +2,20 @@
 
 
 /* ==================================================================== 
-        CLASS ARTICLE
+        CLASS PRICE
 ====================================================================*/
     
        require("Bridge.php");
     
-       class Article extends Bridge{
+       class Price extends Bridge{
         
-        private $iIdTypeWork;
-        private $iIdScope;
-        private $vcWork;
-        private $vcTitle;
-        private $vcSummary;
+        private $iIdPrice;
+        private $dPrice;
+        
         
 
         public function __construct(){
-            parent::__construct("tb_Article");
+            parent::__construct("tb_Price");
         }
 
     }

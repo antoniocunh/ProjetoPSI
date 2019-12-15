@@ -2,22 +2,18 @@
 
 
 /* ==================================================================== 
-        CLASS ARTICLE
+        CLASS WORK_TYPE
 ====================================================================*/
     
        require("Bridge.php");
     
-       class Article extends Bridge{
+       class WorkType extends Bridge{
         
         private $iIdTypeWork;
-        private $iIdScope;
-        private $vcWork;
-        private $vcTitle;
-        private $vcSummary;
-        
-
+        private $vcDescription;
+       
         public function __construct(){
-            parent::__construct("tb_Article");
+            parent::__construct("tb_WorkType");
         }
 
     }

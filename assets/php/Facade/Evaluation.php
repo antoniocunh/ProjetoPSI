@@ -2,22 +2,21 @@
 
 
 /* ==================================================================== 
-        CLASS ARTICLE
+        CLASS EVALUATION
 ====================================================================*/
     
        require("Bridge.php");
     
-       class Article extends Bridge{
+       class Evaluation extends Bridge{
         
-        private $iIdTypeWork;
-        private $iIdScope;
-        private $vcWork;
-        private $vcTitle;
-        private $vcSummary;
+        private $iIdEvaluation;
+        private $iIdWork;
+        private $vcReview;
+        private $iRate;
+    
         
-
         public function __construct(){
-            parent::__construct("tb_Article");
+            parent::__construct("tb_Evaluation");
         }
 
     }
