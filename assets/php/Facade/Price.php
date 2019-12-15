@@ -13,7 +13,7 @@
         private $dPrice;
         
         
-
+        //construtor da class price
         public function __construct(){
             parent::__construct("tb_Price");
         }

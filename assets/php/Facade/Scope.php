@@ -14,7 +14,7 @@
         private $iIdScope;
         private $vcName;
 
-
+        //construtor da class scope
         public function __construct(){
             parent::__construct("tb_Scope");
         }

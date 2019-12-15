@@ -15,8 +15,8 @@
         private $vcTitle;
         private $vcSummary;
         
-
-        public function __construct(){
+        //construtor da class article
+        public function __construct(){  
             parent::__construct("tb_Article");
         }
 

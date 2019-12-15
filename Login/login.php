@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require_once("../assets/php/Proprieties/ConfigDB.php");
+  require_once("../assets/php/Proprieties/ConfigDB.php"); //coneção à base de dados 
 
   if (isset($_POST["login_button"]))
   {
@@ -13,7 +13,7 @@
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $count = $stmt->rowCount();
 
-      if ($row['vcPassword'] == hash("sha512", $userpassword . "_" . $row['dtBirth'])) 
+      if ($row['vcPassword'] == hash("sha512", $userpassword . "_" . $row['dtBirth'])) // verificação da password com hash
       {
         $msg = "ok";
         echo json_encode(array("msg" => $msg)); // Sucesso na Autenticação
