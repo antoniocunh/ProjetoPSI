@@ -4,27 +4,46 @@
 /* ==================================================================== 
         CLASS SCOPE
        ====================================================================*/
-    
-       require("../Base/Bridge.php");
-    
-    
-       class Scope extends Bridge{
+
+require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 
-        private $iIdScope;
-        private $vcName;
+class Scope extends Bridge
+{
 
-        //construtor da class scope
-        public function __construct(){
-            parent::__construct("tb_Scope");
-        }
 
+    private $iIdScope;
+    private $vcName;
+
+    //construtor da class scope
+    public function __construct()
+    {
+        parent::__construct("tb_Scope", "iIdScope");
     }
 
-    $cScope = new Scope();
-    echo "<pre>";
-    var_dump($cScope->SelectAll());
-    echo "</pre>";
+    function setObject($id)
+    {
+        try {
+            $count = 0;
+            $array = $this->GetData($id, $this->getKeys());
+            foreach ($this as &$key) {
+                $key = $array[$count++];
+            }
+        } catch (Exception $e) { }
+    }
 
-    
-?>
+    private function getVars()
+    {
+        return get_object_vars($this);
+    }
+
+    private function getKeys()
+    {
+        return array_keys($this->getVars());
+    }
+
+    public function __toString()
+    {
+        return $this->iIdScope . " - " . $this->vcName;
+    }
+}
