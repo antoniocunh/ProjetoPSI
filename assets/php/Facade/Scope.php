@@ -21,7 +21,7 @@ class Scope extends Bridge
         parent::__construct("tb_Scope", "iIdScope");
     }
 
-    function setObject($id)
+    function getObject($id)
     {
         try {
             $count = 0;

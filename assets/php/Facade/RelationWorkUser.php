@@ -22,7 +22,7 @@ class RelationWorkUser extends Bridge
         parent::__construct("tb_RelationWorkUser", "iIdRelationWorkUser");
     }
 
-    function setObject($id)
+    function getObject($id)
     {
         try {
             $count = 0;

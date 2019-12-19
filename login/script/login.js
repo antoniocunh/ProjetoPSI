@@ -24,7 +24,7 @@ $('document').ready(function()
 
 		$.ajax({ 
 			type : 'POST',
-			url  : 'login.php',
+			url  : 'login2.php',
 			data : _Data,
 			datatype: 'json',
 
@@ -39,8 +39,8 @@ $('document').ready(function()
 
 				if(_Resp.msg =='ok')
 				{										
-					$("#login_button").html('<img src="ajax-loader.gif" /> &nbsp; A autenticar...');
-					setTimeout(' window.location.href = "../Users/home-user-page.html"; ',0);
+					$("#login_button").html('A autenticar...');
+					setTimeout(' window.location.href = "../Users/home-user-page.php"; ');
 				} 
 				else 
 				{									

@@ -34,7 +34,7 @@ class Event extends Bridge
         parent::__construct("tb_Event", "iIdEvent");
     }
 
-    function setObject($id)
+    function getObject($id)
     {
         try {
             $count = 0;

@@ -20,7 +20,7 @@ class WorkType extends Bridge
         parent::__construct("tb_WorkType", "iIdWorkType");
     }
 
-    function setObject($id)
+    function getObject($id)
     {
         try {
             $count = 0;

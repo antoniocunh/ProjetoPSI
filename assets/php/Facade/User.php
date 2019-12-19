@@ -31,28 +31,43 @@ class User extends Bridge
     //construtor da class user
     public function __construct()
     {
-        parent::__construct("tb_User", "iIdUser");
+        parent::__construct("tb_User", "vcUsername");
     }
 
-    function setObject($id)
+    public function getObject($id)
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
+        $count = 0;
+        $array = $this->GetData($id, $this);
+        var_dump($array);
+        foreach ($this as &$key) {
                 $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        }
     }
 
-    public function getVars()
+    public function setObject()
     {
-        return get_object_vars($this);
+        $this->InsertObject(get_object_vars($this));
     }
 
-    public function getKeys()
+    public function removeObject()
     {
-        return array_keys($this->getVars());
+        $id = $this->vcUsername;
+        $this->DeleteObject($id);
+    }
+
+    public function GetVcPassword()
+    {
+        return $this->vcPassword;
+    }
+
+    public function GetVcUsername()
+    {
+        return $this->vcUsername;
+    }
+
+    public function GetDtBirth()
+    {
+        return $this->dtBirth;
     }
 
     public function __toString()

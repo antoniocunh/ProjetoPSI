@@ -22,7 +22,7 @@ class Article extends Bridge
         parent::__construct("tb_Article", "iIdArticle");
     }
 
-    function setObject($id)
+    function getObject($id)
     {
         try {
             $count = 0;

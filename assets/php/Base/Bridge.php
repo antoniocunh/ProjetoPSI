@@ -8,7 +8,7 @@ class Bridge{
         
     protected function __construct($aTable, $column){
         require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
-        $this->conn = $conn;      
+        $this->conn = &$conn;      
         $this->table = $aTable;
         $this->column = $column;
     }
@@ -17,51 +17,49 @@ class Bridge{
         Query Functions 
        ====================================================================*/
 
-    protected function SelectAll($aCondition = "1=1"){
-        return $this->QueryFetchAll("SELECT * FROM {$this->table} WHERE {$aCondition};");
+    public function SelectAllBP($aCondition = "1", ...$args){
+        return $this->BindParameters("SELECT * FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
-    protected function SelectColumns($column, $aCondition = "1=1"){
-        return $this->QueryFetchAll("SELECT {$column} FROM {$this->table} WHERE {$aCondition};");
+    public function SelectColumnsBP($column, $aCondition = "1", ...$args){
+        return $this->BindParameters("SELECT {$column} FROM {$this->table} WHERE {$aCondition};", $args);
     }
-
-    protected function SelectOrderBy($aColumn, $aOrder="ASC"){
-        return $this->QueryFetchAll("SELECT {$aColumn} FROM {$this->table} ORDER BY {$aColumn} {$aOrder};");
-    }
-    
     /* ==================================================================== 
         Execute Functions 
        ====================================================================*/
 
-    protected function QueryFetchAll($aQuery)
+    public function BindParameters($query, $args)
     {
-        $stmt = $this->conn->prepare("{$aQuery}");
-        $stmt->execute();
-        return $this->GetArray($stmt);
+        if(substr_count($query, "?") == count($args)){
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute($args);
+            return $stmt->fetchAll(PDO::FETCH_BOTH);
+        }
+        return false;
     }
 
-    protected function QueryExecute($aQuery)
+
+    protected function Query($aQuery)
     {
-        $stmt = $this->conn->prepare("{$aQuery}");
+        $stmt = $this->conn->prepare($aQuery);
         $stmt->execute();
     }
 
-    protected function GetArray($stmt){
-        $temp = array();
-        $temp = $stmt->fetchAll(PDO::FETCH_BOTH);
-        $array = array_values($temp);
-        return $array;
-    }
-
-    public function GetData($id, $vars){
-        $temp = array();
-            $result = $this->SelectAll($this->column . " = " . $id);
-            if(!empty($result)){
-                for($count = 0; $count < count($vars); ++$count){
-                    $temp[$count] = $result[0][$vars[$count]];
-                }
-                return $temp;
+    protected function QueryExecute($query, $args)
+    {
+        if(substr_count($query, "?") == count($args)){
+            $stmt = $this->conn->prepare($query);
+            $count = 1;
+            
+            foreach($args as $key){
+                var_dump($key);
+                $stmt->bindParam($count++, $key);
             }
+            $stmt->execute();
+            return true;
+        }
+        echo 1;
+        return false;
     }
 
     protected function GetColumns(){
@@ -69,26 +67,91 @@ class Bridge{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_BOTH);
     }
-    
+
+    public function GetData($id){
+        $result = array();
+        $vars = $this->GetAtributesName();
+        var_dump($vars);
+        $result = $this->SelectAllBP($this->column . " = ?", $id);
+        return $this->DataToArray($vars, $result);
+    }
+
+    public function SetData($id, $vars){
+
+    }
+    public function DataToArray($vars, $values){
+        $temp = array();
+
+        if(!empty($values)){
+            foreach($values as $x){
+                for($count = 0; $count < count($vars); ++$count){
+                    $temp[$count] = $x[$count];
+                }
+            }
+            return $temp;
+        }
+        return false;  
+    }
+
+    public function GetAtributesName(){
+        $object = $this; 
+        $array = array_keys((array)$object);
+        $class = get_class($object);
+        foreach($array as $key => $element){
+            if(strpos($array[$key], "Bridge") == false){
+                if(strpos($array[$key], $class) == 1){
+                    $array[$key] = substr($array[$key], strlen($class) + 1);
+                } 
+            }else{
+                unset($array[$key]);
+            }
+        }
+        return $array;
+    }
+
     /* ==================================================================== 
         CRUD 
        ====================================================================*/
     
-    protected function Update($aColumn, $aCondition)
+    protected function Update($aColumn, $aCondition, ...$args)
     {
         echo "UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};";
-        $this->QueryExecute("UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};");
+        $this->BindParameters("UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};", $args);
     }
 
-    protected function Delete($aCondition)
+    protected function Delete($aCondition, ...$args)
     {
-        $this->QueryExecute("DELETE FROM {$this->table} WHERE {$aCondition};");
+        $this->BindParameters("DELETE FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
-    protected function Insert($aColumn, $aValues)
+    public function Insert($aColumn, ...$args)
     {
-        $this->QueryExecute("INSERT INTO {$this->table}({$aColumn}) VALUES({$aValues})");
+        if($aColumn != Null && $aColumn != ""){
+            $values = "";
+            for($count = 0; $count < substr_count($aColumn, ","); ++$count){
+                $values = $count == 0 ? "?" :  $values . ", ?";
+            }
+            $this->QueryExecute("INSERT INTO {$this->table}({$aColumn}) VALUES({$values})", $args);
+        }
     }
 
+    public function DeleteObject($id)
+    {
+        echo "DELETE FROM {$this->table} WHERE {$this->column} = {$id};";
+        $this->QueryExecute("DELETE FROM {$this->table} WHERE {$this->column} = ?;", array($id));
+    }
+
+    public function InsertObject($array){
+        $arrayCols = $this->GetAtributesName();
+        $Cols = implode(",", $arrayCols);
+
+        if($Cols != Null && $Cols != ""){
+            $values = "";
+            for($count = 0; $count < count($arrayCols) ; ++$count){
+                $values = $count == 0 ? "?" :  $values . ", ?";
+            }
+            echo "INSERT INTO {$this->table}({$Cols}) VALUES({$values})";
+            $this->QueryExecute("INSERT INTO {$this->table}({$Cols}) VALUES({$values})", $array);
+        }
+    }
 }
-

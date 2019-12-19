@@ -25,7 +25,7 @@ class Price extends Bridge
         return get_object_vars($this);
     }
 
-    function setObject($id)
+    function getObject($id)
     {
         try {
             $count = 0;

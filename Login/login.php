@@ -17,7 +17,8 @@
       {
         $msg = "ok";
         echo json_encode(array("msg" => $msg)); // Sucesso na Autenticação
-        $_SESSION['user_session'] = $row['iIdUser'];
+        $_SESSION['username'] = $row['vcUsername'];
+        $_SESSION['password'] = $userpassword;
       } 
       else
       {
