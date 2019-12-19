@@ -55,6 +55,7 @@ class Bridge{
                 var_dump($key);
                 $stmt->bindParam($count++, $key);
             }
+            var_dump($query);
             $stmt->execute();
             return true;
         }

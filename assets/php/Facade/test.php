@@ -11,7 +11,7 @@
 
     
     $teste1 = new User();
-    $teste1->GetObject("teste2");
+    $teste1->GetObject("teste1");
     var_dump($teste1);
     $teste1->removeObject();
     $teste1->setObject();

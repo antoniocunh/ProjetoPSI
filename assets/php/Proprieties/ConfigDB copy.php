@@ -1,9 +1,9 @@
 
 <?php
-    $host = "estga-dev.clients.ua.pt";
+    $host = "localhost";
     $dbname = "ppsi-2019-gr5";
-    $user = "ppsi-2019-gr5";
-    $password = "S%#5H6z8r+";
+    $user = "root";
+    $password = "";
 
     try
     {
