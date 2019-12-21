@@ -11,7 +11,7 @@
 
     
     $teste1 = new User();
-    $teste1->saveObject("sssss");
+    $teste1->saveObject("teste12334d");
     
     $teste1->removeObject();
     $teste1->setObject();

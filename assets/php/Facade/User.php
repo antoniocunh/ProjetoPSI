@@ -33,7 +33,7 @@ class User extends Bridge
     {
         parent::__construct("tb_User", "vcUsername");
     }
-
+    
     public function saveObject($id)
     {
         $count = 0;
@@ -68,7 +68,7 @@ class User extends Bridge
 
     public function CreateUser()
     {
-        $aParams=$this->prepareObjectWithoutNull(get_object_vars($this),"Value");
+        $aParams=$this->prepareParams(get_object_vars($this));//Vai buscar os values
         echo "<br>".$aParams;
         $this->CallFunction("sp_USER_CreateUser(".$aParams.")");
     }

@@ -62,10 +62,10 @@ class Bridge{
             }
 
             $stmt->execute();
-            echo "Query Executada!";
+            echo "<br><br>Query Executada!";
             return true;
         }
-        echo "Query Falhou!";
+        echo "<br><br>Query Falhou!";
         return false;
     }
 
@@ -253,39 +253,30 @@ class Bridge{
         /*
         Esta Classe constroi as string com 
     */
-    public function prepareObject($aData, $aType)
+    public function prepareParams($aData)
     {
         $array = array();
         foreach($aData as $Name => &$Value){
             if(!empty($Value))
-              if($aType == $this->ColumType)
-                    array_push($array, $Name);
-               else if($aType == $this->ValueType)
-                    array_push($array, '"'.$Value.'1"');
+               array_push($array, '"'.$Value.'"');
+            else
+                array_push($array, 'NULL');
         }
 
         $rValue = implode(",", $array);
         return $rValue;
     }
 
-    public function prepareObjectWithoutNull($aData, $aType)
-    {
-        $array = array();
-        foreach($aData as $Name => &$Value){
-              if($aType == $this->ColumType)
-                    array_push($array, $Name);
-               else if($aType == $this->ValueType)
-                    array_push($array, '"'.$Value.'"');
-        }
-
-        $rValue = implode(",", $array);
-        return $rValue;
-    }
-    
     public function CallFunction($aSp)
     {
-        $stmt = $this->conn->prepare("CALL $aSp");
-        $stmt->execute();        
+        try {
+            $stmt = $this->conn->prepare("CALL $aSp");
+            $stmt->execute();        
+            echo "<br><br>Query executada com sucesso!";
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+        
     }
 
 }
