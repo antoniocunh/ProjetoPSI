@@ -34,11 +34,11 @@ class User extends Bridge
         parent::__construct("tb_User", "vcUsername");
     }
 
-    public function getObject($id)
+    public function saveObject($id)
     {
         $count = 0;
-        $array = $this->GetData($id, $this);
-        var_dump($array);
+        $array = $this->GetObject($id);
+        
         foreach ($this as &$key) {
                 $key = $array[$count++];
         }
@@ -46,32 +46,31 @@ class User extends Bridge
 
     public function setObject()
     {
-        $this->InsertObject(get_object_vars($this));
+        $this->CreateUser();
+        //var_dump(get_object_vars($this));
+        //$this->Insert("iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType");
+        //$this->Test(get_object_vars($this));
     }
 
     public function removeObject()
     {
+        //$column = $this->getColumn();
+        //echo $column ." <br/>";
         $id = $this->vcUsername;
+        //echo $id ." <br/>";
         $this->DeleteObject($id);
-    }
-
-    public function GetVcPassword()
-    {
-        return $this->vcPassword;
-    }
-
-    public function GetVcUsername()
-    {
-        return $this->vcUsername;
-    }
-
-    public function GetDtBirth()
-    {
-        return $this->dtBirth;
     }
 
     public function __toString()
     {
         return $this->iIdUser . " - " . $this->vcName;
     }
+
+    public function CreateUser()
+    {
+        $aParams=$this->prepareObjectWithoutNull(get_object_vars($this),"Value");
+        echo "<br>".$aParams;
+        $this->CallFunction("sp_USER_CreateUser(".$aParams.")");
+    }
+
 }
