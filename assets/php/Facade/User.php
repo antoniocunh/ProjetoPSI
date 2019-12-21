@@ -38,21 +38,44 @@ class User extends Bridge
     {
         $count = 0;
         $array = $this->GetData($id, $this);
-        var_dump($array);
+
         foreach ($this as &$key) {
                 $key = $array[$count++];
+                
         }
+    }
+
+    public function ClearData()
+    {
+        foreach ($this as &$key)
+        if(!($key instanceof Bridge))
+            $key = null;
     }
 
     public function setObject()
     {
-        $this->InsertObject(get_object_vars($this));
+        $test = "";
+        $count = 0;
+        $sizeArray = count($this->GetAtributesName());
+        foreach($this->GetAtributesName() as $key){
+            $test = $test . $key ;
+            if(++$count != $sizeArray)
+                $test = $test . ", ";
+        }
+        echo $test . "<br>";
+        echo $count . " - " . count($this->GetAtributesName());
+        //$this->Insert("iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType", get_object_vars($this));
+        //echo "<br>iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType<br>";
+
+        $this->Insert("iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType", get_object_vars($this));
+        //$this->InsertObject(get_object_vars($this));
     }
 
     public function removeObject()
     {
         $id = $this->vcUsername;
         $this->DeleteObject($id);
+        //$this->ClearData();
     }
 
     public function GetVcPassword()

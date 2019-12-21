@@ -47,19 +47,30 @@ class Bridge{
 
     protected function QueryExecute($query, $args)
     {
-        if(substr_count($query, "?") == count($args)){
+        echo "<br>CONDIÇÃO<br>";
+        var_dump(substr_count($query, "?"));
+        var_dump(count($args));
+
+        if(substr_count($query, "?") == count($args))
+        {
             $stmt = $this->conn->prepare($query);
             $count = 1;
-            
-            foreach($args as $key){
-                var_dump($key);
-                $stmt->bindParam($count++, $key);
-            }
             var_dump($query);
+            echo "<br>Keys<br>";
+            var_dump($args);
+            foreach($args as &$key){
+                $stmt->bindParam($count++, $key);
+                var_dump($key);
+            }
+
             $stmt->execute();
+            echo "Query Executada com sucesso";
+
+            echo 1;
             return true;
         }
-        echo 1;
+        echo 0;
+        echo "Query Falhou!";
         return false;
     }
 
@@ -72,14 +83,10 @@ class Bridge{
     public function GetData($id){
         $result = array();
         $vars = $this->GetAtributesName();
-        var_dump($vars);
         $result = $this->SelectAllBP($this->column . " = ?", $id);
         return $this->DataToArray($vars, $result);
     }
 
-    public function SetData($id, $vars){
-
-    }
     public function DataToArray($vars, $values){
         $temp = array();
 
@@ -92,6 +99,16 @@ class Bridge{
             return $temp;
         }
         return false;  
+    }
+
+    private function getType($var){
+        if(is_int($var)){
+            return PDO::PARAM_INT;
+        }else{
+            if(is_string($var)){
+                return PDO::PARAM_STR;
+            }
+        }
     }
 
     public function GetAtributesName(){
@@ -112,11 +129,10 @@ class Bridge{
 
     /* ==================================================================== 
         CRUD 
-       ====================================================================*/
+    ====================================================================*/
     
     protected function Update($aColumn, $aCondition, ...$args)
     {
-        echo "UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};";
         $this->BindParameters("UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};", $args);
     }
 
@@ -125,11 +141,11 @@ class Bridge{
         $this->BindParameters("DELETE FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
-    public function Insert($aColumn, ...$args)
+    public function Insert($aColumn, $args)
     {
         if($aColumn != Null && $aColumn != ""){
             $values = "";
-            for($count = 0; $count < substr_count($aColumn, ","); ++$count){
+            for($count = 0; $count < count($args); ++$count){
                 $values = $count == 0 ? "?" :  $values . ", ?";
             }
             $this->QueryExecute("INSERT INTO {$this->table}({$aColumn}) VALUES({$values})", $args);
@@ -138,20 +154,19 @@ class Bridge{
 
     public function DeleteObject($id)
     {
-        echo "DELETE FROM {$this->table} WHERE {$this->column} = {$id};";
-        $this->QueryExecute("DELETE FROM {$this->table} WHERE {$this->column} = ?;", array($id));
+        $this->QueryExecute("DELETE FROM `{$this->table}` WHERE {$this->column} = ?;", array($id));
     }
 
     public function InsertObject($array){
         $arrayCols = $this->GetAtributesName();
-        $Cols = implode(",", $arrayCols);
+        $Cols = implode(", ", $arrayCols);
+        echo "<br>" . $Cols;
 
         if($Cols != Null && $Cols != ""){
             $values = "";
             for($count = 0; $count < count($arrayCols) ; ++$count){
                 $values = $count == 0 ? "?" :  $values . ", ?";
             }
-            echo "INSERT INTO {$this->table}({$Cols}) VALUES({$values})";
             $this->QueryExecute("INSERT INTO {$this->table}({$Cols}) VALUES({$values})", $array);
         }
     }
