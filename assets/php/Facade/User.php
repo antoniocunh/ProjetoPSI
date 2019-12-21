@@ -46,18 +46,14 @@ class User extends Bridge
 
     public function setObject()
     {
-        $this->CreateUser();
+        //$this->GetCountry();
         //var_dump(get_object_vars($this));
-        //$this->Insert("iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType");
-        //$this->Test(get_object_vars($this));
+        $this->Insert(get_object_vars($this));
     }
 
     public function removeObject()
     {
-        //$column = $this->getColumn();
-        //echo $column ." <br/>";
         $id = $this->vcUsername;
-        //echo $id ." <br/>";
         $this->DeleteObject($id);
     }
 
@@ -72,5 +68,7 @@ class User extends Bridge
         echo "<br>".$aParams;
         $this->CallFunction("sp_USER_CreateUser(".$aParams.")");
     }
+
+
 
 }
