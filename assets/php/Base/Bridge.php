@@ -70,16 +70,6 @@ class Bridge{
         return false;  
     }
 
-    private function getType($var){
-        if(is_int($var)){
-            return PDO::PARAM_INT;
-        }else{
-            if(is_string($var)){
-                return PDO::PARAM_STR;
-            }
-        }
-    }
-
     protected function GetAtributesName(){
         $object = $this; 
         $array = array_keys((array)$object);
@@ -248,17 +238,6 @@ class Bridge{
 
         $rValue = implode(",", $array);
         return $rValue;
-    }
-
-    public function CallFunction($aSp)
-    {
-        try {
-            $stmt = $this->conn->prepare("CALL $aSp");
-            $stmt->execute();        
-            echo "<br><br>Query executada com sucesso!";
-        } catch (\Throwable $th) {
-            echo $th->getMessage();
-        }
     }
 
 }
