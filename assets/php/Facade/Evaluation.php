@@ -21,24 +21,36 @@ class Evaluation extends Bridge
         parent::__construct("tb_Evaluation", "iIdEvaluation");
     }
 
-    function getObject($id)
+
+    /**
+     * Get the value of iIdEvaluation
+     */ 
+    public function getIIdEvaluation()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        return $this->iIdEvaluation;
     }
 
-    private function getVars()
+    /**
+     * Get the value of iIdWork
+     */ 
+    public function getIIdWork()
     {
-        return get_object_vars($this);
+        return $this->iIdWork;
     }
 
-    private function getKeys()
+    /**
+     * Get the value of vcReview
+     */ 
+    public function getVcReview()
     {
-        return array_keys($this->getVars());
+        return $this->vcReview;
+    }
+
+    /**
+     * Get the value of iRate
+     */ 
+    public function getIRate()
+    {
+        return $this->iRate;
     }
 }

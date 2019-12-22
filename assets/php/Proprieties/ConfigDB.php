@@ -1,9 +1,9 @@
 
 <?php
-    $host = "localhost";
-    $dbname = "ppsi-2019-gr5";
-    $user = "root";
-    $password = "";
+     $host = "localhost";
+     $dbname = "ppsi-2019-gr5";
+     $user = "root";
+     $password = "";
 
     try
     {

@@ -22,24 +22,44 @@ class RelationWorkUser extends Bridge
         parent::__construct("tb_RelationWorkUser", "iIdRelationWorkUser");
     }
 
-    function getObject($id)
+
+    /**
+     * Get the value of idRelation
+     */ 
+    public function getIdRelation()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        return $this->idRelation;
     }
 
-    private function getVars()
+    /**
+     * Get the value of iIdUser
+     */ 
+    public function getIIdUser()
     {
-        return get_object_vars($this);
+        return $this->iIdUser;
     }
 
-    private function getKeys()
+    /**
+     * Get the value of iIdWork
+     */ 
+    public function getIIdWork()
     {
-        return array_keys($this->getVars());
+        return $this->iIdWork;
+    }
+
+    /**
+     * Get the value of vcMainAuthor
+     */ 
+    public function getVcMainAuthor()
+    {
+        return $this->vcMainAuthor;
+    }
+
+    /**
+     * Get the value of vcSpeaker
+     */ 
+    public function getVcSpeaker()
+    {
+        return $this->vcSpeaker;
     }
 }

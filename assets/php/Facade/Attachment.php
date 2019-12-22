@@ -22,24 +22,44 @@ class Attachment extends Bridge
         parent::__construct("tb_Attachment", "iIdAttachment");
     }
 
-    function getObject($id)
+
+    /**
+     * Get the value of iIdAttachment
+     */ 
+    public function getIIdAttachment()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        return $this->iIdAttachment;
     }
 
-    private function getVars()
+    /**
+     * Get the value of iIdArticle
+     */ 
+    public function getIIdArticle()
     {
-        return get_object_vars($this);
+        return $this->iIdArticle;
     }
 
-    private function getKeys()
+    /**
+     * Get the value of blAttachment
+     */ 
+    public function getBlAttachment()
     {
-        return array_keys($this->getVars());
+        return $this->blAttachment;
+    }
+
+    /**
+     * Get the value of vcTitle
+     */ 
+    public function getVcTitle()
+    {
+        return $this->vcTitle;
+    }
+
+    /**
+     * Get the value of vcState
+     */ 
+    public function getVcState()
+    {
+        return $this->vcState;
     }
 }

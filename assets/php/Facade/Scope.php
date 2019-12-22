@@ -21,29 +21,20 @@ class Scope extends Bridge
         parent::__construct("tb_Scope", "iIdScope");
     }
 
-    function getObject($id)
+
+    /**
+     * Get the value of iIdScope
+     */ 
+    public function getIIdScope()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        return $this->iIdScope;
     }
 
-    private function getVars()
+    /**
+     * Get the value of vcName
+     */ 
+    public function getVcName()
     {
-        return get_object_vars($this);
-    }
-
-    private function getKeys()
-    {
-        return array_keys($this->getVars());
-    }
-
-    public function __toString()
-    {
-        return $this->iIdScope . " - " . $this->vcName;
+        return $this->vcName;
     }
 }

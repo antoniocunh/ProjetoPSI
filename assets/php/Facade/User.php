@@ -33,12 +33,12 @@ class User extends Bridge
     {
         parent::__construct("tb_User", "vcUsername");
     }
-
-    public function getObject($id)
+    
+    public function saveObject($id)
     {
         $count = 0;
-        $array = $this->GetData($id, $this);
-
+        $array = $this->GetObject($id);
+        
         foreach ($this as &$key) {
                 $key = $array[$count++];
                 
@@ -54,21 +54,9 @@ class User extends Bridge
 
     public function setObject()
     {
-        $test = "";
-        $count = 0;
-        $sizeArray = count($this->GetAtributesName());
-        foreach($this->GetAtributesName() as $key){
-            $test = $test . $key ;
-            if(++$count != $sizeArray)
-                $test = $test . ", ";
-        }
-        echo $test . "<br>";
-        echo $count . " - " . count($this->GetAtributesName());
-        //$this->Insert("iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType", get_object_vars($this));
-        //echo "<br>iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType<br>";
-
-        $this->Insert("iIdUser, iIdScope, vcName, vcLastName, vcAddress, vcPhoneNumber, vcEmail, vcCountry, vcAfiliation, vcUsername, vcPassword, vcCity, vcPostalCode, dtBirth, iIdUserType", get_object_vars($this));
-        //$this->InsertObject(get_object_vars($this));
+        //$this->GetCountry();
+        //var_dump(get_object_vars($this));
+        $this->Insert(get_object_vars($this));
     }
 
     public function removeObject()
@@ -78,23 +66,123 @@ class User extends Bridge
         //$this->ClearData();
     }
 
-    public function GetVcPassword()
+    /**
+     * Get the value of iIdUser
+     */ 
+    public function getIIdUser()
     {
-        return $this->vcPassword;
+        return $this->iIdUser;
     }
 
-    public function GetVcUsername()
+    /**
+     * Get the value of iIdScope
+     */ 
+    public function getIIdScope()
+    {
+        return $this->iIdScope;
+    }
+
+    /**
+     * Get the value of vcName
+     */ 
+    public function getVcName()
+    {
+        return $this->vcName;
+    }
+
+    /**
+     * Get the value of vcLastName
+     */ 
+    public function getVcLastName()
+    {
+        return $this->vcLastName;
+    }
+
+    /**
+     * Get the value of vcAddress
+     */ 
+    public function getVcAddress()
+    {
+        return $this->vcAddress;
+    }
+
+    /**
+     * Get the value of vcPhoneNumber
+     */ 
+    public function getVcPhoneNumber()
+    {
+        return $this->vcPhoneNumber;
+    }
+
+    /**
+     * Get the value of vcEmail
+     */ 
+    public function getVcEmail()
+    {
+        return $this->vcEmail;
+    }
+
+    /**
+     * Get the value of vcCountry
+     */ 
+    public function getVcCountry()
+    {
+        return $this->vcCountry;
+    }
+
+    /**
+     * Get the value of vcAfiliation
+     */ 
+    public function getVcAfiliation()
+    {
+        return $this->vcAfiliation;
+    }
+
+    /**
+     * Get the value of vcUsername
+     */ 
+    public function getVcUsername()
     {
         return $this->vcUsername;
     }
 
-    public function GetDtBirth()
+    /**
+     * Get the value of vcPassword
+     */ 
+    public function getVcPassword()
+    {
+        return $this->vcPassword;
+    }
+
+    /**
+     * Get the value of vcCity
+     */ 
+    public function getVcCity()
+    {
+        return $this->vcCity;
+    }
+
+    /**
+     * Get the value of vcPostalCode
+     */ 
+    public function getVcPostalCode()
+    {
+        return $this->vcPostalCode;
+    }
+
+    /**
+     * Get the value of dtBirth
+     */ 
+    public function getDtBirth()
     {
         return $this->dtBirth;
     }
 
-    public function __toString()
+    /**
+     * Get the value of iIdUserType
+     */ 
+    public function getIIdUserType()
     {
-        return $this->iIdUser . " - " . $this->vcName;
+        return $this->iIdUserType;
     }
 }

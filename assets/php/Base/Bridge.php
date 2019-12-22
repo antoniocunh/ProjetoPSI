@@ -5,7 +5,10 @@ class Bridge{
     private $conn;
     private $table;
     private $column;
-        
+    private $ColumType = "Column";
+    private $ValueType = "Value";
+    
+
     protected function __construct($aTable, $column){
         require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
         $this->conn = &$conn;      
@@ -16,19 +19,22 @@ class Bridge{
     /* ==================================================================== 
         Query Functions 
        ====================================================================*/
+    protected function SelectAll(){
+        return $this->Query("SELECT * FROM {$this->table}");
+    }
 
-    public function SelectAllBP($aCondition = "1", ...$args){
+    protected function SelectAllBP($aCondition = "1", ...$args){
         return $this->BindParameters("SELECT * FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
-    public function SelectColumnsBP($column, $aCondition = "1", ...$args){
+    protected function SelectColumnsBP($column, $aCondition = "1", ...$args){
         return $this->BindParameters("SELECT {$column} FROM {$this->table} WHERE {$aCondition};", $args);
     }
     /* ==================================================================== 
         Execute Functions 
        ====================================================================*/
 
-    public function BindParameters($query, $args)
+    protected function BindParameters($query, $args)
     {
         if(substr_count($query, "?") == count($args)){
             $stmt = $this->conn->prepare($query);
@@ -38,40 +44,10 @@ class Bridge{
         return false;
     }
 
-
     protected function Query($aQuery)
     {
         $stmt = $this->conn->prepare($aQuery);
         $stmt->execute();
-    }
-
-    protected function QueryExecute($query, $args)
-    {
-        echo "<br>CONDIÇÃO<br>";
-        var_dump(substr_count($query, "?"));
-        var_dump(count($args));
-
-        if(substr_count($query, "?") == count($args))
-        {
-            $stmt = $this->conn->prepare($query);
-            $count = 1;
-            var_dump($query);
-            echo "<br>Keys<br>";
-            var_dump($args);
-            foreach($args as &$key){
-                $stmt->bindParam($count++, $key);
-                var_dump($key);
-            }
-
-            $stmt->execute();
-            echo "Query Executada com sucesso";
-
-            echo 1;
-            return true;
-        }
-        echo 0;
-        echo "Query Falhou!";
-        return false;
     }
 
     protected function GetColumns(){
@@ -80,14 +56,7 @@ class Bridge{
         return $stmt->fetchAll(PDO::FETCH_BOTH);
     }
 
-    public function GetData($id){
-        $result = array();
-        $vars = $this->GetAtributesName();
-        $result = $this->SelectAllBP($this->column . " = ?", $id);
-        return $this->DataToArray($vars, $result);
-    }
-
-    public function DataToArray($vars, $values){
+    protected function DataToArray($vars, $values){
         $temp = array();
 
         if(!empty($values)){
@@ -111,7 +80,7 @@ class Bridge{
         }
     }
 
-    public function GetAtributesName(){
+    protected function GetAtributesName(){
         $object = $this; 
         $array = array_keys((array)$object);
         $class = get_class($object);
@@ -127,6 +96,15 @@ class Bridge{
         return $array;
     }
 
+    
+    public function GetObject($id){
+        $result = array();
+        $vars = $this->GetAtributesName();
+        var_dump($vars);
+        $result = $this->SelectAllBP($this->column . " = ?", $id);
+        return $this->DataToArray($vars, $result);
+    }
+
     /* ==================================================================== 
         CRUD 
     ====================================================================*/
@@ -140,34 +118,147 @@ class Bridge{
     {
         $this->BindParameters("DELETE FROM {$this->table} WHERE {$aCondition};", $args);
     }
-
-    public function Insert($aColumn, $args)
+    
+    protected function DeleteObject($id)
     {
-        if($aColumn != Null && $aColumn != ""){
-            $values = "";
-            for($count = 0; $count < count($args); ++$count){
-                $values = $count == 0 ? "?" :  $values . ", ?";
+        echo "DELETE FROM {$this->table} WHERE {$this->column} = {$id};";
+        $this->QueryExec("DELETE FROM {$this->table} WHERE {$this->column} = ?;", array($id));
+    }
+
+    protected function Insert($aData)
+    {
+        $columns = $this->GetAtributesName();
+        $holders = $this->setHolders($columns);
+        $cols = $this->setColumns($columns);
+
+        $rColumns = $this->prepareObject($aData, $this->ColumType);
+        $rValues = $this->prepareObject($aData, $this->ValueType);
+
+        echo "<br>===================================================";
+        echo "<br>PRINT<br>";
+        echo "INSERT INTO tb_user($rColumns) VALUES($rValues)";
+        echo "<br>===================================================<br>";
+
+        $this->QueryExecute("INSERT INTO tb_user($rColumns) VALUES($rValues)", $aData);
+    }
+
+    public function prepareObject($aData, $aType)
+    {
+        $array = array();
+        foreach($aData as $Name => &$Value){
+            if(!empty($Value))
+              if($aType == $this->ColumType)
+                    array_push($array, $Name);
+               else if($aType == $this->ValueType)
+                        array_push($array, '"?"');
+                    /*
+                        INSERT INTO tb_user(iIdUser,iIdScope,vcName,vcLastName,vcAddress,vcPhoneNumber,vcEmail,vcCountry,vcAfiliation,vcUsername,vcPassword,vcCity,vcPostalCode,dtBirth) 
+                        VALUES("?","?","?","?","?","?","?","?","?","?","?","?","?","?")
+                    */
+                    /*
+                        array_push($array, '"'.$Value.'"'); 
+                            INSERT INTO tb_user(iIdUser,iIdScope,vcName,vcLastName,vcAddress,vcPhoneNumber,vcEmail,vcCountry,vcAfiliation,vcUsername,vcPassword,vcCity,vcPostalCode,dtBirth)
+                            VALUES("17","2","António","Cunha","Rua Dr. Marques da Costa","913245857","antonio3cunha505@gmail.com","Portugal","Estudante","teste12334d","sdsdfsdf.","dgf","3800-596","1996-02-14")
+                    */
+        }
+
+        $rValue = implode(",", $array);
+        return $rValue;
+    }
+
+    protected function QueryExecute($aQuery, $aData)
+    {
+        try
+        {
+            $stmt = $this->conn->prepare($aQuery);
+
+            foreach ($aData as $Name => &$Value){
+                if(!empty($Value)){
+                    echo "<br>".$Name." - ".$Value;
+                    $stmt->bindParam($Name, $Value);
+                }
             }
-            $this->QueryExecute("INSERT INTO {$this->table}({$aColumn}) VALUES({$values})", $args);
+
+            $stmt->execute();
+            echo "<br>Query executada com sucesso!";
+            return true;
+        }
+        catch(PDOException $e){
+            echo "<br>".$e->getMessage();
+            return false;
+        }
+    } 
+
+
+    protected function QueryExec($aQuery, $aData)
+    {
+        try
+        {
+            $stmt = $this->conn->prepare($aQuery);
+
+            $count = 1;
+            
+            foreach($aData as $key){
+                $stmt->bindParam($count++, $key);
+            }
+
+            $stmt->execute();
+            echo "<br>Query executada com sucesso!";
+            return true;
+        }
+        catch(PDOException $e){
+            echo "<br>".$e->getMessage();
+            return false;
+        }
+    } 
+
+    //=========================================================================
+
+    private function setColumns(array $columns){
+        $cols = implode(', ', array_values($columns));
+        return $cols;
+    }
+    
+    private function setFields(array $columns){
+        $fields = implode(' = ?, ', array_values($columns));
+        return $fields.' = ?';
+    }
+    
+    private function setHolders(array $columns){
+        $holders = array_fill(1 ,count($columns),'"?"');
+        return implode(', ',array_values($holders));
+    }
+
+    protected function getColumn(){
+        return $this->column;
+    }
+
+    /*
+        Esta Classe constroi as string com 
+    */
+    public function prepareParams($aData)
+    {
+        $array = array();
+        foreach($aData as $Name => &$Value){
+            if(!empty($Value))
+               array_push($array, '"'.$Value.'"');
+            else
+                array_push($array, 'NULL');
+        }
+
+        $rValue = implode(",", $array);
+        return $rValue;
+    }
+
+    public function CallFunction($aSp)
+    {
+        try {
+            $stmt = $this->conn->prepare("CALL $aSp");
+            $stmt->execute();        
+            echo "<br><br>Query executada com sucesso!";
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
         }
     }
 
-    public function DeleteObject($id)
-    {
-        $this->QueryExecute("DELETE FROM `{$this->table}` WHERE {$this->column} = ?;", array($id));
-    }
-
-    public function InsertObject($array){
-        $arrayCols = $this->GetAtributesName();
-        $Cols = implode(", ", $arrayCols);
-        echo "<br>" . $Cols;
-
-        if($Cols != Null && $Cols != ""){
-            $values = "";
-            for($count = 0; $count < count($arrayCols) ; ++$count){
-                $values = $count == 0 ? "?" :  $values . ", ?";
-            }
-            $this->QueryExecute("INSERT INTO {$this->table}({$Cols}) VALUES({$values})", $array);
-        }
-    }
 }

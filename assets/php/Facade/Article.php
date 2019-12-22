@@ -22,24 +22,45 @@ class Article extends Bridge
         parent::__construct("tb_Article", "iIdArticle");
     }
 
-    function getObject($id)
+
+
+    /**
+     * Get the value of iIdTypeWork
+     */ 
+    public function getIIdTypeWork()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        return $this->iIdTypeWork;
     }
 
-    private function getVars()
+    /**
+     * Get the value of iIdScope
+     */ 
+    public function getIIdScope()
     {
-        return get_object_vars($this);
+        return $this->iIdScope;
     }
 
-    private function getKeys()
+    /**
+     * Get the value of vcWork
+     */ 
+    public function getVcWork()
     {
-        return array_keys($this->getVars());
+        return $this->vcWork;
+    }
+
+    /**
+     * Get the value of vcTitle
+     */ 
+    public function getVcTitle()
+    {
+        return $this->vcTitle;
+    }
+
+    /**
+     * Get the value of vcSummary
+     */ 
+    public function getVcSummary()
+    {
+        return $this->vcSummary;
     }
 }

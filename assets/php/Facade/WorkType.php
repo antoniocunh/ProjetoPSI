@@ -20,24 +20,21 @@ class WorkType extends Bridge
         parent::__construct("tb_WorkType", "iIdWorkType");
     }
 
-    function getObject($id)
+    
+
+    /**
+     * Get the value of iIdTypeWork
+     */ 
+    public function getIIdTypeWork()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        return $this->iIdTypeWork;
     }
 
-    private function getVars()
+    /**
+     * Get the value of vcDescription
+     */ 
+    public function getVcDescription()
     {
-        return get_object_vars($this);
-    }
-
-    private function getKeys()
-    {
-        return array_keys($this->getVars());
+        return $this->vcDescription;
     }
 }

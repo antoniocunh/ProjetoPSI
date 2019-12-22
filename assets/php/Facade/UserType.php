@@ -13,32 +13,35 @@ class UserType extends Bridge
     private $iIdTypeUser;
     private $iIdPrice;
     private $vcDescription;
-
-
+    
     //construtor da class usertype
     public function __construct()
     {
         parent::__construct("tb_UserType", "iIdUserType");
     }
 
-    function getObject($id)
+
+    /**
+     * Get the value of iIdTypeUser
+     */ 
+    public function getIIdTypeUser()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
+        return $this->iIdTypeUser;
     }
 
-    public function getVars()
+    /**
+     * Get the value of iIdPrice
+     */ 
+    public function getIIdPrice()
     {
-        return get_object_vars($this);
+        return $this->iIdPrice;
     }
 
-    public function getKeys()
+    /**
+     * Get the value of vcDescription
+     */ 
+    public function getVcDescription()
     {
-        return array_keys($this->getVars());
+        return $this->vcDescription;
     }
 }

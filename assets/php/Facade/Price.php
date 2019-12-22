@@ -20,29 +20,20 @@ class Price extends Bridge
         parent::__construct("tb_Price", "iIdPrice");
     }
 
-    private function getVars()
+
+    /**
+     * Get the value of iIdPrice
+     */ 
+    public function getIIdPrice()
     {
-        return get_object_vars($this);
+        return $this->iIdPrice;
     }
 
-    function getObject($id)
+    /**
+     * Get the value of dPrice
+     */ 
+    public function getDPrice()
     {
-        try {
-            $count = 0;
-            $array = $this->GetData($id, $this->getKeys());
-            foreach ($this as &$key) {
-                $key = $array[$count++];
-            }
-        } catch (Exception $e) { }
-    }
-
-    private function getKeys()
-    {
-        return array_keys($this->getVars());
-    }
-
-    public function __toString()
-    {
-        return $this->iIdPrice . " - " . $this->dPrice;
+        return $this->dPrice;
     }
 }
