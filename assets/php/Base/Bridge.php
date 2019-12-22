@@ -99,9 +99,9 @@ class Bridge{
         CRUD 
     ====================================================================*/
     
-    protected function Update($aColumn, $aCondition, ...$args)
+    protected function Update($aColumn, $aCondition, ...$aArgs)
     {
-        $this->BindParameters("UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};", $args);
+        $this->BindParameters("UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};", $aArgs);
     }
 
     protected function Delete($aCondition, ...$args)
@@ -120,10 +120,10 @@ class Bridge{
         $columns = $this->GetAtributesName();
         $holders = $this->setHolders($columns);
         $cols = $this->setColumns($columns);
-
+        var_dump($cols);
         $rColumns = $this->prepareObject($aData, $this->ColumType);
         $rValues = $this->prepareObject($aData, $this->ValueType);
-
+var_dump($rColumns);
         echo "<br>===================================================";
         echo "<br>PRINT<br>";
         echo "INSERT INTO tb_user($rColumns) VALUES($rValues)";
@@ -136,11 +136,10 @@ class Bridge{
     {
         $array = array();
         foreach($aData as $Name => &$Value){
-            if(!empty($Value))
               if($aType == $this->ColumType)
                     array_push($array, $Name);
                else if($aType == $this->ValueType)
-                        array_push($array, '"?"');
+                        array_push($array, '?');
                     /*
                         INSERT INTO tb_user(iIdUser,iIdScope,vcName,vcLastName,vcAddress,vcPhoneNumber,vcEmail,vcCountry,vcAfiliation,vcUsername,vcPassword,vcCity,vcPostalCode,dtBirth) 
                         VALUES("?","?","?","?","?","?","?","?","?","?","?","?","?","?")
@@ -158,15 +157,15 @@ class Bridge{
 
     protected function QueryExecute($aQuery, $aData)
     {
-        try
-        {
-            $stmt = $this->conn->prepare($aQuery);
+        try{
+            if(substr_count($aQuery, "?") != count($aData))
+                throw new PDOException("Invalid number of tokens! - " . substr_count($aQuery, "?") . " of " . count($aData));
 
+            $stmt = $this->conn->prepare($aQuery);
+            $count = 1;
             foreach ($aData as $Name => &$Value){
-                if(!empty($Value)){
                     echo "<br>".$Name." - ".$Value;
-                    $stmt->bindParam($Name, $Value);
-                }
+                    $stmt->bindParam($count++, $Value);
             }
 
             $stmt->execute();

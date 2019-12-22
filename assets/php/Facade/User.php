@@ -41,7 +41,7 @@ class User extends Bridge
         
         foreach ($this as &$key) {
                 $key = $array[$count++];
-                
+                echo $key . "<br>";
         }
     }
 
@@ -55,7 +55,7 @@ class User extends Bridge
     public function setObject()
     {
         //$this->GetCountry();
-        //var_dump(get_object_vars($this));
+        var_dump(get_object_vars($this));
         $this->Insert(get_object_vars($this));
     }
 
