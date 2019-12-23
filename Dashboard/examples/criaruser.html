@@ -179,123 +179,108 @@ The above copyright notice and this permission notice shall be included in all c
                                     <h4 class="card-title">Criar Utilizador</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Nome</label>
-                                                    <input type="text" class="form-control" placeholder="Nome" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Sobrenome</label>
-                                                    <input type="text" class="form-control" placeholder="Sobrenome">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label >Telemóvel</label>
-                                                    <input name="telefone" type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
-                                                </div>
+                                  <form class="criaruserform">
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Nome</label>
+                                                <input name="nome" type="text" placeholder="Nome" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Afiliação</label>
-                                                    <input type="text" class="form-control" placeholder="Afiliação" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Ambito</label>
-                                                    <input type="text" class="form-control" placeholder="Ambito">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label >Data de Nascimento</label>
-                                                    <input type="date" placeholder="Data de Nascimento" class="form-control">
-                                                </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Sobrenome</label>
+                                                 <input name="ultimoNome" type="text" placeholder="Sobrenome" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Morada</label>
-                                                    <input type="text" class="form-control" placeholder="Morada">
-                                                </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label >Telemóvel</label>
+                                                <input name="telefone" type="text" placeholder="Número de Telemóvel"class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
                                             </div>
                                         </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-4 pr-1">
-                                                <div class="form-group">
-                                                    <label>Pais</label>
-                                                    <input type="text" class="form-control" placeholder="Pais" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Cidade</label>
-                                                    <input type="text" class="form-control" placeholder="Cidade">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label>Código Postal</label>
-                                                    <input type="text" class="form-control" placeholder="Código Postal">
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Afiliação</label>
+                                                <input name="organizacao" type="text" placeholder=" Afiliação" class="form-control">
                                             </div>
                                         </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Username</label>
-                                                    <input name="username" id="username" type="text" placeholder=" Username" class="form-control"  pattern="^[A-Za-z0-9_]{1,32}$">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>E-mail</label>
-                                                    <input name="email" type="email" placeholder="Email" class="form-control">
-                                                </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Ambito</label>
+                                                <select name="scope" id="scope" class="form-control"></select>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input id="pass1" name="pass1" type="password" placeholder="Password" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Repetir Password</label>
-                                                    <input id="pass2" name="pass2" type="password" placeholder="Password" class="form-control">
-                                                </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label >Data de Nascimento</label>
+                                                 <input name="dataNascimento" id="dataNascimento" type="date" placeholder="Data de Nascimento" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                              <div class="form-group">
-                                                    <label for="exampleFormControlSelect1">Role</label>
-                                                        <select class="form-control" id="exampleFormControlSelect1">
-                                                                <option>Participante</option>
-                                                                <option>Autor</option>
-                                                                <option>Orador</option>
-                                                                <option>Comissão Cientifica</option>
-                                                                <option>Comissão Organizadora</option>
-                                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Morada</label>
+                                                <input name="morada" type="text" placeholder="Morada" class="form-control">
                                             </div>
-                                                </div>
-                                            
                                         </div>
-                                        <button type="submit" class="btn btn-danger">Criar Utilizador</button>
-                                        <div class="clearfix"></div>
-                                    </form>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Pais</label>
+                                                <input name="pais" type="text" placeholder=" País" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Cidade</label>
+                                                 <input name="cidade" type="text" placeholder=" Cidade" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Código Postal</label>
+                                                <input name="codPostal" type="text" placeholder=" Código Postal" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input name="username" id="username" type="text" placeholder=" Username" class="form-control"  pattern="^[A-Za-z0-9_]{1,32}$">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>E-mail</label>
+                                                <input name="email" type="email" placeholder="Email" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                 <input id="pass1" name="pass1" type="password" placeholder="Password" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Repetir Password</label>
+                                                <input id="pass2" name="pass2" type="password" placeholder="Password" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger">Criar Utilizador</button>
+                                    <div class="clearfix"></div>
+                                </form>
                                 </div>
                             </div>
                         </div>
