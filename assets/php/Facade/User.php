@@ -187,4 +187,186 @@ class User extends Bridge
     {
         return $this->iIdUserType;
     }
+
+    /**
+     * Set the value of iIdUser
+     *
+     * @return  self
+     */ 
+    public function setIIdUser($iIdUser)
+    {
+        $this->iIdUser = $iIdUser;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iIdScope
+     *
+     * @return  self
+     */ 
+    public function setIIdScope($iIdScope)
+    {
+        $this->iIdScope = $iIdScope;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcName
+     *
+     * @return  self
+     */ 
+    public function setVcName($vcName)
+    {
+        $this->vcName = $vcName;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcLastName
+     *
+     * @return  self
+     */ 
+    public function setVcLastName($vcLastName)
+    {
+        $this->vcLastName = $vcLastName;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcAddress
+     *
+     * @return  self
+     */ 
+    public function setVcAddress($vcAddress)
+    {
+        $this->vcAddress = $vcAddress;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcPhoneNumber
+     *
+     * @return  self
+     */ 
+    public function setVcPhoneNumber($vcPhoneNumber)
+    {
+        $this->vcPhoneNumber = $vcPhoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcEmail
+     *
+     * @return  self
+     */ 
+    public function setVcEmail($vcEmail)
+    {
+        $this->vcEmail = $vcEmail;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcCountry
+     *
+     * @return  self
+     */ 
+    public function setVcCountry($vcCountry)
+    {
+        $this->vcCountry = $vcCountry;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcAfiliation
+     *
+     * @return  self
+     */ 
+    public function setVcAfiliation($vcAfiliation)
+    {
+        $this->vcAfiliation = $vcAfiliation;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcUsername
+     *
+     * @return  self
+     */ 
+    public function setVcUsername($vcUsername)
+    {
+        $this->vcUsername = $vcUsername;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcPassword
+     *
+     * @return  self
+     */ 
+    public function setVcPassword($vcPassword)
+    {
+        if($this->dtBirth != null){
+            $this->vcPassword = hash("sha512", $vcPassword . "_" . $this->dtBirth);
+
+            return $this;
+        }
+    }
+
+    /**
+     * Set the value of vcCity
+     *
+     * @return  self
+     */ 
+    public function setVcCity($vcCity)
+    {
+        $this->vcCity = $vcCity;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcPostalCode
+     *
+     * @return  self
+     */ 
+    public function setVcPostalCode($vcPostalCode)
+    {
+        $this->vcPostalCode = $vcPostalCode;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of dtBirth
+     *
+     * @return  self
+     */ 
+    public function setDtBirth($dtBirth)
+    {
+        $this->dtBirth = $dtBirth;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iIdUserType
+     *
+     * @return  self
+     */ 
+    public function setIIdUserType($iIdUserType)
+    {
+        $this->iIdUserType = $iIdUserType;
+
+        return $this;
+    }
 }

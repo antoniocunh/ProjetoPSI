@@ -21,6 +21,27 @@ class Evaluation extends Bridge
         parent::__construct("tb_Evaluation", "iIdEvaluation");
     }
 
+    public function readObject($id)
+    {
+        $count = 0;
+        $array = $this->ReadObjectBD($id);
+        
+        foreach ($this as &$key) {
+                $key = $array[$count++];
+        }
+    }
+
+    public function InsertObject()
+    {
+        $this->InsertObjectBD(get_object_vars($this));
+    }
+
+    public function DeleteObject()
+    {
+        $id = $this->{$this->getColumn()};
+        $this->DeleteObjectBD($id);
+        //$this->ClearData();
+    }
 
     /**
      * Get the value of iIdEvaluation
@@ -52,5 +73,53 @@ class Evaluation extends Bridge
     public function getIRate()
     {
         return $this->iRate;
+    }
+
+    /**
+     * Set the value of iIdEvaluation
+     *
+     * @return  self
+     */ 
+    public function setIIdEvaluation($iIdEvaluation)
+    {
+        $this->iIdEvaluation = $iIdEvaluation;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iIdWork
+     *
+     * @return  self
+     */ 
+    public function setIIdWork($iIdWork)
+    {
+        $this->iIdWork = $iIdWork;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcReview
+     *
+     * @return  self
+     */ 
+    public function setVcReview($vcReview)
+    {
+        $this->vcReview = $vcReview;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iRate
+     *
+     * @return  self
+     */ 
+    public function setIRate($iRate)
+    {
+        $this->iRate = $iRate;
+
+        return $this;
     }
 }

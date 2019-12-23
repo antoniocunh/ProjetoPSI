@@ -19,6 +19,28 @@ class Price extends Bridge
     {
         parent::__construct("tb_Price", "iIdPrice");
     }
+    
+    public function readObject($id)
+    {
+        $count = 0;
+        $array = $this->ReadObjectBD($id);
+        
+        foreach ($this as &$key) {
+                $key = $array[$count++];
+        }
+    }
+
+    public function InsertObject()
+    {
+        $this->InsertObjectBD(get_object_vars($this));
+    }
+
+    public function DeleteObject()
+    {
+        $id = $this->{$this->getColumn()};
+        $this->DeleteObjectBD($id);
+        //$this->ClearData();
+    }
 
 
     /**
@@ -35,5 +57,29 @@ class Price extends Bridge
     public function getDPrice()
     {
         return $this->dPrice;
+    }
+
+    /**
+     * Set the value of iIdPrice
+     *
+     * @return  self
+     */ 
+    public function setIIdPrice($iIdPrice)
+    {
+        $this->iIdPrice = $iIdPrice;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of dPrice
+     *
+     * @return  self
+     */ 
+    public function setDPrice($dPrice)
+    {
+        $this->dPrice = $dPrice;
+
+        return $this;
     }
 }

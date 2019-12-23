@@ -24,7 +24,7 @@ $('document').ready(function()
 
 		$.ajax({ 
 			type : 'POST',
-			url  : 'login.php',
+			url  : '../login.php',
 			data : _Data,
 			datatype: 'json',
 
@@ -46,7 +46,7 @@ $('document').ready(function()
 				{									
 					$("#div-error").fadeIn(1000, function()
 					{						
-						$("#div-error").html('<div class="alert alert-danger">'+ _Resp.msg+'!</div>');
+						$("#div-error").html('<div class="alert alert-danger">'+ _Resp.msg +'!</div>');
 						$("#login_button").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Autenticar');
 					});
 				}

@@ -21,6 +21,28 @@ class Attachment extends Bridge
     {
         parent::__construct("tb_Attachment", "iIdAttachment");
     }
+    
+    public function readObject($id)
+    {
+        $count = 0;
+        $array = $this->ReadObjectBD($id);
+        
+        foreach ($this as &$key) {
+                $key = $array[$count++];
+        }
+    }
+
+    public function InsertObject()
+    {
+        $this->InsertObjectBD(get_object_vars($this));
+    }
+
+    public function DeleteObject()
+    {
+        $id = $this->{$this->getColumn()};
+        $this->DeleteObjectBD($id);
+        //$this->ClearData();
+    }
 
 
     /**
@@ -61,5 +83,65 @@ class Attachment extends Bridge
     public function getVcState()
     {
         return $this->vcState;
+    }
+
+    /**
+     * Set the value of iIdAttachment
+     *
+     * @return  self
+     */ 
+    public function setIIdAttachment($iIdAttachment)
+    {
+        $this->iIdAttachment = $iIdAttachment;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iIdArticle
+     *
+     * @return  self
+     */ 
+    public function setIIdArticle($iIdArticle)
+    {
+        $this->iIdArticle = $iIdArticle;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of blAttachment
+     *
+     * @return  self
+     */ 
+    public function setBlAttachment($blAttachment)
+    {
+        $this->blAttachment = $blAttachment;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcTitle
+     *
+     * @return  self
+     */ 
+    public function setVcTitle($vcTitle)
+    {
+        $this->vcTitle = $vcTitle;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcState
+     *
+     * @return  self
+     */ 
+    public function setVcState($vcState)
+    {
+        $this->vcState = $vcState;
+
+        return $this;
     }
 }

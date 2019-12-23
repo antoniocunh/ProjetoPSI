@@ -19,11 +19,8 @@ class Bridge{
     /* ==================================================================== 
         Query Functions 
        ====================================================================*/
-    protected function SelectAll(){
-        return $this->Query("SELECT * FROM {$this->table}");
-    }
 
-    protected function SelectAllBP($aCondition = "1", ...$args){
+    public function SelectAllBP($aCondition = "1", ...$args){
         return $this->BindParameters("SELECT * FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
@@ -42,12 +39,6 @@ class Bridge{
             return $stmt->fetchAll(PDO::FETCH_BOTH);
         }
         return false;
-    }
-
-    protected function Query($aQuery)
-    {
-        $stmt = $this->conn->prepare($aQuery);
-        $stmt->execute();
     }
 
     protected function GetColumns(){
@@ -110,8 +101,24 @@ class Bridge{
     
     protected function UpdateObjectBD($aId, $aData)
     {
+        $columns = $this->GetAtributesName();
+        $holders = $this->setHolders($columns);
+        $cols = $this->setColumns($columns);
+
+        $rColumns = $this->prepareInsert($aData, $this->ColumType);
+        $rValues = $this->prepareInsert($aData, $this->ValueType);
+
+        $aData["vcUsername"] = "33333";
+        $aData["vcEmail"] = "Tete@gmail.com";
+        echo "<br>===================================================";
+        echo "<br>PRINT<br>";
+        echo "REPLACE INTO tb_user($rColumns) VALUES($rValues)";
+        echo "<br>===================================================<br>";
         
-        //var_dump($aData);
+        $this->QueryExecute("REPLACE INTO {$this->table}($rColumns) VALUES($rValues)", $aData);
+
+        
+        /*var_dump($aData);
         $rFields = $this->prepareUpdateV2($aData);
            
         array_push($aData, $aId);
@@ -121,12 +128,13 @@ class Bridge{
         echo "<br>PRINT<br>";
         
         //$query = "UPDATE {$this->table} SET {$rFields} WHERE {$this->column} = {$a};"; - '"'.$a.'"'
-        $query = "UPDATE tb_User SET {$rFields} WHERE vcUsername like "."?".";";
+        $query = "REPLACE INTO tb_User SET {$rFields} WHERE vcUsername = ?;";
         echo  $query;
         
 
         $this->QueryExecute($query, $aData);
         echo "<br>===================================================<br>";
+        */
     }
     
     private function prepareUpdateV2($aData)
@@ -205,7 +213,7 @@ class Bridge{
             var_dump($aData);
             foreach ($aData as $Name => &$Value){
                     echo $count . " - " . $Name." - ".$Value . " <br>";
-                    $stmt->bindParam($count++, htmlspecialchars(strip_tags($Value)));
+                    $stmt->bindParam($count++, $Value);
             }
 
             $stmt->execute();

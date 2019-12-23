@@ -22,6 +22,27 @@ class Article extends Bridge
         parent::__construct("tb_Article", "iIdArticle");
     }
 
+    public function readObject($id)
+    {
+        $count = 0;
+        $array = $this->ReadObjectBD($id);
+        
+        foreach ($this as &$key) {
+                $key = $array[$count++];
+        }
+    }
+
+    public function InsertObject()
+    {
+        $this->InsertObjectBD(get_object_vars($this));
+    }
+
+    public function DeleteObject()
+    {
+        $id = $this->{$this->getColumn()};
+        $this->DeleteObjectBD($id);
+        //$this->ClearData();
+    }
 
 
     /**
@@ -62,5 +83,65 @@ class Article extends Bridge
     public function getVcSummary()
     {
         return $this->vcSummary;
+    }
+
+    /**
+     * Set the value of iIdTypeWork
+     *
+     * @return  self
+     */ 
+    public function setIIdTypeWork($iIdTypeWork)
+    {
+        $this->iIdTypeWork = $iIdTypeWork;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iIdScope
+     *
+     * @return  self
+     */ 
+    public function setIIdScope($iIdScope)
+    {
+        $this->iIdScope = $iIdScope;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcWork
+     *
+     * @return  self
+     */ 
+    public function setVcWork($vcWork)
+    {
+        $this->vcWork = $vcWork;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcTitle
+     *
+     * @return  self
+     */ 
+    public function setVcTitle($vcTitle)
+    {
+        $this->vcTitle = $vcTitle;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcSummary
+     *
+     * @return  self
+     */ 
+    public function setVcSummary($vcSummary)
+    {
+        $this->vcSummary = $vcSummary;
+
+        return $this;
     }
 }

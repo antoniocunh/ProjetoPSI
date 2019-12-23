@@ -21,6 +21,27 @@ class Scope extends Bridge
         parent::__construct("tb_Scope", "iIdScope");
     }
 
+    public function readObject($id)
+    {
+        $count = 0;
+        $array = $this->ReadObjectBD($id);
+        
+        foreach ($this as &$key) {
+                $key = $array[$count++];
+        }
+    }
+
+    public function InsertObject()
+    {
+        $this->InsertObjectBD(get_object_vars($this));
+    }
+
+    public function DeleteObject()
+    {
+        $id = $this->{$this->getColumn()};
+        $this->DeleteObjectBD($id);
+        //$this->ClearData();
+    }
 
     /**
      * Get the value of iIdScope
@@ -36,5 +57,29 @@ class Scope extends Bridge
     public function getVcName()
     {
         return $this->vcName;
+    }
+
+    /**
+     * Set the value of iIdScope
+     *
+     * @return  self
+     */ 
+    public function setIIdScope($iIdScope)
+    {
+        $this->iIdScope = $iIdScope;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcName
+     *
+     * @return  self
+     */ 
+    public function setVcName($vcName)
+    {
+        $this->vcName = $vcName;
+
+        return $this;
     }
 }
