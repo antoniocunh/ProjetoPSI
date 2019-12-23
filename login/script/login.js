@@ -24,7 +24,7 @@ $('document').ready(function()
 
 		$.ajax({ 
 			type : 'POST',
-			url  : 'login2.php',
+			url  : 'login.php',
 			data : _Data,
 			datatype: 'json',
 

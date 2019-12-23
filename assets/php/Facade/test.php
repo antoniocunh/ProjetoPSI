@@ -10,10 +10,10 @@
 
     
     $teste1 = new User();
-    $teste1->saveObject("tedste1234d");
-    
-    $teste1->removeObject();
-    $teste1->setObject();
+    $teste1->ReadObject("teste2");
+    $teste1->UpdateObject();
+    $teste1->DeleteObject();
+    $teste1->InsertObject();
 
     echo "</pre>";
 ?>

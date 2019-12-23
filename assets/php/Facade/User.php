@@ -9,8 +9,6 @@ require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class User extends Bridge
 {
-
-
     private $iIdUser;
     private $iIdScope;
     private $vcName;
@@ -34,36 +32,40 @@ class User extends Bridge
         parent::__construct("tb_User", "vcUsername");
     }
     
-    public function saveObject($id)
+    public function readObject($id)
     {
         $count = 0;
-        $array = $this->GetObject($id);
+        $array = $this->ReadObjectBD($id);
         
         foreach ($this as &$key) {
                 $key = $array[$count++];
-                echo $key . "<br>";
         }
     }
 
-    public function ClearData()
+    public function InsertObject()
+    {
+        $this->InsertObjectBD(get_object_vars($this));
+    }
+
+    public function DeleteObject()
+    {
+        $id = $this->{$this->getColumn()};
+        $this->DeleteObjectBD($id);
+        //$this->ClearData();
+    }
+
+    public function UpdateObject()
+    {
+        echo "=============TESTE=============<br>";
+        $id = $this->{$this->getColumn()};
+        $this->UpdateObjectBD($id, get_object_vars($this));
+    }
+
+    private function ClearData()
     {
         foreach ($this as &$key)
         if(!($key instanceof Bridge))
             $key = null;
-    }
-
-    public function setObject()
-    {
-        //$this->GetCountry();
-        var_dump(get_object_vars($this));
-        $this->Insert(get_object_vars($this));
-    }
-
-    public function removeObject()
-    {
-        $id = $this->vcUsername;
-        $this->DeleteObject($id);
-        //$this->ClearData();
     }
 
     /**

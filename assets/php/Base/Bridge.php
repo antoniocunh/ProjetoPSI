@@ -86,20 +86,11 @@ class Bridge{
         return $array;
     }
 
-    
-    public function GetObject($id){
-        $result = array();
-        $vars = $this->GetAtributesName();
-        var_dump($vars);
-        $result = $this->SelectAllBP($this->column . " = ?", $id);
-        return $this->DataToArray($vars, $result);
-    }
-
     /* ==================================================================== 
         CRUD 
     ====================================================================*/
     
-    protected function Update($aColumn, $aCondition, ...$aArgs)
+    protected function Update($aColumn, $aCondition, $aArgs)
     {
         $this->BindParameters("UPDATE {$this->table} SET {$aColumn} WHERE {$aCondition};", $aArgs);
     }
@@ -108,31 +99,88 @@ class Bridge{
     {
         $this->BindParameters("DELETE FROM {$this->table} WHERE {$aCondition};", $args);
     }
+
+    protected function ReadObjectBD($id){
+        $result = array();
+        $vars = $this->GetAtributesName();
+        var_dump($vars);
+        $result = $this->SelectAllBP($this->column . " = ?", $id);
+        return $this->DataToArray($vars, $result);
+    }
     
-    protected function DeleteObject($id)
+    protected function UpdateObjectBD($aId, $aData)
     {
-        echo "DELETE FROM {$this->table} WHERE {$this->column} = {$id};";
-        $this->QueryExec("DELETE FROM {$this->table} WHERE {$this->column} = ?;", array($id));
+        
+        //var_dump($aData);
+        $rFields = $this->prepareUpdateV2($aData);
+           
+        array_push($aData, $aId);
+        $aData["vcUsername"] = "3333333333333333333333333333333333333";
+        $aData["vcEmail"] = "TesasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadteTeste@gmail.com";
+        echo "<br>===================================================";
+        echo "<br>PRINT<br>";
+        
+        //$query = "UPDATE {$this->table} SET {$rFields} WHERE {$this->column} = {$a};"; - '"'.$a.'"'
+        $query = "UPDATE tb_User SET {$rFields} WHERE vcUsername like "."?".";";
+        echo  $query;
+        
+
+        $this->QueryExecute($query, $aData);
+        echo "<br>===================================================<br>";
+    }
+    
+    private function prepareUpdateV2($aData)
+    {
+        $rValue = "";
+        $i =1;
+        foreach($aData as $Name => &$Value){
+            if($i<count($aData))
+               $rValue = $rValue." ".$Name."=?,";
+            else
+                $rValue = $rValue." ".$Name."=? ";
+
+           $i++;
+        }
+        echo "<br><br><br>fasdljhnasfhkjggfashjkasjhkfkjhashjkgdshgjsdahjgasdjghashdjgashjgdhgajsd<br><br><br>";
+        echo $rValue; 
+        echo "<br><br><br>fasdljhnasfhkjggfashjkasjhkfkjhashjkgdshgjsdahjgasdjghashdjgashjgdhgajsd<br><br><br>";
+        return $rValue;
+    }
+    
+    private function RemoveDataParams($aData, ...$aParams){
+          //Exclui Elementos que nao quero passar no aData
+          foreach ($aParams as $Param)
+            foreach (array_keys($aData, $Param) as $Value) {
+                unset($aData[$Value]);
+            }
+
+        return $aData;
     }
 
-    protected function Insert($aData)
+    protected function DeleteObjectBD($id)
+    {
+        echo "DELETE FROM {$this->table} WHERE {$this->column} = {$id};";
+        $this->QueryExecute("DELETE FROM {$this->table} WHERE {$this->column} = ?;", array($id));
+    }
+
+    protected function InsertObjectBD($aData)
     {
         $columns = $this->GetAtributesName();
         $holders = $this->setHolders($columns);
         $cols = $this->setColumns($columns);
-        var_dump($cols);
-        $rColumns = $this->prepareObject($aData, $this->ColumType);
-        $rValues = $this->prepareObject($aData, $this->ValueType);
-var_dump($rColumns);
+
+        $rColumns = $this->prepareInsert($aData, $this->ColumType);
+        $rValues = $this->prepareInsert($aData, $this->ValueType);
+
         echo "<br>===================================================";
         echo "<br>PRINT<br>";
         echo "INSERT INTO tb_user($rColumns) VALUES($rValues)";
         echo "<br>===================================================<br>";
-
-        $this->QueryExecute("INSERT INTO tb_user($rColumns) VALUES($rValues)", $aData);
+        
+        $this->QueryExecute("INSERT INTO {$this->table}($rColumns) VALUES($rValues)", $aData);
     }
 
-    public function prepareObject($aData, $aType)
+    private function prepareInsert($aData, $aType)
     {
         $array = array();
         foreach($aData as $Name => &$Value){
@@ -140,62 +188,33 @@ var_dump($rColumns);
                     array_push($array, $Name);
                else if($aType == $this->ValueType)
                         array_push($array, '?');
-                    /*
-                        INSERT INTO tb_user(iIdUser,iIdScope,vcName,vcLastName,vcAddress,vcPhoneNumber,vcEmail,vcCountry,vcAfiliation,vcUsername,vcPassword,vcCity,vcPostalCode,dtBirth) 
-                        VALUES("?","?","?","?","?","?","?","?","?","?","?","?","?","?")
-                    */
-                    /*
-                        array_push($array, '"'.$Value.'"'); 
-                            INSERT INTO tb_user(iIdUser,iIdScope,vcName,vcLastName,vcAddress,vcPhoneNumber,vcEmail,vcCountry,vcAfiliation,vcUsername,vcPassword,vcCity,vcPostalCode,dtBirth)
-                            VALUES("17","2","António","Cunha","Rua Dr. Marques da Costa","913245857","antonio3cunha505@gmail.com","Portugal","Estudante","teste12334d","sdsdfsdf.","dgf","3800-596","1996-02-14")
-                    */
         }
 
         $rValue = implode(",", $array);
         return $rValue;
     }
 
-    protected function QueryExecute($aQuery, $aData)
+    private function QueryExecute($aQuery, $aData)
     {
         try{
-            if(substr_count($aQuery, "?") != count($aData))
+            if(substr_count($aQuery, '?') != count($aData))
                 throw new PDOException("Invalid number of tokens! - " . substr_count($aQuery, "?") . " of " . count($aData));
 
             $stmt = $this->conn->prepare($aQuery);
             $count = 1;
+            var_dump($aData);
             foreach ($aData as $Name => &$Value){
-                    echo "<br>".$Name." - ".$Value;
-                    $stmt->bindParam($count++, $Value);
+                    echo $count . " - " . $Name." - ".$Value . " <br>";
+                    $stmt->bindParam($count++, htmlspecialchars(strip_tags($Value)));
             }
 
             $stmt->execute();
+            $stmt->debugDumpParams();
             echo "<br>Query executada com sucesso!";
             return true;
         }
         catch(PDOException $e){
-            echo "<br>".$e->getMessage();
-            return false;
-        }
-    } 
-
-
-    protected function QueryExec($aQuery, $aData)
-    {
-        try
-        {
-            $stmt = $this->conn->prepare($aQuery);
-
-            $count = 1;
-            
-            foreach($aData as $key){
-                $stmt->bindParam($count++, $key);
-            }
-
-            $stmt->execute();
-            echo "<br>Query executada com sucesso!";
-            return true;
-        }
-        catch(PDOException $e){
+            //$stmt->debugDumpParams();
             echo "<br>".$e->getMessage();
             return false;
         }
@@ -214,12 +233,8 @@ var_dump($rColumns);
     }
     
     private function setHolders(array $columns){
-        $holders = array_fill(1 ,count($columns),'"?"');
+        $holders = array_fill(1 ,count($columns),'?');
         return implode(', ',array_values($holders));
-    }
-
-    protected function getColumn(){
-        return $this->column;
     }
 
     /*
@@ -239,4 +254,13 @@ var_dump($rColumns);
         return $rValue;
     }
 
+    //================================GETTERS==============================
+
+    /**
+     * Get the value of column
+     */ 
+    public function getColumn()
+    {
+        return $this->column;
+    }
 }
