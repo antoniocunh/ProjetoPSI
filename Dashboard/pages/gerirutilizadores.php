@@ -39,7 +39,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
   <div class="wrapper ">
-  <div class="sidebar" data-color="black" data-active-color="danger">
+   <div class="sidebar" data-color="black" data-active-color="warning">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -56,55 +56,55 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./evento.html">
+            <a href="./evento.php">
                <i class="fa fa-compass" aria-hidden="true"></i>
               <p>Evento</p>
             </a>
           </li>
             <li>
-            <a href="./avaliar.html">
+            <a href="./avaliar.php">
               <i class="fa fa-briefcase" aria-hidden="true"></i>
               <p>Avaliar</p>
             </a>
           </li>
-          <li class="active">
-            <a href="./resultados.html">
+          <li >
+            <a href="./resultados.php">
               <i class="fa fa-university" aria-hidden="true"></i>
               <p>Resultados</p>
             </a>
           </li>
           <li>
-            <a href="./participar.html">
+            <a href="./participar.php">
               <i class="fa fa-check-square" aria-hidden="true"></i>
               <p>Participar</p>
             </a>
           </li>
             <li>
-            <a href="./mandaremail.html">
+            <a href="./mandaremail.php">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <p>E-mail</p>
             </a>
           </li>
-          <li>
-            <a href="./gerirutilizadores.html">
+          <li class="active">
+            <a href="./gerirutilizadores.php">
               <i class="fa fa-users" aria-hidden="true"></i>
               <p>Gerir Utilizadores</p>
             </a>
           </li>
           <li>
-            <a href="./criaruser.html">
+            <a href="./criaruser.php">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               <p>Criar Utilizador</p>
             </a>
           </li>
             <li>
-            <a href="./perfil.html">
+            <a href="./perfil.php">
               <i class="fa fa-user-o" aria-hidden="true"></i>
               <p>Perfil</p>
             </a>
           </li>
           <li>
-            <a href="./dashboard.html">
+            <a href="./dashboard.php">
               <i class="fa fa-area-chart" aria-hidden="true"></i>
               <p>Dashboard</p>
             </a>
@@ -180,7 +180,7 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Resultados</h4>
+                <h4 class="card-title"> Gestão de Utilizadores</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -190,20 +190,34 @@ The above copyright notice and this permission notice shall be included in all c
                         ID
                       </th>
                       <th>
-                       Nome do Autor
+                       Nome
                       </th>
                       <th>
-                        Trabalho
+                        Apelido
                       </th>
                       <th>
-                        Nota
+                        Morada
                       </th>
                         <th>
-                        Critica
+                        Pais
                       </th>
-                       
+                        <th>
+                        Cidade
+                      </th>
+                        <th>
+                        Código Postal
+                      </th>
+                        <th>
+                        E-mail
+                      </th>
+                        <th>
+                        Telemovel
+                      </th>
+                        <th>
+                        Organização
+                      </th>
                       <th >
-                      Enviar Trabalho final
+                     
                       </th>
                     </thead>
                     <tbody>
@@ -215,16 +229,31 @@ The above copyright notice and this permission notice shall be included in all c
                           Marco 
                         </td>
                         <td>
-                          exemplo.pdf
+                          Cunha
+                        </td>
+                        <td>
+                          rua cesamo
                         </td>
                           <td>
-                          5
+                          Portugal
+                        </td>
+                          <td>
+                          Aveiro
+                        </td>
+                         <td>
+                          3850
                         </td>
                         <td>
-                          está olha, uma *****
+                          teste@tese.com
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Enviar</button>
+                          9126595
+                        </td>
+                        <td>
+                          ESTGA
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Opções</button>
                         </td>
                       </tr>
                     </tbody>

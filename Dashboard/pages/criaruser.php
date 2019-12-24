@@ -24,7 +24,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Pprojeto psi grupo 5
+    projeto psi grupo 5
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -33,13 +33,11 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">
   <div class="wrapper ">
-   <div class="sidebar" data-color="black" data-active-color="danger">
+  <div class="sidebar" data-color="black" data-active-color="warning">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -56,55 +54,55 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./evento.html">
+            <a href="./evento.php">
                <i class="fa fa-compass" aria-hidden="true"></i>
               <p>Evento</p>
             </a>
           </li>
             <li>
-            <a href="./avaliar.html">
+            <a href="./avaliar.php">
               <i class="fa fa-briefcase" aria-hidden="true"></i>
               <p>Avaliar</p>
             </a>
           </li>
           <li>
-            <a href="./resultados.html">
+            <a href="./resultados.php">
               <i class="fa fa-university" aria-hidden="true"></i>
               <p>Resultados</p>
             </a>
           </li>
           <li>
-            <a href="./participar.html">
+            <a href="./participar.php">
               <i class="fa fa-check-square" aria-hidden="true"></i>
               <p>Participar</p>
             </a>
           </li>
             <li>
-            <a href="./mandaremail.html">
+            <a href="./mandaremail.php">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <p>E-mail</p>
             </a>
           </li>
           <li>
-            <a href="./gerirutilizadores.html">
+            <a href="./gerirutilizadores.php">
               <i class="fa fa-users" aria-hidden="true"></i>
               <p>Gerir Utilizadores</p>
             </a>
           </li>
-          <li>
-            <a href="./criaruser.html">
+          <li class="active">
+            <a href="./criaruser.php">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               <p>Criar Utilizador</p>
             </a>
           </li>
-            <li class="active">
-            <a href="./perfil.html">
+            <li>
+            <a href="./perfil.php">
               <i class="fa fa-user-o" aria-hidden="true"></i>
               <p>Perfil</p>
             </a>
           </li>
           <li>
-            <a href="./dashboard.html">
+            <a href="./dashboard.php">
               <i class="fa fa-area-chart" aria-hidden="true"></i>
               <p>Dashboard</p>
             </a>
@@ -119,8 +117,8 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
     <div class="main-panel">
-       <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">
@@ -170,108 +168,124 @@ The above copyright notice and this permission notice shall be included in all c
 
 
 </div> -->
-      <div class="content">
+              <div class="content">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Atualizar Perfil</h4>
+                                    <h4 class="card-title">Criar Utilizador</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Nome</label>
-                                                    <input type="text" class="form-control" placeholder="Nome" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Sobrenome</label>
-                                                    <input type="text" class="form-control" placeholder="Sobrenome">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label >Telemóvel</label>
-                                                    <input name="telefone" type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
-                                                </div>
+                                  <form class="criaruserform">
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Nome</label>
+                                                <input name="nome" type="text" placeholder="Nome" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Afiliação</label>
-                                                    <input type="text" class="form-control" placeholder="Afiliação" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Ambito</label>
-                                                    <input type="text" class="form-control" placeholder="Ambito">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label >Data de Nascimento</label>
-                                                    <input type="date" placeholder="Data de Nascimento" class="form-control">
-                                                </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Sobrenome</label>
+                                                 <input name="ultimoNome" type="text" placeholder="Sobrenome" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Morada</label>
-                                                    <input type="text" class="form-control" placeholder="Morada">
-                                                </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label >Telemóvel</label>
+                                                <input name="telefone" type="text" placeholder="Número de Telemóvel"class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
                                             </div>
                                         </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-4 pr-1">
-                                                <div class="form-group">
-                                                    <label>Pais</label>
-                                                    <input type="text" class="form-control" placeholder="Pais" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Cidade</label>
-                                                    <input type="text" class="form-control" placeholder="Cidade">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label>Código Postal</label>
-                                                    <input type="text" class="form-control" placeholder="Código Postal">
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Afiliação</label>
+                                                <input name="organizacao" type="text" placeholder=" Afiliação" class="form-control">
                                             </div>
                                         </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Username</label>
-                                                    <input name="username" id="username" type="text" placeholder=" Username" class="form-control"  pattern="^[A-Za-z0-9_]{1,32}$">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>E-mail</label>
-                                                    <input name="email" type="email" placeholder="Email" class="form-control">
-                                                </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Ambito</label>
+                                                <select name="scope" id="scope" class="form-control"></select>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-danger">Atualizar</button>
-                                        <div class="clearfix"></div>
-                                    </form>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label >Data de Nascimento</label>
+                                                 <input name="dataNascimento" id="dataNascimento" type="date" placeholder="Data de Nascimento" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Morada</label>
+                                                <input name="morada" type="text" placeholder="Morada" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Pais</label>
+                                                <input name="pais" type="text" placeholder=" País" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Cidade</label>
+                                                 <input name="cidade" type="text" placeholder=" Cidade" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Código Postal</label>
+                                                <input name="codPostal" type="text" placeholder=" Código Postal" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input name="username" id="username" type="text" placeholder=" Username" class="form-control"  pattern="^[A-Za-z0-9_]{1,32}$">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>E-mail</label>
+                                                <input name="email" type="email" placeholder="Email" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                 <input id="pass1" name="pass1" type="password" placeholder="Password" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>Repetir Password</label>
+                                                <input id="pass2" name="pass2" type="password" placeholder="Password" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger">Criar Utilizador</button>
+                                    <div class="clearfix"></div>
+                                </form>
                                 </div>
                             </div>
                         </div>
                        
                     </div>
-      </div>
+                </div>
+            </div>
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -301,8 +315,6 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
 </body>
 
 </html>

@@ -94,7 +94,6 @@ class Bridge{
     protected function ReadObjectBD($id){
         $result = array();
         $vars = $this->GetAtributesName();
-        var_dump($vars);
         $result = $this->SelectAllBP($this->column . " = ?", $id);
         return $this->DataToArray($vars, $result);
     }
@@ -110,10 +109,6 @@ class Bridge{
 
         $aData["vcUsername"] = "33333";
         $aData["vcEmail"] = "Tete@gmail.com";
-        echo "<br>===================================================";
-        echo "<br>PRINT<br>";
-        echo "REPLACE INTO tb_user($rColumns) VALUES($rValues)";
-        echo "<br>===================================================<br>";
         
         $this->QueryExecute("REPLACE INTO {$this->table}($rColumns) VALUES($rValues)", $aData);
 
@@ -149,9 +144,6 @@ class Bridge{
 
            $i++;
         }
-        echo "<br><br><br>fasdljhnasfhkjggfashjkasjhkfkjhashjkgdshgjsdahjgasdjghashdjgashjgdhgajsd<br><br><br>";
-        echo $rValue; 
-        echo "<br><br><br>fasdljhnasfhkjggfashjkasjhkfkjhashjkgdshgjsdahjgasdjghashdjgashjgdhgajsd<br><br><br>";
         return $rValue;
     }
     
@@ -167,7 +159,6 @@ class Bridge{
 
     protected function DeleteObjectBD($id)
     {
-        echo "DELETE FROM {$this->table} WHERE {$this->column} = {$id};";
         $this->QueryExecute("DELETE FROM {$this->table} WHERE {$this->column} = ?;", array($id));
     }
 
@@ -179,11 +170,6 @@ class Bridge{
 
         $rColumns = $this->prepareInsert($aData, $this->ColumType);
         $rValues = $this->prepareInsert($aData, $this->ValueType);
-
-        echo "<br>===================================================";
-        echo "<br>PRINT<br>";
-        echo "INSERT INTO tb_user($rColumns) VALUES($rValues)";
-        echo "<br>===================================================<br>";
         
         $this->QueryExecute("INSERT INTO {$this->table}($rColumns) VALUES($rValues)", $aData);
     }
@@ -210,15 +196,12 @@ class Bridge{
 
             $stmt = $this->conn->prepare($aQuery);
             $count = 1;
-            var_dump($aData);
             foreach ($aData as $Name => &$Value){
-                    echo $count . " - " . $Name." - ".$Value . " <br>";
                     $stmt->bindParam($count++, $Value);
             }
 
             $stmt->execute();
             $stmt->debugDumpParams();
-            echo "<br>Query executada com sucesso!";
             return true;
         }
         catch(PDOException $e){

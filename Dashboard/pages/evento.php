@@ -39,7 +39,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
   <div class="wrapper ">
-  <div class="sidebar" data-color="black" data-active-color="danger">
+   <div class="sidebar" data-color="black" data-active-color="warning">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -55,56 +55,56 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li>
-            <a href="./evento.html">
+          <li class="active">
+            <a href="./evento.php">
                <i class="fa fa-compass" aria-hidden="true"></i>
               <p>Evento</p>
             </a>
           </li>
             <li>
-            <a href="./avaliar.html">
+            <a href="./avaliar.php">
               <i class="fa fa-briefcase" aria-hidden="true"></i>
               <p>Avaliar</p>
             </a>
           </li>
           <li>
-            <a href="./resultados.html">
+            <a href="./resultados.php">
               <i class="fa fa-university" aria-hidden="true"></i>
               <p>Resultados</p>
             </a>
           </li>
           <li>
-            <a href="./participar.html">
+            <a href="./participar.php">
               <i class="fa fa-check-square" aria-hidden="true"></i>
               <p>Participar</p>
             </a>
           </li>
             <li>
-            <a href="./mandaremail.html">
+            <a href="./mandaremail.php">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <p>E-mail</p>
             </a>
           </li>
           <li>
-            <a href="./gerirutilizadores.html">
+            <a href="./gerirutilizadores.php">
               <i class="fa fa-users" aria-hidden="true"></i>
               <p>Gerir Utilizadores</p>
             </a>
           </li>
-          <li class="active">
-            <a href="./criaruser.html">
+          <li>
+            <a href="./criaruser.php">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               <p>Criar Utilizador</p>
             </a>
           </li>
             <li>
-            <a href="./perfil.html">
+            <a href="./perfil.php">
               <i class="fa fa-user-o" aria-hidden="true"></i>
               <p>Perfil</p>
             </a>
           </li>
           <li>
-            <a href="./dashboard.html">
+            <a href="./dashboard.php">
               <i class="fa fa-area-chart" aria-hidden="true"></i>
               <p>Dashboard</p>
             </a>
@@ -166,125 +166,133 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
       </nav>
       <!-- End Navbar -->
-      <!-- <div class="panel-header panel-header-sm">
-
-
-</div> -->
               <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Criar Utilizador</h4>
+                                    <h4 class="card-title">Detalhes da conferância</h4>
                                 </div>
                                 <div class="card-body">
-                                  <form class="criaruserform">
-                                    <div class="row">
-                                        <div class="col-md-5 pr-1">
-                                            <div class="form-group">
-                                                <label>Nome</label>
-                                                <input name="nome" type="text" placeholder="Nome" class="form-control">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Titulo</label>
+                                                    <input type="text" class="form-control" placeholder="titulo">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 px-1">
+                                                <div class="form-group">
+                                                    <label>Local</label>
+                                                    <input type="text" class="form-control" placeholder="Local">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                    <label>Organizador</label>
+                                                    <input type="text" class="form-control" placeholder="Organizador">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 px-1">
-                                            <div class="form-group">
-                                                <label>Sobrenome</label>
-                                                 <input name="ultimoNome" type="text" placeholder="Sobrenome" class="form-control">
+                                        <div class="row">
+                                           <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Data de Inicio</label>
+                                                    <input type="date" class="form-control" placeholder="Data de Inicio">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 px-1">
+                                                <div class="form-group">
+                                                    <label>Data de Encerramento</label>
+                                                    <input type="date" class="form-control" placeholder="Data de Encerramento">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label >Telemóvel</label>
-                                                <input name="telefone" type="text" placeholder="Número de Telemóvel"class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
+                                        
+                                        <div class="row">
+                                           <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Data de Inicio de Subscrição</label>
+                                                    <input type="date" class="form-control" placeholder="Inicio de subscrição">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-1">
+                                                <div class="form-group">
+                                                    <label>Data de Encerramento de Subscrição</label>
+                                                    <input type="date" class="form-control" placeholder="Data de Encerramento de subscrição">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5 pr-1">
-                                            <div class="form-group">
-                                                <label>Afiliação</label>
-                                                <input name="organizacao" type="text" placeholder=" Afiliação" class="form-control">
+                                        
+                                        <div class="row">
+                                           <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Inicio das Submissões</label>
+                                                    <input type="date" class="form-control" placeholder="Inicio das submissões">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 px-1">
+                                                <div class="form-group">
+                                                    <label>Encerramento das Submissões</label>
+                                                    <input type="date" class="form-control" placeholder="Encerramento das submissões">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 px-1">
-                                            <div class="form-group">
-                                                <label>Ambito</label>
-                                                <select name="scope" id="scope" class="form-control"></select>
+                                        
+                                        <div class="row">
+                                           <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Inicio das Avaliações</label>
+                                                    <input type="date" class="form-control" placeholder="Inicio das Avaliações">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 px-1">
+                                                <div class="form-group">
+                                                    <label>Encerramento das Avaliações</label>
+                                                    <input type="date" class="form-control" placeholder="Encerramento das Avaliações">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label >Data de Nascimento</label>
-                                                 <input name="dataNascimento" id="dataNascimento" type="date" placeholder="Data de Nascimento" class="form-control">
+                                        
+                                        <div class="row">
+                                           <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Inicio das Submissões Finais</label>
+                                                    <input type="date" class="form-control" placeholder="Inicio das submissões finais">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 px-1">
+                                                <div class="form-group">
+                                                    <label>Encerramento das Submissões Finais</label>
+                                                    <input type="date" class="form-control" placeholder="Encerramento das submissões finais">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Morada</label>
-                                                <input name="morada" type="text" placeholder="Morada" class="form-control">
+                                        
+                                        <div class="row">
+                                           <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Lançamento de Resultados</label>
+                                                    <input type="date" class="form-control" placeholder="lançamento de resultados">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-4 pr-1">
-                                            <div class="form-group">
-                                                <label>Pais</label>
-                                                <input name="pais" type="text" placeholder=" País" class="form-control">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Descrição</label>
+                                                    <textarea rows="4" cols="80" class="form-control" placeholder="Descrição"></textarea>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 px-1">
-                                            <div class="form-group">
-                                                <label>Cidade</label>
-                                                 <input name="cidade" type="text" placeholder=" Cidade" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label>Código Postal</label>
-                                                <input name="codPostal" type="text" placeholder=" Código Postal" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-5 pr-1">
-                                            <div class="form-group">
-                                                <label>Username</label>
-                                                <input name="username" id="username" type="text" placeholder=" Username" class="form-control"  pattern="^[A-Za-z0-9_]{1,32}$">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 px-1">
-                                            <div class="form-group">
-                                                <label>E-mail</label>
-                                                <input name="email" type="email" placeholder="Email" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5 pr-1">
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                 <input id="pass1" name="pass1" type="password" placeholder="Password" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 px-1">
-                                            <div class="form-group">
-                                                <label>Repetir Password</label>
-                                                <input id="pass2" name="pass2" type="password" placeholder="Password" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-danger">Criar Utilizador</button>
-                                    <div class="clearfix"></div>
-                                </form>
+                                        <button type="submit" class="btn btn-warning">Atualizar</button>
+                                        <div class="clearfix"></div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
             </div>
@@ -319,6 +327,12 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
 </body>
 
 </html>

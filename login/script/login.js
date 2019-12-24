@@ -24,14 +24,13 @@ $('document').ready(function()
 
 		$.ajax({ 
 			type : 'POST',
-			url  : '../login.php',
+			url  : 'login.php',
 			data : _Data,
 			datatype: 'json',
-
 			beforeSend: function()
 			{	
 				$("#div-error").fadeOut();
-				$("#login_button").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Aguarde ...');
+				$("#login_button").html('Aguarde ...');
 			},
 			success : function(response)
 			{
@@ -40,14 +39,14 @@ $('document').ready(function()
 				if(_Resp.msg =='ok')
 				{										
 					$("#login_button").html('A autenticar...');
-					setTimeout(' window.location.href = "../Users/home-user-page.php"; ');
+					setTimeout(' window.location.href = "../Dashboard/pages/perfil.php"; ');
 				} 
 				else 
 				{									
 					$("#div-error").fadeIn(1000, function()
 					{						
 						$("#div-error").html('<div class="alert alert-danger">'+ _Resp.msg +'!</div>');
-						$("#login_button").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Autenticar');
+						$("#login_button").html('&nbsp; Autenticar');
 					});
 				}
 			}

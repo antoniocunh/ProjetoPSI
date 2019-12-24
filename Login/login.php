@@ -1,6 +1,8 @@
 <?php
+  
   session_start();
-  require_once("../assets/php/Proprieties/ConfigDB.php"); //coneção à base de dados 
+  
+  require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php"); //coneção à base de dados 
 
   if (isset($_POST["login_button"]))
   {

@@ -13,7 +13,9 @@
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
-
+<?php 
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +25,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    projeto psi grupo 5
-  </title>
+  <title>Projeto psi grupo 5</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -38,8 +38,9 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 <body class="">
+  
   <div class="wrapper ">
-   <div class="sidebar" data-color="black" data-active-color="danger">
+   <div class="sidebar" data-color="black" data-active-color="warning">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -56,55 +57,55 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./evento.html">
+            <a href="./evento.php">
                <i class="fa fa-compass" aria-hidden="true"></i>
               <p>Evento</p>
             </a>
           </li>
             <li class="active">
-            <a href="./avaliar.html">
+            <a href="./avaliar.php">
               <i class="fa fa-briefcase" aria-hidden="true"></i>
               <p>Avaliar</p>
             </a>
           </li>
           <li>
-            <a href="./resultados.html">
+            <a href="./resultados.php">
               <i class="fa fa-university" aria-hidden="true"></i>
               <p>Resultados</p>
             </a>
           </li>
           <li>
-            <a href="./participar.html">
+            <a href="./participar.php">
               <i class="fa fa-check-square" aria-hidden="true"></i>
               <p>Participar</p>
             </a>
           </li>
             <li>
-            <a href="./mandaremail.html">
+            <a href="./mandaremail.php">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <p>E-mail</p>
             </a>
           </li>
           <li>
-            <a href="./gerirutilizadores.html">
+            <a href="./gerirutilizadores.php">
               <i class="fa fa-users" aria-hidden="true"></i>
               <p>Gerir Utilizadores</p>
             </a>
           </li>
           <li>
-            <a href="./criaruser.html">
+            <a href="./criaruser.php">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               <p>Criar Utilizador</p>
             </a>
           </li>
             <li>
-            <a href="./perfil.html">
+            <a href="./perfil.php">
               <i class="fa fa-user-o" aria-hidden="true"></i>
               <p>Perfil</p>
             </a>
           </li>
            <li>
-            <a href="./dashboard.html">
+            <a href="./dashboard.php">
               <i class="fa fa-area-chart" aria-hidden="true"></i>
               <p>Dashboard</p>
             </a>
@@ -216,7 +217,7 @@ The above copyright notice and this permission notice shall be included in all c
                           exemplo.pdf
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Avaliar</button>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Avaliar</button>
                         </td>
                       </tr>
                     </tbody>
@@ -262,7 +263,7 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-        <button type="button" class="btn btn-danger">Enviar Avaliação</button>
+        <button type="button" class="btn btn-warning">Enviar Avaliação</button>
       </div>
     </div>
   </div>

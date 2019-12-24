@@ -24,7 +24,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    projeto psi grupo 5
+    Paper Dashboard 2 by Creative Tim
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -38,8 +38,9 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 <body class="">
+ <body class="">
   <div class="wrapper ">
-   <div class="sidebar" data-color="black" data-active-color="danger">
+   <div class="sidebar" data-color="black" data-active-color="warning">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -56,55 +57,55 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./evento.html">
+            <a href="./evento.php">
                <i class="fa fa-compass" aria-hidden="true"></i>
               <p>Evento</p>
             </a>
           </li>
             <li>
-            <a href="./avaliar.html">
+            <a href="./avaliar.php">
               <i class="fa fa-briefcase" aria-hidden="true"></i>
               <p>Avaliar</p>
             </a>
           </li>
-          <li >
-            <a href="./resultados.html">
+          <li>
+            <a href="./resultados.php">
               <i class="fa fa-university" aria-hidden="true"></i>
               <p>Resultados</p>
             </a>
           </li>
           <li>
-            <a href="./participar.html">
+            <a href="./participar.php">
               <i class="fa fa-check-square" aria-hidden="true"></i>
               <p>Participar</p>
             </a>
           </li>
             <li>
-            <a href="./mandaremail.html">
+            <a href="./mandaremail.php">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <p>E-mail</p>
             </a>
           </li>
-          <li class="active">
-            <a href="./gerirutilizadores.html">
+          <li>
+            <a href="./gerirutilizadores.php">
               <i class="fa fa-users" aria-hidden="true"></i>
               <p>Gerir Utilizadores</p>
             </a>
           </li>
           <li>
-            <a href="./criaruser.html">
+            <a href="./criaruser.php">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               <p>Criar Utilizador</p>
             </a>
           </li>
             <li>
-            <a href="./perfil.html">
+            <a href="./perfil.php">
               <i class="fa fa-user-o" aria-hidden="true"></i>
               <p>Perfil</p>
             </a>
           </li>
-          <li>
-            <a href="./dashboard.html">
+           <li  class="active">
+            <a href="./dashboard.php">
               <i class="fa fa-area-chart" aria-hidden="true"></i>
               <p>Dashboard</p>
             </a>
@@ -119,7 +120,7 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
     <div class="main-panel">
-      <!-- Navbar -->
+     <!-- Navbar -->
  <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
           <div class="navbar-wrapper">
@@ -166,180 +167,189 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
       </nav>
       <!-- End Navbar -->
-      <!-- <div class="panel-header">
+      <!-- <div class="panel-header panel-header-lg">
 
+  <canvas id="bigDashboardChart"></canvas>
 
-  <div class="header text-center">
-      <h2 class="title">Notifications</h2>
-      <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p>
-  </div>
 
 </div> -->
-       <div class="content">
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-globe text-warning"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Capacity</p>
+                      <p class="card-title">150GB
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i> Update Now
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-money-coins text-success"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Revenue</p>
+                      <p class="card-title">$ 1,345
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-calendar-o"></i> Last day
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-vector text-danger"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Errors</p>
+                      <p class="card-title">23
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-clock-o"></i> In the last hour
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="nc-icon nc-favourite-28 text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Followers</p>
+                      <p class="card-title">+45K
+                        <p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-refresh"></i> Update now
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Users Behavior</h5>
+                <p class="card-category">24 Hours performance</p>
+              </div>
+              <div class="card-body ">
+                <canvas id=chartHours width="400" height="100"></canvas>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-history"></i> Updated 3 minutes ago
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card ">
+              <div class="card-header ">
+                <h5 class="card-title">Email Statistics</h5>
+                <p class="card-category">Last Campaign Performance</p>
+              </div>
+              <div class="card-body ">
+                <canvas id="chartEmail"></canvas>
+              </div>
+              <div class="card-footer ">
+                <div class="legend">
+                  <i class="fa fa-circle text-primary"></i> Opened
+                  <i class="fa fa-circle text-warning"></i> Read
+                  <i class="fa fa-circle text-danger"></i> Deleted
+                  <i class="fa fa-circle text-gray"></i> Unopened
+                </div>
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-calendar"></i> Number of emails sent
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card card-chart">
               <div class="card-header">
-                <h4 class="card-title"> Gestão de Utilizadores</h4>
+                <h5 class="card-title">NASDAQ: AAPL</h5>
+                <p class="card-category">Line Chart with Points</p>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                        <th>
-                        ID
-                      </th>
-                      <th>
-                       Nome
-                      </th>
-                      <th>
-                        Apelido
-                      </th>
-                      <th>
-                        Morada
-                      </th>
-                        <th>
-                        Pais
-                      </th>
-                        <th>
-                        Cidade
-                      </th>
-                        <th>
-                        Código Postal
-                      </th>
-                        <th>
-                        E-mail
-                      </th>
-                        <th>
-                        Telemovel
-                      </th>
-                        <th>
-                        Organização
-                      </th>
-                      <th >
-                     
-                      </th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                          <td>
-                          1
-                        </td>
-                        <td>
-                          Marco 
-                        </td>
-                        <td>
-                          Cunha
-                        </td>
-                        <td>
-                          rua cesamo
-                        </td>
-                          <td>
-                          Portugal
-                        </td>
-                          <td>
-                          Aveiro
-                        </td>
-                         <td>
-                          3850
-                        </td>
-                        <td>
-                          teste@tese.com
-                        </td>
-                        <td>
-                          9126595
-                        </td>
-                        <td>
-                          ESTGA
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Opções</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <canvas id="speedChart" width="400" height="100"></canvas>
+              </div>
+              <div class="card-footer">
+                <div class="chart-legend">
+                  <i class="fa fa-circle text-info"></i> Tesla Model S
+                  <i class="fa fa-circle text-warning"></i> BMW 5 Series
+                </div>
+                <hr/>
+                <div class="card-stats">
+                  <i class="fa fa-check"></i> Data information certified
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-        <!-- Modal -->
-<div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Gestão de Utilizadores</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label>Nome</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
-          </div>
-            <div class="form-group">
-            <label>Apelido</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apelido">
-          </div>
-            <div class="form-group">
-            <label>Morada</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Morada">
-          </div>
-            <div class="form-group">
-            <label>Pais</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Pais">
-          </div>
-            <div class="form-group">
-            <label>Cidade</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Cidade">
-          </div>
-            <div class="form-group">
-            <label>Código-Postal</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Código-Postal">
-          </div>
-            <div class="form-group">
-            <label>E-mail</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="E-mail">
-          </div>
-            <div class="form-group">
-            <label>Telemovel</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telemovel">
-          </div>
-            <div class="form-group">
-            <label>Organização</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Organização">
-          </div>
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-        <button type="button" class="btn btn-danger">Apagar</button>
-        <button type="button" class="btn btn-warning">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-        <!-- fim Modal -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li>
-                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
-                </li>
-                <li>
-                  <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
-                </li>
-                <li>
-                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
-                </li>
-              </ul>
-            </nav>
+  
             <div class="credits ml-auto">
               <span class="copyright">
                 ©
@@ -368,7 +378,12 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
-
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
 </body>
 
 </html>
