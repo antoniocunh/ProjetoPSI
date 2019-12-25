@@ -34,6 +34,7 @@ $('document').ready(function()
 			},
 			success : function(response)
 			{
+				console.log(response);
 				_Resp = JSON.parse(response);
 
 				if(_Resp.msg =='ok')
