@@ -10,16 +10,12 @@
         $user = new User();
         $user->readObject($username);
          if($user->GetVcPassword() != hashPass($password, $user->GetDtBirth())){
-            header("location: " . $_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/Login/index.php");
-            die();
+            header("location:". $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Login/index.php");
         }
     }
-    session_destroy();
-    var_dump($_SESSION);
     if(!isset($_SESSION["username"])){
-        header("location: " . $_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/Login/index.php");
+        header("location: " . $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Login/index.php");
     }else{
         validateUser($_SESSION["username"], $_SESSION["password"]);
-        die();
     }
 ?>

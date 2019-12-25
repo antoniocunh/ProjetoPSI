@@ -83,6 +83,7 @@ require_once("../assets/php/Proprieties/ConfigDB.php");
   <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
   <script src="../assets/js/plugins/bootstrap-switch.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
@@ -93,8 +94,7 @@ require_once("../assets/php/Proprieties/ConfigDB.php");
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
 
-  <!-- Our -->
-  <script type="text/javascript" src="script/validation.min.js"></script>
+  <!-- Our -->t>
   <script type="text/javascript" src="script/login.js?v=2"></script>
 
   <script>
