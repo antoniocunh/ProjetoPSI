@@ -13,7 +13,9 @@
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
-
+<?php 
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+?>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -175,7 +177,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     <h4 class="card-title">Detalhes da conferância</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form method="POST" action="../assets">
                                         <div class="row">
                                             <div class="col-md-5 pr-1">
                                                 <div class="form-group">
