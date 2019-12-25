@@ -10,7 +10,7 @@
     $userpassword = trim($_POST['password']);
     try 
     {
-      $stmt = $conn->prepare("SELECT * FROM tb_user WHERE vcUserName=:username");
+      $stmt = $conn->prepare("SELECT * FROM tb_user WHERE vcUsername=:username");
       $stmt->execute(array(":username" => $username));
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $count = $stmt->rowCount();

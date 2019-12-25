@@ -82,9 +82,9 @@ try {
         session_start();
         $_SESSION["username"] = $newUser["username"][1];
         $_SESSION["password"] = $newUser["pass1"][1];
-        header("location: ../../Dashboard/pages/perfil.html");
+        header("location: " .  $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Dashboard/pages/perfil.php");
     }else{
-        header("location: ../index.html");
+        header("location: " .  $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Registo/index.html");
     }
 } catch (PDOException $e) {
     fnDiminuirAutoIncrement($conn);
