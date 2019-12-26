@@ -11,6 +11,7 @@
         $user->readObject($username);
          if($user->GetVcPassword() != hashPass($password, $user->GetDtBirth())){
             header("location:". $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Login/index.php");
+            die();
         }
     }
     if(!isset($_SESSION["username"])){

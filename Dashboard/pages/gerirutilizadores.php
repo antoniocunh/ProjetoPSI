@@ -13,7 +13,9 @@
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
-
+<?php 
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,148 +35,22 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <script src="../assets/js/core/jquery.min.js"></script>
 
 </head>
 
-<body class="">
-  <div class="wrapper ">
-   <div class="sidebar" data-color="black" data-active-color="warning">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-      <div class="logo">
-        <a  class="simple-text logo-mini">
-          <div class="logo-image-small">
-            <img src="../assets/img/logo-small.png">
-          </div>
-        </a>
-        <a  class="simple-text logo-normal">
-          Conferencia
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li>
-            <a href="./evento.php">
-               <i class="fa fa-compass" aria-hidden="true"></i>
-              <p>Evento</p>
-            </a>
-          </li>
-            <li>
-            <a href="./avaliar.php">
-              <i class="fa fa-briefcase" aria-hidden="true"></i>
-              <p>Avaliar</p>
-            </a>
-          </li>
-          <li >
-            <a href="./resultados.php">
-              <i class="fa fa-university" aria-hidden="true"></i>
-              <p>Resultados</p>
-            </a>
-          </li>
-          <li>
-            <a href="./participar.php">
-              <i class="fa fa-check-square" aria-hidden="true"></i>
-              <p>Participar</p>
-            </a>
-          </li>
-            <li>
-            <a href="./mandaremail.php">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <p>E-mail</p>
-            </a>
-          </li>
-          <li class="active">
-            <a href="./gerirutilizadores.php">
-              <i class="fa fa-users" aria-hidden="true"></i>
-              <p>Gerir Utilizadores</p>
-            </a>
-          </li>
-          <li>
-            <a href="./criaruser.php">
-              <i class="fa fa-user-plus" aria-hidden="true"></i>
-              <p>Criar Utilizador</p>
-            </a>
-          </li>
-            <li>
-            <a href="./perfil.php">
-              <i class="fa fa-user-o" aria-hidden="true"></i>
-              <p>Perfil</p>
-            </a>
-          </li>
-          <li>
-            <a href="./dashboard.php">
-              <i class="fa fa-area-chart" aria-hidden="true"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="active-pro">
-            <a href="">
-              <i class="fa fa-sign-out" aria-hidden="true"></i>
-              <p>Logout</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+<body style="background-color : #f4f3ef">
+<script>
+    $(document).ready(function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html", function(){
+            $("#gerirUtilizadores").addClass("active");
+      });
+    })
+  </script>
+    <div id="sidebar"></div>
+
     <div class="main-panel">
-      <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="nc-icon nc-zoom-split"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-cog" aria-hidden="true"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <!-- <div class="panel-header">
-
-
-  <div class="header text-center">
-      <h2 class="title">Notifications</h2>
-      <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p>
-  </div>
-
-</div> -->
-       <div class="content">
+       <div class="content mt-0">
         <div class="row">
           <div class="col-md-12">
           

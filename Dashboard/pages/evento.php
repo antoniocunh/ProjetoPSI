@@ -13,7 +13,9 @@
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
-
+<?php 
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+?>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -24,272 +26,155 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-  Detalhes da conferância
+    Detalhes da Conferência
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <script src="../assets/js/core/jquery.min.js"></script>
+
 </head>
 
-<body class="">
-  <div class="wrapper ">
-   <div class="sidebar" data-color="black" data-active-color="warning">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-      <div class="logo">
-        <a  class="simple-text logo-mini">
-          <div class="logo-image-small">
-            <img src="../assets/img/logo-small.png">
-          </div>
-        </a>
-        <a  class="simple-text logo-normal">
-          Conferencia
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="active">
-            <a href="./evento.php">
-               <i class="fa fa-compass" aria-hidden="true"></i>
-              <p>Evento</p>
-            </a>
-          </li>
-            <li>
-            <a href="./avaliar.php">
-              <i class="fa fa-briefcase" aria-hidden="true"></i>
-              <p>Avaliar</p>
-            </a>
-          </li>
-          <li>
-            <a href="./resultados.php">
-              <i class="fa fa-university" aria-hidden="true"></i>
-              <p>Resultados</p>
-            </a>
-          </li>
-          <li>
-            <a href="./participar.php">
-              <i class="fa fa-check-square" aria-hidden="true"></i>
-              <p>Participar</p>
-            </a>
-          </li>
-            <li>
-            <a href="./mandaremail.php">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <p>E-mail</p>
-            </a>
-          </li>
-          <li>
-            <a href="./gerirutilizadores.php">
-              <i class="fa fa-users" aria-hidden="true"></i>
-              <p>Gerir Utilizadores</p>
-            </a>
-          </li>
-          <li>
-            <a href="./criaruser.php">
-              <i class="fa fa-user-plus" aria-hidden="true"></i>
-              <p>Criar Utilizador</p>
-            </a>
-          </li>
-            <li>
-            <a href="./perfil.php">
-              <i class="fa fa-user-o" aria-hidden="true"></i>
-              <p>Perfil</p>
-            </a>
-          </li>
-          <li>
-            <a href="./dashboard.php">
-              <i class="fa fa-area-chart" aria-hidden="true"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="active-pro">
-            <a href="">
-              <i class="fa fa-sign-out" aria-hidden="true"></i>
-              <p>Logout</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+<body style="background-color : #f4f3ef">
+<script>
+    $(document).ready(function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html", function(){
+            $("#evento").addClass("active");
+      });
+    })
+  </script>
+    <div id="sidebar"></div>
+
     <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+      <!-- End Navbar -->
+      <div class="content mt-0">
         <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="nc-icon nc-zoom-split"></i>
-                  </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Detalhes da conferância</h4>
+                </div>
+                <div class="card-body">
+                  <form name="evento" method="POST" action="../assets">
+                    <div class="row">
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Titulo</label>
+                          <input type="text" class="form-control" placeholder="titulo" name="vcTitle">
+                        </div>
+                      </div>
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Local</label>
+                          <input type="text" class="form-control" placeholder="Local" name="vcLocal">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Data de Inicio</label>
+                          <input type="date" class="form-control" placeholder="Data de Inicio" name="dtIniEvent">
+                        </div>
+                      </div>
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Data de Encerramento</label>
+                          <input type="date" class="form-control" placeholder="Data de Encerramento" name="dtEndEvent">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Data de Inicio de Subscrição</label>
+                          <input type="date" class="form-control" placeholder="Inicio de subscrição" name="dtIniSubscription">
+                        </div>
+                      </div>
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Data de Encerramento de Subscrição</label>
+                          <input type="date" class="form-control" placeholder="Data de Encerramento de subscrição" name="dtEndSubscription">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Inicio das Submissões</label>
+                          <input type="date" class="form-control" placeholder="Inicio das submissões" name="dtIniSubmition">
+                        </div>
+                      </div>
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Encerramento das Submissões</label>
+                          <input type="date" class="form-control" placeholder="Encerramento das submissões" name="dtEndSubmition">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Inicio das Avaliações</label>
+                          <input type="date" class="form-control" placeholder="Inicio das Avaliações"  name="dtIniEvaluation">
+                        </div>
+                      </div>
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Encerramento das Avaliações</label>
+                          <input type="date" class="form-control" placeholder="Encerramento das Avaliações" name="dtEndEvaluation">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Inicio das Submissões Finais</label>
+                          <input type="date" class="form-control" placeholder="Inicio das submissões finais" name="dtIniFinalSubmission">
+                        </div>
+                      </div>
+                      <div class="col mx-2 ">
+                        <div class="form-grou                                                                                                                                                                                                                                                                                                                                                                                        p">
+                          <label>Encerramento das Submissões Finais</label>
+                          <input type="date" class="form-control" placeholder="Encerramento das submissões finais" name="dtEndFinalSubmission">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col mx-2 ">
+                        <div class="form-group">
+                          <label>Lançamento de Resultados</label>
+                          <input type="date" class="form-control" placeholder="lançamento de resultados" name="dtResults">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col mx-2">
+                        <div class="form-group">
+                          <label>Descrição</label>
+                          <textarea rows="4" cols="80" class="form-control" placeholder="Descrição" name="vcDescription"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Atualizar</button>
+                    <div class="clearfix"></div>
+                  </form>
                 </div>
               </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-cog" aria-hidden="true"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-            </ul>
+            </div>
           </div>
         </div>
-      </nav>
-      <!-- End Navbar -->
-              <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Detalhes da conferância</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Titulo</label>
-                                                    <input type="text" class="form-control" placeholder="titulo">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Local</label>
-                                                    <input type="text" class="form-control" placeholder="Local">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 pl-1">
-                                                <div class="form-group">
-                                                    <label>Organizador</label>
-                                                    <input type="text" class="form-control" placeholder="Organizador">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                           <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Data de Inicio</label>
-                                                    <input type="date" class="form-control" placeholder="Data de Inicio">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Data de Encerramento</label>
-                                                    <input type="date" class="form-control" placeholder="Data de Encerramento">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                           <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Data de Inicio de Subscrição</label>
-                                                    <input type="date" class="form-control" placeholder="Inicio de subscrição">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Data de Encerramento de Subscrição</label>
-                                                    <input type="date" class="form-control" placeholder="Data de Encerramento de subscrição">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                           <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Inicio das Submissões</label>
-                                                    <input type="date" class="form-control" placeholder="Inicio das submissões">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Encerramento das Submissões</label>
-                                                    <input type="date" class="form-control" placeholder="Encerramento das submissões">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                           <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Inicio das Avaliações</label>
-                                                    <input type="date" class="form-control" placeholder="Inicio das Avaliações">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 px-1">
-                                                <div class="form-group">
-                                                    <label>Encerramento das Avaliações</label>
-                                                    <input type="date" class="form-control" placeholder="Encerramento das Avaliações">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                           <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Inicio das Submissões Finais</label>
-                                                    <input type="date" class="form-control" placeholder="Inicio das submissões finais">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-5 px-1">
-                                                <div class="form-group">
-                                                    <label>Encerramento das Submissões Finais</label>
-                                                    <input type="date" class="form-control" placeholder="Encerramento das submissões finais">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                           <div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Lançamento de Resultados</label>
-                                                    <input type="date" class="form-control" placeholder="lançamento de resultados">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Descrição</label>
-                                                    <textarea rows="4" cols="80" class="form-control" placeholder="Descrição"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-warning">Atualizar</button>
-                                        <div class="clearfix"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -311,10 +196,14 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <!-- Chart JS -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
   <script src="../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+  <script src="script/evento.js?"></script>
+</body>
 
+</html>

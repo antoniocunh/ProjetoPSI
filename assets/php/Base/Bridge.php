@@ -29,6 +29,10 @@ class Bridge{
         return $this->BindParameters("SELECT * FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
+    public function SelectAllJoin($aTable, $aCondition = "1", ...$args){
+        return $this->BindParameters("SELECT * FROM {$this->table} INNER JOIN table2 ON table1.column_name = table2.column_name; WHERE {$aCondition};", $args);
+    }
+
     protected function SelectColumnsBP($column, $aCondition = "1", ...$args){
         return $this->BindParameters("SELECT {$column} FROM {$this->table} WHERE {$aCondition};", $args);
     }

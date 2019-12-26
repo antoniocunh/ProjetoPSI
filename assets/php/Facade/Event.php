@@ -7,7 +7,7 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
-class Event extends Bridge
+class Event extends Bridge implements JsonSerializable
 {
 
     private $iIdEvent;
@@ -56,6 +56,13 @@ class Event extends Bridge
         //$this->ClearData();
     }
 
+    public function jsonSerialize(){
+        $json =  array();
+        foreach ($this as $key => &$value) {
+            $json += [$key=>$value];
+        }
+        return $json;
+    }
 
     /**
      * Get the value of iIdEvent
