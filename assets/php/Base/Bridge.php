@@ -1,5 +1,8 @@
 <?php
 
+require_once("EnumJoins.php");
+require_once("EnumJoins.php");
+
 class Bridge{
     
     private $conn;
@@ -7,13 +10,15 @@ class Bridge{
     private $column;
     private $ColumType = "Column";
     private $ValueType = "Value";
+    private $Alias;
     
 
-    protected function __construct($aTable, $column){
+    protected function __construct($aTable, $aColumn, $aAlias){
         require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
         $this->conn = &$conn;      
         $this->table = $aTable;
-        $this->column = $column;
+        $this->column = $aColumn;
+        $this->Alias = $aAlias;
     }
 
     /* ==================================================================== 
@@ -188,6 +193,20 @@ class Bridge{
         return $rValue;
     }
 
+    public function QueryExec($aQuery)
+    {
+        try{
+            $stmt = $this->conn->prepare($aQuery);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_BOTH);
+        }
+        catch(PDOException $e){
+            //$stmt->debugDumpParams();
+            echo "<br>".$e->getMessage();
+            return false;
+        }
+    }
+
     private function QueryExecute($aQuery, $aData)
     {
         try{
@@ -254,4 +273,160 @@ class Bridge{
     {
         return $this->column;
     }
+
+    //===============================================================================================
+
+
+    //TODO - COUNT AVG ETC WITH ORDERBY DISTINCT
+    public function Select($aField=null)
+    {
+        $Query="";
+        $Select="SELECT ";
+        $From=" FROM {$this->table}";
+        
+
+        //Se Array For Null
+        if(is_null($aField))
+            $Query = $Select."*".$From;
+        else 
+        {
+            $Columns="";
+            $i=1;
+            $FieldNums=count($aField);
+
+            foreach($aField as &$Name){
+                $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
+                $i++;
+            }
+
+            $Query = $Select.$Columns.$From." AS {$this->Alias}";
+        }
+        
+        return $Query;
+    }
+
+    public function SelectJoin($aField)
+    {
+        $Query="";
+        $Select="SELECT ";
+        $From= " FROM {$this->table}";
+        $Columns="";
+
+        $i=1;
+        $FieldNums=count($aField);
+        
+        foreach ($aField as $key => $value) {
+
+            if(!is_null($aField[$i-1][0])) //Se o Alias do Array vier vazio então mete o alias definido da Classe
+                $Columns = $i < $FieldNums ? $Columns.$aField[$i-1][0].".".$aField[$i-1][1].", " :  $Columns.$aField[$i-1][0].".".$aField[$i-1][1];
+            else
+                $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.".$aField[$i-1][1].", " :  $Columns."{$this->Alias}.".$aField[$i-1][1];
+
+            $i++;
+        }
+
+        $Query = $Select.$Columns.$From." AS {$this->Alias}";
+        
+        return $Query;
+    }
+
+    /**
+     * Function Join - Monta a Parte Do Join
+     * * @param aTable - Tabela que vou juntar á query 
+     * * @param aAlias - Alias da Tabela
+     * * @param aField - Array de Campos que quero juntar no Join
+     * * @param aJoin - Define o Tipo de Join
+     * 
+     * @return  self
+     */ 
+    public function Join($aTable, $aAlias=null, $aField, $aJoin)
+    {
+        if(is_null($aTable))
+            throw new Exception('Tabela não existe ou está vazia!');
+
+        $JoinStr = "";
+        $Condition = "";
+        $i=1;
+
+        $FieldNums = is_array($aField) ? count($aField) : 0;
+
+        $JoinStr = is_null($aAlias) ? " ".$aJoin." JOIN {$aTable} ON ": " ".$aJoin." JOIN {$aTable} AS {$aAlias} ON ";
+        
+        if($FieldNums >1){
+            foreach($aField as &$Name)
+            {
+                if(is_null($aAlias))
+                    $Condition = $i < $FieldNums ? $Condition."{$this->Alias}.{$Name} = {$aTable}.{$Name} AND " : $Condition."{$this->Alias}.{$Name} = {$aTable}.{$Name}";
+                else 
+                    $Condition = $i < $FieldNums ? $Condition."{$this->Alias}.{$Name} = {$aAlias}.{$Name} AND " : $Condition."{$this->Alias}.{$Name} = {$aAlias}.{$Name}";
+               $i++;
+            }
+        }
+        else {
+            $Condition = "{$this->Alias}.{$aField} = {$aAlias}.{$aField}";
+        }
+
+        $Query = $JoinStr.$Condition;
+        
+        return $Query;
+    }
+
+    // FALTA O -(OR) OR AND (NOT)
+    public function Where($aField, $aOperator)
+    {
+        if(is_null($aField))
+            throw new Exception('Procedimento sem Valores definidos!');
+        
+        if(is_array($aField) && is_array($aOperator))
+            if(count($aField) != count($aOperator))
+                throw new Exception('O numero de Campos e Operadores definidos não coincide!');
+        $i=1;
+        $FieldNums = is_array($aField) ? count($aField) : 0;
+        $Where=" WHERE ";
+        $Condition="";
+
+        if($FieldNums >1){
+            foreach($aField as &$Name)
+            {
+               $Condition = $i < $FieldNums ? $Condition."{$this->Alias}.{$Name}".$aOperator[$i-1]."? AND " : $Condition."{$this->Alias}.{$Name}".$aOperator[$i-1]."? ";
+               $i++;
+            }
+        }
+        else {
+            $Condition = "{$this->Alias}.{$aField}".$aOperator[0]."? ";
+        }
+
+        $Query = $Where.$Condition;
+        
+        return $Query;
+    }
+
+
+    //Não Está Acabado
+    public function OrderBy($aField)
+    {
+        $Query="";
+        $OrderBy="ORDER BY ";
+        
+        $Columns="";
+        $i=1;
+        $FieldNums=count($aField);
+        
+        foreach($aField as &$Name)
+        {
+            $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
+            $i++;
+        }
+
+        $Query = $OrderBy.$Columns;
+        
+        return $Query;
+    }
+
+
+    public function GroupBy()
+    {
+        
+    }
+
 }

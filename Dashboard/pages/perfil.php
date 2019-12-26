@@ -176,7 +176,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Atualizar Perfil</h4>
+                                    <h4 class="card-title">Perfil</h4>
                                 </div>
                                 <div class="card-body">
                                     <form>

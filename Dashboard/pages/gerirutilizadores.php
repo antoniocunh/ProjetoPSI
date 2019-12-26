@@ -177,16 +177,21 @@ The above copyright notice and this permission notice shall be included in all c
        <div class="content">
         <div class="row">
           <div class="col-md-12">
+          
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Gestão de Utilizadores</h4>
+                <h4 class="card-title"> Utilizadores</h4>
+                <button type="button" class="btn btn-default fa fa-user-plus" style="padding:10px;"> Novo utilizador</button>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                        <th>
+                      <th>
                         ID
+                      </th>
+                      <th>
+                        Nome de Utilizador
                       </th>
                       <th>
                        Nome
@@ -212,7 +217,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <th>
                         Telemovel
                       </th>
-                        <th>
+                      <th>
                         Organização
                       </th>
                       <th >
@@ -221,11 +226,14 @@ The above copyright notice and this permission notice shall be included in all c
                     </thead>
                     <tbody>
                       <tr>
-                          <td>
+                        <td>
                           1
                         </td>
                         <td>
-                          Marco 
+                          Anto
+                        </td>
+                        <td>
+                          Ze 
                         </td>
                         <td>
                           Cunha
@@ -315,7 +323,7 @@ The above copyright notice and this permission notice shall be included in all c
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>-->
         <button type="button" class="btn btn-danger">Apagar</button>
         <button type="button" class="btn btn-warning">Update</button>
       </div>

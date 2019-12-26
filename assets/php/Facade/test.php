@@ -10,10 +10,12 @@
 
     
     $teste1 = new User();
-    $teste1->ReadObject("33333");
+    $teste1->Testing();
+    
+    /*$teste1->ReadObject("33333");
     //$teste1->UpdateObject();
     $teste1->DeleteObject();
     $teste1->InsertObject();
-
+    */
     echo "</pre>";
 ?>

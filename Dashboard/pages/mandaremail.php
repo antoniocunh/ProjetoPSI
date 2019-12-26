@@ -214,8 +214,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="row">
                                 <div class="col-md-4 mt-4">
                                     <div class="image-upload-wrap h-100">
-                                        <input class="file-upload-input" type='file' onchange="readURL(this);"
-                                            accept=".docx; .pdf" />
+                                        <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".docx; .pdf" />
                                         <div class="drag-text"></div>
                                     </div>
                                 </div>

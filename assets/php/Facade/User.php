@@ -29,7 +29,7 @@ class User extends Bridge
     //construtor da class user
     public function __construct()
     {
-        parent::__construct("tb_User", "vcUsername");
+        parent::__construct("tb_User", "vcUsername", "u");
     }
     
     public function readObject($id)
@@ -40,6 +40,43 @@ class User extends Bridge
         foreach ($this as &$key) {
                 $key = $array[$count++];
         }
+    }
+
+    public function Testing()
+    {
+        $arrayFieldsScope = array();
+        array_push($arrayFieldsScope, "iIdScope");
+        array_push($arrayFieldsScope, "vcName");
+        
+        $arrayFieldsUser = array();
+        array_push($arrayFieldsUser, "iIDUser");
+        array_push($arrayFieldsUser, "vcName");
+        array_push($arrayFieldsUser, "vcLastName");
+
+        $arrayOperators = array();
+        array_push($arrayOperators, "=");
+        //array_push($arrayOperators, "=");
+
+        $arrayAlias = array();
+        array_push($arrayAlias, "User");
+        array_push($arrayAlias, "SCO");
+
+        $Columns = array
+        (
+            array(null,"vcName"),
+            array("SCO","vcName")
+        );
+
+        //$Query=$this->Select();
+        $Query=
+            $this->SelectJoin($Columns).
+            $this->Join("tb_scope", "SCO", $arrayFieldsScope, Joins::INNER).
+            $this->Where($arrayFieldsUser[1], $arrayOperators[0]).
+            $this->OrderBy($arrayFieldsUser);
+        
+        echo $Query."<br>";
+        //$this->QueryExec($Query);
+        //var_dump($this->QueryExec($Query));
     }
 
     public function InsertObject()
