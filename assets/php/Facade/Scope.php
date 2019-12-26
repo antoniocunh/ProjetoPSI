@@ -8,7 +8,7 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 
-class Scope extends Bridge
+class Scope extends Bridge implements JsonSerializable
 {
 
 
@@ -18,7 +18,7 @@ class Scope extends Bridge
     //construtor da class scope
     public function __construct()
     {
-        parent::__construct("tb_Scope", "iIdScope");
+        parent::__construct("tb_Scope", "iIdScope", "sc");
     }
 
     public function readObject($id)
@@ -30,6 +30,15 @@ class Scope extends Bridge
                 $key = $array[$count++];
         }
     }
+
+    public function jsonSerialize(){
+        $json =  array();
+        foreach ($this as $key => &$value) {
+            $json += [$key=>$value];
+        }
+        return $json;
+    }
+
 
     public function InsertObject()
     {

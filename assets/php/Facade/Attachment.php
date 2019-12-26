@@ -7,7 +7,7 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
-class Attachment extends Bridge
+class Attachment extends Bridge implements JsonSerializable
 {
 
     private $iIdAttachment;
@@ -19,7 +19,7 @@ class Attachment extends Bridge
     //construtor da class attachment
     public function __construct()
     {
-        parent::__construct("tb_Attachment", "iIdAttachment");
+        parent::__construct("tb_Attachment", "iIdAttachment", "att");
     }
     
     public function readObject($id)
@@ -43,6 +43,15 @@ class Attachment extends Bridge
         $this->DeleteObjectBD($id);
         //$this->ClearData();
     }
+
+    public function jsonSerialize(){
+        $json =  array();
+        foreach ($this as $key => &$value) {
+            $json += [$key=>$value];
+        }
+        return $json;
+    }
+
 
 
     /**

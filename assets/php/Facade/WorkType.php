@@ -7,7 +7,7 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
-class WorkType extends Bridge
+class WorkType extends Bridge implements JsonSerializable
 {
 
     private $iIdTypeWork;
@@ -17,7 +17,7 @@ class WorkType extends Bridge
     //construtor da class worktype
     public function __construct()
     {
-        parent::__construct("tb_WorkType", "iIdWorkType");
+        parent::__construct("tb_WorkType", "iIdWorkType", "wt");
     }
 
     public function readObject($id)
@@ -41,6 +41,15 @@ class WorkType extends Bridge
         $this->DeleteObjectBD($id);
         //$this->ClearData();
     }
+
+    public function jsonSerialize(){
+        $json =  array();
+        foreach ($this as $key => &$value) {
+            $json += [$key=>$value];
+        }
+        return $json;
+    }
+
 
     /**
      * Get the value of iIdTypeWork

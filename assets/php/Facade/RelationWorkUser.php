@@ -7,7 +7,7 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
-class RelationWorkUser extends Bridge
+class RelationWorkUser extends Bridge implements JsonSerializable
 {
 
     private $idRelation;
@@ -19,7 +19,7 @@ class RelationWorkUser extends Bridge
     //construtor da class relationworkuser
     public function __construct()
     {
-        parent::__construct("tb_RelationWorkUser", "iIdRelationWorkUser");
+        parent::__construct("tb_RelationWorkUser", "iIdRelationWorkUser", "rwu");
     }
 
     public function readObject($id)
@@ -43,6 +43,15 @@ class RelationWorkUser extends Bridge
         $this->DeleteObjectBD($id);
         //$this->ClearData();
     }
+
+    public function jsonSerialize(){
+        $json =  array();
+        foreach ($this as $key => &$value) {
+            $json += [$key=>$value];
+        }
+        return $json;
+    }
+
 
     /**
      * Get the value of idRelation

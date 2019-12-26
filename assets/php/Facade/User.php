@@ -7,7 +7,7 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
-class User extends Bridge
+class User extends Bridge implements JsonSerializable
 {
     private $iIdUser;
     private $iIdScope;
@@ -104,6 +104,15 @@ class User extends Bridge
         if(!($key instanceof Bridge))
             $key = null;
     }
+
+    public function jsonSerialize(){
+        $json =  array();
+        foreach ($this as $key => &$value) {
+            $json += [$key=>$value];
+        }
+        return $json;
+    }
+
 
     /**
      * Get the value of iIdUser
