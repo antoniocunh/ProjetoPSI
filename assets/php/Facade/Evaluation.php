@@ -18,7 +18,7 @@ class Evaluation extends Bridge implements JsonSerializable
     //construtor da class evaluation
     public function __construct()
     {
-        parent::__construct("tb_Evaluation", "iIdEvaluation", "eva");
+        parent::__construct("tb_Evaluation", "iIdEvaluation", "EVA");
     }
 
     public function readObject($id)

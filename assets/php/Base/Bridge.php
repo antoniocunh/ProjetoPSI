@@ -316,17 +316,16 @@ class Bridge{
         $From= " FROM {$this->table}";
         $Columns="";
 
-        $i=1;
+        $x=1;
         $FieldNums=count($aField);
         
-        foreach ($aField as $key => $value) {
-
-            if(!is_null($aField[$i-1][0])) //Se o Alias do Array vier vazio então mete o alias definido da Classe
-                $Columns = $i < $FieldNums ? $Columns.$aField[$i-1][0].".".$aField[$i-1][1].", " :  $Columns.$aField[$i-1][0].".".$aField[$i-1][1];
+        for($i=0; $i < $FieldNums; ++$i) {
+            if(!is_null($aField[$i][0])) //Se o Alias do Array vier vazio então mete o alias definido da Classe
+                $Columns = $x < $FieldNums ? $Columns.$aField[$i][0].".".$aField[$i][1].", " :  $Columns.$aField[$i][0].".".$aField[$i][1];
             else
-                $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.".$aField[$i-1][1].", " :  $Columns."{$this->Alias}.".$aField[$i-1][1];
-
-            $i++;
+                $Columns = $x < $FieldNums ? $Columns."{$this->Alias}.".$aField[$i][1].", " :  $Columns."{$this->Alias}.".$aField[$i][1];
+            
+            $x++;
         }
 
         $Query = $Select.$Columns.$From." AS {$this->Alias}";
@@ -360,9 +359,9 @@ class Bridge{
             foreach($aField as &$Name)
             {
                 if(is_null($aAlias))
-                    $Condition = $i < $FieldNums ? $Condition."{$this->Alias}.{$Name} = {$aTable}.{$Name} AND " : $Condition."{$this->Alias}.{$Name} = {$aTable}.{$Name}";
+                    $Condition = $i < $FieldNums ? $Condition."{$this->Alias}.{$Name[0]} = {$aTable}.{$Name[1]} AND " : $Condition."{$this->Alias}.{$Name[0]} = {$aTable}.{$Name[1]}";
                 else 
-                    $Condition = $i < $FieldNums ? $Condition."{$this->Alias}.{$Name} = {$aAlias}.{$Name} AND " : $Condition."{$this->Alias}.{$Name} = {$aAlias}.{$Name}";
+                    $Condition = $i < $FieldNums ? $Condition."{$this->Alias}.{$Name[0]} = {$aAlias}.{$Name[1]} AND " : $Condition."{$this->Alias}.{$Name[0]} = {$aAlias}.{$Name[1]}";
                $i++;
             }
         }
@@ -376,6 +375,9 @@ class Bridge{
     }
 
     // FALTA O -(OR) OR AND (NOT)
+    /* 
+        htmlspecialchars - '<, >, ", &'
+     */
     public function Where($aField, $aOperator)
     {
         if(is_null($aField))
@@ -397,7 +399,8 @@ class Bridge{
             }
         }
         else {
-            $Condition = "{$this->Alias}.{$aField}".$aOperator[0]."? ";
+            
+            $Condition = "{$this->Alias}.{$aField}"."{$aOperator}"."? ";
         }
 
         $Query = $Where.$Condition;

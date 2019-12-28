@@ -61,11 +61,8 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table" id="tb_Users">
                     <thead class=" text-primary">
-                      <th>
-                        ID
-                      </th>
                       <th>
                         Nome de Utilizador
                       </th>
@@ -96,49 +93,6 @@ The above copyright notice and this permission notice shall be included in all c
                       <th>
                         Organização
                       </th>
-                      <th >
-                     
-                      </th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          1
-                        </td>
-                        <td>
-                          Anto
-                        </td>
-                        <td>
-                          Ze 
-                        </td>
-                        <td>
-                          Cunha
-                        </td>
-                        <td>
-                          rua cesamo
-                        </td>
-                          <td>
-                          Portugal
-                        </td>
-                          <td>
-                          Aveiro
-                        </td>
-                         <td>
-                          3850
-                        </td>
-                        <td>
-                          teste@tese.com
-                        </td>
-                        <td>
-                          9126595
-                        </td>
-                        <td>
-                          ESTGA
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Opções</button>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -161,39 +115,39 @@ The above copyright notice and this permission notice shall be included in all c
         <form>
           <div class="form-group">
             <label>Nome</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+            <input type="text" class="form-control" id="vcName" placeholder="Nome">
           </div>
             <div class="form-group">
             <label>Apelido</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apelido">
+            <input type="text" class="form-control" id="vcLastName" placeholder="Apelido">
           </div>
             <div class="form-group">
             <label>Morada</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Morada">
+            <input type="text" class="form-control" id="vcAddress" placeholder="Morada">
           </div>
             <div class="form-group">
             <label>Pais</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Pais">
+            <input type="text" class="form-control" id="vcCountry" placeholder="Pais">
           </div>
             <div class="form-group">
             <label>Cidade</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Cidade">
+            <input type="text" class="form-control" id="vcCity" placeholder="Cidade">
           </div>
             <div class="form-group">
             <label>Código-Postal</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Código-Postal">
+            <input type="text" class="form-control" id="vcPostalCode" placeholder="Código-Postal">
           </div>
             <div class="form-group">
             <label>E-mail</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="E-mail">
+            <input type="text" class="form-control" id="vcEmail" placeholder="E-mail">
           </div>
             <div class="form-group">
             <label>Telemovel</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telemovel">
+            <input type="text" class="form-control" id="vcPhoneNumber" placeholder="Telemovel">
           </div>
             <div class="form-group">
             <label>Organização</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Organização">
+            <input type="text" class="form-control" id="vcAfiliation" placeholder="Organização">
           </div>
           
         </form>
@@ -249,8 +203,8 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
 
+  <script src="./script/getUsers.js"></script>
 </body>
 
 </html>
