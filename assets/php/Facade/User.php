@@ -410,8 +410,8 @@ class User extends Bridge implements JsonSerializable
 
          //================================================UPDATE
          $arrayFieldsUser = array(
-            "vcName",
-            "vcLastName"
+            array("vcName","="),
+            array("vcLastName","=")
         );
 
          $arrayWhere = array(
@@ -420,10 +420,10 @@ class User extends Bridge implements JsonSerializable
          );
 
         $aData = array(
-            "11",
-            "22",
-            "buceta",
-            "porno"
+            "yy",
+            "uu",
+            "aa",
+            "bb"
         );
 
         //$Query=$this->Select();
@@ -435,7 +435,6 @@ class User extends Bridge implements JsonSerializable
             $this->Update($arrayFieldsUser, $arrayWhere, $aData);
 
         echo $Query."<br>"."<br>";
-        $this->QueryExecute($Query,$aData);
         //var_dump($this->QueryExec($Query));
     }
 

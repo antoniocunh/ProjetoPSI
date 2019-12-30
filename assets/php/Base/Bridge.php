@@ -89,50 +89,12 @@ class Bridge{
     /* ==================================================================== 
         CRUD 
     ====================================================================*/
-    protected function Delete($aCondition, ...$args)
-    {
-        $this->BindParameters("DELETE FROM {$this->table} WHERE {$aCondition};", $args);
-    }
 
     protected function ReadObjectBD($id){
         $result = array();
         $vars = $this->GetAtributesName();
         $result = $this->SelectAllBP($this->column . " = ?", $id);
         return $this->DataToArray($vars, $result);
-    }
-    
-    protected function UpdateObjectBD($aId, $aData)
-    {
-        $columns = $this->GetAtributesName();
-        $holders = $this->setHolders($columns);
-        $cols = $this->setColumns($columns);
-
-        $rColumns = $this->prepareInsert($aData, $this->ColumType);
-        $rValues = $this->prepareInsert($aData, $this->ValueType);
-
-        $aData["vcUsername"] = "33333";
-        $aData["vcEmail"] = "Tete@gmail.com";
-        
-        $this->QueryExecute("REPLACE INTO {$this->table}($rColumns) VALUES($rValues)", $aData);
-
-        
-        /*var_dump($aData);
-        $rFields = $this->prepareUpdateV2($aData);
-           
-        array_push($aData, $aId);
-        $aData["vcUsername"] = "3333333333333333333333333333333333333";
-        $aData["vcEmail"] = "TesasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadteTeste@gmail.com";
-        echo "<br>===================================================";
-        echo "<br>PRINT<br>";
-        
-        //$query = "UPDATE {$this->table} SET {$rFields} WHERE {$this->column} = {$a};"; - '"'.$a.'"'
-        $query = "REPLACE INTO tb_User SET {$rFields} WHERE vcUsername = ?;";
-        echo  $query;
-        
-
-        $this->QueryExecute($query, $aData);
-        echo "<br>===================================================<br>";
-        */
     }
     
     private function prepareUpdateV2($aData)
@@ -158,11 +120,6 @@ class Bridge{
             }
 
         return $aData;
-    }
-
-    protected function DeleteObjectBD($id)
-    {
-        $this->QueryExecute("DELETE FROM {$this->table} WHERE {$this->column} = ?;", array($id));
     }
 
     protected function InsertObjectBD($aData)
@@ -448,9 +405,24 @@ class Bridge{
     }
 
 
-    public function GroupBy()
+    public function GroupBy($aField)
     {
+        $Query="";
+        $GroupBy="GROUP BY ";
         
+        $Columns="";
+        $i=1;
+        $FieldNums=count($aField);
+        
+        foreach($aField as &$Name)
+        {
+            $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
+            $i++;
+        }
+
+        $Query = $GroupBy.$Columns;
+        
+        return $Query;
     }
 
     /*
@@ -473,7 +445,7 @@ class Bridge{
         $Update="UPDATE {$this->table} AS {$this->Alias} SET ";
         $Columns="";
 
-        $i=1;
+        $x=1;
         
         $FieldNums = is_array($aField) ? count($aField) : 0;
         $WhereNums = count($aWhere);
@@ -484,19 +456,35 @@ class Bridge{
         if($Sum != $DataNums)
             throw new Exception('O numero de entrada no paramentro Data não coincide com os arrays fornecidos!');
 
-        if($FieldNums >1){
-            foreach($aField as &$Name)
+        if($FieldNums >1)
+        {
+            for($i=0; $i < $FieldNums; ++$i) 
             {
-                $Columns = $i < $FieldNums ? $Columns."{$Name} = ?, " : $Columns."{$Name} = ?";
-                $i++;
+                $Columns = $x < $FieldNums ? $Columns."{$aField[$i][0]}".$aField[$i][1]."?, ": $Columns."{$aField[$i][0]}".$aField[$i][1]."? ";
+                $x++;
             }
         }
         else
-            $Columns = !is_array($aField) ? $Columns."{$aField} = ?" : $Columns."{$aField[0]} = ?";
+            $Columns = $Columns."{$aField[0][0]}"."{$aField[0][1]}"."? ";
         
-
         $Query = $Update.$Columns.$this->Where($aWhere);
+        $this->QueryExecute($Query,$aData);
         return $Query;
     }
+
+    public function Delete($aWhere ,$aData)
+    {
+        if(is_null($aWhere) || is_null($aData))
+        throw new Exception('Preencha todos os parâmetros');
+
+        if(is_array($aWhere)==0)
+            throw new Exception('Paramentro Where tem de ser um array!');
+
+        $Query = "DELETE FROM {$this->table} AS {$this->Alias}".$this->Where($aWhere);
+        $this->QueryExecute($Query,$aData);
+        return $Query;
+    }
+
+
 
 }
