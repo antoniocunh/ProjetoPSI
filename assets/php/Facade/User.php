@@ -379,24 +379,20 @@ class User extends Bridge implements JsonSerializable
         return $this;
     }
 
-    //============================================================================================================================================================
-    //============================================================================================================================================================
-    //============================================================================================================================================================
-    //============================================================================================================================================================
     public function Testing()
     {
         $arrayFieldsScope = array();
         array_push($arrayFieldsScope, "iIdScope");
         array_push($arrayFieldsScope, "vcName");
-        
-        $arrayFieldsUser = array();
-        array_push($arrayFieldsUser, "iIDUser");
-        array_push($arrayFieldsUser, "vcName");
-        array_push($arrayFieldsUser, "vcLastName");
 
         $arrayOperators = array();
         array_push($arrayOperators, "=");
-        //array_push($arrayOperators, "=");
+        array_push($arrayOperators, htmlspecialchars("<"));
+        array_push($arrayOperators, "=");
+
+        $arrayConectors = array();
+        array_push($arrayConectors, "OR");
+        array_push($arrayConectors, "AND");
 
         $arrayAlias = array();
         array_push($arrayAlias, "User");
@@ -408,15 +404,38 @@ class User extends Bridge implements JsonSerializable
             array("SCO","vcName")
         );
 
+        $arrayJoin = array(
+            array("vcName", "vcName")
+         );
+
+         //================================================UPDATE
+         $arrayFieldsUser = array(
+            "vcName",
+            "vcLastName"
+        );
+
+         $arrayWhere = array(
+            array("vcName","=","AND"),
+            array("vcLastName","=",null)
+         );
+
+        $aData = array(
+            "11",
+            "22",
+            "buceta",
+            "porno"
+        );
+
         //$Query=$this->Select();
         $Query=
-            $this->SelectJoin($Columns).
-            $this->Join("tb_scope", "SCO", $arrayFieldsScope, Joins::INNER).
-            $this->Where($arrayFieldsUser[1], $arrayOperators[0]).
-            $this->OrderBy($arrayFieldsUser);
-        
-        echo $Query."<br>";
-        //$this->QueryExec($Query);
+            //$this->SelectJoin($Columns).
+            //$this->Join("tb_scope", "SCO", $arrayJoin, Joins::INNER);
+            //$this->Where($arrayWhere).
+            //$this->OrderBy($arrayFieldsUser);
+            $this->Update($arrayFieldsUser, $arrayWhere, $aData);
+
+        echo $Query."<br>"."<br>";
+        $this->QueryExecute($Query,$aData);
         //var_dump($this->QueryExec($Query));
     }
 

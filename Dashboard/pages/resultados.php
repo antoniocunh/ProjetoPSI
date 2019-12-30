@@ -43,7 +43,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <script>
     $(document).ready(function() {
       $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
-        $("#avaliar").addClass("active");
+        $("#resultados").addClass("active");
       });
     })
   </script>
