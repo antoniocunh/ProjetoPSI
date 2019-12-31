@@ -1732,7 +1732,7 @@ fieldset[disabled] .btn-link.active {
   min-width: 140px;
 }
 
-.btn-group.select {
+/*.btn-group.select {
   width: 100%;
 }
 
@@ -1745,9 +1745,9 @@ fieldset[disabled] .btn-link.active {
   top: 50%;
   margin-top: -1px;
   right: 8px;
-}
+}*/
 
-.btn-group .btn+.btn {
+/*.btn-group .btn+.btn {
   margin-left: -3px;
 }
 
@@ -1764,7 +1764,7 @@ fieldset[disabled] .btn-link.active {
 
 .btn-round.btn-simple {
   padding: 10px 22px;
-}
+}*/
 
 .no-caret.dropdown-toggle::after {
   display: none;
@@ -2534,7 +2534,7 @@ body {
   transition: all 300ms ease 0s;
 }
 
-.dropdown-toggle:after,
+/*.dropdown-toggle:after,
 .bootstrap-switch-label:before,
 .caret {
   -webkit-transition: all 150ms ease 0s;
@@ -2552,7 +2552,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
-}
+}*/
 
 .button-bar {
   display: block;
