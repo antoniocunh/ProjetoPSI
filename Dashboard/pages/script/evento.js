@@ -9,7 +9,10 @@ $(function () {
                 keys = Object.keys(resp);
                 keys.forEach(element => {
                     $("[name='" + element + "']").val(resp[element]);
-                    console.log(element);
+                    console.log(resp[element]);
+                    if(element == "dtIniSubmition"){
+                        $("[name='" + element + "']").val(resp[element].substring(0, resp[element].indexOf(' ')));
+                    }
                 });
             }
     }),

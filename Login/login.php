@@ -15,7 +15,6 @@
       $stmt->execute(array(":username" => $username));
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       $count = $stmt->rowCount();
-
       if ($row['vcPassword'] == hash("sha512", $userpassword . "_" . $row['dtBirth'])) // verificação da password com hash
       {
         $msg = "ok";
