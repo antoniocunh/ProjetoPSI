@@ -4,6 +4,7 @@
 
        $event = new Event();
        $event->readObject("0");
+       //echo $event->SelectAll();
 
        echo json_encode($event);
 ?>

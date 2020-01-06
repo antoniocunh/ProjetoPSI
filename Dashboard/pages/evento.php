@@ -166,6 +166,14 @@ The above copyright notice and this permission notice shall be included in all c
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col mx-2">
+                        <div class="form-group">
+                          <label>Sobre Nós</label>
+                          <textarea rows="4" cols="80" class="form-control" placeholder="Sobre" name="vcAbout"></textarea>
+                        </div>
+                      </div>
+                    </div>
                     <button type="submit" class="btn btn-warning">Atualizar</button>
                     <div class="clearfix"></div>
                   </form>

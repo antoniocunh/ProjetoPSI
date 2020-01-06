@@ -55,91 +55,91 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
         <div class="col-md-8">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">Atualizar Perfil</h4>
+              <h4 class="card-title">Perfil</h4>
             </div>
             <div class="card-body">
               <form>
                 <div class="row">
-                  <div class="col-md-5 pr-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Nome</label>
-                      <input type="text" class="form-control" placeholder="Nome">
+                      <input type="text" class="form-control" placeholder="Nome" name="vcName">
                     </div>
                   </div>
-                  <div class="col-md-3 px-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Sobrenome</label>
-                      <input type="text" class="form-control" placeholder="Sobrenome">
+                      <input type="text" class="form-control" placeholder="Sobrenome"  name="vcLastName">
                     </div>
                   </div>
-                  <div class="col-md-4 pl-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Telemóvel</label>
-                      <input name="telefone" type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
+                      <input name="telefone" type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" name="vcPhoneNumber">
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-5 pr-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Afiliação</label>
-                      <input type="text" class="form-control" placeholder="Afiliação">
+                      <input type="text" class="form-control" placeholder="Afiliação" name="vcAfiliation">
                     </div>
                   </div>
-                  <div class="col-md-3 px-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Ambito</label>
-                      <input type="text" class="form-control" placeholder="Ambito">
+                      <select name="iIdScope" class="form-control" ></select>
                     </div>
                   </div>
-                  <div class="col-md-4 pl-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Data de Nascimento</label>
-                      <input type="date" placeholder="Data de Nascimento" class="form-control">
+                      <input type="date" placeholder="Data de Nascimento" class="form-control" name="dtBirth">
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Morada</label>
-                      <input type="text" class="form-control" placeholder="Morada">
+                      <input type="text" class="form-control" placeholder="Morada" name="vcAddress">
                     </div>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-md-4 pr-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Pais</label>
-                      <input type="text" class="form-control" placeholder="Pais">
+                      <input type="text" class="form-control" placeholder="País" name="vcCountry">
                     </div>
                   </div>
-                  <div class="col-md-4 px-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Cidade</label>
-                      <input type="text" class="form-control" placeholder="Cidade">
+                      <input type="text" class="form-control" placeholder="Cidade" name="vcCity">
                     </div>
                   </div>
-                  <div class="col-md-4 pl-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Código Postal</label>
-                      <input type="text" class="form-control" placeholder="Código Postal">
+                      <input type="text" class="form-control" placeholder="Código Postal" name="vcPostalCode">
                     </div>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-md-5 pr-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>Username</label>
-                      <input name="username" id="username" type="text" placeholder=" Username" class="form-control" pattern="^[A-Za-z0-9_]{1,32}$">
+                      <input id="username" type="text" placeholder=" Username" class="form-control" name="vcUsername" pattern="^[A-Za-z0-9_]{1,32}$">
                     </div>
                   </div>
-                  <div class="col-md-3 px-1">
+                  <div class="col ml-2">
                     <div class="form-group">
                       <label>E-mail</label>
-                      <input name="email" type="email" placeholder="Email" class="form-control">
+                      <input type="email" placeholder="Email" class="form-control" name="vcEmail">
                     </div>
                   </div>
                 </div>
@@ -181,6 +181,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
 
+  <script src="./script/getProfile.js?v=2"></script>
 </body>
 
 </html>

@@ -23,10 +23,9 @@ class Event extends Bridge implements JsonSerializable
     private $dtIniSubscription;
     private $dtEndSubscription;
     private $vcLocal;
-    private $iIdOrganizer;
     private $dtIniEvent;
     private $dtEndEvent;
-
+    private $vcAbout;
 
     //construtor da class event
     public function __construct()
@@ -42,6 +41,12 @@ class Event extends Bridge implements JsonSerializable
         foreach ($this as &$key) {
                 $key = $array[$count++];
         }
+    }
+
+    public function SelectAll()
+    {
+        $Query = $this->Select();
+        echo $Query;
     }
 
     public function InsertObject()

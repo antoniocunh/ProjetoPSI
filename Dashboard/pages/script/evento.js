@@ -31,7 +31,7 @@ $(function () {
             vcLocal:"required",
             dtIniEvent:"required",
             dtEndEvent:"required"
-        },
+    },
         messages: {
             iIdEvent:"Nome de evento obrigatório.",
             vcTitle:"required",
