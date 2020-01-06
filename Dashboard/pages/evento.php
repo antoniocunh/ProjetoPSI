@@ -211,7 +211,7 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-  <script src="script/evento.js?"></script>
+  <script src="script/evento.js?v=2.0.0"></script>
 </body>
 
 </html>

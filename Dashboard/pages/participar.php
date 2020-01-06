@@ -39,10 +39,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="../../assets/js/plugins/autocomplete/jquery.easy-autocomplete.min.js"></script>
   <link rel="stylesheet" href="../../assets/js/plugins/autocomplete/easy-autocomplete.min.css">
-
-  <link rel="stylesheet" href="../../assets/css/bootstrap-select.css" />
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-  <script src="../../assets/js/plugins/Select/bootstrap-select.min.js"></script>
   <link rel="stylesheet" href="./css/participar.css">
 </head>
 
@@ -89,43 +85,50 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
                 <div class="card-body ">
+                  <form id="form" method="post" action="../../assets/php/Object/getTrabalho.php" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label>Nome do Autor principal</label>
+                          <input name="autor" type="text" class="form-control" id="autorPrincipal" placeholder="Selecione o Autor Principal">
+                        </div>
+                      </div>
 
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Nome do Autor principal</label>
-                        <input type="text" class="form-control" id="autorPrincipal" placeholder="Selecione o Autor Principal">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label>Outros Autores/Oradores</label>
+                          <span class="autocomplete-select"></span>
+                        </div>
+                        <div class="d-none">
+                          <select name="autores" id="phpSender" multiple>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label>Resumo</label>
+                          <input name="resumo" type="text" class="form-control" placeholder="Resumo">
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 mt-4">
+                        <div class="image-upload-wrap h-100 ">
+                          <input name="file" class="file-upload-input" type='file' accept=".docx, .pdf" />
+                          <div class="drag-text"></div>
+                        </div>
                       </div>
                     </div>
+                  </form>
+                </div>
+                <div id="spanContent">
 
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Outros Autores/Oradores</label>
-                        <select class="selectpicker" id="autores" multiple data-live-search="true" placeholder="Selecione os autores/oradores da equipa">
-                        </select>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Resumo</label>
-                        <input type="text" class="form-control" placeholder="Resumo">
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 mt-4">
-                      <div class="image-upload-wrap h-100">
-                        <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".docx; .pdf" />
-                        <div class="drag-text"></div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="card-footer ">
                   <hr>
@@ -157,7 +160,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                 </div>
                 <div class="divider"></div>
                 <div class="right-side">
-                  <button type="button" class="btn btn-danger btn-link">Confirmar</button>
+                  <button id="submit" type="button" class="btn btn-danger btn-link">Confirmar</button>
                 </div>
               </div>
             </div>
@@ -181,8 +184,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
     </footer>
   </div>
 
-  <script src="./script/participar.js"></script>
-
   <!--   Core JS Files   -->
   <script src="../../assets/js/core/popper.min.js"></script>
   <script src="../../assets/js/core/bootstrap.min.js"></script>
@@ -194,6 +195,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+  <script src="../../assets/js/plugins/bundle.min.js"></script>
+
+  <script src="./script/participar.js?v=2"></script>
 
 
 </body>
