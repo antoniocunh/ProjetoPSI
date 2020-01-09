@@ -37,6 +37,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <link href="./css/getUtilizadores.css" rel="stylesheet" />
   <script src="../../assets/js/core/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 </head>
 
@@ -58,7 +59,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
           <div class="card">
             <div class="card-header">
               <h4 class="card-title"> Utilizadores</h4>
-              <button type="button" class="btn btn-default fa fa-user-plus" style="padding:10px;"> Novo utilizador</button>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -112,44 +112,51 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form method="post" action="" name="updateUser">
+          <form method="post" action="../../assets/php/Object/updateUser.php" name="updateUser">
             <div class="modal-body">
-
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" id="vcUsername" name="vcUsername" placeholder="Username">
+              </div>
               <div class="form-group">
                 <label>Nome</label>
                 <input type="text" class="form-control" id="vcName" name="vcName" placeholder="Nome">
               </div>
               <div class="form-group">
                 <label>Apelido</label>
-                <input type="text" class="form-control" id="vcLastName" name="vcLastName"placeholder="Apelido">
+                <input type="text" class="form-control" id="vcLastName" name="vcLastName" placeholder="Apelido">
+              </div>
+              <div class="form-group">
+                <label>Âmbito</label>
+                <select class="form-control" id="iIdScope" name="iIdScope" placeholder="Âmbito"></select>
               </div>
               <div class="form-group">
                 <label>Morada</label>
-                <input type="text" class="form-control" id="vcAddress" name="vcAddress"placeholder="Morada">
+                <input type="text" class="form-control" id="vcAddress" name="vcAddress" placeholder="Morada">
               </div>
               <div class="form-group">
                 <label>Pais</label>
-                <input type="text" class="form-control" id="vcCountry" name="vcCountry"placeholder="Pais">
+                <input type="text" class="form-control" id="vcCountry" name="vcCountry" placeholder="Pais">
               </div>
               <div class="form-group">
                 <label>Cidade</label>
-                <input type="text" class="form-control" id="vcCity" name="vcCity"placeholder="Cidade">
+                <input type="text" class="form-control" id="vcCity" name="vcCity" placeholder="Cidade">
               </div>
               <div class="form-group">
                 <label>Código-Postal</label>
-                <input type="text" class="form-control" id="vcPostalCode" name="vcPostalCode"placeholder="Código-Postal">
+                <input type="text" class="form-control" id="vcPostalCode" name="vcPostalCode" placeholder="Código-Postal">
               </div>
               <div class="form-group">
                 <label>E-mail</label>
-                <input type="text" class="form-control" id="vcEmail" name="vcEmail"placeholder="E-mail">
+                <input type="text" class="form-control" id="vcEmail" name="vcEmail" placeholder="E-mail">
               </div>
               <div class="form-group">
                 <label>Telemovel</label>
-                <input type="text" class="form-control" id="vcPhoneNumber" name="vcPhoneNumber"placeholder="Telemovel">
+                <input type="text" class="form-control" id="vcPhoneNumber" name="vcPhoneNumber" placeholder="Telemovel">
               </div>
               <div class="form-group">
                 <label>Organização</label>
-                <input type="text" class="form-control" id="vcAfiliation" name="vcAfiliation"placeholder="Organização">
+                <input type="text" class="form-control" id="vcAfiliation" name="vcAfiliation" placeholder="Organização">
               </div>
             </div>
             <div class="modal-footer">
@@ -191,7 +198,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
   <script src="../../assets/js/core/bootstrap.min.js"></script>
   <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

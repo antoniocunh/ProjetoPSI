@@ -14,7 +14,8 @@
         "vcPostalCode",
         "vcEmail",
         "vcPhoneNumber",
-        "vcAfiliation"
+        "vcAfiliation",
+        "iIdScope"
     );
 
     

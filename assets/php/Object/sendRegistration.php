@@ -64,7 +64,7 @@ function formatData()
     return $newUser;
 }
 try {
-    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope, vcPhoneNumber, dtBirth, vcCountry, vcCity, vcAddress, vcPostalCode, vcAfiliation, vcUsername, vcEmail , vcPassword) 
+    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope, vcAfiliation, dtBirth, vcPhoneNumber, vcCountry, vcCity, vcAddress, vcPostalCode, vcUsername, vcEmail , vcPassword) 
     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $count = 1;
     $newUser = formatData();
