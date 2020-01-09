@@ -89,11 +89,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
-                          <label>Nome do Autor principal</label>
+                          <label>Nome do Autor/Orador principal</label>
                           <input name="autor" type="text" class="form-control" id="autorPrincipal" placeholder="Selecione o Autor Principal">
                         </div>
                       </div>
-
                     </div>
                     <div class="row">
                       <div class="col-md-5">
@@ -106,7 +105,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                           </select>
                         </div>
                       </div>
-
                     </div>
                     <div class="row">
                       <div class="col-md-5">
@@ -115,7 +113,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                           <input name="resumo" type="text" class="form-control" placeholder="Resumo">
                         </div>
                       </div>
-
                     </div>
                     <div class="row">
                       <div class="col-md-4 mt-4">
