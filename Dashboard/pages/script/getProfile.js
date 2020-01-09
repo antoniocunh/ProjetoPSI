@@ -1,18 +1,17 @@
 $(function () {
+    function ambito(){
         $.ajax({
             url: "../../assets/php/Object/Register/getAmbito.php",
             success: function (result) 
             {
                 resp = JSON.parse(result);
-                
                 keys = Object.keys(resp);
                 keys.forEach(element => {
-                    $("[name='" + element + "']").append("<option name='" + elemen + "'>" + resp[element] + "</option>");
-                    console.log(element);
+                    $("[name='iIdScope']").append("<option name='" + resp[element].iIdScope + "' value='" + resp[element].iIdScope + "'>" + resp[element].vcName + "</option>");
                 });
             }
     })
-    
+}
 
      function user(){
         $.ajax({
@@ -20,20 +19,17 @@ $(function () {
             success: function (result) 
             {
                 resp = JSON.parse(result);
-                console.log(resp);
                 
                 keys = Object.keys(resp);
                 keys.forEach(element => {
-                    $("[name='" + element + "']").val(resp[element]);
                     console.log(element);
-                    if(element === "iIdScope"){
-                        $("[name='" + resp[element] + "']").html("<option name='" + elemen + "'>" + resp[element] + "</option>");
+                    if(element !== "iIdScope"){
+                        $("[name='" + element + "']").val(resp[element]);
                     }
                 });
             }
         })
     }
-
     ambito();
     user();
 })

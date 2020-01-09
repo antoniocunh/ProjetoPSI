@@ -1,7 +1,6 @@
 <?php
 
 require_once("EnumJoins.php");
-require_once("EnumJoins.php");
 
 class Bridge{
     
@@ -29,13 +28,6 @@ class Bridge{
         return $this->BindParameters("SELECT * FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
-    public function SelectAllJoin($aTable, $aCondition = "1", ...$args){
-        return $this->BindParameters("SELECT * FROM {$this->table} INNER JOIN table2 ON table1.column_name = table2.column_name; WHERE {$aCondition};", $args);
-    }
-
-    protected function SelectColumnsBP($column, $aCondition = "1", ...$args){
-        return $this->BindParameters("SELECT {$column} FROM {$this->table} WHERE {$aCondition};", $args);
-    }
     /* ==================================================================== 
         Execute Functions 
        ====================================================================*/
@@ -77,7 +69,7 @@ class Bridge{
         foreach($array as $key => $element){
             if(strpos($array[$key], "Bridge") == false){
                 if(strpos($array[$key], $class) == 1){
-                    $array[$key] = substr($array[$key], strlen($class) + 1);
+                    $array[$key] = substr($array[$key], strlen($class) + 2);
                 } 
             }else{
                 unset($array[$key]);
@@ -95,57 +87,6 @@ class Bridge{
         $vars = $this->GetAtributesName();
         $result = $this->SelectAllBP($this->column . " = ?", $id);
         return $this->DataToArray($vars, $result);
-    }
-    
-    private function prepareUpdateV2($aData)
-    {
-        $rValue = "";
-        $i =1;
-        foreach($aData as $Name => &$Value){
-            if($i<count($aData))
-               $rValue = $rValue." ".$Name."=?,";
-            else
-                $rValue = $rValue." ".$Name."=? ";
-
-           $i++;
-        }
-        return $rValue;
-    }
-    
-    private function RemoveDataParams($aData, ...$aParams){
-          //Exclui Elementos que nao quero passar no aData
-          foreach ($aParams as $Param)
-            foreach (array_keys($aData, $Param) as $Value) {
-                unset($aData[$Value]);
-            }
-
-        return $aData;
-    }
-
-    protected function InsertObjectBD($aData)
-    {
-        $columns = $this->GetAtributesName();
-        $holders = $this->setHolders($columns);
-        $cols = $this->setColumns($columns);
-
-        $rColumns = $this->prepareInsert($aData, $this->ColumType);
-        $rValues = $this->prepareInsert($aData, $this->ValueType);
-        
-        $this->QueryExecute("INSERT INTO {$this->table}($rColumns) VALUES($rValues)", $aData);
-    }
-
-    private function prepareInsert($aData, $aType)
-    {
-        $array = array();
-        foreach($aData as $Name => &$Value){
-              if($aType == $this->ColumType)
-                    array_push($array, $Name);
-               else if($aType == $this->ValueType)
-                        array_push($array, '?');
-        }
-
-        $rValue = implode(",", $array);
-        return $rValue;
     }
 
     public function QueryExec($aQuery)
@@ -171,53 +112,21 @@ class Bridge{
             $stmt = $this->conn->prepare($aQuery);
             $count = 1;
             foreach ($aData as $Name => &$Value){
-                    $stmt->bindParam($count++, $Value);
+                echo $Value . "<br>";    
+                $stmt->bindParam($count++, $Value);
             }
-
+            echo "<pre>";
+            print_r($aData);
             $stmt->execute();
+            echo "Query Executada com sucesso!";
             return true;
         }
         catch(PDOException $e)
         {
-            //$stmt->debugDumpParams();
             echo "<br>".$e->getMessage();
             return false;
         }
     } 
-
-    //=========================================================================
-
-    private function setColumns(array $columns){
-        $cols = implode(', ', array_values($columns));
-        return $cols;
-    }
-    
-    private function setFields(array $columns){
-        $fields = implode(' = ?, ', array_values($columns));
-        return $fields.' = ?';
-    }
-    
-    private function setHolders(array $columns){
-        $holders = array_fill(1 ,count($columns),'?');
-        return implode(', ',array_values($holders));
-    }
-
-    /*
-        Esta Classe constroi as string com 
-    */
-    public function prepareParams($aData)
-    {
-        $array = array();
-        foreach($aData as $Name => &$Value){
-            if(!empty($Value))
-               array_push($array, '"'.$Value.'"');
-            else
-                array_push($array, 'NULL');
-        }
-
-        $rValue = implode(",", $array);
-        return $rValue;
-    }
 
     //================================GETTERS==============================
 
@@ -232,6 +141,21 @@ class Bridge{
     //===============================================================================================
 
 
+    //================================SETTERS==============================
+    /**
+     * Set the value of column
+     *
+     * @return  self
+     */ 
+    public function setColumn($column)
+    {
+        $this->column = $column;
+
+        return $this;
+    }
+
+    
+    //===============================================================================================
     //TODO - COUNT AVG ETC WITH ORDERBY DISTINCT
     public function Select($aField=null)
     {
@@ -256,7 +180,7 @@ class Bridge{
 
             $Query = $Select.$Columns.$From." AS {$this->Alias}";
         }
-        
+        //echo $Query;
         return $Query;
     }
 
@@ -280,7 +204,7 @@ class Bridge{
         }
 
         $Query = $Select.$Columns.$From." AS {$this->Alias}";
-        
+        //echo $Query;
         return $Query;
     }
 
@@ -340,7 +264,7 @@ class Bridge{
             $Condition = !is_array($aField) ? "{$this->Alias}.{$aField} = {$aAlias}.{$aField}" : "{$this->Alias}.{$aField[0][0]} = {$aAlias}.{$aField[0][0]}";
 
         $Query = $JoinStr.$Condition;
-        
+        //echo $Query;
         return $Query;
     }
 
@@ -355,29 +279,47 @@ class Bridge{
            array("Field", "Operator", "Conector"),
            array("Field", "Operator", NULL),
         );
+
+        $aBoolAlias - Desliga o Alias -  Para Deletes e querys simples a so uma tb
      */
-    public function Where($aArrayMultidimensional)
+    public function Where($aArrayM, $aBoolAlias)
     {
-        if(is_null($aArrayMultidimensional))
+        if(is_null($aArrayM))
             throw new Exception('Procedimento sem Valores definidos!');
         
         $x=1;
-        $FieldNums = is_array($aArrayMultidimensional) ? count($aArrayMultidimensional) : 0;
+        $FieldNums = is_array($aArrayM) ? count($aArrayM) : 0;
         $Where=" WHERE ";
         $Condition="";
 
-        if($FieldNums >1)
+        if($aBoolAlias)
         {
-            for($i=0; $i < $FieldNums; ++$i) 
+            if($FieldNums >1)
             {
-               $Condition = $x < $FieldNums ? $Condition."{$this->Alias}.{$aArrayMultidimensional[$i][0]}".$aArrayMultidimensional[$i][1]."? " .$aArrayMultidimensional[$i][2]. " ": $Condition."{$this->Alias}.{$aArrayMultidimensional[$i][0]}".$aArrayMultidimensional[$i][1]."? ";
-               $x++;
+                for($i=0; $i < $FieldNums; ++$i) 
+                {
+                   $Condition = $x < $FieldNums ? $Condition."{$this->Alias}.{$aArrayM[$i][0]}".$aArrayM[$i][1]."? " .$aArrayM[$i][2]. " ": $Condition."{$this->Alias}.{$aArrayM[$i][0]}".$aArrayM[$i][1]."? ";
+                   $x++;
+                }
             }
+            else
+                $Condition = "{$this->Alias}.{$aArrayM[0][0]}"."{$aArrayM[0][1]}"."? ";
+        }else {
+            if($FieldNums >1)
+            {
+                for($i=0; $i < $FieldNums; ++$i) 
+                {
+                   $Condition = $x < $FieldNums ? $Condition."{$aArrayM[$i][0]}".$aArrayM[$i][1]."? " .$aArrayM[$i][2]. " ": $Condition."{$aArrayM[$i][0]}".$aArrayM[$i][1]."? ";
+                   $x++;
+                }
+            }
+            else
+                $Condition = "{$aArrayM[0][0]}"."{$aArrayM[0][1]}"."? ";
         }
-        else
-            $Condition = "{$this->Alias}.{$aArrayMultidimensional[0][0]}"."{$aArrayMultidimensional[0][1]}"."? ";
+
 
         $Query = $Where.$Condition;
+        //echo $Query;
         return $Query;
     }
 
@@ -400,7 +342,7 @@ class Bridge{
         }
 
         $Query = $OrderBy.$Columns;
-        
+        //echo $Query;
         return $Query;
     }
 
@@ -421,7 +363,7 @@ class Bridge{
         }
 
         $Query = $GroupBy.$Columns;
-        
+        //echo $Query;
         return $Query;
     }
 
@@ -448,43 +390,121 @@ class Bridge{
         $x=1;
         
         $FieldNums = is_array($aField) ? count($aField) : 0;
-        $WhereNums = count($aWhere);
-        $DataNums = count($aData);
-
-        $Sum = $FieldNums + $WhereNums;
-
-        if($Sum != $DataNums)
-            throw new Exception('O numero de entrada no paramentro Data não coincide com os arrays fornecidos!');
-
         if($FieldNums >1)
         {
             for($i=0; $i < $FieldNums; ++$i) 
             {
-                $Columns = $x < $FieldNums ? $Columns."{$aField[$i][0]}".$aField[$i][1]."?, ": $Columns."{$aField[$i][0]}".$aField[$i][1]."? ";
+                $Columns = $x < $FieldNums ? $Columns . $aField[$i][0] . $aField[$i][1]."?, ": $Columns . $aField[$i][0] . $aField[$i][1]."? ";
                 $x++;
             }
         }
         else
             $Columns = $Columns."{$aField[0][0]}"."{$aField[0][1]}"."? ";
-        
-        $Query = $Update.$Columns.$this->Where($aWhere);
+
+        $Query = $Update.$Columns.$this->Where($aWhere, true);
         $this->QueryExecute($Query,$aData);
+        //echo $Query;
         return $Query;
     }
 
-    public function Delete($aWhere ,$aData)
+    public function Delete($aWhere, $aData)
     {
         if(is_null($aWhere) || is_null($aData))
         throw new Exception('Preencha todos os parâmetros');
-
         if(is_array($aWhere)==0)
             throw new Exception('Paramentro Where tem de ser um array!');
-
-        $Query = "DELETE FROM {$this->table} AS {$this->Alias}".$this->Where($aWhere);
+        
+        $Query = "DELETE FROM {$this->table}".$this->Where($aWhere, false);
         $this->QueryExecute($Query,$aData);
+    }
+    
+    public function Insert($aField, $aData)
+    {
+        $Query="";
+        $Columns="";
+        $ValuesBind="";
+        $FieldNums = is_array($aField) ? count($aField) : 0;
+        
+        $Columns = $this->setColumns($aField);
+        $ValuesBind = $this->setCharacterBind($aField);
+        
+        if($FieldNums >1)
+        {
+            $Columns = $this->setColumns($aField);
+            $ValuesBind = $this->setCharacterBind($aField);
+        }
+        else
+        {
+            $Columns = "{$aField[0]}";
+            $ValuesBind = "?";
+        }
+
+        $Query = "INSERT INTO {$this->table}(".$Columns.') VALUES('.$ValuesBind.');';
+        $this->QueryExecute($Query,$aData);
+        //echo $Query;
         return $Query;
     }
 
+    //=========================================================================
+    private function setColumns(array $columns){
+        $cols = implode(', ', array_values($columns));
+        return $cols;
+    }
+    
+    private function setCharacterBind(array $columns){
+        $fields="";
 
+        for($i=0; $i < count($columns)-1; ++$i) 
+            $fields =$fields.'?, ';
 
+        return $fields.'?';
+    }
+
+    private function setFields(array $columns){
+        $fields = implode('?, ', array_values($columns));
+        return $fields.' = ?';
+    }
+    //=========================================================================
+
+    /*
+    private function RemoveDataParams($aData, ...$aParams){
+          //Exclui Elementos que nao quero passar no aData
+          foreach ($aParams as $Param)
+            foreach (array_keys($aData, $Param) as $Value) {
+                unset($aData[$Value]);
+            }
+
+        return $aData;
+    }
+
+    private function prepareInsert($aData, $aType)
+    {
+        $array = array();
+        foreach($aData as $Name => &$Value){
+              if($aType == $this->ColumType)
+                    array_push($array, $Name);
+               else if($aType == $this->ValueType)
+                        array_push($array, '?');
+        }
+
+        $rValue = implode(",", $array);
+        return $rValue;
+    }
+    
+    Esta Classe constroi as string com 
+    
+    public function prepareParams($aData)
+    {
+        $array = array();
+        foreach($aData as $Name => &$Value){
+            if(!empty($Value))
+               array_push($array, '"'.$Value.'"');
+            else
+                array_push($array, 'NULL');
+        }
+
+        $rValue = implode(",", $array);
+        return $rValue;
+    }
+    */
 }

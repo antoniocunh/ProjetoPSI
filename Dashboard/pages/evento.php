@@ -13,8 +13,8 @@
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
-<?php 
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+<?php
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ The above copyright notice and this permission notice shall be included in all c
     Detalhes da Conferência
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  
+
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
@@ -40,164 +40,164 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 <body style="background-color : #f4f3ef">
-<script>
+  <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function(){
-            $("#evento").addClass("active");
+      $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
+        $("#evento").addClass("active");
       });
     })
   </script>
-    <div id="sidebar"></div>
+  <div id="sidebar"></div>
 
-    <div class="main-panel">
-      <!-- End Navbar -->
-      <div class="content mt-0">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Detalhes da conferância</h4>
-                </div>
-                <div class="card-body">
-                  <form name="evento" method="POST" action="../assets">
-                    <div class="row">
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Titulo</label>
-                          <input type="text" class="form-control" placeholder="titulo" name="vcTitle">
-                        </div>
-                      </div>
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Local</label>
-                          <input type="text" class="form-control" placeholder="Local" name="vcLocal">
-                        </div>
+  <div class="main-panel">
+    <!-- End Navbar -->
+    <div class="content mt-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Detalhes da conferância</h4>
+              </div>
+              <div class="card-body">
+                <form name="evento" method="POST" action="../../assets/php/Object/updateEvento.php">
+                  <div class="row">
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Titulo</label>
+                        <input type="text" class="form-control" placeholder="titulo" name="vcTitle">
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Data de Inicio</label>
-                          <input type="date" class="form-control" placeholder="Data de Inicio" name="dtIniEvent">
-                        </div>
-                      </div>
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Data de Encerramento</label>
-                          <input type="date" class="form-control" placeholder="Data de Encerramento" name="dtEndEvent">
-                        </div>
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Local</label>
+                        <input type="text" class="form-control" placeholder="Local" name="vcLocal">
                       </div>
                     </div>
+                  </div>
+                  <div class="row">
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Data de Inicio</label>
+                        <input type="datetime-local" class="form-control" placeholder="Data de Inicio" name="dtIniEvent">
+                      </div>
+                    </div>
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Data de Encerramento</label>
+                        <input type="date" class="form-control" placeholder="Data de Encerramento" name="dtEndEvent">
+                      </div>
+                    </div>
+                  </div>
 
-                    <div class="row">
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Data de Inicio de Subscrição</label>
-                          <input type="date" class="form-control" placeholder="Inicio de subscrição" name="dtIniSubscription">
-                        </div>
-                      </div>
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Data de Encerramento de Subscrição</label>
-                          <input type="date" class="form-control" placeholder="Data de Encerramento de subscrição" name="dtEndSubscription">
-                        </div>
+                  <div class="row">
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Data de Inicio de Subscrição</label>
+                        <input type="date" class="form-control" placeholder="Inicio de subscrição" name="dtIniSubscription">
                       </div>
                     </div>
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Data de Encerramento de Subscrição</label>
+                        <input type="date" class="form-control" placeholder="Data de Encerramento de subscrição" name="dtEndSubscription">
+                      </div>
+                    </div>
+                  </div>
 
-                    <div class="row">
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Inicio das Submissões</label>
-                          <input type="date" class="form-control" placeholder="Inicio das submissões" name="dtIniSubmition">
-                        </div>
-                      </div>
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Encerramento das Submissões</label>
-                          <input type="date" class="form-control" placeholder="Encerramento das submissões" name="dtEndSubmition">
-                        </div>
+                  <div class="row">
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Inicio das Submissões</label>
+                        <input type="date" class="form-control" placeholder="Inicio das submissões" name="dtIniSubmition">
                       </div>
                     </div>
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Encerramento das Submissões</label>
+                        <input type="date" class="form-control" placeholder="Encerramento das submissões" name="dtEndSubmition">
+                      </div>
+                    </div>
+                  </div>
 
-                    <div class="row">
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Inicio das Avaliações</label>
-                          <input type="date" class="form-control" placeholder="Inicio das Avaliações"  name="dtIniEvaluation">
-                        </div>
-                      </div>
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Encerramento das Avaliações</label>
-                          <input type="date" class="form-control" placeholder="Encerramento das Avaliações" name="dtEndEvaluation">
-                        </div>
+                  <div class="row">
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Inicio das Avaliações</label>
+                        <input type="date" class="form-control" placeholder="Inicio das Avaliações" name="dtIniEvaluation">
                       </div>
                     </div>
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Encerramento das Avaliações</label>
+                        <input type="date" class="form-control" placeholder="Encerramento das Avaliações" name="dtEndEvaluation">
+                      </div>
+                    </div>
+                  </div>
 
-                    <div class="row">
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Inicio das Submissões Finais</label>
-                          <input type="date" class="form-control" placeholder="Inicio das submissões finais" name="dtIniFinalSubmission">
-                        </div>
-                      </div>
-                      <div class="col mx-2 ">
-                        <div class="form-grou                                                                                                                                                                                                                                                                                                                                                                                        p">
-                          <label>Encerramento das Submissões Finais</label>
-                          <input type="date" class="form-control" placeholder="Encerramento das submissões finais" name="dtEndFinalSubmission">
-                        </div>
+                  <div class="row">
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Inicio das Submissões Finais</label>
+                        <input type="date" class="form-control" placeholder="Inicio das submissões finais" name="dtIniFinalSubmission">
                       </div>
                     </div>
+                    <div class="col mx-2 ">
+                      <div class="form-grou                                                                                                                                                                                                                                                                                                                                                                                        p">
+                        <label>Encerramento das Submissões Finais</label>
+                        <input type="date" class="form-control" placeholder="Encerramento das submissões finais" name="dtEndFinalSubmission">
+                      </div>
+                    </div>
+                  </div>
 
-                    <div class="row">
-                      <div class="col mx-2 ">
-                        <div class="form-group">
-                          <label>Lançamento de Resultados</label>
-                          <input type="date" class="form-control" placeholder="lançamento de resultados" name="dtResults">
-                        </div>
+                  <div class="row">
+                    <div class="col mx-2 ">
+                      <div class="form-group">
+                        <label>Lançamento de Resultados</label>
+                        <input type="date" class="form-control" placeholder="Lançamento de Resultados" name="dtResults">
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col mx-2">
-                        <div class="form-group">
-                          <label>Descrição</label>
-                          <textarea rows="4" cols="80" class="form-control" placeholder="Descrição" name="vcDescription"></textarea>
-                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col mx-2">
+                      <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea rows="4" cols="80" class="form-control" placeholder="Descrição" name="vcDescription"></textarea>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col mx-2">
-                        <div class="form-group">
-                          <label>Sobre Nós</label>
-                          <textarea rows="4" cols="80" class="form-control" placeholder="Sobre" name="vcAbout"></textarea>
-                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col mx-2">
+                      <div class="form-group">
+                        <label>Sobre Nós</label>
+                        <textarea rows="4" cols="80" class="form-control" placeholder="Sobre" name="vcAbout"></textarea>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-warning">Atualizar</button>
-                    <div class="clearfix"></div>
-                  </form>
-                </div>
+                  </div>
+                  <button type="submit" class="btn btn-warning">Atualizar</button>
+                  <div class="clearfix"></div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="footer footer-black  footer-white ">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="credits ml-auto">
-              <span class="copyright">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-              </span>
-            </div>
+    </div>
+    <footer class="footer footer-black  footer-white ">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="credits ml-auto">
+            <span class="copyright">
+              ©
+              <script>
+                document.write(new Date().getFullYear())
+              </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+            </span>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
+  </div>
   </div>
   <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
@@ -211,7 +211,7 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-  <script src="script/evento.js?v=2.0.0"></script>
+  <script src="script/evento.js?v=2"></script>
 </body>
 
 </html>

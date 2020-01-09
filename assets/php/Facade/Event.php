@@ -13,6 +13,7 @@ class Event extends Bridge implements JsonSerializable
     private $iIdEvent;
     private $vcTitle;
     private $vcDescription;
+    private $vcAbout;
     private $dtIniSubmition;
     private $dtEndSubmition;
     private $dtIniEvaluation;
@@ -25,7 +26,6 @@ class Event extends Bridge implements JsonSerializable
     private $vcLocal;
     private $dtIniEvent;
     private $dtEndEvent;
-    private $vcAbout;
 
     //construtor da class event
     public function __construct()
@@ -33,6 +33,7 @@ class Event extends Bridge implements JsonSerializable
         parent::__construct("tb_Event", "iIdEvent", "eve");
     }
     
+     
     public function readObject($id)
     {
         $count = 0;
@@ -43,22 +44,44 @@ class Event extends Bridge implements JsonSerializable
         }
     }
 
-    public function SelectAll()
-    {
-        $Query = $this->Select();
-        echo $Query;
-    }
 
+    
     public function InsertObject()
     {
-        $this->InsertObjectBD(get_object_vars($this));
+        //$this->setIIdUser(420);
+        //$this->setvcEmail("99@gmail.com");
+        //$this->setvcUsername("BoaHancock");
+        $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    public function UpdateObject()
+    {
+        $arrayFieldsUser = array();
+        $columns = $this->GetAtributesName();
+        $aData = get_object_vars($this);
+        $arrayWhere = array(array($this->getColumn(),"=",null));
+
+        array_push($aData, $aData[$this->getColumn()]);
+        foreach($columns as $value){
+            array_push($arrayFieldsUser, [$value, "="]);
+        }
+
+        $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
+    }
+    
     public function DeleteObject()
     {
-        $id = $this->{$this->getColumn()};
-        $this->DeleteObjectBD($id);
-        //$this->ClearData();
+        $arrayWhere = array(array($this->getColumn(), "=", null));
+        $Data = array($this->{$this->getColumn()});
+        $Query= $this->Delete($arrayWhere, $Data);
+        $this->ClearData();
+    }
+
+    private function ClearData()
+    {
+        foreach ($this as &$key)
+        if(!($key instanceof Bridge))
+            $key = null;
     }
 
     public function jsonSerialize(){
@@ -196,6 +219,16 @@ class Event extends Bridge implements JsonSerializable
     {
         return $this->dtEndEvent;
     }
+
+    /**
+     * Get the value of vcAbout
+     */ 
+    public function getVcAbout()
+    {
+        return $this->vcAbout;
+    }
+
+    //======================================================================
 
     /**
      * Set the value of iIdEvent
@@ -385,6 +418,18 @@ class Event extends Bridge implements JsonSerializable
     public function setDtEndEvent($dtEndEvent)
     {
         $this->dtEndEvent = $dtEndEvent;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of vcAbout
+     *
+     * @return  self
+     */ 
+    public function setVcAbout($vcAbout)
+    {
+        $this->vcAbout = $vcAbout;
 
         return $this;
     }

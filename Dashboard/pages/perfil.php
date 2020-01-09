@@ -58,7 +58,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
               <h4 class="card-title">Perfil</h4>
             </div>
             <div class="card-body">
-              <form>
+              <form name="formPerfil" method="post" action="../../assets/php/Object/updatePerfil.php">
                 <div class="row">
                   <div class="col ml-2">
                     <div class="form-group">
@@ -69,13 +69,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Sobrenome</label>
-                      <input type="text" class="form-control" placeholder="Sobrenome"  name="vcLastName">
+                      <input type="text" class="form-control" placeholder="Sobrenome" name="vcLastName">
                     </div>
                   </div>
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Telemóvel</label>
-                      <input name="telefone" type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" name="vcPhoneNumber">
+                      <input type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[0-9]+$" name="vcPhoneNumber">
                     </div>
                   </div>
                 </div>
@@ -89,7 +89,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Ambito</label>
-                      <select name="iIdScope" class="form-control" ></select>
+                      <select name="iIdScope" class="form-control"></select>
                     </div>
                   </div>
                   <div class="col ml-2">
@@ -107,7 +107,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col ml-2">
                     <div class="form-group">
@@ -128,7 +127,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col ml-2">
                     <div class="form-group">

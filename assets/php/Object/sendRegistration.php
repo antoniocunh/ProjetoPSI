@@ -24,7 +24,6 @@ function fnValidateVariable($sName, &$list)
         $valid = true;
         switch ($sName) {
             case "ambito":
-                $tipo = PDO::PARAM_INT;
                 break;
             case "email":
                 if (!filter_var($temp, FILTER_VALIDATE_EMAIL)) {
@@ -35,7 +34,6 @@ function fnValidateVariable($sName, &$list)
             case "codPostal":
                 $valid = true;
                 break;
-            case "pass1":
             case "username":
             case "dataNascimento":
                 $list[$sName] = $_POST[$sName];

@@ -31,6 +31,41 @@ class Scope extends Bridge implements JsonSerializable
         }
     }
 
+    public function InsertObject()
+    {
+        $this->Insert($this->GetAtributesName(), get_object_vars($this));
+    }
+
+    public function UpdateObject()
+    {
+        $arrayFieldsUser = array();
+        $columns = $this->GetAtributesName();
+        $aData = get_object_vars($this);
+        $arrayWhere = array(array($this->getColumn(),"=",null));
+
+        array_push($aData, $aData[$this->getColumn()]);
+        foreach($columns as $value){
+            array_push($arrayFieldsUser, [$value, "="]);
+        }
+
+        $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
+    }
+    
+    public function DeleteObject()
+    {
+        $arrayWhere = array(array($this->getColumn(), "=", null));
+        $Data = array($this->{$this->getColumn()});
+        $Query= $this->Delete($arrayWhere, $Data);
+        $this->ClearData();
+    }
+
+    private function ClearData()
+    {
+        foreach ($this as &$key)
+        if(!($key instanceof Bridge))
+            $key = null;
+    }
+
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {
@@ -39,19 +74,7 @@ class Scope extends Bridge implements JsonSerializable
         return $json;
     }
 
-
-    public function InsertObject()
-    {
-        $this->InsertObjectBD(get_object_vars($this));
-    }
-
-    public function DeleteObject()
-    {
-        $id = $this->{$this->getColumn()};
-        $this->DeleteObjectBD($id);
-        //$this->ClearData();
-    }
-
+    
     /**
      * Get the value of iIdScope
      */ 

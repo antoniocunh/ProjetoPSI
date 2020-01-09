@@ -41,24 +41,38 @@ class User extends Bridge implements JsonSerializable
                 $key = $array[$count++];
         }
     }
+
+
     
     public function InsertObject()
     {
-        $this->InsertObjectBD(get_object_vars($this));
-    }
-
-    public function DeleteObject()
-    {
-        $id = $this->{$this->getColumn()};
-        $this->DeleteObjectBD($id);
-        //$this->ClearData();
+        //$this->setIIdUser(420);
+        //$this->setvcEmail("99@gmail.com");
+        //$this->setvcUsername("BoaHancock");
+        $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
     public function UpdateObject()
     {
-        echo "=============TESTE=============<br>";
-        $id = $this->{$this->getColumn()};
-        $this->UpdateObjectBD($id, get_object_vars($this));
+        $arrayFieldsUser = array();
+        $columns = $this->GetAtributesName();
+        $aData = get_object_vars($this);
+        $arrayWhere = array(array($this->getColumn(),"=",null));
+
+        array_push($aData, $aData[$this->getColumn()]);
+        foreach($columns as $value){
+            array_push($arrayFieldsUser, [$value, "="]);
+        }
+
+        $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
+    }
+    
+    public function DeleteObject()
+    {
+        $arrayWhere = array(array($this->getColumn(), "=", null));
+        $Data = array($this->{$this->getColumn()});
+        $Query= $this->Delete($arrayWhere, $Data);
+        $this->ClearData();
     }
 
     private function ClearData()
@@ -378,64 +392,4 @@ class User extends Bridge implements JsonSerializable
 
         return $this;
     }
-
-    public function Testing()
-    {
-        $arrayFieldsScope = array();
-        array_push($arrayFieldsScope, "iIdScope");
-        array_push($arrayFieldsScope, "vcName");
-
-        $arrayOperators = array();
-        array_push($arrayOperators, "=");
-        array_push($arrayOperators, htmlspecialchars("<"));
-        array_push($arrayOperators, "=");
-
-        $arrayConectors = array();
-        array_push($arrayConectors, "OR");
-        array_push($arrayConectors, "AND");
-
-        $arrayAlias = array();
-        array_push($arrayAlias, "User");
-        array_push($arrayAlias, "SCO");
-
-        $Columns = array
-        (
-            array(null,"vcName"),
-            array("SCO","vcName")
-        );
-
-        $arrayJoin = array(
-            array("vcName", "vcName")
-         );
-
-         //================================================UPDATE
-         $arrayFieldsUser = array(
-            array("vcName","="),
-            array("vcLastName","=")
-        );
-
-         $arrayWhere = array(
-            array("vcName","=","AND"),
-            array("vcLastName","=",null)
-         );
-
-        $aData = array(
-            "yy",
-            "uu",
-            "aa",
-            "bb"
-        );
-
-        //$Query=$this->Select();
-        $Query=
-            //$this->SelectJoin($Columns).
-            //$this->Join("tb_scope", "SCO", $arrayJoin, Joins::INNER);
-            //$this->Where($arrayWhere).
-            //$this->OrderBy($arrayFieldsUser);
-            $this->Update($arrayFieldsUser, $arrayWhere, $aData);
-
-        echo $Query."<br>"."<br>";
-        //var_dump($this->QueryExec($Query));
-    }
-
 }
