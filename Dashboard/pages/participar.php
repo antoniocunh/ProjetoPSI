@@ -89,20 +89,26 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
-                          <label>Nome do Autor/Orador principal</label>
-                          <input name="autor" type="text" class="form-control" id="autorPrincipal" placeholder="Selecione o Autor Principal">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group">
-                          <label>Outros Autores/Oradores</label>
+                          <label>Membros do Grupo</label>
                           <span class="autocomplete-select"></span>
                         </div>
                         <div class="d-none">
                           <select name="autores" id="phpSender" multiple>
                           </select>
+                        </div>
+                      </div>
+                    </div>
+                      <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group" id="principal">
+                          <label>Nome do Autor/Orador principal</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group" id="speakers">
+                          <label>Membros que vão apresentar</label>
                         </div>
                       </div>
                     </div>

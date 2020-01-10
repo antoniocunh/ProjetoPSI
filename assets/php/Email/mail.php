@@ -13,18 +13,17 @@ $mail = new PHPMailer(true);
 
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    
     $mail->isSMTP();
     $mail->Host       = "ssl://smtp.gmail.com";
+    $mail->Port       = 465;
+
     $mail->SMTPAuth   = true;
     $mail->Username   = "projetopsigrupo5@gmail.com";
     $mail->Password   = "grupo5psi";
     
-    $mail->Port       = 465;
     $mail->Subject = 'TOMA LA MORANGOS';
     $mail->isHTML(true);
-
-
     //Recipients
     $mail->setFrom('projetopsigrupo5@gmail.com', 'Mailer');
     $mail->addAddress('antoniocunha505@gmail.com', 'António Cunha');     // Add a recipient

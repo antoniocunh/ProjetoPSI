@@ -61,7 +61,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     <h4 class="card-title">Criar Utilizador</h4>
                                 </div>
                                 <div class="card-body">
-                                  <form name="criaruserform" method="post" action="../../assets/php/Object/sendRegistration.php">
+                                  <form name="criaruserform" method="post" action="../../assets/php/Object/criarUser.php">
                                     <div class="row">
                                         <div class="col-md-5 pr-1">
                                             <div class="form-group">

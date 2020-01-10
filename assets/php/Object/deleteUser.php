@@ -1,8 +1,12 @@
 <?php
     require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
     if(isset($_POST["username"])){
+        $username = $_POST["username"];
         $user = new User();
-        $user->readObject($_POST["username"]);
+        $user->readObject($username);
         $user->DeleteObject();
+        echo json_encode(["msg" => $username . " removido com sucesso."]);
+    }else{
+        echo json_encode(["msg" => $username . " não pode ser removido."]);
     }
 ?>

@@ -19,18 +19,18 @@
       if ($row['vcPassword'] == hash("sha512", $userpassword . "_" . $row['dtBirth'])) // verificação da password com hash
       {
         $msg = "ok";
-        echo json_encode(array("msg" => $msg)); // Sucesso na Autenticação
         $_SESSION['username'] = $row['vcUsername'];
         $_SESSION['password'] = $userpassword;
       } 
       else
       {
         $msg = "Utilizador ou palavra-passe estão errados";
-        echo json_encode(array("msg" => $msg)); // Falha na Autenticação
       }
     } 
     catch (PDOException $e) {
-      echo "Erro: Ao encontrar utilizador.".$e->getMessage();
+      $msg = "Erro: Ao encontrar utilizador.".$e->getMessage();
+    }finally{
+      echo json_encode(array("msg" => $msg));
     }
   }
 ?>

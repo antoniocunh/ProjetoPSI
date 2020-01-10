@@ -58,7 +58,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="tb_Article">
                       <thead class=" text-primary">
                         <th>
                           ID
@@ -76,22 +76,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                         </th>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Marco Martins
-                          </td>
-                          <td>
-                            António Cunha, Bruno Marquez
-                          </td>
-                          <td>
-                            exemplo.pdf
-                          </td>
-                          <td>
+                          <!--<td>
                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Avaliar</button>
-                          </td>
+                          </td>-->
                         </tr>
                       </tbody>
                     </table>
@@ -180,7 +167,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
     <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-
+    <script src="./script/scr_avaliar.js"></script>
 </body>
 
 </html>

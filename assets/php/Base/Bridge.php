@@ -112,13 +112,9 @@ class Bridge{
             $stmt = $this->conn->prepare($aQuery);
             $count = 1;
             foreach ($aData as $Name => &$Value){
-                echo $Value . "<br>";    
                 $stmt->bindParam($count++, $Value);
             }
-            echo "<pre>";
-            print_r($aData);
             $stmt->execute();
-            echo "Query Executada com sucesso!";
             return true;
         }
         catch(PDOException $e)

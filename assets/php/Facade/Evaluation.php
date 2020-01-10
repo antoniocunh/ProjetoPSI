@@ -50,7 +50,7 @@ class Evaluation extends Bridge implements JsonSerializable
 
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
-    
+
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -73,6 +73,8 @@ class Evaluation extends Bridge implements JsonSerializable
         }
         return $json;
     }
+
+
 
     /**
      * Get the value of iIdEvaluation

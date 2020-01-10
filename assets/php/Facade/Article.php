@@ -19,7 +19,7 @@ class Article extends Bridge implements JsonSerializable
     //construtor da class article
     public function __construct()
     {
-        parent::__construct("tb_Article", "iIdArticle", "ar");
+        parent::__construct("tb_Article", "iIdArticle", "AR");
     }    
 
     public function readObject($id)
