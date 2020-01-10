@@ -13,8 +13,8 @@ class RelationWorkUser extends Bridge implements JsonSerializable
     private $idRelation;
     private $iIdUser;
     private $iIdWork;
-    private $vcMainAuthor;
-    private $vcSpeaker;
+    private $bMainAuthor;
+    private $bSpeaker;
 
     //construtor da class relationworkuser
     public function __construct()
@@ -102,17 +102,17 @@ class RelationWorkUser extends Bridge implements JsonSerializable
     /**
      * Get the value of vcMainAuthor
      */ 
-    public function getVcMainAuthor()
+    public function getBMainAuthor()
     {
-        return $this->vcMainAuthor;
+        return $this->bMainAuthor;
     }
 
     /**
      * Get the value of vcSpeaker
      */ 
-    public function getVcSpeaker()
+    public function getBSpeaker()
     {
-        return $this->vcSpeaker;
+        return $this->bSpeaker;
     }
 
     /**
@@ -156,9 +156,9 @@ class RelationWorkUser extends Bridge implements JsonSerializable
      *
      * @return  self
      */ 
-    public function setVcMainAuthor($vcMainAuthor)
+    public function setBMainAuthor($bMainAuthor)
     {
-        $this->vcMainAuthor = $vcMainAuthor;
+        $this->bMainAuthor = $bMainAuthor;
 
         return $this;
     }
@@ -168,9 +168,9 @@ class RelationWorkUser extends Bridge implements JsonSerializable
      *
      * @return  self
      */ 
-    public function setVcSpeaker($vcSpeaker)
+    public function setBSpeaker($bSpeaker)
     {
-        $this->vcSpeaker = $vcSpeaker;
+        $this->bSpeaker = $bSpeaker;
 
         return $this;
     }

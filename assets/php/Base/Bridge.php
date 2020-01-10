@@ -115,7 +115,7 @@ class Bridge{
                 $stmt->bindParam($count++, $Value);
             }
             $stmt->execute();
-            return true;
+            return $stmt->fetchAll(PDO::FETCH_BOTH);
         }
         catch(PDOException $e)
         {
