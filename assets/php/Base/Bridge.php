@@ -20,17 +20,9 @@ class Bridge{
         $this->Alias = $aAlias;
     }
 
-    /* ==================================================================== 
-        Query Functions 
-       ====================================================================*/
-
     public function SelectAllBP($aCondition = "1", ...$args){
         return $this->BindParameters("SELECT * FROM {$this->table} WHERE {$aCondition};", $args);
     }
-
-    /* ==================================================================== 
-        Execute Functions 
-       ====================================================================*/
 
     protected function BindParameters($query, $args)
     {
@@ -78,16 +70,16 @@ class Bridge{
         return $array;
     }
 
-    /* ==================================================================== 
-        CRUD 
-    ====================================================================*/
-
     protected function ReadObjectBD($id){
         $result = array();
         $vars = $this->GetAtributesName();
         $result = $this->SelectAllBP($this->column . " = ?", $id);
         return $this->DataToArray($vars, $result);
     }
+
+    /* ==================================================================== 
+        Execute Functions 
+       ====================================================================*/
 
     public function QueryExec($aQuery)
     {
@@ -472,7 +464,11 @@ class Bridge{
         try{
             $Query="SELECT MAX({$aPKColumn}) FROM {$this->table}";
             $Result = $this->QueryExec($Query);
-            $LastId = is_null($Result) || isset($Result) ? 0 : $Result[0][0]+1;
+
+            if(!isset($Result[0][0]))// is_null($Result)){
+                $LastId = 0;   
+            else
+                $LastId = $Result[0][0]+1;
         }
         catch(PDOException $e){
             $LastId = -1;
@@ -481,7 +477,7 @@ class Bridge{
         return $LastId;
     }
 
-    //
+    //Preciso depois de entregar fazer o Refractoring desta Classe
 
     /*
     private function RemoveDataParams($aData, ...$aParams){

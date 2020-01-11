@@ -11,7 +11,7 @@ $(function () {
                 });
             }
     })
-}
+    }
 
      function user(){
         $.ajax({

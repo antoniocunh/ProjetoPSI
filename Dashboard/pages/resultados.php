@@ -84,26 +84,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     </th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        1
-                      </td>
-                      <td>
-                        Marco
-                      </td>
-                      <td>
-                        exemplo.pdf
-                      </td>
-                      <td>
-                        5
-                      </td>
-                      <td>
-                        está olha, uma *****
-                      </td>
-                      <td>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Enviar</button>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>

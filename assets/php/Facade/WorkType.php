@@ -13,11 +13,10 @@ class WorkType extends Bridge implements JsonSerializable
     private $iIdTypeWork;
     private $vcDescription;
 
-
     //construtor da class worktype
     public function __construct()
     {
-        parent::__construct("tb_WorkType", "iIdWorkType", "wt");
+        parent::__construct("tb_worktype", "iIdTypeWork", "TWT");
     }
 
     public function readObject($id)

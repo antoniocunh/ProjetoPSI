@@ -40,6 +40,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <script src="../../assets/js/plugins/autocomplete/jquery.easy-autocomplete.min.js"></script>
   <link rel="stylesheet" href="../../assets/js/plugins/autocomplete/easy-autocomplete.min.css">
   <link rel="stylesheet" href="./css/participar.css">
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 </head>
 
 
@@ -85,7 +86,39 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
                 <div class="card-body ">
-                  <form id="form" method="post" action="../../assets/php/Object/getTrabalho.php" enctype="multipart/form-data">
+                  <form id="InsertArticle" name="InsertArticle" method="post" action="../../assets/php/Object/getTrabalho.php" enctype="multipart/form-data">
+                  <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                        <label>Tipo de Trabalho</label>
+                        <select name="iIdTypeWork"  id="iIdTypeWork" class="form-control"></select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                        <label>Ambito</label>
+                        <select name="iIdScope" id="iIdScope" class="form-control"></select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label>Titulo</label>
+                          <input name="vcTitle" id="vcTitle" type="text" class="form-control" placeholder="Titulo">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label>Resumo</label>
+                          <input name="vcSummary" id="vcSummary" type="text" class="form-control" placeholder="Resumo">
+                        </div>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
@@ -113,22 +146,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group">
-                          <label>Titulo</label>
-                          <input name="resumo" type="text" class="form-control" placeholder="Titulo">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-8">
-                        <div class="form-group">
-                          <label>Resumo</label>
-                          <input name="resumo" type="text" class="form-control" placeholder="Resumo">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
                       <div class="col-md-4 mt-4">
                         <div class="image-upload-wrap h-100 ">
                           <input name="file" class="file-upload-input" type='file' accept=".docx, .pdf" />
@@ -143,7 +160,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                 </div>
                 <div class="card-footer ">
                   <hr>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  <button type="button" class="btn btn-danger"id="submit">  <!-- data-toggle="modal"  data-target="#Modal">-->
                     Enviar Trabalho
                   </button>
                 </div>
@@ -151,11 +168,11 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
             </div>
           </div>
         </div> <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Participação na Conferência</h5>
+                <h5 class="modal-title" id="ModalLabel">Participação na Conferência</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -208,7 +225,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
   <script src="../../assets/js/plugins/bundle.min.js"></script>
 
-  <script src="./script/participar.js?v=2"></script>
+  <script src="./script/scr_participar.js?v=2"></script>
 
 
 </body>

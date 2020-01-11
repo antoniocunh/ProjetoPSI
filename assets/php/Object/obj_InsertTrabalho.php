@@ -36,19 +36,22 @@
     */
 
       require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Article.php");
-      if(isset($_POST["vcReview"])){
+      //if(isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])){
 
           //1º Insert
           $Work = new Article();
+          echo $Work->GetLastID("iIdWork");
           $Work->setiIdWork($Work->GetLastID("iIdWork"));//Set do last index
-          
-          $Work->setiIDTypeWork($_POST["iIDTypeWork"]);//Define o tipo de trabalho - este campo é uma foreign key da tb_worktype
+
+          $Work->setiIDTypeWork($_POST["iIdTypeWork"]);//Define o tipo de trabalho - este campo é uma foreign key da tb_worktype
           $Work->setiIdScope($_POST["iIdScope"]);
           $Work->setvcTitle($_POST["vcTitle"]);
           $Work->setvcSummary($_POST["vcSummary"]);
-          $Work->InsertObject();
+
+          //$Work->InsertObject();
 
           //2º Insert
+          /*
           $Attachment = new Attachment();
           $Attachment->setiIdWork($Attachment->GetLastID("iIdWork"));//Set do last index
           
@@ -69,10 +72,11 @@
           $RelationWorkUser->settiMainAuthor($_POST["tiMainAuthor"]);
           $RelationWorkUser->settiSpeaker($_POST["tiSpeaker"]);
           $RelationWorkUser->InsertObject();
-
-          echo json_encode(["msg" => "Inserido com sucesso!"]);
-        }else{
-            echo json_encode(["msg" => "Algo deu errado!"]);
+          */
+         /* echo json_encode(["msg" => "Inserido com sucesso!"]);
         }
+        else{
+            echo json_encode(["msg" => "Algo deu errado!"]);
+        }*/
        
 ?>

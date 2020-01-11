@@ -37,9 +37,6 @@ $(function () {
    
     //Sent Review
      $(document).on('click', "#insertReview", function () {
-        console.log($("#iIdWork").val());
-        console.log($("#FormControlSelect1").val());
-        console.log($("#vcReview").val());
         $.ajax({
             url: '../../assets/php/Object/obj_InsertAvaliacao.php',
             type: 'POST',

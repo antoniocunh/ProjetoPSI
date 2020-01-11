@@ -10,16 +10,16 @@ require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 class Article extends Bridge implements JsonSerializable
 {
 
-    private $iIdTypeWork;
-    private $iIdScope;
-    private $vcWork;
+    private $iIdTypeWork;// FK
+    private $iIdScope; // FK
+    private $iIdWork; // PK
     private $vcTitle;
     private $vcSummary;
 
     //construtor da class article
     public function __construct()
     {
-        parent::__construct("tb_Article", "iIdArticle", "AR");
+        parent::__construct("tb_Article", "iIdWork", "AR");
     }    
 
     public function readObject($id)
@@ -94,11 +94,11 @@ class Article extends Bridge implements JsonSerializable
     }
 
     /**
-     * Get the value of vcWork
+     * Get the value of iIdWork
      */ 
-    public function getVcWork()
+    public function getiIdWork()
     {
-        return $this->vcWork;
+        return $this->iIdWork;
     }
 
     /**
@@ -142,13 +142,13 @@ class Article extends Bridge implements JsonSerializable
     }
 
     /**
-     * Set the value of vcWork
+     * Set the value of iIdWork
      *
      * @return  self
      */ 
-    public function setVcWork($vcWork)
+    public function setiIdWork($iIdWork)
     {
-        $this->vcWork = $vcWork;
+        $this->iIdWork = $iIdWork;
 
         return $this;
     }
