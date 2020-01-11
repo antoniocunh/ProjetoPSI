@@ -5,7 +5,7 @@
         CLASS ATTACHMENT
 ====================================================================*/
 
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Attachment extends Bridge implements JsonSerializable
 {
@@ -147,7 +147,7 @@ class Attachment extends Bridge implements JsonSerializable
      */ 
     public function setBlAttachment($blAttachment)
     {
-        $this->blAttachment = $blAttachment;
+        $this->blAttachment = file_get_contents($blAttachment);
 
         return $this;
     }

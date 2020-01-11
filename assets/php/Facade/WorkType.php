@@ -5,7 +5,7 @@
         CLASS WORK_TYPE
 ====================================================================*/
 
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class WorkType extends Bridge implements JsonSerializable
 {

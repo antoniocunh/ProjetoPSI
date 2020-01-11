@@ -76,8 +76,8 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="container">
       <div class="motto text-center">
         <h1 id="conferenceTitle">Titulo da Conferencia</h1>
-        <h3>The Biggest International IT Professional Conference</h3>
-        <h5>19 - 21 February, 2018. New York, USA</h5>
+        <h3 id="descricao">The Biggest International IT Professional Conference</h3>
+        <h5 id="diasELocal">19 - 21 February, 2018. New York, USA</h5>
         <br />
         <button onclick="location.href='Registo/register-page.html';" type="button"
           class="btn btn-outline-neutral btn-round">Registar</button>
@@ -97,7 +97,7 @@ The above copyright notice and this permission notice shall be included in all c
           <br />
           <div class="col-md-5 ml-auto">
             <h2 class="title">Sobre</h2>
-            <h5 class="description-theme">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <h5 class="description-theme" id="vcAbout">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
               quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -198,7 +198,7 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
               <div class="description">
                 <h4 class="info-title">Evento</h4>
-                <p class="description">O evento começa no dia 30-05-2020</p>
+                <p class="description">O evento começa no dia <span id="dataInicio"></span></p>
                 <!-- <a href="javascript:;" class="btn btn-link btn-danger">See more</a>-->
               </div>
             </div>
@@ -210,7 +210,7 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
               <div class="description">
                 <h4 class="info-title">Localização</h4>
-                <p>Aveiro, Rua do jaquim das couves</p>
+                <p><span id="cidade">Aveiro</span></p>
               </div>
             </div>
           </div>
@@ -307,16 +307,11 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="assets/js/plugins/moment.min.js"></script>
   <script src="assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
-  <!--  Google Maps Plugin    
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   
-  <script src="assets/js/home-page/getInfo.js"></script>
-  -->
+  
   <!-- Scrool Animation -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="assets/js/plugins/scrool-animation.js"></script>
+  <script src="assets/js/Object/Event/getInfo.js"></script>
   
   <script>
     $(function () {

@@ -473,8 +473,9 @@ class Bridge{
         catch(PDOException $e){
             $LastId = -1;
             echo "Erro ao obter o ID.<br>Coluna do  parâmetro deve ser sempre a coluna do ID da tabela";
+        }finally{
+            return $LastId;
         }
-        return $LastId;
     }
 
     //Preciso depois de entregar fazer o Refractoring desta Classe

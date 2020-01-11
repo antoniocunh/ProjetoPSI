@@ -64,7 +64,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <table class="table" id="tb_Article">
                       <thead class=" text-primary">
                         <th>ID</th>
-                        <th>ID Autor</th>
+                        <th>Titulo do Trabalho</th>
                         <th>Descrição do Trabalho</th>
                         <th>Nome</th>
                         <th></th>

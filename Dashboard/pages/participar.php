@@ -39,7 +39,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="../../assets/js/plugins/autocomplete/jquery.easy-autocomplete.min.js"></script>
   <link rel="stylesheet" href="../../assets/js/plugins/autocomplete/easy-autocomplete.min.css">
-  <link rel="stylesheet" href="./css/participar.css">
+  <link rel="stylesheet" href="./css/participar.css?v=2">
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 </head>
 
@@ -86,24 +86,24 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
                 <div class="card-body">
-                  <form id="InsertArticle" name="InsertArticle" method="post" action="../../assets/php/Object/getTrabalho.php" enctype="multipart/form-data">
-                  <div class="row">
+                  <form id="InsertArticle" name="InsertArticle" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
+                    <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
-                        <label>Tipo de Trabalho</label>
-                        <select name="iIdTypeWork"  id="iIdTypeWork" class="form-control"></select>
+                          <label>Tipo de Trabalho</label>
+                          <select name="iIdTypeWork" id="iIdTypeWork" class="form-control"></select>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
+                    <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
-                        <label>Ambito</label>
-                        <select name="iIdScope" id="iIdScope" class="form-control"></select>
+                          <label>Âmbito</label>
+                          <select name="iIdScope" id="iIdScope" class="form-control"></select>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
+                    <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
                           <label>Titulo</label>
@@ -126,15 +126,17 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                           <span class="autocomplete-select"></span>
                         </div>
                         <div class="d-none">
-                          <select name="autores" id="phpSender" multiple>
-                          </select>
+                          <select name="membros[]" id="sendMembros" multiple></select>
                         </div>
                       </div>
                     </div>
-                      <div class="row">
+                    <div class="row">
                       <div class="col-md-5">
                         <div class="form-group" id="principal">
                           <label>Nome do Autor/Orador principal</label>
+                        </div>
+                        <div class="d-none">
+                          <select name="autorP" id="sendAutorP"></select>
                         </div>
                       </div>
                     </div>
@@ -142,6 +144,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                       <div class="col-md-5">
                         <div class="form-group" id="speakers">
                           <label>Membros que vão apresentar</label>
+                        </div>
+                        <div class="d-none">
+                          <select name="speakers[]" id="sendSpeakers" multiple></select>
                         </div>
                       </div>
                     </div>
@@ -153,17 +158,18 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                         </div>
                       </div>
                     </div>
-                  </form>
                 </div>
                 <div id="spanContent">
-
                 </div>
                 <div class="card-footer ">
                   <hr>
-                  <button type="button" class="btn btn-danger"id="submit">  <!-- data-toggle="modal"  data-target="#Modal">-->
+                  <button type="submit" class="btn btn-danger" id="submit">
+                    <!-- data-toggle="modal"  data-target="#Modal">-->
                     Enviar Trabalho
                   </button>
                 </div>
+                </form>
+
               </div>
             </div>
           </div>

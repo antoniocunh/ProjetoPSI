@@ -5,7 +5,7 @@
         CLASS RELATION_WORK_USER
 ====================================================================*/
 
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class RelationWorkUser extends Bridge implements JsonSerializable
 {

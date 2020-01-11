@@ -2,12 +2,12 @@ $(function () {
   function autocompleteUnique(users) {
     $(".single-select").remove();
     $("#principal").append("<span class='single-select'></span>");
-    console.log(users);
     var single = new SelectPure(".single-select", {
       options: users,
       placeholder: "- Escolha Por Favor -",
       onChange: value => {
-        console.log(value);
+          $("#sendAutorP").append("<option id ='AP" + value + "'>" + value + "</option>");
+          $("#AP" + value).attr("selected", "selected");
       },
     });
   }
@@ -15,7 +15,6 @@ $(function () {
   function autocompleteMulti(users) {
     $(".multi-select").remove();
     $("#speakers").append("<span class='multi-select'></span>");
-    console.log(users);
     var single = new SelectPure(".multi-select", {
       options: users,
       placeholder: "- Escolha Por Favor -",
@@ -23,7 +22,13 @@ $(function () {
       autocomplete: true,
       icon: "fa fa-times",
       onChange: value => {
+        $("#sendSpeakers").empty();
         console.log(value);
+        value.forEach(function (element) {
+          $("#sendSpeakers").append("<option id ='S" + element + "'>" + element + "</option>");
+          $("#S" + element).attr("selected", "selected");
+        });
+        
       },
     });
   }
@@ -37,10 +42,10 @@ $(function () {
       placeholder: "- Escolha Por Favor -",
       onChange: value => {
         var user = [];
+        $("#sendMembros").empty();
         value.forEach(function (element) {
-          $("#autores").append("<option>" + element["vcUsername"] + "</option>");
-          $("#phpSender").append("<option id ='" + element["vcUsername"] + "'>" + element["vcUsername"] + "</option>");
-          $("#" + element).attr("selected", "selected");
+          $("#sendMembros").append("<option id ='M" + element + "'>" + element + "</option>");
+          $("#M" + element).attr("selected", "selected");
           var temp = {
             label: element,
             value: element
@@ -142,10 +147,16 @@ $(function () {
     rules: {
       vcTitle: 'required',
       vcSummary: 'required',
+      sendMembros: 'required',
+      sendAutorP: 'required',
+      sendSpeakers: 'required',
     },
     messages: {
       vcTitle: 'Por favor introduza um Titulo.',
       vcSummary: 'Por favor introduza um Resumo.',
+      sendMembros: 'Por favor selecione pelo menos 1 utilizador.',
+      sendAutorP: 'Por favor selecione o autor principal.',
+      sendSpeakers: 'Por favor selecione pelo menos 1 apresentador.',
         submitHandler: function (form) {
             form.submit();
         }

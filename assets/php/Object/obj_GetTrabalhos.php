@@ -6,8 +6,8 @@
     $Columns = array
     (
         array("TBA", "iIdWork"),
-        array("TBU", "iIdUser"),
         array("TBA", "vcTitle"),
+        array("TBA", "vcSummary"),
         array("TBU", "vcName"),
         array("TBU", "vcLastName")
     );

@@ -5,7 +5,7 @@
         CLASS ARTICLE
 ====================================================================*/
 
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Article extends Bridge implements JsonSerializable
 {
@@ -96,7 +96,7 @@ class Article extends Bridge implements JsonSerializable
     /**
      * Get the value of iIdWork
      */ 
-    public function getiIdWork()
+    public function getIIdWork()
     {
         return $this->iIdWork;
     }
@@ -146,7 +146,7 @@ class Article extends Bridge implements JsonSerializable
      *
      * @return  self
      */ 
-    public function setiIdWork($iIdWork)
+    public function setIIdWork($iIdWork)
     {
         $this->iIdWork = $iIdWork;
 

@@ -12,6 +12,7 @@ $(function () {
 
     //Get Rows for table in HTML
     function getRows() {
+        console.log(resp);
         resp.forEach(element => {
             var index = resp.indexOf(element);
             var html = "<tr id='" + index + "'>";

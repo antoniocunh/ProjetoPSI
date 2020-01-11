@@ -34,51 +34,62 @@
                 tiSpeaker tinyint(4)
 
     */
-
+    
       require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Article.php");
-      //if(isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])){
+      require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+      require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
+      require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
+      if(isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])){
 
           //1º Insert
+        echo "<pre>";
 
-          var_dump($_POST);
           $Work = new Article();
-          echo $Work->GetLastID("iIdWork");
-          $Work->setiIdWork($Work->GetLastID("iIdWork"));//Set do last index
+          $Work->setIIdWork($Work->GetLastID("iIdWork"));//Set do last index
 
-          $Work->setiIDTypeWork($_POST["iIdTypeWork"]);//Define o tipo de trabalho - este campo é uma foreign key da tb_worktype
-          $Work->setiIdScope($_POST["iIdScope"]);
-          $Work->setvcTitle($_POST["vcTitle"]);
-          $Work->setvcSummary($_POST["vcSummary"]);
-
-          //$Work->InsertObject();
+          $Work->setIIDTypeWork($_POST["iIdTypeWork"]);//Define o tipo de trabalho - este campo é uma foreign key da tb_worktype
+          $Work->setIIdScope($_POST["iIdScope"]);
+          $Work->setVcTitle($_POST["vcTitle"]);
+          $Work->setVcSummary($_POST["vcSummary"]);
+          $Work->InsertObject();
 
           //2º Insert
-          /*
           $Attachment = new Attachment();
-          $Attachment->setiIdWork($Attachment->GetLastID("iIdWork"));//Set do last index
-          
-          $Attachment->setiIDTypeWork($_POST["iIDTypeWork"]);
-          $Attachment->setiIdScope($_POST["iIdScope"]);
-          $Attachment->setvcTitle($_POST["vcTitle"]);
-          $Attachment->setvcSummary($_POST["vcSummary"]);
+          $Attachment->setIIdAttachment($Attachment->GetLastID("iIdAttachment"));//Set do last index
+          $Attachment->setIIdArticle($Work->getIIdWork());
+          $Attachment->setBlAttachment($_FILES["file"]["tmp_name"]);
+          $Attachment->setVcTitle($_FILES["file"]["name"]);
+          $Attachment->setVcState("d");
           $Attachment->InsertObject();
-
+        var_dump($_POST);
           //3º Insert
-
+        foreach($_POST["membros"] as $element){
+            $user = new User();
+            $user->readObject($element);
           $RelationWorkUser = new RelationWorkUser();
-          $RelationWorkUser->setiIdWork($RelationWorkUser->GetLastID("iIdWork"));//Set do last index
+          $RelationWorkUser->setIdRelation($RelationWorkUser->GetLastID("IdRelation"));//Set do last index
           
-          $RelationWorkUser->setidRelation($_POST["idRelation"]);
-          $RelationWorkUser->setiIdUser($_POST["iIdUser"]); // Vai buscar o id consoante o vcusername escolhido na interface
-          $RelationWorkUser->setiIdWork($_POST["iIdWork"]);
-          $RelationWorkUser->settiMainAuthor($_POST["tiMainAuthor"]);
-          $RelationWorkUser->settiSpeaker($_POST["tiSpeaker"]);
+          $RelationWorkUser->setIIdUser($user->getIIdUser()); // Vai buscar o id consoante o vcusername escolhido na interface
+          $RelationWorkUser->setIIdWork($Work->getIIdWork());
+          if (in_array($element, $_POST["speakers"])){
+              $mainAutor = true;
+          }else{
+            $mainAutor = false;
+          }
+
+        if ($element == $_POST["autorP"]){
+            $autorP = true;
+        }else{
+            $autorP = false;
+        }
+          
+          $RelationWorkUser->setBMainAuthor($mainAutor);
+          $RelationWorkUser->setBSpeaker($autorP);
           $RelationWorkUser->InsertObject();
-          */
-         /* echo json_encode(["msg" => "Inserido com sucesso!"]);
+
+            }
+          echo json_encode(["msg" => "Inserido com sucesso!"]);
         }
         else{
-            echo json_encode(["msg" => "Algo deu errado!"]);
-        }*/
-       
-?>
+          echo json_encode(["msg" => "Algo deu errado!"]);
+        }
