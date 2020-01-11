@@ -115,6 +115,14 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
+                          <label>Titulo</label>
+                          <input name="resumo" type="text" class="form-control" placeholder="Titulo">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="form-group">
                           <label>Resumo</label>
                           <input name="resumo" type="text" class="form-control" placeholder="Resumo">
                         </div>

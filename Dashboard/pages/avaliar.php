@@ -15,6 +15,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +35,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <script src="../../assets/js/core/jquery.min.js"></script>
+
+  
 
 </head>
 
@@ -60,20 +63,11 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <div class="table-responsive">
                     <table class="table" id="tb_Article">
                       <thead class=" text-primary">
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          Autor
-                        </th>
-                        <th>
-                          Participantes
-                        </th>
-                        <th>
-                          Trabalho
-                        </th>
-                        <th>
-                        </th>
+                        <th>ID</th>
+                        <th>ID Autor</th>
+                        <th>Descrição do Trabalho</th>
+                        <th>Nome</th>
+                        <th></th>
                       </thead>
                       <tbody>
                           <!--<td>
@@ -89,20 +83,24 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
           </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Avaliação</h5>
+                <h5 class="modal-title" id="ModalLabel">Avaliação</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <form>
+                <div class="form-group">
+                  <label>ID do Trabalho</label>
+                  <input type="text" class="form-control" id="iIdWork" name="iIdWork" disabled>
+                </div>
                   <div class="form-group">
-                    <label for="exampleFormControlSelect1">Nota</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <label for="FormControlSelect1">Nota</label>
+                    <select class="form-control" id="FormControlSelect1">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -117,13 +115,12 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   </div>
                   <div class="form-group">
                     <label for="message-text" class="col-form-label">Critica</label>
-                    <textarea class="form-control" id="message-text"></textarea>
+                    <textarea class="form-control" id="vcReview"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                <button type="button" class="btn btn-warning">Enviar Avaliação</button>
+                <button  id="insertReview" type="button" class="btn btn-warning">Enviar Avaliação</button>
               </div>
             </div>
           </div>
@@ -160,14 +157,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
     <script src="../../assets/js/core/popper.min.js"></script>
     <script src="../../assets/js/core/bootstrap.min.js"></script>
     <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    
 
-    <!-- Chart JS -->
-    <script src="../../assets/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
     <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-    <script src="./script/scr_avaliar.js"></script>
+    <script src="./script/scr_avaliar.js?v=2"></script>
 </body>
 
 </html>

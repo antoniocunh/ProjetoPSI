@@ -15,6 +15,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
 ?>
 
 <!DOCTYPE html>
@@ -63,38 +64,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table" id="tb_Users">
-                  <thead class=" text-primary">
-                    <th>
-                      Nome de Utilizador
-                    </th>
-                    <th>
-                      Nome
-                    </th>
-                    <th>
-                      Apelido
-                    </th>
-                    <th>
-                      Morada
-                    </th>
-                    <th>
-                      Pais
-                    </th>
-                    <th>
-                      Cidade
-                    </th>
-                    <th>
-                      Código Postal
-                    </th>
-                    <th>
-                      E-mail
-                    </th>
-                    <th>
-                      Telemovel
-                    </th>
-                    <th>
-                      Organização
-                    </th>
-                    </tbody>
+                  
                 </table>
               </div>
             </div>
@@ -115,7 +85,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form method="post" action="../../assets/php/Object/updateUser.php" name="updateUser1">
+            <form id="updateUser1" method="post" action="../../assets/php/Object/updateUser.php" name="updateUser1">
               <div class="modal-body">
                 <div class="form-group">
                   <label>Username</label>
@@ -164,7 +134,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
               </div>
               <div class="modal-footer">
                 <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>-->
-                <button type="button" class="btn btn-warning">Update</button>
+                <button id="uploadModal"type="button" class="btn btn-warning">Update</button>
               </div>
             </form>
           </div>

@@ -25,7 +25,6 @@ $(function () {
             keys = Object.keys(resp[id]);
             keys.forEach(element => {
                 $("#" + element).val(resp[id][element]);
-
             });
             $("#Modal").modal("show");
         });
@@ -49,8 +48,24 @@ $(function () {
 
         });
 
+        $(document).on('click', "#uploadModal", function () {
+            console.log($("#vcUsername").val());
+            $.ajax({
+                url: '../../assets/php/Object/updateUser.php',
+                type: 'POST',
+                data: $("#updateUser1").serialize(),
+                success: function(msg) {
+                    console.log(msg);
+                    var text = JSON.parse(msg);
+                    alert(text.msg);
+                    location.reload();
+                }               
+            });
+        });
+
         function writeRows() {
             $("#tb_Users").empty();
+            $("#tb_Users").append('<thead class=" text-primary"> <th> Nome de Utilizador </th> <th> Nome </th> <th> Apelido </th> <th> Morada </th> <th> Pais </th> <th> Cidade </th> <th> Código Postal </th> <th> E-mail </th> <th> Telemovel </th> <th> Organização </th> </tbody>');
             resp.forEach(element => {
                 var index = resp.indexOf(element);
                 var html = "<tr id='" + index + "'>";

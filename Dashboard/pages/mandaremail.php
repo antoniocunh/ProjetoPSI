@@ -15,6 +15,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
 ?>
 
 <!DOCTYPE html>

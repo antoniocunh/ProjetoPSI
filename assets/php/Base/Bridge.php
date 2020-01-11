@@ -103,7 +103,7 @@ class Bridge{
         }
     }
 
-    public function QueryExecute($aQuery, $aData)
+    public function QueryExecute($aQuery, $aData, $bReturn = false)
     {
         try{
             if(substr_count($aQuery, '?') != count($aData))
@@ -115,7 +115,11 @@ class Bridge{
                 $stmt->bindParam($count++, $Value);
             }
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_BOTH);
+
+            if($bReturn)
+                return $stmt->fetchAll(PDO::FETCH_BOTH);
+
+            return true;
         }
         catch(PDOException $e)
         {
@@ -461,6 +465,23 @@ class Bridge{
         return $fields.' = ?';
     }
     //=========================================================================
+
+    public function GetLastID($aPKColumn)
+    {
+        $LastId = 0;
+        try{
+            $Query="SELECT MAX({$aPKColumn}) FROM {$this->table}";
+            $Result = $this->QueryExec($Query);
+            $LastId = is_null($Result) || isset($Result) ? 0 : $Result[0][0]+1;
+        }
+        catch(PDOException $e){
+            $LastId = -1;
+            echo "Erro ao obter o ID.<br>Coluna do  parâmetro deve ser sempre a coluna do ID da tabela";
+        }
+        return $LastId;
+    }
+
+    //
 
     /*
     private function RemoveDataParams($aData, ...$aParams){
