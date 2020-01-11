@@ -23,6 +23,7 @@ $(function () {
         $(document).on('click', ".update", function () {
             var id = this.id.substring(1);
             keys = Object.keys(resp[id]);
+            console.log(resp)
             keys.forEach(element => {
                 $("#" + element).val(resp[id][element]);
             });
@@ -35,15 +36,15 @@ $(function () {
                 url: '../../assets/php/Object/deleteUser.php',
                 type: 'POST',
                 data: {
-                    username: resp[id].vcUsername ,
+                    username: resp[id].vcUsername,
                 },
-                success: function(msg) {
+                success: function (msg) {
                     var text = JSON.parse(msg);
                     alert(text.msg);
-                }               
+                }
             });
             keys = Object.keys(resp[id]);
-            resp.splice( $.inArray(id, resp), 1);
+            resp.splice($.inArray(id, resp), 1);
             writeRows();
 
         });
@@ -54,12 +55,12 @@ $(function () {
                 url: '../../assets/php/Object/updateUser.php',
                 type: 'POST',
                 data: $("#updateUser1").serialize(),
-                success: function(msg) {
+                success: function (msg) {
                     console.log(msg);
                     var text = JSON.parse(msg);
                     alert(text.msg);
                     location.reload();
-                }               
+                }
             });
         });
 

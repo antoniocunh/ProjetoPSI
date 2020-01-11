@@ -62,7 +62,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     <h4 class="card-title">Criar Utilizador</h4>
                                 </div>
                                 <div class="card-body">
-                                  <form name="criaruserform" method="post" action="../../assets/php/Object/criarUser.php">
+                                  <form name="criaruserform" id="criarUser" method="post" action="../../assets/php/Object/criarUser.php">
                                     <div class="row">
                                         <div class="col-md-5 pr-1">
                                             <div class="form-group">
@@ -132,15 +132,19 @@ The above copyright notice and this permission notice shall be included in all c
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                        </div>
+                                    </div>
                                     
                                     <div class="row">
-                                        <div class="col-md-5 pr-1">
+                                        <div class="col-md-4 pr-1">
                                             <div class="form-group">
                                                 <label>Username</label>
                                                 <input name="username" id="username" type="text" placeholder=" Username" class="form-control"  pattern="^[A-Za-z0-9_]{1,32}$">
                                             </div>
                                         </div>
-                                        <div class="col-md-3 px-1">
+                                        <div class="col-md-8 pl-1">
                                             <div class="form-group">
                                                 <label>E-mail</label>
                                                 <input name="email" type="email" placeholder="Email" class="form-control">
@@ -148,17 +152,23 @@ The above copyright notice and this permission notice shall be included in all c
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-5 pr-1">
+                                        <div class="col-md-6 pr-1">
                                             <div class="form-group">
                                                 <label>Password</label>
                                                  <input id="pass1" name="pass1" type="password" placeholder="Password" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-md-3 px-1">
+                                        <div class="col-md-6 pl-1">
                                             <div class="form-group">
                                                 <label>Repetir Password</label>
                                                 <input id="pass2" name="pass2" type="password" placeholder="Password" class="form-control">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 py-1">
+                                            <label>Role</label>
+                                            <select id="role" name="role" class="form-control"></select>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-danger">Criar Utilizador</button>

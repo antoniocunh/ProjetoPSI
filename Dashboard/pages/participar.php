@@ -85,10 +85,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                 <div class="card-header ">
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
-                <div class="card-body ">
+                <div class="card-body">
                   <form id="InsertArticle" name="InsertArticle" method="post" action="../../assets/php/Object/getTrabalho.php" enctype="multipart/form-data">
                   <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <div class="form-group">
                         <label>Tipo de Trabalho</label>
                         <select name="iIdTypeWork"  id="iIdTypeWork" class="form-control"></select>
@@ -96,7 +96,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     </div>
                   </div>
                   <div class="row">
-                      <div class="col-md-3">
+                      <div class="col-md-5">
                         <div class="form-group">
                         <label>Ambito</label>
                         <select name="iIdScope" id="iIdScope" class="form-control"></select>
@@ -112,10 +112,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-5">
                         <div class="form-group">
                           <label>Resumo</label>
-                          <input name="vcSummary" id="vcSummary" type="text" class="form-control" placeholder="Resumo">
+                          <textarea name="vcSummary" id="vcSummary" type="text" class="form-control" placeholder="Resumo"> </textarea>
                         </div>
                       </div>
                     </div>

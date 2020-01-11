@@ -17,6 +17,7 @@ if (isset($_POST["username"]) && isset($_SESSION["username"])) {
         $user->setVcUsername($_POST["username"]);
         $user->setVcEmail($_POST["email"]);
         $user->setVcPassword($_POST["pass1"]);
+        $user->setIIdUserType($_POST["role"]);
         $user->InsertObject();
         header("location: " .  $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Dashboard/pages/gerirutilizadores.php");
     }

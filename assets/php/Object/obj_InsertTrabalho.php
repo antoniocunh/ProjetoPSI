@@ -39,6 +39,8 @@
       //if(isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])){
 
           //1º Insert
+
+          var_dump($_POST);
           $Work = new Article();
           echo $Work->GetLastID("iIdWork");
           $Work->setiIdWork($Work->GetLastID("iIdWork"));//Set do last index

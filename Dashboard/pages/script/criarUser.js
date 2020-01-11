@@ -1,5 +1,26 @@
 $(function () {
     $.ajax({
+        url: '../../assets/php/Object/obj_getRoles.php',
+        type: 'POST',
+        success: function(msg) {
+            var resp = JSON.parse(msg);
+            resp.forEach(function(element){
+                console.log(element);
+                $("#role").append("<option id='role" + element.iIDTypeUser + "' value ='" + element.iIDTypeUser + "'>" + element.vcDescription + "</option>");
+            })
+        }               
+    });
+
+    $.ajax({
+        url: '../../assets/php/Object/obj_InsertAvaliacao.php',
+        type: 'POST',
+        data: $("#InsertArticle").serialize(),
+        success: function(msg) {
+            var text = JSON.parse(msg);
+        }               
+    });
+
+    $.ajax({
             url: "../../assets/php/Object/Register/getAmbito.php",
             success: function (result) 
             {
