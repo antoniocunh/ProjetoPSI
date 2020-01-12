@@ -86,7 +86,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
                 <div class="card-body">
-                  <form id="InsertArticle" name="InsertArticle" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
+                  <form id="InsertWork" name="InsertWork" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">

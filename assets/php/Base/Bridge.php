@@ -211,12 +211,15 @@ class Bridge{
      * 
      * MISSING OPERATORS 
      */ 
-    public function Join($aTable, $aAlias=null, $aField, $aJoin)
+    public function Join($aJoin, $aTable, $aField, $aTBAlias=null, $aTBAliasCondition = null)
     {
+        if(is_null($aTBAliasCondition))
+            $aTBAliasCondition = $this->Alias;
+
         if(is_null($aTable))
             throw new Exception('Tabela não existe ou está vazia!');
 
-        if(strcasecmp($aAlias, 'null') == 0)
+        if(strcasecmp($aTBAlias, 'null') == 0)
             throw new Exception('O texto null é uma palavra reservada, por este motivo não pode ser usado como alias de uma tabela!');
 
         $JoinStr = "";
@@ -225,35 +228,35 @@ class Bridge{
 
         $FieldNums = is_array($aField) ? count($aField) : 0;
 
-        $JoinStr = is_null($aAlias) ? " ".$aJoin." JOIN {$aTable} ON ": " ".$aJoin." JOIN {$aTable} AS {$aAlias} ON ";
+        $JoinStr = is_null($aTBAlias) ? " ".$aJoin." JOIN {$aTable} ON ": " ".$aJoin." JOIN {$aTable} AS {$aTBAlias} ON ";
         
         if($FieldNums >1)
         {
             for($i=0; $i < $FieldNums; ++$i) 
             {
                 //Se alias da tabela do join estiver vazia o codigo usa o nome da tabela inves de do Alias
-                if(is_null($aAlias))
+                if(is_null($aTBAlias))
                 {
                     //Se o nome da coluna do INNER Vier vazio o codigo usa o nome da coluna da tabela source como padrão para o nome da coluna da tb do Inner
                     if(isset($aField[$i][1]) && !is_null($aField[$i][1]))
-                        $Condition = $x < $FieldNums ? $Condition."{$this->Alias}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]} AND " : $Condition."{$this->Alias}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]}";
+                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]}";
                     else 
-                        $Condition = $x < $FieldNums ? $Condition."{$this->Alias}.{$aField[$i][0]} = {$aTable}.{$aField[$i][0]} AND " : $Condition."{$this->Alias}.{$aField[$i][0]} = {$aTable}.{$aField[$i][0]}";    
+                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]}";    
                 }
                 else 
                 {
                     //Se o nome da coluna do INNER Vier vazio o codigo usa o nome da coluna da tabela source como padrão para o nome da coluna da tb do Inner
                     if(isset($aField[$i][1]) && !is_null($aField[$i][1]))
-                        $Condition = $x < $FieldNums ? $Condition."{$this->Alias}.{$aField[$i][0]} = {$aAlias}.{$aField[$i][1]} AND " : $Condition."{$this->Alias}.{$aField[$i][0]} = {$aAlias}.{$aField[$i][1]}";
+                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]}";
                     else 
-                        $Condition = $x < $FieldNums ? $Condition."{$this->Alias}.{$aField[$i][0]} = {$aAlias}.{$aField[$i][0]} AND " : $Condition."{$this->Alias}.{$aField[$i][0]} = {$aAlias}.{$aField[$i][0]}";
+                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]}";
                 }
 
                $x++;
             }
         }
         else 
-            $Condition = !is_array($aField) ? "{$this->Alias}.{$aField} = {$aAlias}.{$aField}" : "{$this->Alias}.{$aField[0][0]} = {$aAlias}.{$aField[0][0]}";
+            $Condition = !is_array($aField) ? "{$aTBAliasCondition}.{$aField} = {$aTBAlias}.{$aField}" : "{$aTBAliasCondition}.{$aField[0][0]} = {$aTBAlias}.{$aField[0][1]}";
 
         $Query = $JoinStr.$Condition;
         //echo $Query;
@@ -432,7 +435,7 @@ class Bridge{
         }
 
         $Query = "INSERT INTO {$this->table}(".$Columns.') VALUES('.$ValuesBind.');';
-        $this->QueryExecute($Query,$aData);
+        $this->QueryExecute($Query, $aData);
         //echo $Query;
         return $Query;
     }

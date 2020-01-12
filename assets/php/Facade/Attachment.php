@@ -11,7 +11,7 @@ class Attachment extends Bridge implements JsonSerializable
 {
 
     private $iIdAttachment;
-    private $iIdArticle;
+    private $iIdWork;
     private $blAttachment;
     private $vcTitle;
     private $vcState;
@@ -85,11 +85,11 @@ class Attachment extends Bridge implements JsonSerializable
     }
 
     /**
-     * Get the value of iIdArticle
+     * Get the value of iIdWork
      */ 
-    public function getIIdArticle()
+    public function getiIdWork()
     {
-        return $this->iIdArticle;
+        return $this->iIdWork;
     }
 
     /**
@@ -129,13 +129,13 @@ class Attachment extends Bridge implements JsonSerializable
     }
 
     /**
-     * Set the value of iIdArticle
+     * Set the value of iIdWork
      *
      * @return  self
      */ 
-    public function setIIdArticle($iIdArticle)
+    public function setiIdWork($iIdWork)
     {
-        $this->iIdArticle = $iIdArticle;
+        $this->iIdWork = $iIdWork;
 
         return $this;
     }

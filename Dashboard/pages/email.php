@@ -36,6 +36,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
   <!-- CSS Files -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  
   <script src="../../assets/js/core/jquery.min.js"></script>
 
 </head>
@@ -93,13 +94,12 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                   </div>
                   <div class="row">
                     <div class="col-md-4 mt-4">
-                      <div class="image-upload-wrap h-100">
-                        <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".docx, .pdf" />
-                        <div class="drag-text"></div>
-                      </div>
+                      <div class="image-upload-wrap h-100 ">
+                          <input name="file" class="file-upload-input" type='file' accept=".docx, .pdf" />
+                          <div class="drag-text"></div>
+                        </div>
                     </div>
                   </div>
-
                   <button type="submit" class="btn btn-danger">Enviar E-mail</button>
                   <div class="clearfix"></div>
                 </form>

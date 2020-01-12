@@ -14,7 +14,7 @@ $(function () {
     $.ajax({
         url: '../../assets/php/Object/obj_InsertAvaliacao.php',
         type: 'POST',
-        data: $("#InsertArticle").serialize(),
+        data: $("#InsertWork").serialize(),
         success: function(msg) {
             var text = JSON.parse(msg);
         }               

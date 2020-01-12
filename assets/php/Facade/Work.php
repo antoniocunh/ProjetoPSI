@@ -2,12 +2,12 @@
 
 
 /* ==================================================================== 
-        CLASS ARTICLE
+        CLASS Work
 ====================================================================*/
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
-class Article extends Bridge implements JsonSerializable
+class Work extends Bridge implements JsonSerializable
 {
 
     private $iIdTypeWork;// FK
@@ -16,10 +16,10 @@ class Article extends Bridge implements JsonSerializable
     private $vcTitle;
     private $vcSummary;
 
-    //construtor da class article
+    //construtor da class Work
     public function __construct()
     {
-        parent::__construct("tb_Article", "iIdWork", "AR");
+        parent::__construct("tb_work", "iIdWork", "AR");
     }    
 
     public function readObject($id)

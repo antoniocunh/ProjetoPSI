@@ -20,7 +20,7 @@ $(function () {
                 html = html + "<td>" + element[count] + "</td>";
             }
             html = html + '<td><button id="a' + index + '" class="btn btn-warning avaliar">Avaliar</button></td></tr>';
-            $("#tb_Article").append(html);
+            $("#tb_Work").append(html);
         })
     }
 

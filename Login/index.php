@@ -66,7 +66,7 @@ require_once("../assets/php/Proprieties/ConfigDB.php");
             </form>
 
             <div class="forgot">
-              <a href="#" class="btn btn-link btn-default">Recuperar palavra-passe</a>
+              <a href="./reset-password.php" class="btn btn-link btn-default">Recuperar palavra-passe</a>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@ require_once("../assets/php/Proprieties/ConfigDB.php");
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
 
-  <!-- Our -->t>
+  <!-- Our -->
   <script type="text/javascript" src="script/login.js?v=2"></script>
 
   <script>

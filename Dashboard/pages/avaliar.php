@@ -61,7 +61,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table" id="tb_Article">
+                    <table class="table" id="tb_Work">
                       <thead class=" text-primary">
                         <th>ID</th>
                         <th>Titulo do Trabalho</th>

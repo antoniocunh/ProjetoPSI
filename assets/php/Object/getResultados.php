@@ -30,7 +30,7 @@
     $resultados = new Evaluation();
     $Query=
         $resultados->SelectJoin($Columns).
-        $resultados->Join("tb_user", "u", "vcName", Joins::INNER).
+        $resultados->Join(Joins::INNER, "tb_user", "vcName", "U", null).
         $resultados->Where($arrayFieldsUser[0], htmlspecialchars("<"));
         
         
