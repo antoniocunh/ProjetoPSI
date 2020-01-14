@@ -1,9 +1,9 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Work.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Work.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
 var_dump($_FILES);
 if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
 if (isset($_SESSION["username"])) {
 
     $user = new User();
