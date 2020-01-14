@@ -2,31 +2,34 @@
 
 require_once("EnumJoins.php");
 
-class Bridge{
-    
+class Bridge
+{
+
     private $conn;
     private $table;
     private $column;
     private $ColumType = "Column";
     private $ValueType = "Value";
     private $Alias;
-    
 
-    protected function __construct($aTable, $aColumn, $aAlias){
+
+    protected function __construct($aTable, $aColumn, $aAlias)
+    {
         require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
-        $this->conn = &$conn;      
+        $this->conn = &$conn;
         $this->table = $aTable;
         $this->column = $aColumn;
         $this->Alias = $aAlias;
     }
 
-    public function SelectAllBP($aCondition = "1", ...$args){
+    public function SelectAllBP($aCondition = "1", ...$args)
+    {
         return $this->BindParameters("SELECT * FROM {$this->table} WHERE {$aCondition};", $args);
     }
 
     protected function BindParameters($query, $args)
     {
-        if(substr_count($query, "?") == count($args)){
+        if (substr_count($query, "?") == count($args)) {
             $stmt = $this->conn->prepare($query);
             $stmt->execute($args);
             return $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -34,43 +37,47 @@ class Bridge{
         return false;
     }
 
-    protected function GetColumns(){
+    protected function GetColumns()
+    {
         $stmt = $this->conn->prepare("SHOW COLUMNS FROM {$this->table}");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_BOTH);
     }
 
-    protected function DataToArray($vars, $values){
+    protected function DataToArray($vars, $values)
+    {
         $temp = array();
 
-        if(!empty($values)){
-            foreach($values as $x){
-                for($count = 0; $count < count($vars); ++$count){
+        if (!empty($values)) {
+            foreach ($values as $x) {
+                for ($count = 0; $count < count($vars); ++$count) {
                     $temp[$count] = $x[$count];
                 }
             }
             return $temp;
         }
-        return false;  
+        return false;
     }
 
-    protected function GetAtributesName(){
-        $object = $this; 
-        $array = array_keys((array)$object);
+    protected function GetAtributesName()
+    {
+        $object = $this;
+        $array = array_keys((array) $object);
         $class = get_class($object);
-        foreach($array as $key => $element){
-            if(strpos($array[$key], "Bridge") == false){
-                if(strpos($array[$key], $class) == 1){
+        foreach ($array as $key => $element) {
+            if (strpos($array[$key], "Bridge") == false) {
+                if (strpos($array[$key], $class) == 1) {
                     $array[$key] = substr($array[$key], strlen($class) + 2);
-                } 
-            }else{
+                }
+            } else {
                 unset($array[$key]);
             }
         }
         return $array;
     }
 
-    protected function ReadObjectBD($id){
+    protected function ReadObjectBD($id)
+    {
         $result = array();
         $vars = $this->GetAtributesName();
         $result = $this->SelectAllBP($this->column . " = ?", $id);
@@ -83,48 +90,48 @@ class Bridge{
 
     public function QueryExec($aQuery)
     {
-        try{
+        try {
             $stmt = $this->conn->prepare($aQuery);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_BOTH);
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             //$stmt->debugDumpParams();
-            echo "<br>".$e->getMessage();
+            echo "<br>" . $e->getMessage();
             return false;
         }
     }
 
     public function QueryExecute($aQuery, $aData, $bReturn = false)
     {
-        try{
-            if(substr_count($aQuery, '?') != count($aData))
+        try {
+            if (substr_count($aQuery, '?') != count($aData))
                 throw new PDOException("Invalid number of tokens! - " . substr_count($aQuery, "?") . " of " . count($aData));
 
             $stmt = $this->conn->prepare($aQuery);
             $count = 1;
-            foreach ($aData as $Name => &$Value){
+            foreach ($aData as $Name => &$Value) {
                 $stmt->bindParam($count++, $Value);
             }
             $stmt->execute();
 
-            if($bReturn)
-                return $stmt->fetchAll(PDO::FETCH_BOTH);
+            if ($bReturn) {
+                $Return = $stmt->fetchAll(PDO::FETCH_BOTH);
+                //var_dump($Return);
+                return $Return;
+            }
 
             return true;
-        }
-        catch(PDOException $e)
-        {
-            echo "<br>".$e->getMessage();
+        } catch (PDOException $e) {
+            echo "<br>" . $e->getMessage();
             return false;
         }
-    } 
+    }
 
     //================================GETTERS==============================
 
     /**
      * Get the value of column
-     */ 
+     */
     public function getColumn()
     {
         return $this->column;
@@ -138,7 +145,7 @@ class Bridge{
      * Set the value of column
      *
      * @return  self
-     */ 
+     */
     public function setColumn($column)
     {
         $this->column = $column;
@@ -146,31 +153,30 @@ class Bridge{
         return $this;
     }
 
-    
+
     //===============================================================================================
     //TODO - COUNT AVG ETC WITH ORDERBY DISTINCT
-    public function Select($aField=null)
+    public function Select($aField = null)
     {
-        $Query="";
-        $Select="SELECT ";
-        $From=" FROM {$this->table}";
-        
+        $Query = "";
+        $Select = "SELECT ";
+        $From = " FROM {$this->table}";
+
 
         //Se Array For Null
-        if(is_null($aField))
-            $Query = $Select."*".$From;
-        else 
-        {
-            $Columns="";
-            $i=1;
-            $FieldNums=count($aField);
+        if (is_null($aField))
+            $Query = $Select . "*" . $From;
+        else {
+            $Columns = "";
+            $i = 1;
+            $FieldNums = count($aField);
 
-            foreach($aField as &$Name){
-                $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
+            foreach ($aField as &$Name) {
+                $Columns = $i < $FieldNums ? $Columns . "{$this->Alias}.{$Name}, " : $Columns . "{$this->Alias}.{$Name}";
                 $i++;
             }
 
-            $Query = $Select.$Columns.$From." AS {$this->Alias}";
+            $Query = $Select . $Columns . $From . " AS {$this->Alias}";
         }
         //echo $Query;
         return $Query;
@@ -178,24 +184,24 @@ class Bridge{
 
     public function SelectJoin($aField)
     {
-        $Query="";
-        $Select="SELECT ";
-        $From= " FROM {$this->table}";
-        $Columns="";
+        $Query = "";
+        $Select = "SELECT ";
+        $From = " FROM {$this->table}";
+        $Columns = "";
 
-        $x=1;
-        $FieldNums=count($aField);
-        
-        for($i=0; $i < $FieldNums; ++$i) {
-            if(!is_null($aField[$i][0])) //Se o Alias do Array vier vazio então mete o alias definido da Classe
-                $Columns = $x < $FieldNums ? $Columns.$aField[$i][0].".".$aField[$i][1].", " :  $Columns.$aField[$i][0].".".$aField[$i][1];
+        $x = 1;
+        $FieldNums = count($aField);
+
+        for ($i = 0; $i < $FieldNums; ++$i) {
+            if (!is_null($aField[$i][0])) //Se o Alias do Array vier vazio então mete o alias definido da Classe
+                $Columns = $x < $FieldNums ? $Columns . $aField[$i][0] . "." . $aField[$i][1] . ", " :  $Columns . $aField[$i][0] . "." . $aField[$i][1];
             else
-                $Columns = $x < $FieldNums ? $Columns."{$this->Alias}.".$aField[$i][1].", " :  $Columns."{$this->Alias}.".$aField[$i][1];
-            
+                $Columns = $x < $FieldNums ? $Columns . "{$this->Alias}." . $aField[$i][1] . ", " :  $Columns . "{$this->Alias}." . $aField[$i][1];
+
             $x++;
         }
 
-        $Query = $Select.$Columns.$From." AS {$this->Alias}";
+        $Query = $Select . $Columns . $From . " AS {$this->Alias}";
         //echo $Query;
         return $Query;
     }
@@ -210,55 +216,49 @@ class Bridge{
      * @return  self
      * 
      * MISSING OPERATORS 
-     */ 
-    public function Join($aJoin, $aTable, $aField, $aTBAlias=null, $aTBAliasCondition = null)
+     */
+    public function Join($aJoin, $aTable, $aField, $aTBAlias = null, $aTBAliasCondition = null)
     {
-        if(is_null($aTBAliasCondition))
+        if (is_null($aTBAliasCondition))
             $aTBAliasCondition = $this->Alias;
 
-        if(is_null($aTable))
+        if (is_null($aTable))
             throw new Exception('Tabela não existe ou está vazia!');
 
-        if(strcasecmp($aTBAlias, 'null') == 0)
+        if (strcasecmp($aTBAlias, 'null') == 0)
             throw new Exception('O texto null é uma palavra reservada, por este motivo não pode ser usado como alias de uma tabela!');
 
         $JoinStr = "";
         $Condition = "";
-        $x=1;
+        $x = 1;
 
         $FieldNums = is_array($aField) ? count($aField) : 0;
 
-        $JoinStr = is_null($aTBAlias) ? " ".$aJoin." JOIN {$aTable} ON ": " ".$aJoin." JOIN {$aTable} AS {$aTBAlias} ON ";
-        
-        if($FieldNums >1)
-        {
-            for($i=0; $i < $FieldNums; ++$i) 
-            {
+        $JoinStr = is_null($aTBAlias) ? " " . $aJoin . " JOIN {$aTable} ON " : " " . $aJoin . " JOIN {$aTable} AS {$aTBAlias} ON ";
+
+        if ($FieldNums > 1) {
+            for ($i = 0; $i < $FieldNums; ++$i) {
                 //Se alias da tabela do join estiver vazia o codigo usa o nome da tabela inves de do Alias
-                if(is_null($aTBAlias))
-                {
+                if (is_null($aTBAlias)) {
                     //Se o nome da coluna do INNER Vier vazio o codigo usa o nome da coluna da tabela source como padrão para o nome da coluna da tb do Inner
-                    if(isset($aField[$i][1]) && !is_null($aField[$i][1]))
-                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]}";
-                    else 
-                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]}";    
-                }
-                else 
-                {
+                    if (isset($aField[$i][1]) && !is_null($aField[$i][1]))
+                        $Condition = $x < $FieldNums ? $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]} AND " : $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]}";
+                    else
+                        $Condition = $x < $FieldNums ? $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]} AND " : $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTable}.{$aField[$i][1]}";
+                } else {
                     //Se o nome da coluna do INNER Vier vazio o codigo usa o nome da coluna da tabela source como padrão para o nome da coluna da tb do Inner
-                    if(isset($aField[$i][1]) && !is_null($aField[$i][1]))
-                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]}";
-                    else 
-                        $Condition = $x < $FieldNums ? $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]} AND " : $Condition."{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]}";
+                    if (isset($aField[$i][1]) && !is_null($aField[$i][1]))
+                        $Condition = $x < $FieldNums ? $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]} AND " : $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]}";
+                    else
+                        $Condition = $x < $FieldNums ? $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]} AND " : $Condition . "{$aTBAliasCondition}.{$aField[$i][0]} = {$aTBAlias}.{$aField[$i][1]}";
                 }
 
-               $x++;
+                $x++;
             }
-        }
-        else 
+        } else
             $Condition = !is_array($aField) ? "{$aTBAliasCondition}.{$aField} = {$aTBAlias}.{$aField}" : "{$aTBAliasCondition}.{$aField[0][0]} = {$aTBAlias}.{$aField[0][1]}";
 
-        $Query = $JoinStr.$Condition;
+        $Query = $JoinStr . $Condition;
         //echo $Query;
         return $Query;
     }
@@ -279,41 +279,35 @@ class Bridge{
      */
     public function Where($aArrayM, $aBoolAlias)
     {
-        if(is_null($aArrayM))
+        if (is_null($aArrayM))
             throw new Exception('Procedimento sem Valores definidos!');
-        
-        $x=1;
-        $FieldNums = is_array($aArrayM) ? count($aArrayM) : 0;
-        $Where=" WHERE ";
-        $Condition="";
 
-        if($aBoolAlias)
-        {
-            if($FieldNums >1)
-            {
-                for($i=0; $i < $FieldNums; ++$i) 
-                {
-                   $Condition = $x < $FieldNums ? $Condition."{$this->Alias}.{$aArrayM[$i][0]}".$aArrayM[$i][1]."? " .$aArrayM[$i][2]. " ": $Condition."{$this->Alias}.{$aArrayM[$i][0]}".$aArrayM[$i][1]."? ";
-                   $x++;
+        $x = 1;
+        $FieldNums = is_array($aArrayM) ? count($aArrayM) : 0;
+        $Where = " WHERE ";
+        $Condition = "";
+
+        if ($aBoolAlias) {
+            if ($FieldNums > 1) {
+                for ($i = 0; $i < $FieldNums; ++$i) {
+                    $Condition = $x < $FieldNums ? $Condition . "{$this->Alias}.{$aArrayM[$i][0]}" . $aArrayM[$i][1] . "? " . $aArrayM[$i][2] . " " : $Condition . "{$this->Alias}.{$aArrayM[$i][0]}" . $aArrayM[$i][1] . "? ";
+                    $x++;
                 }
-            }
-            else
-                $Condition = "{$this->Alias}.{$aArrayM[0][0]}"."{$aArrayM[0][1]}"."? ";
-        }else {
-            if($FieldNums >1)
-            {
-                for($i=0; $i < $FieldNums; ++$i) 
-                {
-                   $Condition = $x < $FieldNums ? $Condition."{$aArrayM[$i][0]}".$aArrayM[$i][1]."? " .$aArrayM[$i][2]. " ": $Condition."{$aArrayM[$i][0]}".$aArrayM[$i][1]."? ";
-                   $x++;
+            } else
+                $Condition = "{$this->Alias}.{$aArrayM[0][0]}" . "{$aArrayM[0][1]}" . "? ";
+        } else {
+            if ($FieldNums > 1) {
+                for ($i = 0; $i < $FieldNums; ++$i) {
+                    $Condition = $x < $FieldNums ? $Condition . "{$aArrayM[$i][0]}" . $aArrayM[$i][1] . "? " . $aArrayM[$i][2] . " " : $Condition . "{$aArrayM[$i][0]}" . $aArrayM[$i][1] . "? ";
+                    $x++;
                 }
+            } else {
+                $Condition = "{$aArrayM[0][0]}" . "{$aArrayM[0][1]}" . "? ";
             }
-            else
-                $Condition = "{$aArrayM[0][0]}"."{$aArrayM[0][1]}"."? ";
         }
 
 
-        $Query = $Where.$Condition;
+        $Query = $Where . $Condition;
         //echo $Query;
         return $Query;
     }
@@ -323,20 +317,19 @@ class Bridge{
     // VERIFICAR SE É ARRAY
     public function OrderBy($aField)
     {
-        $Query="";
-        $OrderBy="ORDER BY ";
-        
-        $Columns="";
-        $i=1;
-        $FieldNums=count($aField);
-        
-        foreach($aField as &$Name)
-        {
-            $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
+        $Query = "";
+        $OrderBy = "ORDER BY ";
+
+        $Columns = "";
+        $i = 1;
+        $FieldNums = count($aField);
+
+        foreach ($aField as &$Name) {
+            $Columns = $i < $FieldNums ? $Columns . "{$this->Alias}.{$Name}, " : $Columns . "{$this->Alias}.{$Name}";
             $i++;
         }
 
-        $Query = $OrderBy.$Columns;
+        $Query = $OrderBy . $Columns;
         //echo $Query;
         return $Query;
     }
@@ -344,20 +337,19 @@ class Bridge{
 
     public function GroupBy($aField)
     {
-        $Query="";
-        $GroupBy="GROUP BY ";
-        
-        $Columns="";
-        $i=1;
-        $FieldNums=count($aField);
-        
-        foreach($aField as &$Name)
-        {
-            $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
+        $Query = "";
+        $GroupBy = "GROUP BY ";
+
+        $Columns = "";
+        $i = 1;
+        $FieldNums = count($aField);
+
+        foreach ($aField as &$Name) {
+            $Columns = $i < $FieldNums ? $Columns . "{$this->Alias}.{$Name}, " : $Columns . "{$this->Alias}.{$Name}";
             $i++;
         }
 
-        $Query = $GroupBy.$Columns;
+        $Query = $GroupBy . $Columns;
         //echo $Query;
         return $Query;
     }
@@ -367,116 +359,112 @@ class Bridge{
                    - Array de Colunas para o where
                    - Array de Valores para usar na query
     */
-    public function Update($aField, $aWhere ,$aData)
+    public function Update($aField, $aWhere, $aData)
     {
-        if(is_null($aField) || is_null($aWhere) || is_null($aData))
-        throw new Exception('Preencha todos os parâmetros');
+        if (is_null($aField) || is_null($aWhere) || is_null($aData))
+            throw new Exception('Preencha todos os parâmetros');
 
-        if(is_array($aWhere)==0)
+        if (is_array($aWhere) == 0)
             throw new Exception('Paramentro Where tem de ser um array!');
 
-        if(is_array($aData)==0)
+        if (is_array($aData) == 0)
             throw new Exception('Paramentro Data tem de ser um array!');
 
-        $Query="";
-        $Update="UPDATE {$this->table} AS {$this->Alias} SET ";
-        $Columns="";
+        $Query = "";
+        $Update = "UPDATE {$this->table} AS {$this->Alias} SET ";
+        $Columns = "";
 
-        $x=1;
-        
+        $x = 1;
+
         $FieldNums = is_array($aField) ? count($aField) : 0;
-        if($FieldNums >1)
-        {
-            for($i=0; $i < $FieldNums; ++$i) 
-            {
-                $Columns = $x < $FieldNums ? $Columns . $aField[$i][0] . $aField[$i][1]."?, ": $Columns . $aField[$i][0] . $aField[$i][1]."? ";
+        if ($FieldNums > 1) {
+            for ($i = 0; $i < $FieldNums; ++$i) {
+                $Columns = $x < $FieldNums ? $Columns . $aField[$i][0] . $aField[$i][1] . "?, " : $Columns . $aField[$i][0] . $aField[$i][1] . "? ";
                 $x++;
             }
-        }
-        else
-            $Columns = $Columns."{$aField[0][0]}"."{$aField[0][1]}"."? ";
+        } else
+            $Columns = $Columns . "{$aField[0][0]}" . "{$aField[0][1]}" . "? ";
 
-        $Query = $Update.$Columns.$this->Where($aWhere, true);
-        $this->QueryExecute($Query,$aData);
+        $Query = $Update . $Columns . $this->Where($aWhere, true);
+        $this->QueryExecute($Query, $aData);
         //echo $Query;
         return $Query;
     }
 
     public function Delete($aWhere, $aData)
     {
-        if(is_null($aWhere) || is_null($aData))
-        throw new Exception('Preencha todos os parâmetros');
-        if(is_array($aWhere)==0)
+        if (is_null($aWhere) || is_null($aData))
+            throw new Exception('Preencha todos os parâmetros');
+        if (is_array($aWhere) == 0)
             throw new Exception('Paramentro Where tem de ser um array!');
-        
-        $Query = "DELETE FROM {$this->table}".$this->Where($aWhere, false);
-        $this->QueryExecute($Query,$aData);
+
+        $Query = "DELETE FROM {$this->table}" . $this->Where($aWhere, false);
+        $this->QueryExecute($Query, $aData);
     }
-    
+
     public function Insert($aField, $aData)
     {
-        $Query="";
-        $Columns="";
-        $ValuesBind="";
+        $Query = "";
+        $Columns = "";
+        $ValuesBind = "";
         $FieldNums = is_array($aField) ? count($aField) : 0;
-        
+
         $Columns = $this->setColumns($aField);
         $ValuesBind = $this->setCharacterBind($aField);
-        
-        if($FieldNums >1)
-        {
+
+        if ($FieldNums > 1) {
             $Columns = $this->setColumns($aField);
             $ValuesBind = $this->setCharacterBind($aField);
-        }
-        else
-        {
+        } else {
             $Columns = "{$aField[0]}";
             $ValuesBind = "?";
         }
 
-        $Query = "INSERT INTO {$this->table}(".$Columns.') VALUES('.$ValuesBind.');';
+        $Query = "INSERT INTO {$this->table}(" . $Columns . ') VALUES(' . $ValuesBind . ');';
         $this->QueryExecute($Query, $aData);
         //echo $Query;
         return $Query;
     }
 
     //=========================================================================
-    private function setColumns(array $columns){
+    private function setColumns(array $columns)
+    {
         $cols = implode(', ', array_values($columns));
         return $cols;
     }
-    
-    private function setCharacterBind(array $columns){
-        $fields="";
 
-        for($i=0; $i < count($columns)-1; ++$i) 
-            $fields =$fields.'?, ';
+    private function setCharacterBind(array $columns)
+    {
+        $fields = "";
 
-        return $fields.'?';
+        for ($i = 0; $i < count($columns) - 1; ++$i)
+            $fields = $fields . '?, ';
+
+        return $fields . '?';
     }
 
-    private function setFields(array $columns){
+    private function setFields(array $columns)
+    {
         $fields = implode('?, ', array_values($columns));
-        return $fields.' = ?';
+        return $fields . ' = ?';
     }
     //=========================================================================
 
     public function GetLastID($aPKColumn)
     {
         $LastId = 0;
-        try{
-            $Query="SELECT MAX({$aPKColumn}) FROM {$this->table}";
+        try {
+            $Query = "SELECT MAX({$aPKColumn}) FROM {$this->table}";
             $Result = $this->QueryExec($Query);
 
-            if(!isset($Result[0][0]))// is_null($Result)){
-                $LastId = 0;   
+            if (!isset($Result[0][0])) // is_null($Result)){
+                $LastId = 0;
             else
-                $LastId = $Result[0][0]+1;
-        }
-        catch(PDOException $e){
+                $LastId = $Result[0][0] + 1;
+        } catch (PDOException $e) {
             $LastId = -1;
             echo "Erro ao obter o ID.<br>Coluna do  parâmetro deve ser sempre a coluna do ID da tabela";
-        }finally{
+        } finally {
             return $LastId;
         }
     }

@@ -36,7 +36,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
   <!-- CSS Files -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
-  
+
   <script src="../../assets/js/core/jquery.min.js"></script>
 
 </head>
@@ -44,9 +44,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
 <body style="background-color : #f4f3ef">
   <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html");
+      $(document).on('DOMNodeInserted', function(e) {
         $("#mandarEmail").addClass("active");
-      });
+      })
     })
   </script>
   <div id="sidebar"></div>
@@ -95,9 +96,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                   <div class="row">
                     <div class="col-md-4 mt-4">
                       <div class="image-upload-wrap h-100 ">
-                          <input name="file" class="file-upload-input" type='file' accept=".docx, .pdf" />
-                          <div class="drag-text"></div>
-                        </div>
+                        <input name="file" class="file-upload-input" type='file' accept=".docx, .pdf" />
+                        <div class="drag-text"></div>
+                      </div>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-danger">Enviar E-mail</button>

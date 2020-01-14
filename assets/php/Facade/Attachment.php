@@ -97,7 +97,7 @@ class Attachment extends Bridge implements JsonSerializable
      */ 
     public function getBlAttachment()
     {
-        return $this->blAttachment;
+        return base64_encode($this->blAttachment);
     }
 
     /**

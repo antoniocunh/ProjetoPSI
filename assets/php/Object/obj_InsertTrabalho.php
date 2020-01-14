@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Work.php");
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
 require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");

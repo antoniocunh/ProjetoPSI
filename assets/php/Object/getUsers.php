@@ -1,7 +1,8 @@
 <?php
 //Mudar para o Bridge ou o Facade Que Interage com isto Provavelmente um Register.php
-    
-    require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
     $user = new User();
     $Columns = array
     (
@@ -25,4 +26,3 @@
 
     /*I've tried cleaning the string to conform to UTF-8 without any success. What worked for me - setting MySQL Names to UTF-8 prior to populating the array: 
         $mysqli->query("SET NAMES 'utf8'"); Now all special characters are displayed perfectly fine. */
-?>

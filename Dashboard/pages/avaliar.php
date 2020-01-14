@@ -36,134 +36,136 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <script src="../../assets/js/core/jquery.min.js"></script>
 
-  
+
 
 </head>
 
 <body style="background-color : #f4f3ef">
-<script>
+  <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function(){
-            $("#avaliar").addClass("active");
-      });
+      $("#sidebar").load("../../Common/sidebar-dashboard.html");
+      $(document).on('DOMNodeInserted', function(e) {
+        $("#avaliar").addClass("active");
+      })
     })
   </script>
-    <div id="sidebar"></div>
+  <div id="sidebar"></div>
 
-    <div class="main-panel">
-      <div class="content mt-0">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title"> Avaliação de Trabalhos</h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table" id="tb_Work">
-                      <thead class=" text-primary">
-                        <th>ID</th>
-                        <th>Titulo do Trabalho</th>
-                        <th>Descrição do Trabalho</th>
-                        <th>Nome</th>
-                        <th></th>
-                      </thead>
-                      <tbody>
-                          <!--<td>
+  <div class="main-panel">
+    <div class="content mt-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> Avaliação de Trabalhos</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table" id="tb_Work">
+                    <thead class=" text-primary">
+                      <th>ID</th>
+                      <th>Titulo do Trabalho</th>
+                      <th>Descrição do Trabalho</th>
+                      <th>Nome</th>
+                      <th></th>
+                      <th>Trabalho</th>
+                    </thead>
+                    <tbody>
+                      <!--<td>
                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Avaliar</button>
                           </td>-->
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="ModalLabel">Avaliação</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel">Avaliação</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
                 <div class="form-group">
                   <label>ID do Trabalho</label>
                   <input type="text" class="form-control" id="iIdWork" name="iIdWork" disabled>
                 </div>
-                  <div class="form-group">
-                    <label for="FormControlSelect1">Nota</label>
-                    <select class="form-control" id="FormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="message-text" class="col-form-label">Critica</label>
-                    <textarea class="form-control" id="vcReview"></textarea>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button  id="insertReview" type="button" class="btn btn-warning">Enviar Avaliação</button>
-              </div>
+                <div class="form-group">
+                  <label for="FormControlSelect1">Nota</label>
+                  <select class="form-control" id="FormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Critica</label>
+                  <textarea class="form-control" id="vcReview"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button id="insertReview" type="button" class="btn btn-warning">Enviar Avaliação</button>
             </div>
           </div>
         </div>
-        <!-- fim Modal -->
-        <footer class="footer footer-black  footer-white ">
-          <div class="container-fluid">
-            <div class="row">
-              <nav class="footer-nav">
-                <ul>
-                  <li>
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
-                  </li>
-                  <li>
-                    <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
-                  </li>
-                  <li>
-                    <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
-                  </li>
-                </ul>
-              </nav>
-              <div class="credits ml-auto">
-                <span class="copyright">
-                  ©
-                  <script>
-                    document.write(new Date().getFullYear())
-                  </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                </span>
-              </div>
+      </div>
+      <!-- fim Modal -->
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+          <div class="row">
+            <nav class="footer-nav">
+              <ul>
+                <li>
+                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+                </li>
+                <li>
+                  <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+                </li>
+                <li>
+                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+              </span>
             </div>
           </div>
-        </footer>
-    <!--   Core JS Files   -->
-    <script src="../../assets/js/core/popper.min.js"></script>
-    <script src="../../assets/js/core/bootstrap.min.js"></script>
-    <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    
+        </div>
+      </footer>
+      <!--   Core JS Files   -->
+      <script src="../../assets/js/core/popper.min.js"></script>
+      <script src="../../assets/js/core/bootstrap.min.js"></script>
+      <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
-    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-    <script src="./script/scr_avaliar.js?v=2"></script>
+
+      <!--  Notifications Plugin    -->
+      <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
+      <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+      <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+      <script src="./script/scr_avaliar.js?v=2"></script>
 </body>
 
 </html>

@@ -45,9 +45,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
 <body style="background-color : #f4f3ef">
   <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html");
+      $(document).on('DOMNodeInserted', function(e) {
         $("#gerirUtilizadores").addClass("active");
-      });
+      })
     })
   </script>
   <div id="sidebar"></div>
@@ -64,7 +65,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table" id="tb_Users">
-                  
+
                 </table>
               </div>
             </div>
@@ -75,99 +76,99 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
     <form id="ri" method="../../assets/php/Object/deleteUser.php">
       <input type="hidden" name="username" class="vcUser">
     </form>
-      <!-- Modal -->
-      <div class="modal fade bd-example-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="ModalLabel">Gestão de Utilizadores</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">Gestão de Utilizadores</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="updateUser1" method="post" action="../../assets/php/Object/updateUser.php" name="updateUser1">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" id="vcUsername" name="vcUsername" placeholder="Username">
+              </div>
+              <div class="form-group">
+                <label>Nome</label>
+                <input type="text" class="form-control" id="vcName" name="vcName" placeholder="Nome">
+              </div>
+              <div class="form-group">
+                <label>Apelido</label>
+                <input type="text" class="form-control" id="vcLastName" name="vcLastName" placeholder="Apelido">
+              </div>
+              <div class="form-group">
+                <label>Âmbito</label>
+                <select class="form-control" id="iIdScope" name="iIdScope" placeholder="Âmbito"></select>
+              </div>
+              <div class="form-group">
+                <label>Morada</label>
+                <input type="text" class="form-control" id="vcAddress" name="vcAddress" placeholder="Morada">
+              </div>
+              <div class="form-group">
+                <label>Pais</label>
+                <input type="text" class="form-control" id="vcCountry" name="vcCountry" placeholder="Pais">
+              </div>
+              <div class="form-group">
+                <label>Cidade</label>
+                <input type="text" class="form-control" id="vcCity" name="vcCity" placeholder="Cidade">
+              </div>
+              <div class="form-group">
+                <label>Código-Postal</label>
+                <input type="text" class="form-control" id="vcPostalCode" name="vcPostalCode" placeholder="Código-Postal">
+              </div>
+              <div class="form-group">
+                <label>E-mail</label>
+                <input type="text" class="form-control" id="vcEmail" name="vcEmail" placeholder="E-mail">
+              </div>
+              <div class="form-group">
+                <label>Telemovel</label>
+                <input type="text" class="form-control" id="vcPhoneNumber" name="vcPhoneNumber" placeholder="Telemovel">
+              </div>
+              <div class="form-group">
+                <label>Organização</label>
+                <input type="text" class="form-control" id="vcAfiliation" name="vcAfiliation" placeholder="Organização">
+              </div>
             </div>
-            <form id="updateUser1" method="post" action="../../assets/php/Object/updateUser.php" name="updateUser1">
-              <div class="modal-body">
-                <div class="form-group">
-                  <label>Username</label>
-                  <input type="text" class="form-control" id="vcUsername" name="vcUsername" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <label>Nome</label>
-                  <input type="text" class="form-control" id="vcName" name="vcName" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                  <label>Apelido</label>
-                  <input type="text" class="form-control" id="vcLastName" name="vcLastName" placeholder="Apelido">
-                </div>
-                <div class="form-group">
-                  <label>Âmbito</label>
-                  <select class="form-control" id="iIdScope" name="iIdScope" placeholder="Âmbito"></select>
-                </div>
-                <div class="form-group">
-                  <label>Morada</label>
-                  <input type="text" class="form-control" id="vcAddress" name="vcAddress" placeholder="Morada">
-                </div>
-                <div class="form-group">
-                  <label>Pais</label>
-                  <input type="text" class="form-control" id="vcCountry" name="vcCountry" placeholder="Pais">
-                </div>
-                <div class="form-group">
-                  <label>Cidade</label>
-                  <input type="text" class="form-control" id="vcCity" name="vcCity" placeholder="Cidade">
-                </div>
-                <div class="form-group">
-                  <label>Código-Postal</label>
-                  <input type="text" class="form-control" id="vcPostalCode" name="vcPostalCode" placeholder="Código-Postal">
-                </div>
-                <div class="form-group">
-                  <label>E-mail</label>
-                  <input type="text" class="form-control" id="vcEmail" name="vcEmail" placeholder="E-mail">
-                </div>
-                <div class="form-group">
-                  <label>Telemovel</label>
-                  <input type="text" class="form-control" id="vcPhoneNumber" name="vcPhoneNumber" placeholder="Telemovel">
-                </div>
-                <div class="form-group">
-                  <label>Organização</label>
-                  <input type="text" class="form-control" id="vcAfiliation" name="vcAfiliation" placeholder="Organização">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>-->
-                <button id="uploadModal"type="button" class="btn btn-warning">Update</button>
-              </div>
-            </form>
+            <div class="modal-footer">
+              <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>-->
+              <button id="uploadModal" type="button" class="btn btn-warning">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- fim Modal -->
+    <footer class="footer footer-black  footer-white ">
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="footer-nav">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+              </li>
+              <li>
+                <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="credits ml-auto">
+            <span class="copyright">
+              ©
+              <script>
+                document.write(new Date().getFullYear())
+              </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+            </span>
           </div>
         </div>
       </div>
-      <!-- fim Modal -->
-      <footer class="footer footer-black  footer-white ">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li>
-                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
-                </li>
-                <li>
-                  <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
-                </li>
-                <li>
-                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
-                </li>
-              </ul>
-            </nav>
-            <div class="credits ml-auto">
-              <span class="copyright">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
+    </footer>
   </div>
   </div>
   <!--   Core JS Files   -->

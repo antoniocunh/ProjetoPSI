@@ -12,12 +12,23 @@ $(function () {
 
     //Get Rows for table in HTML
     function getRows() {
-        console.log(resp);
         resp.forEach(element => {
             var index = resp.indexOf(element);
             var html = "<tr id='" + index + "'>";
+            
+            console.log(element);
             for (var count = 0; count <= 4; count++) {
-                html = html + "<td>" + element[count] + "</td>";
+                html += "<td>";
+                //apagar para o Ciro
+                if(count == 3){
+                    html += element[count] + " " + element.vcLastName;
+                }else if(count == 4){
+                    html += "<a href='../../assets/php/Object/getTrabalho.php?iIdAttachment=" + element.iIdAttachment +"'>" + element[count] + "</a>";
+                }else{
+                    html += element[count];
+                }
+                html += "</td>";
+
             }
             html = html + '<td><button id="a' + index + '" class="btn btn-warning avaliar">Avaliar</button></td></tr>';
             $("#tb_Work").append(html);

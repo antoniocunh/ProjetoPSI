@@ -43,9 +43,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
 <body style="background-color : #f4f3ef">
   <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html");
+      $(document).on('DOMNodeInserted', function(e) {
         $("#evento").addClass("active");
-      });
+      })
     })
   </script>
   <div id="sidebar"></div>

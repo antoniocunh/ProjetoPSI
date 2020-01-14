@@ -71,48 +71,47 @@
 <script type="text/javascript">
 
   function rmvDivs(resp) {
+    var botoes;
     if (resp == 0) {
 
-      $("#navButoes").append('<li id="evento"> <a href="./evento.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>');
-      $("#navButoes").append('<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>');
-      //$("#navButoes").append('<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>');
-      $("#navButoes").append('<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>');
-      $("#navButoes").append('<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>');
-      $("#navButoes").append('<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>');
-      $("#navButoes").append('<li id="criarUser"><a href="./criaruser.php"><i class="fa fa-user-plus" aria-hidden="true"></i><p>Criar Utilizador</p></a></li>');
-      $("#navButoes").append('<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>');
-      $("#navButoes").append('<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>');
+      botoes =
+        '<li id="evento"> <a href="./evento.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>'+
+        '<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>'+
+        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
+        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
+        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
+        '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>'+
+        '<li id="criarUser"><a href="./criaruser.php"><i class="fa fa-user-plus" aria-hidden="true"></i><p>Criar Utilizador</p></a></li>'+
+        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>'+
+        '<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
         
-        
-
-
     } else if (resp == 1) { // comissão organizadora
 
-      
-      //$("#navButoes").append('<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>');
-      $("#navButoes").append('<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>');
-      $("#navButoes").append('<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>');
-      $("#navButoes").append('<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>');
-      $("#navButoes").append('<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>');
-      $("#navButoes").append('<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>');
-        
+      botoes =
+        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
+        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
+        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
+        '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>'+
+        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>'+
+        '<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else if (resp == 2) { // comissão cientifica
 
-      
-      $("#navButoes").append('<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>');
-      $("#navButoes").append('<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>');
-      $("#navButoes").append('<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>');
-      $("#navButoes").append('<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>');
-      $("#navButoes").append('<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>');
+      botoes =
+        '<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>'+
+        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
+        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
+        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>'+
+        '<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
         
     } else { //autor , orador, 
 
-      
-      $("#navButoes").append('<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>');
-      $("#navButoes").append('<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>');
-      $("#navButoes").append('<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>');
+      botoes =
+        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
+        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
+        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
     }   
+    $("#navButoes").html(botoes);
 
   }; 
 

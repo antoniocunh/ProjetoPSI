@@ -48,9 +48,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
 <body style="background-color : #f4f3ef">
   <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html");
+      $(document).on('DOMNodeInserted', function(e) {
         $("#participar").addClass("active");
-      });
+      })
     })
   </script>
   <div id="sidebar"></div>
@@ -86,7 +87,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
                 <div class="card-body">
-                  <form id="InsertWork" name="InsertWork" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
+                  <iframe width="0" height="0" border="0" class="d-none" name="dummyframe" id="dummyframe"></iframe>
+                  <form id="InsertWork" name="InsertWork" target="dummyframe" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
