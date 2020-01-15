@@ -63,7 +63,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
         <div class="content">
           <div class="row">
             <div class="col-md-12">
-              <div class="card ">
+              <!--<div class="card ">
                 <div class="card-header ">
                   <h5 class="card-title">Participar</h5>
 
@@ -77,7 +77,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     Participar
                   </button>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
           <div class="row">

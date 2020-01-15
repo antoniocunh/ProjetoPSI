@@ -68,7 +68,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                       <th>Titulo do Trabalho</th>
                       <th>Descrição do Trabalho</th>
                       <th>Nome</th>
-                      <th></th>
+                      <th>Tipo de Trabalho</th>
                       <th>Trabalho</th>
                     </thead>
                     <tbody>

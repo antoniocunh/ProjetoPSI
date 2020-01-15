@@ -36,7 +36,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <script src="../../assets/js/core/jquery.min.js"></script>
-
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 </head>
 
 <body style="background-color : #f4f3ef">
@@ -59,24 +59,24 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
               <h4 class="card-title">Perfil</h4>
             </div>
             <div class="card-body">
-              <form name="formPerfil" method="post" action="../../assets/php/Object/updatePerfil.php">
+              <form name="formPerfil" id="formPerfil" method="post">
                 <div class="row">
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Nome</label>
-                      <input type="text" class="form-control" placeholder="Nome" name="vcName">
+                      <input type="text" class="form-control" placeholder="Nome" name="vcName" id="nome">
                     </div>
                   </div>
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Sobrenome</label>
-                      <input type="text" class="form-control" placeholder="Sobrenome" name="vcLastName">
+                      <input type="text" class="form-control" placeholder="Sobrenome" name="vcLastName" id="ultimoNome">
                     </div>
                   </div>
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Telemóvel</label>
-                      <input type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[0-9]+$" name="vcPhoneNumber">
+                      <input type="text" placeholder="Número de Telemóvel" class="form-control" id="telefone" pattern="[0-9]+$" name="vcPhoneNumber">
                     </div>
                   </div>
                 </div>
@@ -90,13 +90,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Ambito</label>
-                      <select name="iIdScope" class="form-control"></select>
+                      <select name="iIdScope" id="scope" class="form-control"></select>
                     </div>
                   </div>
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Data de Nascimento</label>
-                      <input type="date" placeholder="Data de Nascimento" class="form-control" name="dtBirth">
+                      <input type="date" placeholder="Data de Nascimento" id="dataNascimento" class="form-control" name="dtBirth">
                     </div>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Morada</label>
-                      <input type="text" class="form-control" placeholder="Morada" name="vcAddress">
+                      <input type="text" class="form-control" placeholder="Morada" id="morada" name="vcAddress">
                     </div>
                   </div>
                 </div>
@@ -112,13 +112,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Pais</label>
-                      <input type="text" class="form-control" placeholder="País" name="vcCountry">
+                      <input type="text" class="form-control" placeholder="País" id="pais" name="vcCountry">
                     </div>
                   </div>
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Cidade</label>
-                      <input type="text" class="form-control" placeholder="Cidade" name="vcCity">
+                      <input type="text" class="form-control" placeholder="Cidade" id="cidade" name="vcCity">
                     </div>
                   </div>
                   <div class="col ml-2">
@@ -132,13 +132,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>Username</label>
-                      <input id="username" type="text" placeholder=" Username" class="form-control" name="vcUsername" pattern="^[A-Za-z0-9_]{1,32}$" disabled>
+                      <input id="username" type="text" placeholder=" Username" id="username" class="form-control" name="vcUsername" pattern="^[A-Za-z0-9_]{1,32}$" disabled>
                     </div>
                   </div>
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>E-mail</label>
-                      <input type="email" placeholder="Email" class="form-control" name="vcEmail">
+                      <input type="email" placeholder="Email" id="email" class="form-control" name="vcEmail">
                     </div>
                   </div>
                 </div>
@@ -168,7 +168,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
   </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
   <script src="../../assets/js/core/bootstrap.min.js"></script>
   <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

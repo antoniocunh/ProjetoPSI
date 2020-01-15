@@ -14,7 +14,7 @@ class Attachment extends Bridge implements JsonSerializable
     private $iIdWork;
     private $blAttachment;
     private $vcTitle;
-    private $vcState;
+    private $enumState;
 
     //construtor da class attachment
     public function __construct()
@@ -109,11 +109,11 @@ class Attachment extends Bridge implements JsonSerializable
     }
 
     /**
-     * Get the value of vcState
+     * Get the value of enumState
      */ 
-    public function getVcState()
+    public function getEnumState()
     {
-        return $this->vcState;
+        return $this->enumState;
     }
 
     /**
@@ -165,13 +165,13 @@ class Attachment extends Bridge implements JsonSerializable
     }
 
     /**
-     * Set the value of vcState
+     * Set the value of enumState
      *
      * @return  self
      */ 
-    public function setVcState($vcState)
+    public function setEnumState($enumState)
     {
-        $this->vcState = $vcState;
+        $this->enumState = $enumState;
 
         return $this;
     }

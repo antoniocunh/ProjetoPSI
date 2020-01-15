@@ -1,4 +1,6 @@
 $(function () {
+    callData();
+    function callData(){
     $.ajax({
             url: "../../assets/php/Object/getEvento.php",
             success: function (result) 
@@ -8,17 +10,15 @@ $(function () {
                 keys = Object.keys(resp);
                 keys.forEach(element => {
                     if(element == "dtIniEvent"){
-                        console.log(resp[element]);
                         resp[element] = resp[element].replace(/ /g, "T", -1);
                     }
                     $("[name='" + element + "']").val(resp[element]);
-                    console.log(resp[element]);
-                    console.log(element);
                 });
             }
-    }),
+    })}
 
-    $('form[name="evento"]').validate({
+
+    $('form[name="eventoForm"]').validate({
         rules: {
             iIdEvent:"required",
             vcTitle:"required",
@@ -54,7 +54,15 @@ $(function () {
             dtEndEvent:"Data do fim do evento obrigatório."
         },
         submitHandler: function(form){
-            form.submit();
+            $.ajax({
+                url: '../../assets/php/Object/updateEvento.php',
+                type: 'POST',
+                data: $("#eventoForm").serialize(),
+                success: function (msg) {
+                    var text = JSON.parse(msg);
+                    alert(text.msg);
+                }
+            });
         }
     })
 })

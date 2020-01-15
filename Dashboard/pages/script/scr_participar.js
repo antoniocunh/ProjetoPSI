@@ -60,7 +60,7 @@ $(function () {
 
   $(document).ready(function () {
     $.ajax({
-      url: "../../assets/php/Object/getUsers.php",
+      url: "../../assets/php/Object/obj_GetUsernames.php",
       success: function (result) {
         var users = [];
         resp = JSON.parse(result);
@@ -104,6 +104,7 @@ $(function () {
 
   $(document).on('click', "#submit", function (e) {
     alert("Trabalho enviado com sucesso!");
+    location.reload();
   });
 
 

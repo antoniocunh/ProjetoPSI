@@ -57,12 +57,12 @@ require_once 'obj.ResetPassword.php';
               <div id="div-error"></div>
               <div class="form-group">
                 <label>Nova Palavra-passe</label>
-                <input type="password" class="form-control" placeholder="Palavra-passe" name="pass" id="pass1" required />
+                <input type="password" class="form-control" placeholder="Palavra-passe" name="pass" id="pass" required />
                 <span id="check-e"></span>
               </div>
               <div class="form-group">
                 <label>Repita a Palavra-passe</label>
-                <input type="password" class="form-control" placeholder="Repita Palavra-passe" name="confirm-pass" id="pass2" required />
+                <input type="password" class="form-control" placeholder="Repita Palavra-passe" name="confirmPass" id="confirmPass" required />
               </div>
 
               <div class="form-group">

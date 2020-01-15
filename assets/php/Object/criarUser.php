@@ -2,7 +2,6 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
-session_start();
 if (isset($_POST["username"]) && isset($_SESSION["username"])) {
     if ($_POST["pass1"] == $_POST["pass2"]) {
         $user = new User();
@@ -20,7 +19,15 @@ if (isset($_POST["username"]) && isset($_SESSION["username"])) {
         $user->setVcEmail($_POST["email"]);
         $user->setVcPassword($_POST["pass1"]);
         $user->setIIdUserType($_POST["role"]);
+        $user->setEnumUserStatus("N");
         $user->InsertObject();
-        header("location: " .  $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Dashboard/pages/gerirutilizadores.php");
+        $msg = json_encode(["msg" => "Utilizador criado com sucesso!"]);
+    }else{
+        $msg = json_encode(["msg" => "Não foi possivel criar o utilizador!"]);
     }
+    
+}else{
+    $msg = json_encode(["msg" => "Não foi possivel criar o utilizador!"]);
 }
+echo $msg;
+

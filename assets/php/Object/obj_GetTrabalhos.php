@@ -9,9 +9,10 @@
         array("TBW", "vcTitle"),
         array("TBW", "vcSummary"),
         array("TBU", "vcName"),
+        array("TBTW", "vcDescription"),
         array("TBATT", "vcTitle"),
-        array("TBU", "vcLastName"),
-        array("TBATT", "iIdAttachment")
+        array("TBATT", "iIdAttachment"),
+        array("TBU", "vcLastName")
     );
 
     $Query =
@@ -19,8 +20,8 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_work", [["iIdWork", "iIdWork"]], "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU"). 
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBATT", "TBW").
+        $RelationWorkUser->Join(Joins::INNER, "tb_workType", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
         $RelationWorkUser->Where([["bMainAuthor", '=', null ]], true);
-
 
         /*
             SELECT 

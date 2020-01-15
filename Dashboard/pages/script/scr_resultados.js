@@ -3,7 +3,7 @@ $(function () {
         var resp;
 
         $.ajax({
-            url: "../../assets/php/Object/obj_GetResultadosAdmin.php",
+            url: "../../assets/php/Object/obj_GetResultados.php",
             success: function (result) {
                 resp = JSON.parse(result);
                 writeRows();
@@ -29,7 +29,7 @@ $(function () {
 
                     html +=  "</td>";
                 }
-                html = html + '<td><form id="form' + element[5] + '"><input id="f' + element[5]  + '" type="file" class="submitTrabalho" /></form></tr>';
+                //html = html + '<td><form id="form' + element[5] + '"><input id="f' + element[5]  + '" type="file" class="submitTrabalho" /></form></tr>';
                 $("#tb_resultados").append(html);
             })
         }

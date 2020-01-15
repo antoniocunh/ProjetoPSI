@@ -37,6 +37,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <script src="../../assets/js/core/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 </head>
 
@@ -62,18 +63,18 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                 <h4 class="card-title">Detalhes da conferância</h4>
               </div>
               <div class="card-body">
-                <form name="evento" method="POST" action="../../assets/php/Object/updateEvento.php">
+                <form name="eventoForm" id="eventoForm" method="POST">
                   <div class="row">
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Titulo</label>
-                        <input type="text" class="form-control" placeholder="titulo" name="vcTitle">
+                        <input type="text" class="form-control" placeholder="titulo" name="vcTitle" id="vcTitle">
                       </div>
                     </div>
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Local</label>
-                        <input type="text" class="form-control" placeholder="Local" name="vcLocal">
+                        <input type="text" class="form-control" placeholder="Local" name="vcLocal" id="vcLocal">
                       </div>
                     </div>
                   </div>
@@ -81,13 +82,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Data de Inicio</label>
-                        <input type="datetime-local" class="form-control" placeholder="Data de Inicio" name="dtIniEvent">
+                        <input type="datetime-local" class="form-control" placeholder="Data de Inicio" name="dtIniEvent" id="dtIniEvent">
                       </div>
                     </div>
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Data de Encerramento</label>
-                        <input type="date" class="form-control" placeholder="Data de Encerramento" name="dtEndEvent">
+                        <input type="date" class="form-control" placeholder="Data de Encerramento" name="dtEndEvent" id="dtEndEvent">
                       </div>
                     </div>
                   </div>
@@ -96,13 +97,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Data de Inicio de Subscrição</label>
-                        <input type="date" class="form-control" placeholder="Inicio de subscrição" name="dtIniSubscription">
+                        <input type="date" class="form-control" placeholder="Inicio de subscrição" name="dtIniSubscription" id="dtIniSubscription">
                       </div>
                     </div>
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Data de Encerramento de Subscrição</label>
-                        <input type="date" class="form-control" placeholder="Data de Encerramento de subscrição" name="dtEndSubscription">
+                        <input type="date" class="form-control" placeholder="Data de Encerramento de subscrição" name="dtEndSubscription" id="dtEndSubscription">
                       </div>
                     </div>
                   </div>
@@ -111,13 +112,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Inicio das Submissões</label>
-                        <input type="date" class="form-control" placeholder="Inicio das submissões" name="dtIniSubmition">
+                        <input type="date" class="form-control" placeholder="Inicio das submissões" name="dtIniSubmition" id="dtIniSubmition">
                       </div>
                     </div>
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Encerramento das Submissões</label>
-                        <input type="date" class="form-control" placeholder="Encerramento das submissões" name="dtEndSubmition">
+                        <input type="date" class="form-control" placeholder="Encerramento das submissões" name="dtEndSubmition" id="dtEndSubmition">
                       </div>
                     </div>
                   </div>
@@ -126,13 +127,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Inicio das Avaliações</label>
-                        <input type="date" class="form-control" placeholder="Inicio das Avaliações" name="dtIniEvaluation">
+                        <input type="date" class="form-control" placeholder="Inicio das Avaliações" name="dtIniEvaluation" id="dtIniEvaluation">
                       </div>
                     </div>
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Encerramento das Avaliações</label>
-                        <input type="date" class="form-control" placeholder="Encerramento das Avaliações" name="dtEndEvaluation">
+                        <input type="date" class="form-control" placeholder="Encerramento das Avaliações" name="dtEndEvaluation" id="dtEndEvaluation">
                       </div>
                     </div>
                   </div>
@@ -141,13 +142,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Inicio das Submissões Finais</label>
-                        <input type="date" class="form-control" placeholder="Inicio das submissões finais" name="dtIniFinalSubmission">
+                        <input type="date" class="form-control" placeholder="Inicio das submissões finais" name="dtIniFinalSubmission" id="dtIniFinalSubmission">
                       </div>
                     </div>
                     <div class="col mx-2 ">
                       <div class="form-grou                                                                                                                                                                                                                                                                                                                                                                                        p">
                         <label>Encerramento das Submissões Finais</label>
-                        <input type="date" class="form-control" placeholder="Encerramento das submissões finais" name="dtEndFinalSubmission">
+                        <input type="date" class="form-control" placeholder="Encerramento das submissões finais" name="dtEndFinalSubmission" id="dtEndFinalSubmission">
                       </div>
                     </div>
                   </div>
@@ -156,7 +157,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2 ">
                       <div class="form-group">
                         <label>Lançamento de Resultados</label>
-                        <input type="date" class="form-control" placeholder="Lançamento de Resultados" name="dtResults">
+                        <input type="date" class="form-control" placeholder="Lançamento de Resultados" name="dtResults" id="dtResults">
                       </div>
                     </div>
                   </div>
@@ -164,7 +165,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2">
                       <div class="form-group">
                         <label>Descrição</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Descrição" name="vcDescription"></textarea>
+                        <textarea rows="4" cols="80" class="form-control" placeholder="Descrição" name="vcDescription" id="vcDescription"></textarea>
                       </div>
                     </div>
                   </div>
@@ -172,7 +173,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                     <div class="col mx-2">
                       <div class="form-group">
                         <label>Sobre Nós</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Sobre" name="vcAbout"></textarea>
+                        <textarea rows="4" cols="80" class="form-control" placeholder="Sobre" name="vcAbout" id="vcAbout"></textarea>
                       </div>
                     </div>
                   </div>
@@ -202,7 +203,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
   </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
   <script src="../../assets/js/core/bootstrap.min.js"></script>
   <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

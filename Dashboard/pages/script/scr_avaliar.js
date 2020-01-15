@@ -17,12 +17,13 @@ $(function () {
             var html = "<tr id='" + index + "'>";
             
             console.log(element);
-            for (var count = 0; count <= 4; count++) {
+            for (var count = 0; count <= 5; count++) {
+                console.log(element[count]);
                 html += "<td>";
                 //apagar para o Ciro
                 if(count == 3){
                     html += element[count] + " " + element.vcLastName;
-                }else if(count == 4){
+                }else if(count == 5){
                     html += "<a href='../../assets/php/Object/getTrabalho.php?iIdAttachment=" + element.iIdAttachment +"'>" + element[count] + "</a>";
                 }else{
                     html += element[count];
@@ -60,8 +61,7 @@ $(function () {
             success: function(msg) {
                 console.log(msg);
                 var text = JSON.parse(msg);
-                alert(text.msg);
-                
+                $("#Modal").modal("toggle");
             }               
         });
     });

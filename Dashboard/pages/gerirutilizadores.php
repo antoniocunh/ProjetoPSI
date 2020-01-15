@@ -86,7 +86,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form id="updateUser1" method="post" action="../../assets/php/Object/updateUser.php" name="updateUser1">
+          <form id="updateUser1" name="updateUser1">
             <div class="modal-body">
               <div class="form-group">
                 <label>Username</label>

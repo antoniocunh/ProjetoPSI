@@ -23,7 +23,6 @@ $(function () {
         $(document).on('click', ".update", function () {
             var id = this.id.substring(1);
             keys = Object.keys(resp[id]);
-            console.log(resp)
             keys.forEach(element => {
                 $("#" + element).val(resp[id][element]);
             });
@@ -50,15 +49,14 @@ $(function () {
         });
 
         $(document).on('click', "#uploadModal", function () {
-            console.log($("#vcUsername").val());
             $.ajax({
                 url: '../../assets/php/Object/updateUser.php',
                 type: 'POST',
                 data: $("#updateUser1").serialize(),
                 success: function (msg) {
-                    console.log(msg);
+                    writeRows();
                     var text = JSON.parse(msg);
-                    alert(text.msg);
+                    $("#Modal").modal('toggle');
                     location.reload();
                 }
             });
@@ -135,7 +133,7 @@ $(function () {
                 vcLastName: 'Por favor introduza um sobrenome.',
                 vcScope: 'Por favor selecione um âmbito.',
                 vcAddress: 'Por favor introduza uma morada.',
-                vcCountry: 'Por favor prencha o país',
+                vcCountry: 'Por favor preencha o país',
                 vcPhoneNumber: 'Por favor introduza um nº de telefone.',
                 vcPostalName: 'Por favor selecione um pais.',
                 vcCity: 'Por favor introduza uma cidade.',
@@ -148,7 +146,15 @@ $(function () {
                     minlength: 'O username tem de ter pelo menos 4 caracteres.'
                 },
                 submitHandler: function (form) {
-                    form.submit();
+                    form.preventDefault();
+                    $.ajax({
+                        url: '../../assets/php/Object/updateUser.php',
+                        type: 'POST',
+                        data: $("#updateUser1").serialize(),
+                        success: function (msg) {
+                            var text = JSON.parse(msg);
+                        }
+                    });
                 }
             }
         })

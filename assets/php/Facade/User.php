@@ -212,7 +212,7 @@ class User extends Bridge implements JsonSerializable
      /**
      * Get the value of enumUserStatus
      */ 
-    public function getenumUserStatus()
+    public function getEnumUserStatus()
     {
         return $this->enumUserStatus;
     }
@@ -412,7 +412,7 @@ class User extends Bridge implements JsonSerializable
      *
      * @return  self
      */ 
-    public function setenumUserStatus($enumUserStatus)
+    public function setEnumUserStatus($enumUserStatus)
     {
         $this->enumUserStatus = $enumUserStatus;
 
@@ -424,7 +424,7 @@ class User extends Bridge implements JsonSerializable
      *
      * @return  self
      */ 
-    public function setvcTokenCode($vcTokenCode)
+    public function setVcTokenCode($vcTokenCode)
     {
         $this->vcTokenCode = $vcTokenCode;
 

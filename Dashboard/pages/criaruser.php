@@ -63,24 +63,24 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                                 <h4 class="card-title">Criar Utilizador</h4>
                             </div>
                             <div class="card-body">
-                                <form name="criaruserform" id="criarUser" method="post" action="../../assets/php/Object/criarUser.php">
+                                <form name="criaruserform" id="criarUtilizador">
                                     <div class="row">
                                         <div class="col-md-5 pr-1">
                                             <div class="form-group">
                                                 <label>Nome</label>
-                                                <input name="nome" type="text" placeholder="Nome" class="form-control">
+                                                <input name="nome" type="text" placeholder="Nome" class="form-control" id="nome">
                                             </div>
                                         </div>
                                         <div class="col-md-3 px-1">
                                             <div class="form-group">
                                                 <label>Sobrenome</label>
-                                                <input name="ultimoNome" type="text" placeholder="Sobrenome" class="form-control">
+                                                <input name="ultimoNome" type="text" placeholder="Sobrenome" class="form-control" id="ultimoNome">
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-1">
                                             <div class="form-group">
                                                 <label>Telemóvel</label>
-                                                <input name="telefone" type="text" placeholder="Número de Telemóvel" class="form-control" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
+                                                <input name="telefone" type="text" placeholder="Número de Telemóvel" class="form-control" id="telefone" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                                         <div class="col-md-5 pr-1">
                                             <div class="form-group">
                                                 <label>Afiliação</label>
-                                                <input name="organizacao" type="text" placeholder=" Afiliação" class="form-control">
+                                                <input name="organizacao" type="text" placeholder="Afiliação" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-3 px-1">
@@ -108,7 +108,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Morada</label>
-                                                <input name="morada" type="text" placeholder="Morada" class="form-control">
+                                                <input name="morada" id="morada" type="text" placeholder="Morada" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -117,13 +117,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
                                                 <label>Pais</label>
-                                                <input name="pais" type="text" placeholder=" País" class="form-control">
+                                                <input name="pais" type="text" id="pais" placeholder=" País" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-4 px-1">
                                             <div class="form-group">
                                                 <label>Cidade</label>
-                                                <input name="cidade" type="text" placeholder=" Cidade" class="form-control">
+                                                <input name="cidade" type="text" id="cidade" placeholder=" Cidade" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-1">
@@ -148,7 +148,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
                                         <div class="col-md-8 pl-1">
                                             <div class="form-group">
                                                 <label>E-mail</label>
-                                                <input name="email" type="email" placeholder="Email" class="form-control">
+                                                <input name="email" id="email" type="email" placeholder="Email" class="form-control">
                                             </div>
                                         </div>
                                     </div>

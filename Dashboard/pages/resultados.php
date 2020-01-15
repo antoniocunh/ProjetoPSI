@@ -76,9 +76,9 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                         <th>
                           Critica
                         </th>
-                        <th>
+                        <!-- <th>
                           Enviar Trabalho final
-                        </th>
+                        </th>-->
                       </thead>
                       <tbody>
                       </tbody>
