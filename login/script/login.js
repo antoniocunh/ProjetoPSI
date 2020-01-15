@@ -27,27 +27,27 @@ $('document').ready(function()
 			url  : 'login.php',
 			data : _Data,
 			datatype: 'json',
-
 			beforeSend: function()
 			{	
 				$("#div-error").fadeOut();
-				$("#login_button").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Aguarde ...');
+				$("#login_button").html('Aguarde ...');
 			},
 			success : function(response)
 			{
+				console.log(response);
 				_Resp = JSON.parse(response);
 
 				if(_Resp.msg =='ok')
 				{										
-					$("#login_button").html('<img src="ajax-loader.gif" /> &nbsp; A autenticar...');
-					setTimeout(' window.location.href = "../Users/home-user-page.html"; ',0);
+					$("#login_button").html('A autenticar...');
+					setTimeout(' window.location.href = "../Dashboard/pages/perfil.php"; ');
 				} 
 				else 
 				{									
 					$("#div-error").fadeIn(1000, function()
 					{						
-						$("#div-error").html('<div class="alert alert-danger">'+ _Resp.msg+'!</div>');
-						$("#login_button").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Autenticar');
+						$("#div-error").html('<div class="alert alert-danger">'+ _Resp.msg +'!</div>');
+						$("#login_button").html('&nbsp; Autenticar');
 					});
 				}
 			}

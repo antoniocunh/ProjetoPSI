@@ -1,14 +1,25 @@
+$(function () {
+    $(document).ready(function () {
 
-var $url = "assets/php/Facade/Event.php";
-
-$(function getTitle()
-{
-    $.ajax({
-            url: $url,
-            success: function (result) 
-            {
+        $.ajax({
+            url: "assets/php/Object/getEvento.php",
+            success: function (result) {
                 _Resp = JSON.parse(result);
                 console.log(_Resp);
-                 $('#confTitle').html(_Resp[0].vcTitle);
+                $('#conferenceTitle').html(_Resp.vcTitle);
+                $("#descricao").html(_Resp.vcDescription);
+                var inicio = new Date(_Resp.dtIniEvent);
+                var fim = new Date(_Resp.dtEndEvent);
+                //$("#diasELocal").html(_Resp.dtIniEvent);
+                var dateInit = inicio.getDate() + "/" + inicio.getMonth() + "/" + inicio.getFullYear();
+                var dateEnd = fim.getDate() + "/" + fim.getMonth() + "/" + fim.getFullYear();
+
+                var text = "Do dia " + dateInit + " a " + dateEnd + " em " + _Resp.vcLocal;
+                //$("#vcAbout").append(_Resp.vcAbout);
+                $("#diasELocal").html(text);
+                $("#dataInicioh").html(inicio.getDate() + "/" + inicio.getMonth() + "/" + inicio.getFullYear());
+                $("#cidade").html(_Resp.vcLocal);            
             }
-})});
+        })
+    })
+});

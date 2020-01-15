@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img//apple-icon.png"><!--o caminho Provavelmente ta mal-->
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img//apple-icon.png">
+    <!--o caminho Provavelmente ta mal-->
     <link rel="icon" type="image/png" href="assets/img//favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
@@ -16,7 +17,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <!-- CSS Files -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
+    <link href="../assets/css/paper-kit.css?v=2" rel="stylesheet" />
 
     <link href="css/submeterTrabalho.css" type="text/css" rel="stylesheet">
     <script src="script/DragDropEffect.js"></script>
@@ -26,27 +27,43 @@
 <body>
     <div id="nav-placeholder"></div>
     <!--   Start Submit Work  -->
-    <div class="page-header filter" data-parallax="true"
-        style="background-image: url('../assets/img/daniel-olahh.jpg');">
-        <div class="card px-5">
+    <div class="page-header" data-parallax="true"
+        style="background-image: url('../assets/img/pagRegisto.jpg');">
+        <div class="card card-register px-5">
             <h1 class="display-5 mx-auto my-4">Submeter Trabalho</h1>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <div class="col">
                         <form action="teste.php" method="POST">
                             <div class="row">
                                 <div class="col">
                                     <label>Tipo</label><br>
-                                    <input type="text" class="form-control" placeholder="Tipo">
+                                    <input type="text" class="custom-select custom-select-sm" placeholder="Tipo" list="ambito">
+                                    <datalist id="ambito" style="box-sizing: content-box;">
+                                        <option value="Internet Explorer">
+                                        <option value="Firefox">
+                                        <option value="Chrome">
+                                        <option value="Opera">
+                                        <option value="Safari">
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label>Autores</label><br>
+                                    <input type="text" class="form-control" placeholder="Autores" list="autor">
+                                    <datalist id="autor">
+                                    </datalist>
                                 </div>
                                 <div class="col">
                                     <label>Autor Principal</label><br>
-                                    <input type="text" class="form-control" placeholder="Autor Principal">
+                                    <input type="text" class="form-control" placeholder="Autor Principal" list="autorP">
+                                    <datalist id="autorP">
+                                    </datalist>
                                 </div>
-                                <div class="col">
-                                    <label>Autores</label><br>
-                                    <input type="text" class="form-control" placeholder="Autores">
-                                </div>
+                            </div>
+                            <div class="row mt-3">
+
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-8">
@@ -55,26 +72,26 @@
                                         placeholder="Resumo do trabalho submetido..."></textarea>
                                 </div>
                                 <div class="col-md-4 mt-4">
-                                        <div class="image-upload-wrap h-100">
-                                            <input class="file-upload-input" type='file' onchange="readURL(this);"
-                                                accept=".docx; .pdf" />
-                                            <div class="drag-text"></div>
-                                            <label class="text-center p-3"><strong>Agarre e largue aqui o seu ficheiro ou clique para selecionar o ficheiro
-                                                    Image</strong></strong></label>
+                                    <div class="image-upload-wrap h-100">
+                                        <input class="file-upload-input" type='file' onchange="readURL(this);"
+                                            accept=".docx; .pdf" />
+                                        <div class="drag-text"></div>
+                                        <label class="text-center p-3"><strong>Agarre e largue aqui o seu ficheiro ou
+                                                clique para selecionar o ficheiro</strong></label>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="btn-danger">Remove
+                                                <span class="image-title">Uploaded
+                                                    Image</span></button>
                                         </div>
-                                        <div class="file-upload-content">
-                                            <div class="image-title-wrap">
-                                                <button type="button" onclick="removeUpload()"
-                                                    class="btn-danger">Remove <span class="image-title">Uploaded
-                                                        Image</span></button>
-                                            </div>
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <br />
                             <div class="row">
                                 <div class="col" id="drop">
-                                    <input type="submit" class="btn btn-outline-danger btn-round my-4" id="submit">
+                                    <input type="submit" class="btn btn-default btn-round my-4" id="submit">
                                 </div>
                             </div>
                         </form>

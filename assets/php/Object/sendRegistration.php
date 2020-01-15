@@ -1,5 +1,5 @@
 <?php
-require("../assets/php/Proprieties/ConfigDB.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
 
 function fnDiminuirAutoIncrement($conn)
 {
@@ -20,10 +20,10 @@ function fnValidateVariable($sName, &$list)
     if (isset($_POST[$sName])) {
         $temp = $_POST[$sName];
         $tipo = PDO::PARAM_STR;
+        echo $sName . " - " . $_POST[$sName]. "<br>";
         $valid = true;
         switch ($sName) {
             case "ambito":
-                $tipo = PDO::PARAM_INT;
                 break;
             case "email":
                 if (!filter_var($temp, FILTER_VALIDATE_EMAIL)) {
@@ -34,7 +34,6 @@ function fnValidateVariable($sName, &$list)
             case "codPostal":
                 $valid = true;
                 break;
-            case "pass1":
             case "username":
             case "dataNascimento":
                 $list[$sName] = $_POST[$sName];
@@ -65,7 +64,7 @@ function formatData()
     return $newUser;
 }
 try {
-    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope, vcPhoneNumber, dtBirth, vcCountry, vcCity, vcAddress, vcPostalCode, vcAfiliation,vcUsername, vcEmail , vcPassword) 
+    $stmt = $conn->prepare("insert into tb_User(vcName, vcLastName, iIdScope, vcAfiliation, dtBirth, vcPhoneNumber, vcCountry, vcCity, vcAddress, vcPostalCode, vcUsername, vcEmail , vcPassword) 
     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $count = 1;
     $newUser = formatData();
@@ -81,9 +80,9 @@ try {
         session_start();
         $_SESSION["username"] = $newUser["username"][1];
         $_SESSION["password"] = $newUser["pass1"][1];
-        header("location: ../index.html");
+        header("location: " .  $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Dashboard/pages/perfil.php");
     }else{
-        header("location: index.html");
+        header("location: " .  $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Registo/index.html");
     }
 } catch (PDOException $e) {
     fnDiminuirAutoIncrement($conn);

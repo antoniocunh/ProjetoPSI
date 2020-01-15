@@ -21,6 +21,8 @@
 
 <body>
 
+<?php require("../Login/login2.php");?>
+
   <div id="nav-placeholder"></div>
 
   <div class="page-header" data-parallax="true" style="background-image: url('../assets/img/Sample-Image (0).jpg');">
