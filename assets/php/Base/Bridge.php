@@ -101,7 +101,7 @@ class Bridge
         }
     }
 
-    public function QueryExecute($aQuery, $aData, $bReturn = false)
+    public function QueryExecute($aQuery, $aData, $aValue=0)// $bReturn = false)
     {
         try {
             if (substr_count($aQuery, '?') != count($aData))
@@ -123,9 +123,34 @@ class Bridge
             return true;
         } catch (PDOException $e) {
             echo "<br>" . $e->getMessage();
+            //if($bReturn)
+            //    return $stmt->fetchAll(PDO::FETCH_BOTH);
+
+            return $this->fetch($stmt, $aValue);
+        }
+        catch(PDOException $e)
+        {
+            echo "<br>".$e->getMessage();
             return false;
         }
     }
+
+    private function fetch($aStmt, $aValue)
+    {
+        switch ($aValue) 
+        {
+            case 0:
+                return true;
+                break;
+            case 1:
+                return $aStmt->fetchAll(PDO::FETCH_BOTH);
+                break;
+            case 2:
+                return $aStmt->fetch(PDO::FETCH_ASSOC);
+                break;
+        }
+    }
+
 
     //================================GETTERS==============================
 
@@ -173,6 +198,21 @@ class Bridge
 
             foreach ($aField as &$Name) {
                 $Columns = $i < $FieldNums ? $Columns . "{$this->Alias}.{$Name}, " : $Columns . "{$this->Alias}.{$Name}";
+        $Query="";
+        $Select="SELECT ";
+        $From=" FROM {$this->table}";
+
+        //Se Array For Null
+        if(is_null($aField))
+            $Query = $Select." * ".$From;
+        else 
+        {
+            $Columns="";
+            $i=1;
+            $FieldNums=count($aField);
+
+            foreach($aField as &$Name){
+                $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
                 $i++;
             }
 

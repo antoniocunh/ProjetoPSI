@@ -1,6 +1,5 @@
 <?php
 
-
 /* ==================================================================== 
         CLASS USER
 ====================================================================*/
@@ -24,12 +23,13 @@ class User extends Bridge implements JsonSerializable
     private $vcPostalCode;
     private $dtBirth;
     private $iIdUserType;
-
+    private $enumUserStatus;
+    private $vcTokenCode;
 
     //construtor da class user
-    public function __construct()
+    public function __construct($aColumn="vcUsername")
     {
-        parent::__construct("tb_User", "vcUsername", "UR");
+        parent::__construct("tb_User", $aColumn, "UR");
     }
     
     public function readObject($id)
@@ -41,8 +41,6 @@ class User extends Bridge implements JsonSerializable
                 $key = $array[$count++];
         }
     }
-
-
     
     public function InsertObject()
     {
@@ -64,7 +62,7 @@ class User extends Bridge implements JsonSerializable
             array_push($arrayFieldsUser, [$value, "="]);
         }
 
-        $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
+        $this->Update($arrayFieldsUser, $arrayWhere, $aData);
     }
     
     public function DeleteObject()
@@ -209,6 +207,22 @@ class User extends Bridge implements JsonSerializable
     public function getIIdUserType()
     {
         return $this->iIdUserType;
+    }
+
+     /**
+     * Get the value of enumUserStatus
+     */ 
+    public function getenumUserStatus()
+    {
+        return $this->enumUserStatus;
+    }
+
+     /**
+     * Get the value of vcTokenCode
+     */ 
+    public function getvcTokenCode()
+    {
+        return $this->vcTokenCode;
     }
 
     /**
@@ -389,6 +403,30 @@ class User extends Bridge implements JsonSerializable
     public function setIIdUserType($iIdUserType)
     {
         $this->iIdUserType = $iIdUserType;
+
+        return $this;
+    }
+
+     /**
+     * Set the value of enumUserStatus
+     *
+     * @return  self
+     */ 
+    public function setenumUserStatus($enumUserStatus)
+    {
+        $this->enumUserStatus = $enumUserStatus;
+
+        return $this;
+    }
+
+     /**
+     * Set the value of vcTokenCode
+     *
+     * @return  self
+     */ 
+    public function setvcTokenCode($vcTokenCode)
+    {
+        $this->vcTokenCode = $vcTokenCode;
 
         return $this;
     }
