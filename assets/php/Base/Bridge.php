@@ -95,7 +95,7 @@ class Bridge{
         }
     }
 
-    public function QueryExecute($aQuery, $aData, $bReturn = false)
+    public function QueryExecute($aQuery, $aData, $aValue=0)// $bReturn = false)
     {
         try{
             if(substr_count($aQuery, '?') != count($aData))
@@ -108,10 +108,10 @@ class Bridge{
             }
             $stmt->execute();
 
-            if($bReturn)
-                return $stmt->fetchAll(PDO::FETCH_BOTH);
+            //if($bReturn)
+            //    return $stmt->fetchAll(PDO::FETCH_BOTH);
 
-            return true;
+            return $this->fetch($stmt, $aValue);
         }
         catch(PDOException $e)
         {
@@ -119,6 +119,23 @@ class Bridge{
             return false;
         }
     } 
+
+    private function fetch($aStmt, $aValue)
+    {
+        switch ($aValue) 
+        {
+            case 0:
+                return true;
+                break;
+            case 1:
+                return $aStmt->fetchAll(PDO::FETCH_BOTH);
+                break;
+            case 2:
+                return $aStmt->fetch(PDO::FETCH_ASSOC);
+                break;
+        }
+    }
+
 
     //================================GETTERS==============================
 
@@ -154,11 +171,10 @@ class Bridge{
         $Query="";
         $Select="SELECT ";
         $From=" FROM {$this->table}";
-        
 
         //Se Array For Null
         if(is_null($aField))
-            $Query = $Select."*".$From;
+            $Query = $Select." * ".$From;
         else 
         {
             $Columns="";
