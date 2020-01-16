@@ -1,5 +1,6 @@
 
 <?php
+ini_set('display_errors', 1);
     $host = "estga-dev.clients.ua.pt";
     $dbname = "asw-2018-gr1";
     $user = "asw-2018-gr1";

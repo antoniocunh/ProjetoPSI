@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
@@ -17,7 +18,7 @@ class Price extends Bridge implements JsonSerializable
     //construtor da class price
     public function __construct()
     {
-        parent::__construct("tb_Price", "iIdPrice", "pr");
+        parent::__construct("tb_price", "iIdPrice", "pr");
     }
 
     public function readObject($id)

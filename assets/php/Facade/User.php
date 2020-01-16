@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 /* ==================================================================== 
         CLASS USER
@@ -29,7 +30,7 @@ class User extends Bridge implements JsonSerializable
     //construtor da class user
     public function __construct($aColumn="vcUsername")
     {
-        parent::__construct("tb_User", $aColumn, "UR");
+        parent::__construct("tb_user", $aColumn, "UR");
     }
     
     public function readObject($id)

@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
@@ -30,7 +31,7 @@ class Event extends Bridge implements JsonSerializable
     //construtor da class event
     public function __construct()
     {
-        parent::__construct("tb_Event", "iIdEvent", "eve");
+        parent::__construct("tb_event", "iIdEvent", "eve");
     }
     
      

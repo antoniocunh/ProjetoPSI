@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
@@ -18,7 +19,7 @@ class Scope extends Bridge implements JsonSerializable
     //construtor da class scope
     public function __construct()
     {
-        parent::__construct("tb_Scope", "iIdScope", "sc");
+        parent::__construct("tb_scope", "iIdScope", "sc");
     }
 
     public function readObject($id)

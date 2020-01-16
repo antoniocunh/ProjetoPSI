@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
@@ -19,7 +20,7 @@ class RelationWorkUser extends Bridge implements JsonSerializable
     //construtor da class relationworkuser
     public function __construct()
     {
-        parent::__construct("tb_RelationWorkUser", "iIdRelationWorkUser", "rwu");
+        parent::__construct("tb_relationWorkUser", "iIdRelationWorkUser", "rwu");
     }
 
     public function readObject($id)

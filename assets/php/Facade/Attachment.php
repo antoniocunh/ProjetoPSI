@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
@@ -19,7 +20,7 @@ class Attachment extends Bridge implements JsonSerializable
     //construtor da class attachment
     public function __construct()
     {
-        parent::__construct("tb_Attachment", "iIdAttachment", "att");
+        parent::__construct("tb_attachment", "iIdAttachment", "att");
     }
     
 

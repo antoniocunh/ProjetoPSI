@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
@@ -18,7 +19,7 @@ class Evaluation extends Bridge implements JsonSerializable
     //construtor da class evaluation
     public function __construct()
     {
-        parent::__construct("tb_Evaluation", "iIdEvaluation", "EVA");
+        parent::__construct("tb_evaluation", "iIdEvaluation", "EVA");
     }
 
     public function readObject($id)
