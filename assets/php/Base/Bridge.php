@@ -1,5 +1,6 @@
 <?php
 
+ini_set('display_errors', 1);
 require_once("EnumJoins.php");
 
 class Bridge{
@@ -13,7 +14,7 @@ class Bridge{
     
 
     protected function __construct($aTable, $aColumn, $aAlias){
-        require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
+        require($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
         $this->conn = &$conn;      
         $this->table = $aTable;
         $this->column = $aColumn;

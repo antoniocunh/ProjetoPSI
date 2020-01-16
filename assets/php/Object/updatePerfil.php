@@ -1,6 +1,6 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
 
     if(isset($_SESSION["username"])){
         $user = new User();
@@ -17,7 +17,7 @@
         $user->setVcPostalCode($_POST["vcPostalCode"]);
         $user->setVcEmail($_POST["vcEmail"]);
         $user->UpdateObject();
-        echo json_encode(["msg" => $_POST["iIdScope"] . " " . $user->getIIdScope() . " Perfil atualizado com sucesso"]);      
+        echo json_encode(["msg" => " Perfil atualizado com sucesso"]);      
     }else{
         echo json_encode(["msg" => "Não foi possivel atualizar o perfil"]);    
     }

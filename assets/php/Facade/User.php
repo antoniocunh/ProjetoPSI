@@ -1,10 +1,11 @@
 <?php
+ini_set('display_errors', 1);
 
 /* ==================================================================== 
         CLASS USER
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class User extends Bridge implements JsonSerializable
 {
@@ -29,7 +30,7 @@ class User extends Bridge implements JsonSerializable
     //construtor da class user
     public function __construct($aColumn="vcUsername")
     {
-        parent::__construct("tb_User", $aColumn, "UR");
+        parent::__construct("tb_user", $aColumn, "UR");
     }
     
     public function readObject($id)

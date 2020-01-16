@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS Work
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Work extends Bridge implements JsonSerializable
 {

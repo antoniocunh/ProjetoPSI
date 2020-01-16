@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS ATTACHMENT
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Attachment extends Bridge implements JsonSerializable
 {
@@ -19,7 +20,7 @@ class Attachment extends Bridge implements JsonSerializable
     //construtor da class attachment
     public function __construct()
     {
-        parent::__construct("tb_Attachment", "iIdAttachment", "att");
+        parent::__construct("tb_attachment", "iIdAttachment", "att");
     }
     
 

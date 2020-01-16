@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS SCOPE
        ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 
 class Scope extends Bridge implements JsonSerializable
@@ -18,7 +19,7 @@ class Scope extends Bridge implements JsonSerializable
     //construtor da class scope
     public function __construct()
     {
-        parent::__construct("tb_Scope", "iIdScope", "sc");
+        parent::__construct("tb_scope", "iIdScope", "sc");
     }
 
     public function readObject($id)

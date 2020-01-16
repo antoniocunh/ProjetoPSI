@@ -14,8 +14,8 @@
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_veri
           </div>
           <form id="updateUser1" name="updateUser1">
             <div class="modal-body">
-              <div class="form-group">
+              <div class="form-group d-none">
                 <label>Username</label>
                 <input type="text" class="form-control" id="vcUsername" name="vcUsername" placeholder="Username">
               </div>

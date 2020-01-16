@@ -1,6 +1,6 @@
 <?php
     
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
     
     $RelationWorkUser = new RelationWorkUser();
     $Columns = array
@@ -20,7 +20,7 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_work", [["iIdWork", "iIdWork"]], "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU"). 
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBATT", "TBW").
-        $RelationWorkUser->Join(Joins::INNER, "tb_workType", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
+        $RelationWorkUser->Join(Joins::INNER, "tb_worktype", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
         $RelationWorkUser->Where([["bMainAuthor", '=', null ]], true);
 
         /*
