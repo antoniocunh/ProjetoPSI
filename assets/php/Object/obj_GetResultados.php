@@ -21,6 +21,7 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU", "TBRWU").
         $RelationWorkUser->Where([["TBU.vcUsername", "=", null]], false);
 
+
         /*
             SELECT 
                 TBA.iIdWork, 

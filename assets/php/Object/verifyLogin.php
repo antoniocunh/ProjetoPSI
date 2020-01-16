@@ -11,12 +11,12 @@ ini_set('display_errors', 1);
         $user = new User();
         $user->readObject($username);
          if($user->GetVcPassword() != hashPass($password, $user->GetDtBirth())){
-            header("location:". $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Login/index.php");
+            header("location: ../../Login/index.php");
             die();
         }
     }
     if(!isset($_SESSION["username"])){
-        header("location: " . $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Login/index.php");
+        header("location: ../../Login/index.php");
     }else{
         validateUser($_SESSION["username"], $_SESSION["password"]);
     }

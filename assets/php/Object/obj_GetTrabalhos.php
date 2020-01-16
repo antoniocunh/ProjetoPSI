@@ -20,7 +20,7 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_work", [["iIdWork", "iIdWork"]], "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU"). 
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBATT", "TBW").
-        $RelationWorkUser->Join(Joins::INNER, "tb_workType", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
+        $RelationWorkUser->Join(Joins::INNER, "tb_worktype", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
         $RelationWorkUser->Where([["bMainAuthor", '=', null ]], true);
 
         /*

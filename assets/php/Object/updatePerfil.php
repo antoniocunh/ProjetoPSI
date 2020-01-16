@@ -17,7 +17,7 @@
         $user->setVcPostalCode($_POST["vcPostalCode"]);
         $user->setVcEmail($_POST["vcEmail"]);
         $user->UpdateObject();
-        echo json_encode(["msg" => $_POST["iIdScope"] . " " . $user->getIIdScope() . " Perfil atualizado com sucesso"]);      
+        echo json_encode(["msg" => " Perfil atualizado com sucesso"]);      
     }else{
         echo json_encode(["msg" => "Não foi possivel atualizar o perfil"]);    
     }

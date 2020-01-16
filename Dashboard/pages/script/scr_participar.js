@@ -23,7 +23,6 @@ $(function () {
       icon: "fa fa-times",
       onChange: value => {
         $("#sendSpeakers").empty();
-        console.log(value);
         value.forEach(function (element) {
           $("#sendSpeakers").append("<option id ='S" + element + "'>" + element + "</option>");
           $("#S" + element).attr("selected", "selected");

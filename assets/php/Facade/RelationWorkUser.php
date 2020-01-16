@@ -20,7 +20,7 @@ class RelationWorkUser extends Bridge implements JsonSerializable
     //construtor da class relationworkuser
     public function __construct()
     {
-        parent::__construct("tb_relationWorkUser", "iIdRelationWorkUser", "rwu");
+        parent::__construct("tb_relationworkuser", "iIdRelationWorkUser", "rwu");
     }
 
     public function readObject($id)

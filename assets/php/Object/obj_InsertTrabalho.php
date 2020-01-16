@@ -5,6 +5,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
 
+echo "<pre>";
+var_dump($_POST);
 if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
 
   //1º Insert
@@ -36,19 +38,20 @@ if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
     $RelationWorkUser->setIIdUser($user->getIIdUser()); // Vai buscar o id consoante o vcusername escolhido na interface
     $RelationWorkUser->setIIdWork($Work->getIIdWork());
     if (in_array($element, $_POST["speakers"])) {
-      $speakers = true;
+      $speakers = 1;
     } else {
-      $speakers = false;
+      $speakers = 0;
     }
 
     if ($element == $_POST["autorP"]) {
-      $autorP = true;
+      $autorP = 1;
     } else {
-      $autorP = false;
+      $autorP = 0;
     }
 
     $RelationWorkUser->setBMainAuthor($autorP);
     $RelationWorkUser->setBSpeaker($speakers);
+    var_dump(json_encode($RelationWorkUser));
     $RelationWorkUser->InsertObject();
   }
   echo json_encode(["msg" => "Inserido com sucesso!"]);

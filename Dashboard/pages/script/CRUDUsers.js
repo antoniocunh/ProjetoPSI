@@ -42,8 +42,8 @@ $(function () {
                     alert(text.msg);
                 }
             });
-            keys = Object.keys(resp[id]);
-            resp.splice($.inArray(id, resp), 1);
+            var keys = Object.keys(resp[id]);
+            resp.splice($.inArray(resp[id], resp), 1);
             writeRows();
 
         });

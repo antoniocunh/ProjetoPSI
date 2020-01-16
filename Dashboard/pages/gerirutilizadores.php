@@ -90,7 +90,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
             <div class="modal-body">
               <div class="form-group">
                 <label>Username</label>
-                <input type="text" class="form-control" id="vcUsername" name="vcUsername" placeholder="Username">
+                <input type="text" class="form-control" id="vcUsername" name="vcUsername" placeholder="Username" disabled>
               </div>
               <div class="form-group">
                 <label>Nome</label>
@@ -122,7 +122,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
               </div>
               <div class="form-group">
                 <label>E-mail</label>
-                <input type="text" class="form-control" id="vcEmail" name="vcEmail" placeholder="E-mail">
+                <input type="text" class="form-control" id="vcEmail" name="vcEmail" placeholder="E-mail" disabled>
               </div>
               <div class="form-group">
                 <label>Telemovel</label>
