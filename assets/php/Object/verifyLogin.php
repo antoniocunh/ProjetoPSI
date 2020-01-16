@@ -1,6 +1,6 @@
 <?php
     session_start(); 
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
 
     function hashPass($password, $dtBirth){
         return hash("sha512", $password . "_" . $dtBirth);

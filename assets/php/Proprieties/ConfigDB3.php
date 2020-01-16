@@ -1,9 +1,9 @@
 
 <?php
-     $host = "localhost";
-     $dbname = "ppsi-2019-gr5";
-     $user = "root";
-     $password = "";
+    $host = "estga-dev.clients.ua.pt";
+    $dbname = "asw-2018-gr1";
+    $user = "asw-2018-gr1";
+    $password = "p^&472DbDx";
 
     try
     {
@@ -13,5 +13,4 @@
     catch(PDOException $e){
         echo $e->getMessage();
     }
-    
 ?>

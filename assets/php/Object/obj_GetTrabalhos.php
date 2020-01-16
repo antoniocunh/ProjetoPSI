@@ -1,6 +1,6 @@
 <?php
     
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
     
     $RelationWorkUser = new RelationWorkUser();
     $Columns = array
