@@ -3,5 +3,5 @@
     session_destroy();
     //echo "<pre>";
     //var_dump($_SERVER);
-    header("location: ../../Index.html");
+    header("location: ../../../Index.html");
 ?>

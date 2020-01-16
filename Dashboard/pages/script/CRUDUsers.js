@@ -57,7 +57,6 @@ $(function () {
                     writeRows();
                     var text = JSON.parse(msg);
                     $("#Modal").modal('toggle');
-                    location.reload();
                 }
             });
         });
