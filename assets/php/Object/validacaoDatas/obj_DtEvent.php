@@ -5,6 +5,6 @@
     $event->readObject("0");
 
     if(!($event->getDtIniEvent() < date('Y-m-d') && $event->getDtEndEvent() > date('Y-m-d'))){
-       //header("location: ../../");
+       header("location: ../../");
     }
 ?>

@@ -19,7 +19,6 @@ $(function () {
             
             console.log(element);
             for (var count = 0; count <= 5; count++) {
-                console.log(element[count]);
                 html += "<td>";
                 //apagar para o Ciro
                 if(count == 3){
@@ -60,7 +59,6 @@ $(function () {
                 vcReview: $("#vcReview").val()
             },
             success: function(msg) {
-                console.log(msg);
                 var text = JSON.parse(msg);
                 $("#Modal").modal("toggle");
             }               

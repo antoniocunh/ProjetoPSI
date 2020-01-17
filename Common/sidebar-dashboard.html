@@ -70,20 +70,19 @@
 
 <script type="text/javascript">
   var load = [false, false];
-  var resp;
+  var resp2;
   var resp1
 
   function rmvDivs() {
-    var botoes, avaliar = "", resultados = "", participar = "";
-
-    if(Date.parse(resp.dtIniSubmition) < Date.now() && Date.parse(resp.dtEndSubmition) > Date.now() ){
+    var botoes, avaliar = " ", resultados = " ", participar = " ";
+    if(Date.parse(resp2.dtIniSubmition) < Date.now() && Date.parse(resp2.dtEndSubmition) > Date.now() ){
       participar = '<li id="trabalhosEnviados"> <a href="./trabalhosEnviados.php"><i class="fa fa-book" aria-hidden="true"></i><p>Trabalhos Enviados</p></a> </li>'+
                    '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
     }
-    if(Date.parse(resp.dtResults) < Date.now()){
+    if(Date.parse(resp2.dtResults) < Date.now()){
       resultados = '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>';
     }
-    if(Date.parse(resp.dtIniEvaluation) < Date.now() && Date.parse(resp.dtEndEvaluation) > Date.now() ){
+    if(Date.parse(resp2.dtIniEvaluation) < Date.now() && Date.parse(resp2.dtEndEvaluation) > Date.now() ){
       avaliar = '<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>';
     }
 
@@ -114,14 +113,14 @@
       //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else{ //autor , orador, 
-      
-      console.log(resp1);
       botoes =
         resultados +
         participar +
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
     }
+    $("#navButoes").hide();
     $("#navButoes").html(botoes);
+    $("#navButoes").fadeIn(300);
 
   };
 
@@ -130,8 +129,8 @@
 
     success: function (result) {
       resp1 = JSON.parse(result);
-      load[0] = true;
       resp1 = resp1[0].iIdUserType; 
+      load[0] = true;
       if(load[0] && load[1]){
         rmvDivs();
       }
@@ -143,14 +142,14 @@
   $.ajax({
     url: "../../assets/php/Object/getEvento.php",
     success: function (result) {
-      resp = JSON.parse(result);
+      resp2 = JSON.parse(result);
       load[1] = true;
       if(load[0] && load[1]){
-        console.log(resp1);
         rmvDivs();
       }
     }
   })
+  
 
 </script>
 <!-- Navbar -->

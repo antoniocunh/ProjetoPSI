@@ -11,8 +11,7 @@ $(document).ready(function () {
         },
         messages: {
             pass: {
-                required: 'Por favor introduza uma 
-                passe.',
+                required: 'Por favor introduza uma passe.',
                 minlength: 'A palavra-passe tem de ter pelo menos 8 caractéres.',
             },
             confirmPass: {
