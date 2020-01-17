@@ -19,7 +19,7 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBA", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_relationworkuser", [["iIdWork", "iIdWork"]], "TBRWU", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU", "TBRWU").
-        $RelationWorkUser->Where([["TBU.vcUsername", "=", null]], false);
+        $RelationWorkUser->Where([["TBU.vcUsername", "=", null],], false);
 
 
         /*

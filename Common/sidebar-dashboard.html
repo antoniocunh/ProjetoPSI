@@ -69,62 +69,87 @@
 </nav>
 
 <script type="text/javascript">
+  var load = [false, false];
+  var resp;
+  var resp1
 
-  function rmvDivs(resp) {
-    var botoes;
-    if (resp == 0) {
+  function rmvDivs() {
+    var botoes, avaliar = "", resultados = "", participar = "";
 
+    if(Date.parse(resp.dtIniSubmition) < Date.now() && Date.parse(resp.dtEndSubmition) > Date.now() ){
+      participar = '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
+    }
+    if(Date.parse(resp.dtResults) < Date.now()){
+      resultados = '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>';
+    }
+    if(Date.parse(resp.dtIniEvaluation) < Date.now() && Date.parse(resp.dtEndEvaluation) > Date.now() ){
+      avaliar = '<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>';
+    }
+
+    if(resp1 == 0) {
       botoes =
         '<li id="evento"> <a href="./evento.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>'+
-        '<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>'+
-        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
-        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
-        //'<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
+        avaliar +
+        resultados +
+        participar +
+        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
         '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>'+
         '<li id="criarUser"><a href="./criaruser.php"><i class="fa fa-user-plus" aria-hidden="true"></i><p>Criar Utilizador</p></a></li>'+
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
-        //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
-        
-    } else if (resp == 1) { // comissão organizadora
+      //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
+    } else if(resp1 == 1) { // comissão organizadora
       botoes =
-        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
-        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
-        //'<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
+        resultados +
+        participar +
+        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
         '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>'+
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
-        //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
+      //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
-    } else if (resp == 2) { // comissão cientifica
-
+    } else if(resp1 == 2) { // comissão cientifica
       botoes =
-        '<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>'+
-        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
-        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
-        //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
-        
-    } else { //autor , orador, 
+      //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
+    } else{ //autor , orador, 
+      
+      console.log(resp1);
       botoes =
-        '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>'+
-        '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>'+
+        resultados +
+        participar +
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
-    }   
+    }
     $("#navButoes").html(botoes);
 
-  }; 
+  };
 
   $.ajax({
     url: "../../assets/php/Object/obj_GetRoleUser.php",
 
     success: function (result) {
-      var resp1 = JSON.parse(result);
-      console.log(resp1);
-      rmvDivs(resp1[0].iIdUserType);
+      resp1 = JSON.parse(result);
+      load[0] = true;
+      resp1 = resp1[0].iIdUserType; 
+      if(load[0] && load[1]){
+        rmvDivs();
+      }
     }
 
   });
-  
+
+
+  $.ajax({
+    url: "../../assets/php/Object/getEvento.php",
+    success: function (result) {
+      resp = JSON.parse(result);
+      load[1] = true;
+      if(load[0] && load[1]){
+        console.log(resp1);
+        rmvDivs();
+      }
+    }
+  })
+
 </script>
 <!-- Navbar -->

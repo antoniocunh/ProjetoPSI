@@ -22,9 +22,7 @@ $(function () {
                 
                 keys = Object.keys(resp);
                 keys.forEach(element => {
-                    if(element !== "iIdScope"){
-                        $("[name='" + element + "']").val(resp[element]);
-                    }
+                    $("[name='" + element + "']").val(resp[element]);
                 });
             }
         })
