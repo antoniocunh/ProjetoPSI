@@ -1,3 +1,4 @@
+$(document.body).hide();
 $(function () {
   function autocompleteUnique(users) {
     $(".single-select").remove();
@@ -126,6 +127,6 @@ $(function () {
       }
     }
   })
-
-
+   
+    $(document.body).fadeIn(300);
 })

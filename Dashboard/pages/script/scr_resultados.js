@@ -1,3 +1,4 @@
+$(document.body).hide();
 $(function () {
     $(document).ready(function () {
         var resp;
@@ -52,5 +53,7 @@ $(function () {
                 }
             })
         })
+         
+    $(document.body).fadeIn(300);
     })
 })

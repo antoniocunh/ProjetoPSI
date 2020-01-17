@@ -77,7 +77,8 @@
     var botoes, avaliar = "", resultados = "", participar = "";
 
     if(Date.parse(resp.dtIniSubmition) < Date.now() && Date.parse(resp.dtEndSubmition) > Date.now() ){
-      participar = '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
+      participar = '<li id="trabalhosEnviados"> <a href="./trabalhosEnviados.php"><i class="fa fa-book" aria-hidden="true"></i><p>Trabalhos Enviados</p></a> </li>'+
+                   '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
     }
     if(Date.parse(resp.dtResults) < Date.now()){
       resultados = '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>';

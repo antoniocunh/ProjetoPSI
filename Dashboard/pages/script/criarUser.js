@@ -1,3 +1,4 @@
+$(document.body).hide();
 $(function () {
     $.ajax({
         url: '../../assets/php/Object/obj_getRoles.php',
@@ -139,4 +140,6 @@ $(function () {
             });
         }
     });
+     
+    $(document.body).fadeIn(300);
 });

@@ -1,3 +1,4 @@
+$(document.body).hide();
 $(function () {
     function ambito(){
         $.ajax({
@@ -119,7 +120,8 @@ $(function () {
             });
         }
     });
-
     ambito();
     user();
+     
+    $(document.body).fadeIn(300);
 })

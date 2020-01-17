@@ -4,9 +4,12 @@ $(function () {
     var resp;
 
     $.ajax({
-        url: "../../assets/php/Object/obj_GetTrabalhos.php",
+        url: "../../assets/php/Object/obj_GetTrabalhosPessoais.php",
         success: function (result) {
             resp = JSON.parse(result);
+            if(jQuery.isEmptyObject(resp)){
+                $("#tb_Work").html("<p>Neste preciso momento você não foi enviou nenhum trabalho</p>");
+            }
             getRows();
         }
     });
@@ -32,40 +35,9 @@ $(function () {
                 html += "</td>";
 
             }
-            html = html + '<td><button id="a' + index + '" class="btn btn-warning avaliar">Avaliar</button></td></tr>';
             $("#tb_Work").append(html);
         })
     }
-
-    //Click Button ->Show Modal
-    $(document).on('click', ".avaliar", function () {
-        var id = this.id.substring(1);
-        
-        keys = Object.keys(resp[id]);
-        keys.forEach(element => {
-            $("#" + element).val(resp[id][element]);
-        });
-
-        $("#Modal").modal("show");
-    });
-   
-    //Sent Review
-     $(document).on('click', "#insertReview", function () {
-        $.ajax({
-            url: '../../assets/php/Object/obj_InsertAvaliacao.php',
-            type: 'POST',
-            data: {
-                iIdWork: $("#iIdWork").val(), 
-                iRate: $("#FormControlSelect1").val(),
-                vcReview: $("#vcReview").val()
-            },
-            success: function(msg) {
-                console.log(msg);
-                var text = JSON.parse(msg);
-                $("#Modal").modal("toggle");
-            }               
-        });
-    });
      
     $(document.body).fadeIn(300);
     })

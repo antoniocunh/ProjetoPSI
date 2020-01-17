@@ -1,3 +1,4 @@
+$(document.body).hide();
 $(function () {
     callData();
 
@@ -72,4 +73,6 @@ $(function () {
             });
         }
     })
+     
+    $(document.body).fadeIn(300);
 })
