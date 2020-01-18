@@ -45,6 +45,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
     $(document).ready(function() {
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
+        $("#pages1").addClass("show");
+        $("#trabalhos1").addClass("active");
         $("#resultados").addClass("active");
       })
     })

@@ -74,49 +74,57 @@
   var resp1
 
   function rmvDivs() {
-    var botoes, avaliar = " ", resultados = " ", participar = " ";
-    if(Date.parse(resp2.dtIniSubmition) < Date.now() && Date.parse(resp2.dtEndSubmition) > Date.now() ){
-      participar = '<li id="trabalhosEnviados"> <a href="./trabalhosEnviados.php"><i class="fa fa-book" aria-hidden="true"></i><p>Trabalhos Enviados</p></a> </li>'+
-                   '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
+    var botoes, avaliar = " ", resultados = " ", participar = " ", trabalhosEnviados = " ";
+    if (Date.parse(resp2.dtIniSubmition) < Date.now() && Date.parse(resp2.dtEndSubmition) > Date.now()) {
+      trabalhosEnviados = '<li class="nav-item " id="trabalhosEnviados"> <a class="nav-link" href="./trabalhosEnviados.php"> <span class="sidebar-mini"> Enviados </span> </a> </li>';
+      participar = '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
     }
-    if(Date.parse(resp2.dtResults) < Date.now()){
-      resultados = '<li id="resultados"> <a href="./resultados.php"><i class="fa fa-university" aria-hidden="true"></i> <p>Resultados</p> </a></li>';
+    if (Date.parse(resp2.dtResults) < Date.now()) {
+      resultados = '<li class="nav-item " id="resultados"> <a class="nav-link" href="./resultados.php"> <span class="sidebar-mini"> Resultados</span> </a> </li>';
     }
-    if(Date.parse(resp2.dtIniEvaluation) < Date.now() && Date.parse(resp2.dtEndEvaluation) > Date.now() ){
-      avaliar = '<li id="trabalhosAvaliados"> <a href="./avaliacoesEnviadas.php"><i class="fa fa-book" aria-hidden="true"></i><p>Trabalhos Avaliados</p></a> </li>' + 
-                '<li id="avaliar"> <a href="./avaliar.php"> <i class="fa fa-briefcase" aria-hidden="true"></i> <p>Avaliar</p> </a> </li>';
-                
+    if (Date.parse(resp2.dtIniEvaluation) < Date.now() && Date.parse(resp2.dtEndEvaluation) > Date.now()) {
+      avaliar = '<li class="nav-item " id="trabalhosAvaliados"> <a class="nav-link" href="./avaliacoesEnviadas.php"> <span class="sidebar-mini"> Avaliados </span> </a> </li>' +
+        '<li class="nav-item "><li class="nav-item " id="avaliar"> <a class="nav-link" href="./avaliar.php"> <span class="sidebar-mini"> Avaliar </span> </a> </li>';
+
     }
 
-    if(resp1 == 0) {
+    if (resp1 == 0) {
       botoes =
-        '<li id="evento"> <a href="./evento.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>'+
+        '<li id="evento"> <a href="./evento.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>' +
+        '<li class="nav-item "><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li> <div class="collapse" id="pages1"><ul class="nav">' +
         resultados +
         avaliar +
+        trabalhosEnviados +
+        '</ul> </div></li>' +
         participar +
-        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
-        '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>'+
-        '<li id="criarUser"><a href="./criaruser.php"><i class="fa fa-user-plus" aria-hidden="true"></i><p>Criar Utilizador</p></a></li>'+
+        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>' +
+        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-user-plus" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="criarUser"> <a class="nav-link" href="./criaruser.php"> <span class="sidebar-mini"> Criar Utilizador </span> </a> </li><li class="nav-item" id="gerirUtilizadores"> <a class="nav-link" href="./gerirutilizadores.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>'+
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
-    } else if(resp1 == 1) { // comissão organizadora
+    } else if (resp1 == 1) { // comissão organizadora
       botoes =
+        '<li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +
         resultados +
+        trabalhosEnviados +
+        '</ul> </div>' +
         participar +
-        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>'+
-        '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>'+
+        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>' +
+        '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>' +
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
-    } else if(resp1 == 2) { // comissão cientifica
+    } else if (resp1 == 2) { // comissão cientifica
       botoes =
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
-    } else{ //autor , orador, 
+    } else { //autor , orador, 
       botoes =
+        '<li class="nav-item"><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +
         resultados +
+        trabalhosEnviados +
+        '</ul> </div></li>' +
         participar +
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
     }
@@ -131,9 +139,9 @@
 
     success: function (result) {
       resp1 = JSON.parse(result);
-      resp1 = resp1[0].iIdUserType; 
+      resp1 = resp1[0].iIdUserType;
       load[0] = true;
-      if(load[0] && load[1]){
+      if (load[0] && load[1]) {
         rmvDivs();
       }
     }
@@ -146,12 +154,12 @@
     success: function (result) {
       resp2 = JSON.parse(result);
       load[1] = true;
-      if(load[0] && load[1]){
+      if (load[0] && load[1]) {
         rmvDivs();
       }
     }
   })
-  
+
 
 </script>
 <!-- Navbar -->

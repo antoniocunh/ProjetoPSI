@@ -2533,7 +2533,7 @@ body {
   transition: all 300ms ease 0s;
 }
 
-/*.dropdown-toggle:after,
+.dropdown-toggle:after,
 .bootstrap-switch-label:before,
 .caret {
   -webkit-transition: all 150ms ease 0s;
@@ -2551,7 +2551,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
-}*/
+}
 
 .button-bar {
   display: block;
@@ -4662,7 +4662,7 @@ License - nucleoapp.com/license/
 
 .sidebar .nav .caret,
 .off-canvas-sidebar .nav .caret {
-  top: 14px;
+  top: 20px;
   position: absolute;
   right: 10px;
 }
@@ -4897,6 +4897,10 @@ License - nucleoapp.com/license/
 .off-canvas-sidebar[data-color="white"] .logo:after {
   background-color: #66615B;
   opacity: .4;
+}
+.sidebar-mini{
+  font-size: 10px;
+  padding-left: 40px;
 }
 
 .sidebar[data-color="white"] .user .info a span,
