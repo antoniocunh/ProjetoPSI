@@ -57,12 +57,12 @@ require_once 'obj.ResetPassword.php';
               <div id="div-error"></div>
               <div class="form-group">
                 <label>Nova Palavra-passe</label>
-                <input type="password" class="form-control" placeholder="Palavra-passe" name="pass" id="pass1" required />
+                <input type="password" class="form-control" placeholder="Palavra-passe" name="pass" id="pass" required />
                 <span id="check-e"></span>
               </div>
               <div class="form-group">
                 <label>Repita a Palavra-passe</label>
-                <input type="password" class="form-control" placeholder="Repita Palavra-passe" name="confirm-pass" id="pass2" required />
+                <input type="password" class="form-control" placeholder="Repita Palavra-passe" name="confirmPass" id="confirmPass" required />
               </div>
 
               <div class="form-group">
@@ -83,7 +83,6 @@ require_once 'obj.ResetPassword.php';
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../../assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="../../assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="../../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>

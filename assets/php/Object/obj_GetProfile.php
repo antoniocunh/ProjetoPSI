@@ -1,11 +1,10 @@
 
 <?php
-     session_start();
-       
-     require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
- 
-     $CurrentUser = new User();
-     $CurrentUser->readObject($_SESSION["username"]);
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
 
-    echo json_encode($CurrentUser);
+$CurrentUser = new User();
+$CurrentUser->readObject($_SESSION["username"]);
+
+echo json_encode($CurrentUser);
 ?>

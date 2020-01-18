@@ -2,3 +2,6 @@
     color: red;
     
 }
+input[type=file]{ 
+    color:transparent;
+}

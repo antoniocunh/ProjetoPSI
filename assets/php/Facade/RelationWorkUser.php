@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS RELATION_WORK_USER
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class RelationWorkUser extends Bridge implements JsonSerializable
 {
@@ -19,7 +20,7 @@ class RelationWorkUser extends Bridge implements JsonSerializable
     //construtor da class relationworkuser
     public function __construct()
     {
-        parent::__construct("tb_RelationWorkUser", "iIdRelationWorkUser", "rwu");
+        parent::__construct("tb_relationworkuser", "iIdRelationWorkUser", "rwu");
     }
 
     public function readObject($id)

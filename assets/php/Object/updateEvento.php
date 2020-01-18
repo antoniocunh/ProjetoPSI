@@ -1,6 +1,9 @@
 <?php
-    require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Event.php");
-    $event = new Event();
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Event.php");
+$event = new Event();
+if (isset($_POST["vcTitle"])) {
     $event->readObject("0");
     $event->setVcTitle($_POST["vcTitle"]);
     $event->setVcLocal($_POST["vcLocal"]);
@@ -18,5 +21,7 @@
     $event->setVcDescription($_POST["vcDescription"]);
     $event->setVcAbout($_POST["vcAbout"]);
     $event->UpdateObject();
-    header("location: " .  $_SERVER["DOCUMENT_NAME"] . "/ProjetoPSI/Dashboard/pages/evento.php");
-?>
+    echo json_encode(["msg" => "Evento atualizado com sucesso"]);
+}else{
+    echo json_encode(["msg" => "Não foi possivel atualizar o evento"]);
+}

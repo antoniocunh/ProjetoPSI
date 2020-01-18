@@ -29,7 +29,7 @@ if($_GET['code'] == "")
             if (isset($_POST['btn-reset-pass'])) 
             {
                 $Password  = $_POST['pass'];
-                $SPassword= $_POST['confirm-pass'];
+                $SPassword= $_POST['confirmPass'];
 
                 if ($SPassword !== $Password)
                 {

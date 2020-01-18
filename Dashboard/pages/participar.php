@@ -14,7 +14,8 @@
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/validacaoDatas/obj_DtSubmition.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
 ?>
 
 <!DOCTYPE html>
@@ -48,9 +49,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
 <body style="background-color : #f4f3ef">
   <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html");
+      $(document).on('DOMNodeInserted', function(e) {
         $("#participar").addClass("active");
-      });
+      })
     })
   </script>
   <div id="sidebar"></div>
@@ -62,7 +64,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
         <div class="content">
           <div class="row">
             <div class="col-md-12">
-              <div class="card ">
+              <!--<div class="card ">
                 <div class="card-header ">
                   <h5 class="card-title">Participar</h5>
 
@@ -76,7 +78,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                     Participar
                   </button>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
           <div class="row">
@@ -86,7 +88,8 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
                 <div class="card-body">
-                  <form id="InsertWork" name="InsertWork" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
+                  <iframe width="0" height="0" border="0" class="d-none" name="dummyframe" id="dummyframe"></iframe>
+                  <form id="InsertWork" name="InsertWork" target="dummyframe" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">

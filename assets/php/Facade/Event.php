@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS EVENT
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Event extends Bridge implements JsonSerializable
 {
@@ -30,7 +31,7 @@ class Event extends Bridge implements JsonSerializable
     //construtor da class event
     public function __construct()
     {
-        parent::__construct("tb_Event", "iIdEvent", "eve");
+        parent::__construct("tb_event", "iIdEvent", "eve");
     }
     
      

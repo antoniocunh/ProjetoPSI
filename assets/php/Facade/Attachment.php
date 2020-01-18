@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS ATTACHMENT
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Attachment extends Bridge implements JsonSerializable
 {
@@ -14,12 +15,12 @@ class Attachment extends Bridge implements JsonSerializable
     private $iIdWork;
     private $blAttachment;
     private $vcTitle;
-    private $vcState;
+    private $enumState;
 
     //construtor da class attachment
     public function __construct()
     {
-        parent::__construct("tb_Attachment", "iIdAttachment", "att");
+        parent::__construct("tb_attachment", "iIdAttachment", "att");
     }
     
 
@@ -97,7 +98,7 @@ class Attachment extends Bridge implements JsonSerializable
      */ 
     public function getBlAttachment()
     {
-        return $this->blAttachment;
+        return base64_encode($this->blAttachment);
     }
 
     /**
@@ -109,11 +110,11 @@ class Attachment extends Bridge implements JsonSerializable
     }
 
     /**
-     * Get the value of vcState
+     * Get the value of enumState
      */ 
-    public function getVcState()
+    public function getEnumState()
     {
-        return $this->vcState;
+        return $this->enumState;
     }
 
     /**
@@ -165,13 +166,13 @@ class Attachment extends Bridge implements JsonSerializable
     }
 
     /**
-     * Set the value of vcState
+     * Set the value of enumState
      *
      * @return  self
      */ 
-    public function setVcState($vcState)
+    public function setEnumState($enumState)
     {
-        $this->vcState = $vcState;
+        $this->enumState = $enumState;
 
         return $this;
     }

@@ -14,7 +14,8 @@
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/validacaoDatas/obj_DtResults.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
 ?>
 
 <!DOCTYPE html>
@@ -42,159 +43,68 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLo
 <body style="background-color : #f4f3ef">
   <script>
     $(document).ready(function() {
-      $("#sidebar").load("../../Common/sidebar-dashboard.html", function() {
+      $("#sidebar").load("../../Common/sidebar-dashboard.html");
+      $(document).on('DOMNodeInserted', function(e) {
         $("#resultados").addClass("active");
-      });
+      })
     })
   </script>
   <div id="sidebar"></div>
 
   <div class="main-panel">
-      <div class="content mt-0">
-        <div class="container-fluid">
-    <div class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">Resultados</h4>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class=" text-primary">
-                    <th>
-                      ID
-                    </th>
-                    <th>
-                      Nome do Autor
-                    </th>
-                    <th>
-                      Trabalho
-                    </th>
-                    <th>
-                      Nota
-                    </th>
-                    <th>
-                      Critica
-                    </th>
-
-                    <th>
-                      Enviar Trabalho final
-                    </th>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
+    <div class="content mt-0">
+      <div class="container-fluid">
+        <div class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Resultados</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table" id="tb_resultados">
+                      <thead class=" text-primary">
+                        <th>
+                          Nome do Autor
+                        </th>
+                        <th>
+                          Trabalho
+                        </th>
+                        <th>
+                          Nota
+                        </th>
+                        <th>
+                          Critica
+                        </th>
+                        <th>
+                          Enviar Trabalho final
+                        </th>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-        </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Gestão de Utilizadores</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label>Nome</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
-              </div>
-              <div class="form-group">
-                <label>Apelido</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apelido">
-              </div>
-              <div class="form-group">
-                <label>Morada</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Morada">
-              </div>
-              <div class="form-group">
-                <label>Pais</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Pais">
-              </div>
-              <div class="form-group">
-                <label>Cidade</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Cidade">
-              </div>
-              <div class="form-group">
-                <label>Código-Postal</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Código-Postal">
-              </div>
-              <div class="form-group">
-                <label>E-mail</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="E-mail">
-              </div>
-              <div class="form-group">
-                <label>Telemovel</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telemovel">
-              </div>
-              <div class="form-group">
-                <label>Organização</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Organização">
-              </div>
+    <!--   Core JS Files   -->
+    <script src="../../assets/js/core/popper.min.js"></script>
+    <script src="../../assets/js/core/bootstrap.min.js"></script>
+    <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-            <button type="button" class="btn btn-danger">Apagar</button>
-            <button type="button" class="btn btn-warning">Update</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- fim Modal -->
-    <footer class="footer footer-black  footer-white ">
-      <div class="container-fluid">
-        <div class="row">
-          <nav class="footer-nav">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="credits ml-auto">
-            <span class="copyright">
-              ©
-              <script>
-                document.write(new Date().getFullYear())
-              </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="../../assets/js/core/jquery.min.js"></script>
-  <script src="../../assets/js/core/popper.min.js"></script>
-  <script src="../../assets/js/core/bootstrap.min.js"></script>
-  <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-
-  <!-- Chart JS -->
-  <script src="../../assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+    <!-- Chart JS -->
+    <script src="../../assets/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+    <script src="./script/scr_resultados.js"></script>
 
 
 </body>

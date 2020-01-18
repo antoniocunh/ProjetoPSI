@@ -1,24 +1,26 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS EVALUATION
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Evaluation extends Bridge implements JsonSerializable
 {
 
     private $iIdEvaluation;
     private $iIdWork;
+    private $iIdReviewer;
     private $vcReview;
     private $iRate;
 
     //construtor da class evaluation
     public function __construct()
     {
-        parent::__construct("tb_Evaluation", "iIdEvaluation", "EVA");
+        parent::__construct("tb_evaluation", "iIdEvaluation", "EVA");
     }
 
     public function readObject($id)
@@ -109,6 +111,14 @@ class Evaluation extends Bridge implements JsonSerializable
     }
 
     /**
+     * Get the value of iIdReviewer
+     */ 
+    public function getIIdReviewer()
+    {
+        return $this->iIdReviewer;
+    }
+    
+    /**
      * Set the value of iIdEvaluation
      *
      * @return  self
@@ -152,6 +162,18 @@ class Evaluation extends Bridge implements JsonSerializable
     public function setIRate($iRate)
     {
         $this->iRate = $iRate;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iIdReviewer
+     *
+     * @return  self
+     */ 
+    public function setIIdReviewer($iIdReviewer)
+    {
+        $this->iIdReviewer = $iIdReviewer;
 
         return $this;
     }

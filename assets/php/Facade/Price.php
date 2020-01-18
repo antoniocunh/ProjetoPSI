@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 
 
 /* ==================================================================== 
         CLASS PRICE
 ====================================================================*/
 
-require_once($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Price extends Bridge implements JsonSerializable
 {
@@ -17,7 +18,7 @@ class Price extends Bridge implements JsonSerializable
     //construtor da class price
     public function __construct()
     {
-        parent::__construct("tb_Price", "iIdPrice", "pr");
+        parent::__construct("tb_price", "iIdPrice", "pr");
     }
 
     public function readObject($id)

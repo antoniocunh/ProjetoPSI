@@ -1,9 +1,10 @@
 <?php
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Work.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
-var_dump($_FILES);
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Work.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
+
 if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
 
   //1º Insert
@@ -22,7 +23,7 @@ if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
   $Attachment->setiIdWork($Work->getIIdWork());
   $Attachment->setBlAttachment($_FILES["file"]["tmp_name"]);
   $Attachment->setVcTitle($_FILES["file"]["name"]);
-  $Attachment->setVcState("d");
+  $Attachment->setenumState("Provisório");
   $Attachment->InsertObject();
 
   //3º Insert
@@ -35,22 +36,22 @@ if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
     $RelationWorkUser->setIIdUser($user->getIIdUser()); // Vai buscar o id consoante o vcusername escolhido na interface
     $RelationWorkUser->setIIdWork($Work->getIIdWork());
     if (in_array($element, $_POST["speakers"])) {
-      $mainAutor = true;
+      $speakers = 1;
     } else {
-      $mainAutor = false;
+      $speakers = 0;
     }
 
     if ($element == $_POST["autorP"]) {
-      $autorP = true;
+      $autorP = 1;
     } else {
-      $autorP = false;
+      $autorP = 0;
     }
 
-    $RelationWorkUser->setBMainAuthor($mainAutor);
-    $RelationWorkUser->setBSpeaker($autorP);
+    $RelationWorkUser->setBMainAuthor($autorP);
+    $RelationWorkUser->setBSpeaker($speakers);
     $RelationWorkUser->InsertObject();
   }
-  echo json_encode(["msg" => "Inserido com sucesso!"]);
+  echo json_encode(["msg" => $_FILES["file"]["tmp_name"] . "Inserido com sucesso!"]);
 } 
 else 
 {

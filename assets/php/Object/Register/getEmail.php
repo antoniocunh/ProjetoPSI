@@ -1,7 +1,7 @@
 <?php
 //Mudar para o Bridge ou o Facade Que Interage com isto Provavelmente um Register.php
     
-    require($_SERVER["DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
+    require($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/User.php");
 
     if(isset($_POST['email'])){  
         $user = new User();
