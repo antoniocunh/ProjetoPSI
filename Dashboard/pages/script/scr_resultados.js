@@ -1,3 +1,4 @@
+$(document.body).hide();
 $(function () {
     $(document).ready(function () {
         var resp;
@@ -29,7 +30,7 @@ $(function () {
 
                     html +=  "</td>";
                 }
-                //html = html + '<td><form id="form' + element[5] + '"><input id="f' + element[5]  + '" type="file" class="submitTrabalho" /></form></tr>';
+                html = html + '<td><form id="form' + element[5] + '"><input id="f' + element[5]  + '" type="file" class="submitTrabalho" /></form></tr>';
                 $("#tb_resultados").append(html);
             })
         }
@@ -40,7 +41,6 @@ $(function () {
             var file = $("#" + this.id)[0].files[0];
             fd.append('file', file);
             fd.append('iIdWork', this.id.substring(1, this.id.length));
-            console.log(fd.get("file"));
             $.ajax({
                 url: "../../assets/php/Object/obj_InsertTrabalhoFinal.php",
                 data: fd,
@@ -53,5 +53,7 @@ $(function () {
                 }
             })
         })
+         
+    $(document.body).fadeIn(300);
     })
 })

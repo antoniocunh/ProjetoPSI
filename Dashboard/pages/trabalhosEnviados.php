@@ -46,7 +46,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
     $(document).ready(function() {
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
-        $("#avaliar").addClass("active");
+        $("#trabalhosEnviados").addClass("active");
       })
     })
   </script>
@@ -59,7 +59,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Avaliação de Trabalhos</h4>
+                <h4 class="card-title">Trabalhos Enviados</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -85,50 +85,6 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           </div>
         </div>
       </div>
-      <!-- Modal -->
-      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="ModalLabel">Avaliação</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label>ID do Trabalho</label>
-                  <input type="text" class="form-control" id="iIdWork" name="iIdWork" disabled>
-                </div>
-                <div class="form-group">
-                  <label for="FormControlSelect1">Nota</label>
-                  <select class="form-control" id="FormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="message-text" class="col-form-label">Critica</label>
-                  <textarea class="form-control" id="vcReview"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button id="insertReview" type="button" class="btn btn-warning">Enviar Avaliação</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- fim Modal -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -166,7 +122,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
       <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
       <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-      <script src="./script/scr_avaliar.js?v=2"></script>
+      <script src="./script/scr_trabalhosEnviados.js?v=2"></script>
 </body>
 
 </html>

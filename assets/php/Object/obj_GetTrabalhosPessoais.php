@@ -22,30 +22,9 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU"). 
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBATT", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_worktype", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
-        $RelationWorkUser->Where([["bMainAuthor", '=', null ]], true);
+        $RelationWorkUser->Where([["rwu.bMainAuthor", '=', "and"],["TBU.vcUsername", '=', null ]], false);
 
-        /*
-            SELECT 
-                TBA.iIdWork, 
-                TBA.vcTitle,
-                TBA.vcSummary, 
-                TBU.vcName, 
-                TBU.vcLastName, 
-                TBATT.blAttachment
-         FROM tb_RelationWorkUser AS rwu
-         INNER JOIN tb_work AS TBA ON 
-            rwu.iIdWork = TBA.iIdWork 
-        INNER JOIN tb_user AS TBU ON 
-            rwu.iIDUser = TBU.iIDUser 
-        INNER JOIN tb_attachment AS TBATT ON
-            TBA.iIdWork = TBATT.iIdWork 
-        WHERE rwu.bMainAuthor=?
-        
-        */
-    
-    //<<$obj->picture = base64_encode($binaryData); //Nesse Binary tem de vir so a blob
-
-    echo json_encode($RelationWorkUser->QueryExecute($Query, ["1"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    echo json_encode($RelationWorkUser->QueryExecute($Query, ["1", $_SESSION["username"]], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 
     /*
     http://localhost/ProjetoPSI/Dashboard/pages/avaliar.php
