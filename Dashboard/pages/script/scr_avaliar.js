@@ -7,6 +7,9 @@ $(function () {
         url: "../../assets/php/Object/obj_GetTrabalhos.php",
         success: function (result) {
             resp = JSON.parse(result);
+            if(jQuery.isEmptyObject(resp)){
+                $("#tb_Work").html("<p>Neste preciso momento você não tem nunhum trabalho para avaliar.</p>");
+            }
             getRows();
         }
     });

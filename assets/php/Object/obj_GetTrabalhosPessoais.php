@@ -22,9 +22,9 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU"). 
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBATT", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_worktype", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
-        $RelationWorkUser->Where([["rwu.bMainAuthor", '=', "and"],["TBU.vcUsername", '=', null ]], false);
+        $RelationWorkUser->Where([["TBU.vcUsername", '=', null ]], false);
 
-    echo json_encode($RelationWorkUser->QueryExecute($Query, ["1", $_SESSION["username"]], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    echo json_encode($RelationWorkUser->QueryExecute($Query, [$_SESSION["username"]], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 
     /*
     http://localhost/ProjetoPSI/Dashboard/pages/avaliar.php

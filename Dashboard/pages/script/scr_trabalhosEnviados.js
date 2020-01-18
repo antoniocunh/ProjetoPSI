@@ -8,7 +8,7 @@ $(function () {
         success: function (result) {
             resp = JSON.parse(result);
             if(jQuery.isEmptyObject(resp)){
-                $("#tb_Work").html("<p>Neste preciso momento você não foi enviou nenhum trabalho</p>");
+                $("#tb_Work").html("<p>Neste preciso momento você não enviou nenhum trabalho.</p>");
             }
             getRows();
         }

@@ -105,7 +105,7 @@ $(function () {
 
     $(document).on('click', "#submit", function (e) {
       alert("Trabalho enviado com sucesso!");
-      location.reload();
+      //location.reload();
     });
 
 

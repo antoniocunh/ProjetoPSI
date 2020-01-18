@@ -27,7 +27,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Resultado dos Trabalhos
+    Trabalhos Avaliados
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -45,7 +45,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
     $(document).ready(function() {
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
-        $("#resultados").addClass("active");
+        $("#trabalhosAvaliados").addClass("active");
       })
     })
   </script>
@@ -59,7 +59,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">Resultados</h4>
+                  <h4 class="card-title">Trabalhos Avaliados</h4>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -76,9 +76,6 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                         </th>
                         <th>
                           Critica
-                        </th>
-                        <th>
-                          Enviar Trabalho final
                         </th>
                       </thead>
                       <tbody>
@@ -104,7 +101,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
     <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-    <script src="./script/scr_resultados.js"></script>
+    <script src="./script/scr_avaliacoesEnviadas.js"></script>
 
 
 </body>
