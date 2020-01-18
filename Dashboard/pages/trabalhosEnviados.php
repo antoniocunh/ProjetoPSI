@@ -16,7 +16,6 @@ The above copyright notice and this permission notice shall be included in all c
 <?php
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/validacaoDatas/obj_DtEvaluation.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
-require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +45,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
     $(document).ready(function() {
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
+        $("#pages1").addClass("show");
+        $("#trabalhos1").addClass("active");
         $("#trabalhosEnviados").addClass("active");
       })
     })

@@ -49,6 +49,13 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
 <body style="background-color : #f4f3ef">
   <script>
     $(document).ready(function() {
+      $.ajax({
+        url: "../../assets/php/Object/obj_GetRoleUser.php",
+        success: function(result) {
+          resp = JSON.parse(result);
+          console.log(resp[0].iIdUserType);
+        }
+      })
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
         $("#participar").addClass("active");
@@ -64,7 +71,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         <div class="content">
           <div class="row">
             <div class="col-md-12">
-              <!--<div class="card ">
+              <div class="card ">
                 <div class="card-header ">
                   <h5 class="card-title">Participar</h5>
 
@@ -74,11 +81,13 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                 </div>
                 <div class="card-footer ">
                   <hr>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                    Participar
-                  </button>
+                  <form action="../../assets/php/Object/obj_SetParticipante.php">
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                      Participar
+                    </button>
+                  </form>
                 </div>
-              </div>-->
+              </div>
             </div>
           </div>
           <div class="row">
