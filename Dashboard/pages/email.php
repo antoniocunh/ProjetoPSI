@@ -27,7 +27,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Enviar Email
+    Certificados
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -59,49 +59,35 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Enviar E-mail</h4>
+                <h4 class="card-title">Certificados</h4>
               </div>
               <div class="card-body">
-                <form>
+                <form method="POST" action="../assets/php/Object/obj.Certificates.php" name="certificados">
                   <div class="row">
-                    <div class="col-md-5 pr-1">
+                    <div class="col-md-5">
                       <div class="form-group">
-                        <label>De:</label>
-                        <input name="email" type="email" placeholder="Email" class="form-control">
+                        <label>Titulo</label>
+                        <input name="subject" type="text" placeholder="Titulo" class="form-control">
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col">
+                    <div class="col-md-5">
                       <div class="form-group">
-                        <label for="exampleFormControlSelect1">Selecionar grupo</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                          <option>Participante</option>
-                          <option>Autor</option>
-                          <option>Orador</option>
-                          <option>Comissão Cientifica</option>
-                          <option>Comissão Organizadora</option>
-                        </select>
+                        <label>Selecionar grupo</label>
+                        <select id="role" name="role" class="form-control"></select>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-10">
                       <div class="form-group">
                         <label>Mensagem</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Descrição"></textarea>
+                        <textarea name="message" rows="4" cols="80" class="form-control" placeholder="Descrição"></textarea>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-4 mt-4">
-                      <div class="image-upload-wrap h-100 ">
-                        <input name="file" class="file-upload-input" type='file' accept=".docx, .pdf" />
-                        <div class="drag-text"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-danger">Enviar E-mail</button>
+                  <button type="button" class="btn btn-danger" data-toggle="modal"  data-target="#Modal">Enviar</button>
                   <div class="clearfix"></div>
                 </form>
               </div>
@@ -111,6 +97,32 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         </div>
       </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Enviar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                  Tem a certeza que quer enviar os certificados para esta role?
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="divider"></div>
+                <div class="right-side">
+                  <button id="submit" type="button" class="btn btn-danger">Confirmar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Modal -->
     <footer class="footer footer-black  footer-white ">
       <div class="container-fluid">
         <div class="row">
@@ -138,7 +150,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-
+  <script src="./script/getRoles.js"></script>
 </body>
 
 </html>

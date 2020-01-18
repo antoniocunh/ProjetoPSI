@@ -167,7 +167,6 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                 <div class="card-footer ">
                   <hr>
                   <button type="submit" class="btn btn-danger" id="submit">
-                    <!-- data-toggle="modal"  data-target="#Modal">-->
                     Enviar Trabalho
                   </button>
                 </div>
