@@ -51,7 +51,7 @@ if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
     $RelationWorkUser->setBSpeaker($speakers);
     $RelationWorkUser->InsertObject();
   }
-  echo json_encode(["msg" => "Inserido com sucesso!"]);
+  echo json_encode(["msg" => $_FILES["file"]["tmp_name"] . "Inserido com sucesso!"]);
 } 
 else 
 {

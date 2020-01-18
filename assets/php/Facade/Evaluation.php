@@ -13,6 +13,7 @@ class Evaluation extends Bridge implements JsonSerializable
 
     private $iIdEvaluation;
     private $iIdWork;
+    private $iIdReviewer;
     private $vcReview;
     private $iRate;
 
@@ -110,6 +111,14 @@ class Evaluation extends Bridge implements JsonSerializable
     }
 
     /**
+     * Get the value of iIdReviewer
+     */ 
+    public function getIIdReviewer()
+    {
+        return $this->iIdReviewer;
+    }
+    
+    /**
      * Set the value of iIdEvaluation
      *
      * @return  self
@@ -153,6 +162,18 @@ class Evaluation extends Bridge implements JsonSerializable
     public function setIRate($iRate)
     {
         $this->iRate = $iRate;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of iIdReviewer
+     *
+     * @return  self
+     */ 
+    public function setIIdReviewer($iIdReviewer)
+    {
+        $this->iIdReviewer = $iIdReviewer;
 
         return $this;
     }

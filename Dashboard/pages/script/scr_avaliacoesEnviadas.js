@@ -4,11 +4,11 @@ $(function () {
         var resp;
 
         $.ajax({
-            url: "../../assets/php/Object/obj_GetResultados.php",
+            url: "../../assets/php/Object/obj_GetAvaliacoesPessoais.php",
             success: function (result) {
                 resp = JSON.parse(result);
                 if(jQuery.isEmptyObject(resp)){
-                    $("#tb_resultados").html("<p>Neste preciso momento você não recebeu nenhuma avaliação.</p>");
+                    $("#tb_resultados").html("<p>Neste preciso momento você não avaliou nenhum trabalho.</p>");
                 }
                 writeRows();
             }
@@ -33,29 +33,9 @@ $(function () {
 
                     html +=  "</td>";
                 }
-                html = html + '<td><form id="form' + element[5] + '"><input id="f' + element[5]  + '" type="file" class="submitTrabalho" /></form></tr>';
                 $("#tb_resultados").append(html);
             })
         }
-
-        $(document).on("change", ".submitTrabalho", function(e){
-            e.preventDefault();
-            var fd = new FormData();
-            var file = $("#" + this.id)[0].files[0];
-            fd.append('file', file);
-            fd.append('iIdWork', this.id.substring(1, this.id.length));
-            $.ajax({
-                url: "../../assets/php/Object/obj_InsertTrabalhoFinal.php",
-                data: fd,
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'POST',
-                success: function (result) {
-                    console.log(result);
-                }
-            })
-        })
          
     $(document.body).fadeIn(300);
     })
