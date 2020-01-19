@@ -2,7 +2,7 @@
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
-
+var_dump($_FILES);
 if (isset($_FILES["file"]) && isset($_POST["iIdWork"])) {
   //1º Insert
   try{
@@ -15,10 +15,11 @@ if (isset($_FILES["file"]) && isset($_POST["iIdWork"])) {
   $Attachment->InsertObject();
   $msg = "Trabalho final inserido com sucesso.";
   }catch(PDOException $e){
-      $msg = "Só pode entregar um trabalho final!";
+      $msg = "Só pode entregar 1 trabalho final!";
   }
+}else{
+  $msg = "Não foi possivel adicionar o trabalho final á base de dados.";
 }
-$msg = "Não foi possivel adicionar o trabalho final á base de dados.";
 echo json_encode(["msg"=>$msg]);
 
 ?>

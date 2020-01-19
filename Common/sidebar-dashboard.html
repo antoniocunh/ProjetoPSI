@@ -98,7 +98,7 @@
         '</ul> </div></li>' +
         participar +
         '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>' +
-        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-user-plus" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="criarUser"> <a class="nav-link" href="./criaruser.php"> <span class="sidebar-mini"> Criar Utilizador </span> </a> </li><li class="nav-item" id="gerirUtilizadores"> <a class="nav-link" href="./gerirutilizadores.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>'+
+        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-user-plus" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="criarUser"> <a class="nav-link" href="./criaruser.php"> <span class="sidebar-mini"> Criar Utilizador </span> </a> </li><li class="nav-item" id="gerirUtilizadores"> <a class="nav-link" href="./gerirutilizadores.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>' +
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
@@ -119,6 +119,10 @@
         '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
+    } else if (resp1 == 5 || 7) {
+      botoes =
+        participar +
+        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
     } else { //autor , orador, 
       botoes =
         '<li class="nav-item"><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +

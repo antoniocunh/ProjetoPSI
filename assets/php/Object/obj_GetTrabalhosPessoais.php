@@ -12,6 +12,7 @@
         array("TBU", "vcName"),
         array("TBTW", "vcDescription"),
         array("TBATT", "vcTitle"),
+        array("TBATT", "enumState"),
         array("TBATT", "iIdAttachment"),
         array("TBU", "vcLastName")
     );

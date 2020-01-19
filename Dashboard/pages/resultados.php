@@ -74,12 +74,6 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                           Trabalho
                         </th>
                         <th>
-                          Nota
-                        </th>
-                        <th>
-                          Critica
-                        </th>
-                        <th>
                           Enviar Trabalho final
                         </th>
                       </thead>
@@ -94,19 +88,41 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <!--   Core JS Files   -->
-    <script src="../../assets/js/core/popper.min.js"></script>
-    <script src="../../assets/js/core/bootstrap.min.js"></script>
-    <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  </div>
+  <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Criticas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="bdCriticas">
+          <div class="alert alert-danger" role="alert">
+            Você está prestes a inscrever-se na conferência como participante
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="right-side">
+            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="../../assets/js/core/popper.min.js"></script>
+  <script src="../../assets/js/core/bootstrap.min.js"></script>
+  <script src="../../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-    <!-- Chart JS -->
-    <script src="../../assets/js/plugins/chartjs.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
-    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-    <script src="./script/scr_resultados.js"></script>
+  <!-- Chart JS -->
+  <script src="../../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+  <script src="./script/scr_resultados.js"></script>
 
 
 </body>

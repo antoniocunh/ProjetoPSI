@@ -7,6 +7,8 @@
     (
         array("TBU", "vcName"),
         array("TBW", "vcTitle"),
+        array(null, "iRate"),
+        array(null, "vcReview"),
         array("TBU", "vcLastName"),
         array("TBA", "iIdAttachment")
     );
