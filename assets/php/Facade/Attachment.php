@@ -1,29 +1,35 @@
 <?php
 ini_set('display_errors', 1);
 
-
-/* ==================================================================== 
-        CLASS ATTACHMENT
-====================================================================*/
+/**
+ * Class dos Attachments.
+ * 
+ * Class correspondente à tabela de attachments, onde se encontra e trata a informação dos attachments.
+ * Class attachments extende a class Brigde.
+ */
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Attachment extends Bridge implements JsonSerializable
 {
 
-    private $iIdAttachment;
-    private $iIdWork;
-    private $blAttachment;
-    private $vcTitle;
-    private $enumState;
+    private $iIdAttachment; //atributo id 
+    private $iIdWork; //atributo id do trabalho
+    private $blAttachment; //atributo blattachment
+    private $vcTitle; // atributo do titulo
+    private $enumState; //atributo do estado
 
-    //construtor da class attachment
+    /**
+     * construtor da class attachment
+     */
     public function __construct()
     {
         parent::__construct("tb_attachment", "iIdAttachment", "att");
     }
     
-
+    /**
+     * lê os dados de um attachment de acordo com o seu id.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -34,11 +40,17 @@ class Attachment extends Bridge implements JsonSerializable
         }
     }
 
+    /**
+     * Inserir o objecto attachment na base de dados.
+     */
     public function InsertObject()
     {
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto attachment na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -54,6 +66,9 @@ class Attachment extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
     
+    /**
+     * Apagar o objeto attachment da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -62,6 +77,9 @@ class Attachment extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+    /**
+     * Apaga os dados dos atributos do objeto attachment.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -69,6 +87,9 @@ class Attachment extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto attachment para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {

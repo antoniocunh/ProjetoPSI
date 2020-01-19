@@ -2,26 +2,34 @@
 ini_set('display_errors', 1);
 
 
-/* ==================================================================== 
-        CLASS USER_TYPE
-====================================================================*/
+/**
+ * Class do tipo de user.
+ * 
+ * Class correspondente à tabela de tipo de user, onde se encontra e trata a informação dos tipos de user.
+ * Class tipo de user extende a class Brigde.
+ */
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class UserType extends Bridge implements JsonSerializable
 {
 
-    private $iIdTypeUser;
-    private $iIdPrice;
-    private $vcDescription;
+    private $iIdTypeUser;//id
+    private $iIdPrice;//id do preço
+    private $vcDescription;//descrição
     
-    //construtor da class usertype
+    /**
+     * construtor da class usertype
+     */
     public function __construct()
     {
         parent::__construct("tb_usertype", "iIdUserType", "ut");
     }
     
 
+    /**
+     * lê os dados de um tipo de user de acordo com o seu id.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -32,11 +40,17 @@ class UserType extends Bridge implements JsonSerializable
         }
     }
 
+    /**
+     * Inserir o objecto tipo de user na base de dados.
+     */
     public function InsertObject()
     {
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto tipo de user na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -52,6 +66,9 @@ class UserType extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
     
+    /**
+     * Apagar o objeto tipo de user da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -60,6 +77,9 @@ class UserType extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+    /**
+     * Apaga os dados dos atributos do objeto tipo de user.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -67,6 +87,9 @@ class UserType extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto tipo de user para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {

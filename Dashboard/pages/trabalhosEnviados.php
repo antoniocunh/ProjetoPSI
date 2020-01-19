@@ -34,7 +34,9 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <!-- CSS Files -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
-  <script src="../../assets/js/core/jquery.min.js"></script>
+  <script src="../../assets/js/core/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 
 
@@ -64,7 +66,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table" id="tb_Work">
+                  <table  class="table table-striped" id="tb_Work">
                     <thead class=" text-primary">
                       <th>ID</th>
                       <th>Titulo do Trabalho</th>
@@ -72,12 +74,12 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                       <th>Nome</th>
                       <th>Tipo de Trabalho</th>
                       <th>Trabalho</th>
+                      <th>Tipo de Trabalho</th>
                     </thead>
-                    <tbody>
+                    <tbody id="tb_WorkBd">
                       <!--<td>
                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Avaliar</button>
                           </td>-->
-                      </tr>
                     </tbody>
                   </table>
                 </div>

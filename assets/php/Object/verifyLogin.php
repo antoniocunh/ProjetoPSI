@@ -11,7 +11,7 @@ ini_set('display_errors', 1);
     function validateUser($username, $password){
         $user = new User();
         $user->readObject($username);
-         if($user->GetVcPassword() != hashPass($password, $user->GetDtBirth())){
+        if($user->GetVcPassword() != hashPass($password, $user->GetDtBirth())){
             header("location: ../../Login/index.php");
             die();
         }

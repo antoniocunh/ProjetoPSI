@@ -2,27 +2,35 @@
 ini_set('display_errors', 1);
 
 
-/* ==================================================================== 
-        CLASS RELATION_WORK_USER
-====================================================================*/
+/**
+ * Class da Relação entre trabalho e user.
+ * 
+ * Class correspondente à tabela relationworkuser, onde se encontra e trata a informação da relationworkuser.
+ * Class relationworkuser extende a class Brigde.
+ */
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class RelationWorkUser extends Bridge implements JsonSerializable
 {
 
-    private $idRelation;
-    private $iIdUser;
-    private $iIdWork;
-    private $bMainAuthor;
-    private $bSpeaker;
+    private $idRelation;//id
+    private $iIdUser;//id do user
+    private $iIdWork;//id do trabalho
+    private $bMainAuthor;//autor principal
+    private $bSpeaker;//apresentador do trabalho
 
-    //construtor da class relationworkuser
+    /**
+     * construtor da class relationworkuser
+     */
     public function __construct()
     {
         parent::__construct("tb_relationworkuser", "iIdRelationWorkUser", "rwu");
     }
 
+    /**
+     * lê os dados de um objeto de acordo com o seu id.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -33,11 +41,17 @@ class RelationWorkUser extends Bridge implements JsonSerializable
         }
     }
 
+    /**
+     * Inserir o objecto na base de dados.
+     */
     public function InsertObject()
     {
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto user na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -53,6 +67,9 @@ class RelationWorkUser extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
     
+    /**
+     * Apagar o objeto da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -61,6 +78,9 @@ class RelationWorkUser extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+    /**
+     * Apaga os dados dos atributos do objeto.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -68,6 +88,9 @@ class RelationWorkUser extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {

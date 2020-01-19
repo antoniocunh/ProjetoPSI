@@ -1,11 +1,12 @@
 <?php
 ini_set('display_errors', 1);
 
-
-/* ==================================================================== 
-        CLASS SCOPE
-       ====================================================================*/
-
+/**
+ * Class do scope.
+ * 
+ * Class correspondente à tabela de scope, onde se encontra e trata a informação do scope.
+ * Class scope extende a class Brigde.
+ */
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 
@@ -13,15 +14,20 @@ class Scope extends Bridge implements JsonSerializable
 {
 
 
-    private $iIdScope;
-    private $vcName;
+    private $iIdScope;//id
+    private $vcName;//nome do scope
 
-    //construtor da class scope
+    /**
+     * construtor da class scope
+     */
     public function __construct()
     {
         parent::__construct("tb_scope", "iIdScope", "sc");
     }
 
+    /**
+     * lê os dados de um scope de acordo com o seu id.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -32,11 +38,17 @@ class Scope extends Bridge implements JsonSerializable
         }
     }
 
+    /**
+     * Inserir o objecto scope na base de dados.
+     */
     public function InsertObject()
     {
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto scope na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -52,6 +64,9 @@ class Scope extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
     
+    /**
+     * Apagar o objeto scope da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -60,6 +75,9 @@ class Scope extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+    /**
+     * Apaga os dados dos atributos do objeto scope.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -67,6 +85,9 @@ class Scope extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto scope para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {

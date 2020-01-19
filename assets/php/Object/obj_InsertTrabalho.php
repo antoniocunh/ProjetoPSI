@@ -5,8 +5,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Attachment.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/RelationWorkUser.php");
 
-if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
-
+if(isset($_POST["vcTitle"]) && isset($_POST["vcSummary"]) && isset($_POST["autorP"]) && isset($_POST["speakers"]) && isset($_POST["membros"])) {
   //1º Insert
   $Work = new Work();
   $Work->setIIdWork($Work->GetLastID("iIdWork")); //Set do last index
@@ -27,15 +26,20 @@ if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
   $Attachment->InsertObject();
 
   //3º Insert
-  foreach ($_POST["membros"] as $element) {
+  foreach (json_decode($_POST["membros"]) as $element) {
     $user = new User();
     $user->readObject($element);
+    if($user->getIIdUserType() == 7){
+      $user->setIIdUserType(4);
+      $user->UpdateObject();
+    }
+
     $RelationWorkUser = new RelationWorkUser();
     $RelationWorkUser->setIdRelation($RelationWorkUser->GetLastID("IdRelation")); //Set do last index
 
     $RelationWorkUser->setIIdUser($user->getIIdUser()); // Vai buscar o id consoante o vcusername escolhido na interface
     $RelationWorkUser->setIIdWork($Work->getIIdWork());
-    if (in_array($element, $_POST["speakers"])) {
+    if (in_array($element, json_decode($_POST["speakers"]))) {
       $speakers = 1;
     } else {
       $speakers = 0;
@@ -51,11 +55,10 @@ if (isset($_POST["vcTitle"]) && isset($_POST["vcSummary"])) {
     $RelationWorkUser->setBSpeaker($speakers);
     $RelationWorkUser->InsertObject();
   }
-  echo json_encode(["msg" => $_FILES["file"]["tmp_name"] . "Inserido com sucesso!"]);
-} 
-else 
-{
-  echo json_encode(["msg" => "Algo deu errado!"]);
+  $msg = "Inserido com sucesso!";
+} else {
+  $msg = "Algo deu errhhhhado!";
 }
+echo json_encode(["msg" => $msg]);
 
 ?>
