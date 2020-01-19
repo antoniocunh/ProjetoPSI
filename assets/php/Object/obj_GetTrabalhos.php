@@ -22,8 +22,7 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU"). 
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBATT", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_worktype", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
-        $RelationWorkUser->Where([["bMainAuthor", '=', null ]], true);
-
+        $RelationWorkUser->Where([["rwu.bMainAuthor", '=', "AND"], ["TBATT.enumState", "=", null]], false);
         /*
             SELECT 
                 TBA.iIdWork, 
@@ -45,7 +44,7 @@
     
     //<<$obj->picture = base64_encode($binaryData); //Nesse Binary tem de vir so a blob
 
-    echo json_encode($RelationWorkUser->QueryExecute($Query, ["1"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    echo json_encode($RelationWorkUser->QueryExecute($Query, ["1", "Provisório"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 
     /*
     http://localhost/ProjetoPSI/Dashboard/pages/avaliar.php

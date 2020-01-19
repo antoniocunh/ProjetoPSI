@@ -53,7 +53,16 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         url: "../../assets/php/Object/obj_GetRoleUser.php",
         success: function(result) {
           resp = JSON.parse(result);
-          console.log(resp[0].iIdUserType);
+          var temp = resp[0].iIdUserType;
+          console.log(temp);
+          if(temp != 5 && temp != 7){
+            $("#participarBox").remove();
+          }
+          if(temp == 5){
+            $("#enviarTrabalho").remove();
+            $("#textParticipar").html("Você já está inscrito no evento como participante.");
+            $("#botaoParticipante").remove();
+          }
         }
       })
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
@@ -69,28 +78,26 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
     <div class="content mt-0">
       <div class="container-fluid">
         <div class="content">
-          <div class="row">
+          <div class="row" id="participarBox">
             <div class="col-md-12">
               <div class="card ">
                 <div class="card-header ">
                   <h5 class="card-title">Participar</h5>
 
                 </div>
-                <div class="card-body ">
+                <div class="card-body" id="textParticipar">
                   <p>Se deseja participar na conferência, confira no botão abaixo</p>
                 </div>
                 <div class="card-footer ">
                   <hr>
-                  <form action="../../assets/php/Object/obj_SetParticipante.php">
-                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" id="botaoParticipante">
                       Participar
-                    </button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="enviarTrabalho">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header ">
@@ -98,7 +105,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                 </div>
                 <div class="card-body">
                   <iframe width="0" height="0" border="0" class="d-none" name="dummyframe" id="dummyframe"></iframe>
-                  <form id="InsertWork" name="InsertWork" target="dummyframe" method="post" action="../../assets/php/Object/obj_InsertTrabalho.php" enctype="multipart/form-data">
+                  <form id="InsertWork" name="InsertWork" target="dummyframe" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
@@ -165,7 +172,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                     <div class="row">
                       <div class="col-md-4 mt-4">
                         <div class="image-upload-wrap h-100 ">
-                          <input name="file" class="file-upload-input" type='file' accept=".docx, .pdf" />
+                          <input id="docs" class="file-upload-input" type='file' accept=".docx, .pdf" />
                           <div class="drag-text"></div>
                         </div>
                       </div>

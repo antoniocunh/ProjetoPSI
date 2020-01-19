@@ -1,5 +1,6 @@
 <?php
     require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/verifyLogin.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/obj_verifyRoleAdmin.php");
     require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/Evaluation.php");
     
     $RelationWorkUser = new Evaluation();
@@ -7,6 +8,8 @@
     (
         array("TBU", "vcName"),
         array("TBW", "vcTitle"),
+        array(null, "iRate"),
+        array(null, "vcReview"),
         array("TBU", "vcLastName"),
         array("TBA", "iIdAttachment")
     );
@@ -17,9 +20,9 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBA", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_relationworkuser", [["iIdWork", "iIdWork"]], "TBRWU", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU", "TBRWU").
-        $RelationWorkUser->Where([["TBU.vcUsername", "=", "AND"], ["TBA.enumState", "=", null]], false);
+        $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDReviewer", "iIDUser"]], "TBUA").
+        $RelationWorkUser->Where([["TBRWU.bMainAuthor", "=", "AND"], ["TBA.enumState", "=", null]], false);
 
-    $Query;
         /*
             SELECT 
                 TBA.iIdWork, 
@@ -41,4 +44,4 @@
     
     //<<$obj->picture = base64_encode($binaryData); //Nesse Binary tem de vir so a blob
 
-    echo json_encode($RelationWorkUser->QueryExecute($Query, [$_SESSION["username"], "Provisório"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    echo json_encode($RelationWorkUser->QueryExecute($Query, ["1", "Provisório"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);

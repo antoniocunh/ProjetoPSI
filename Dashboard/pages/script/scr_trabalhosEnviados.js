@@ -21,7 +21,7 @@ $(function () {
             var html = "<tr id='" + index + "'>";
             
             console.log(element);
-            for (var count = 0; count <= 5; count++) {
+            for (var count = 0; count <= 6; count++) {
                 console.log(element[count]);
                 html += "<td>";
                 //apagar para o Ciro
@@ -35,8 +35,10 @@ $(function () {
                 html += "</td>";
 
             }
-            $("#tb_Work").append(html);
-        })
+            console.log(html);
+            $("#tb_WorkBd").append(html);
+        });
+        $('#tb_Work').DataTable();
     }
      
     $(document.body).fadeIn(300);

@@ -76,7 +76,6 @@ $(function () {
           autocompleteMulti([]);
           autocompleteUnique([]);
           autocompleteMultiple(users);
-
         }
       });
     });
@@ -91,7 +90,7 @@ $(function () {
         });
       }
     });
-
+    
     $.ajax({
       url: "../../assets/php/Object/obj_GetWorkType.php",
       success: function (result) {
@@ -102,46 +101,26 @@ $(function () {
         });
       }
     });
-
-    $(document).on('click', "#botaoParticipante", function (e) {
+    $("#participante").on("click", function(){
       $.ajax({
         url: "../../assets/php/Object/obj_SetParticipante.php",
         success: function (result) {
-          resp = JSON.parse(result);
-          alert(resp.msg);
+          var resp = JSON.parse(result);
           location.reload();
         }
       });
     });
 
     $(document).on('click', "#submit", function (e) {
-
-      e.preventDefault();
-      var fd = new FormData();
-      var file = document.getElementById("docs").files[0];
-      console.log(file);
-      fd.append('file', file);
-      fd.append("iIdTypeWork", $("#iIdTypeWork").val());
-      fd.append("iIdScope", $("#iIdScope").val());
-      fd.append("vcTitle", $("#vcTitle").val());
-      fd.append("vcSummary", $("#vcSummary").val());
-      fd.append("membros", JSON.stringify($("#sendMembros").val()));
-      fd.append("autorP", $("#sendAutorP").val());
-      fd.append("speakers", JSON.stringify($("#sendSpeakers").val()));
-      $.ajax({
-        url: "../../assets/php/Object/obj_InsertTrabalho.php",
-        data: fd,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        success: function (result) {
-          var text = JSON.parse(result);
-          alert(text.msg);
-        }
-      })
-    })
-
+      $("#InsertWork").submit();
+      $.get( "../../assets/php/Object/obj_InsertTrabalho.php", function( data ) {
+        console.log("_____________");
+        console.log(data);
+        console.log("_____________");
+        //alert(data.msg);
+    });
+      //location.reload();
+    });
 
 
     $('form[name="InsertWork"]').validate({
@@ -159,7 +138,7 @@ $(function () {
         sendAutorP: 'Por favor selecione o autor principal.',
         sendSpeakers: 'Por favor selecione pelo menos 1 apresentador.',
         submitHandler: function (form) {
-          //location.reload();
+          form.submit();
         }
       }
     })
