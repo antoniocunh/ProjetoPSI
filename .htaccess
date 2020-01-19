@@ -1,0 +1,2 @@
+ErrorDocument 404 /ProjectoPSI/Page-Not-Found.html
+ErrorDocument 403 /ProjectoPSI/Page-Not-Found.html

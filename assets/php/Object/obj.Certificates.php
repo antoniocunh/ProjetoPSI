@@ -7,57 +7,66 @@
     $mail = new Mail();
     $buildPdf = new BuildPDF();
     $user = new User();
-    $Role = $_GET['Role'];
+    
+    $Role = $_POST['role'];
+    $Subject = $_POST['subject'];
+    //Construção do corpo de E-mail
+    $Message = $_POST['message'];
+
 
     $Columns = array
     (
-        "iIDUserType",
+        "iIdUserType",
         "vcName",
         "vcLastName",
         "vcEmail"
     );
     $Query = $user->Select($Columns).
-             $user->Where([["iIDUserType", '<>', null ]], true);
+             $user->Where([["iIdUserType", '=', null ]], true);
     
-    $result = $user->QueryExecute($Query, [$Role], true);
-
-    $Subject = $_GET['subject'];
-    //Construção do corpo de E-mail
-    $Message = $_GET['message'];
-
+    $Result = $user->QueryExecute($Query, [$Role], true);
     $PathFile=$_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/PDF/Certificates/";
 
-    for ($i=0; $i < Count($result); $i++) { 
-        
-        $Email=$result[$i]["vcEmail"];
-        $FirstName=$result[$i]["vcName"];
-        $LastName=$result[$i]["vcLastName"];
-        
-        $FullName = $FirstName." ".$LastName;
+    try{
+        if(!empty($Result))
+        {    
+            for ($i=0; $i < Count($Result); $i++) 
+            { 
+                $Email=$Result[$i]["vcEmail"];
+                $FirstName=$Result[$i]["vcName"];
+                $LastName=$Result[$i]["vcLastName"];
+                $FullName = $FirstName." ".$LastName;
+                //Definir os SETS
 
-        //if($result[$i]["iIDUserType"]==0)//       0		Admin
-          //  $GeneratedPDF = $buildPdf->$GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf",$FullName);     
-        if($result[$i]["iIDUserType"]==1)//       1		Comissão Organizadora
-            $GeneratedPDF = $buildPdf->$GenerateFile($PathFile."Certificado2019_CO.pdf",$FullName);
-        if($result[$i]["iIDUserType"]==2)//       2		Comissão Científica
-            $GeneratedPDF = $buildPdf->$GenerateFile($PathFile."Certificado2019_CC.pdf",$FullName);
-        if($result[$i]["iIDUserType"]==3)//       3		Oradores
-            $GeneratedPDF = $buildPdf->$GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf",$FullName);
-        if($result[$i]["iIDUserType"]==4)//       4		Autor
-            $GeneratedPDF = $buildPdf->$GenerateFile($PathFile."Certificado2019_PARTICIPANTES.pdf",$FullName);
-        if($result[$i]["iIDUserType"]==5)//       5		Participante
-            $GeneratedPDF = $buildPdf->$GenerateFile($PathFile."Certificado2019_PARTICIPANTES.pdf",$FullName);
+                //if($Result[$i]["iIdUserType"]==0)//       0		Admin
+                  //  $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf",$FullName);     
+                if($Result[$i]["iIdUserType"]==1)//       1		Comissão Organizadora
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_CO.pdf", $FullName);
+                if($Result[$i]["iIdUserType"]==2)//       2		Comissão Científica
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_CC.pdf", $FullName);
+                if($Result[$i]["iIdUserType"]==3)//       3		Oradores
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf", $FullName);
+                if($Result[$i]["iIdUserType"]==4)//       4		Autor
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_PARTICIPANTES.pdf", $FullName);
+                if($Result[$i]["iIdUserType"]==5)//       5		Participante
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_PARTICIPANTES.pdf", $FullName);
 
-        $mail->sendMailAttachment($Email, $Message, $Subject, $GeneratedPDF);
-        //Destroy PDF
-        unlink($GeneratedPDF);
+                if(!is_null($GeneratedPDF)){
+                    $mail->sendMailAttachment($Email, $Message, $Subject, $GeneratedPDF);
+                    //Destroy PDF
+                    unlink($GeneratedPDF);
+                }
+                else
+                    echo '0';
+            }
+            echo '1';
+        }
+        else
+            echo '0';
     }
-
-    
-
-        
-
-
-
+    catch(Exception $e)
+    {
+        echo '0';
+    }
 
 ?>

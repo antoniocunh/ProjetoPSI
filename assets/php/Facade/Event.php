@@ -10,7 +10,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Br
 
 class Event extends Bridge implements JsonSerializable
 {
-
+    
     private $iIdEvent;
     private $vcTitle;
     private $vcDescription;

@@ -38,7 +38,7 @@ Class BuildPDF
 
         public function GenerateFile($aPathFile,$aFullName)
         {
-            return $buildPdf->GenerateCertificate($aPathFile, $FullName);
+            return $this->GenerateCertificate($aPathFile, $aFullName);
         }
         
     }

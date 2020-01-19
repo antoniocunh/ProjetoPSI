@@ -40,6 +40,9 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="./css/tableLayout.css"/>
 </head>
 
 <body style="background-color : #f4f3ef">
@@ -65,9 +68,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
               <h4 class="card-title"> Utilizadores</h4>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table" id="tb_Users">
-
+              <div class="table-responsive" style='overflow:auto !important;'>
+              <table id="tb_Users" class="table table-striped table-bordered dataTable" style="width: 100%;" role="grid" aria-describedby="example_info">
                 </table>
               </div>
             </div>
@@ -185,8 +187,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-
   <script src="./script/CRUDUsers.js?v=2"></script>
+  
 </body>
 
 </html>
