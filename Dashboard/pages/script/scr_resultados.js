@@ -22,18 +22,18 @@ $(function () {
                 var index = resp.indexOf(element);
                 var html = "<tr>";
 
-                for (var count = 0; count <= 1; count++) {
+                for (var count = 0; count <= 2; count++) {
                     html = html + "<td>";
-                    if (count == 0) {
-                        html += element[0] + " " + element[3];
+                    if (count == 1) {
+                        html += element[1] + " " + element[3];
                     } else {
                         html += element[count];
                     }
 
                     html += "</td>";
                 }
-                html = html + '<td><form id="form' + element[5] + '"><input id="f' + element[5] + '" type="file" class="submitTrabalho" /></form></td>';
-                html = html + '<td><button id="c' + element[5] + '" class="btn btn-warning verCritica">Critica</button></td></tr>';
+                html = html + '<td><form id="form' + element[0] + '"><input id="f' + element[0] + '" type="file" class="submitTrabalho" /></form></td>';
+                html = html + '<td><button id="c' + element[0] + '" class="btn btn-warning verCritica">Critica</button></td></tr>';
                 $("#tb_resultados").append(html);
             });
         }
@@ -58,14 +58,11 @@ $(function () {
             });
         });
 
-        $(document).on("change", ".verCritica", function (e) {
-            $("#modal").modal('show');
+        $(document).on("click", ".verCritica", function (e) {
+            
             $.ajax({
-                url: "../../assets/php/Object/obj_GetCritica.php",
-                data: fd,
-                cache: false,
-                contentType: false,
-                processData: false,
+                url: "../../assets/php/Object/obj_GetCriticas.php",
+                data: this.id.substr(1),
                 type: 'POST',
                 success: function (result) {
                     console.log(result);

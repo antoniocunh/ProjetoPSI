@@ -138,6 +138,7 @@ $(function () {
         success: function (result) {
           var text = JSON.parse(result);
           alert(text.msg);
+          location.reload();
         }
       })
     })

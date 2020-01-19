@@ -68,6 +68,9 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                     <table class="table" id="tb_resultados">
                       <thead class=" text-primary">
                         <th>
+                          ID
+                        </th>
+                        <th>
                           Nome do Autor
                         </th>
                         <th>

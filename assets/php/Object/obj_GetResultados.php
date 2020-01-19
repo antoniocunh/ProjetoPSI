@@ -5,10 +5,10 @@
     $RelationWorkUser = new Evaluation();
     $Columns = array
     (
+        array("TBW", "iIdWork"),
         array("TBU", "vcName"),
         array("TBW", "vcTitle"),
         array("TBU", "vcLastName"),
-        array("TBA", "iIdAttachment")
     );
 
     $Query =

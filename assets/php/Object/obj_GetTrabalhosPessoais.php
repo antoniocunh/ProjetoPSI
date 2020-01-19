@@ -23,7 +23,7 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU"). 
         $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBATT", "TBW").
         $RelationWorkUser->Join(Joins::INNER, "tb_worktype", [["iIdTypeWork", "iIdTypeWork"]], "TBTW", "TBW").
-        $RelationWorkUser->Where([["TBU.vcUsername", '=', null ]], false);
+        $RelationWorkUser->Where([["TBU.vcUsername", '=', "AND"]], false);
 
     echo json_encode($RelationWorkUser->QueryExecute($Query, [$_SESSION["username"]], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 
