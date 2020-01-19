@@ -63,17 +63,25 @@ $(function () {
         });
 
         function writeRows() {
+
             $("#tb_Users").empty();
-            $("#tb_Users").append('<thead class=" text-primary"> <th> Nome de Utilizador </th> <th> Nome </th> <th> Apelido </th> <th> Morada </th> <th> Pais </th> <th> Cidade </th> <th> Código Postal </th> <th> E-mail </th> <th> Telemovel </th> <th> Organização </th> </tbody>');
+            $("#tb_Users").append('<thead class=" text-primary"> <th> Utilizador </th> <th> Nome </th> <th> Apelido </th> <th> Morada </th> <th> Pais </th> <th> Cidade </th> <th> Cód. Postal </th> <th> E-mail </th> <th> Telemovel </th> <th> Organização </th> <th> Ações </th> <tbody>');
+            var html="";
             resp.forEach(element => {
                 var index = resp.indexOf(element);
-                var html = "<tr id='" + index + "'>";
+                html += "<tr id='" + index + "'>";
                 for (var count = 0; count <= 9; count++) {
                     html = html + "<td>" + element[count] + "</td>";
                 }
-                html = html + '<td><button id="a' + index + '" class="btn btn-warning update">Atualizar</button></td><td><button id="d' + index + '" type="button" class="btn btn-danger delete">Apagar</button></td></tr>';
-                $("#tb_Users").append(html);
+                html = html + '<td><button id="a' + index + '" class="btn btn-warning update" style="margin-left:5px;"><i class="fa fa-pencil" aria-hidden="true"></i></button><button id="d' + index + '" style="margin-left:5px;" type="button" class="btn btn-danger delete"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>';
             })
+            $("#tb_Users").append(html);
+            $("#tb_Users").append('</tbody>');
+            console.log(html);
+
+            $(document).on('DOMNodeInserted', function(e) {
+                $('#tb_Users').DataTable();    
+              })
         }
 
         $.validator.addMethod("maior18", function (value, element) {

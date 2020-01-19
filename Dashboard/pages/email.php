@@ -36,9 +36,9 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <!-- CSS Files -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../../assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
-
+  
   <script src="../../assets/js/core/jquery.min.js"></script>
-
+  
 </head>
 
 <body style="background-color : #f4f3ef">
@@ -62,12 +62,12 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                 <h4 class="card-title">Certificados</h4>
               </div>
               <div class="card-body">
-                <form method="POST" action="../assets/php/Object/obj.Certificates.php" name="certificados">
+                <form method="POST" id="certificados" name="certificados">
                   <div class="row">
                     <div class="col-md-5">
                       <div class="form-group">
                         <label>Titulo</label>
-                        <input name="subject" type="text" placeholder="Titulo" class="form-control">
+                        <input id="subject" type="text" placeholder="Titulo" class="form-control" required>
                       </div>
                     </div>
                   </div>
@@ -83,11 +83,11 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                     <div class="col-md-10">
                       <div class="form-group">
                         <label>Mensagem</label>
-                        <textarea name="message" rows="4" cols="80" class="form-control" placeholder="Descrição"></textarea>
+                        <textarea id="message" rows="4" cols="80" class="form-control" placeholder="Descrição" required></textarea>
                       </div>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-danger" data-toggle="modal"  data-target="#Modal">Enviar</button>
+                  <button id="enviar" type="button" class="btn btn-danger">Enviar<i class="fa fa-send" style="margin-left:5px;"></i></button>
                   <div class="clearfix"></div>
                 </form>
               </div>
@@ -112,10 +112,11 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                   Tem a certeza que quer enviar os certificados para esta role?
                 </div>
               </div>
+              
               <div class="modal-footer">
                 <div class="divider"></div>
                 <div class="right-side">
-                  <button id="submit" type="button" class="btn btn-danger">Confirmar</button>
+                  <button id="submit" type="submit" class="btn btn-danger">Confirmar</button>
                 </div>
               </div>
             </div>
@@ -151,6 +152,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
   <script src="./script/getRoles.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="./script/src.sendCertificate.js"></script>
 </body>
 
 </html>
