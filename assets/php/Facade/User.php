@@ -1,38 +1,49 @@
-<?php
-ini_set('display_errors', 1);
+<?php~
 
-/* ==================================================================== 
-        CLASS USER
-====================================================================*/
+
+/**
+ * Class dos Users.
+ * 
+ * Class correspondente à tabela de users, onde se encontra e trata a informação dos users.
+ * Class user extende a class Brigde.
+ */
+
+ ini_set('display_errors', 1);
+
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class User extends Bridge implements JsonSerializable
 {
-    private $iIdUser;
-    private $iIdScope;
-    private $vcName;
-    private $vcLastName;
-    private $vcAddress;
-    private $vcPhoneNumber;
-    private $vcEmail;
-    private $vcCountry;
-    private $vcAfiliation;
-    private $vcUsername;
-    private $vcPassword;
-    private $vcCity;
-    private $vcPostalCode;
-    private $dtBirth;
-    private $iIdUserType;
-    private $enumUserStatus;
-    private $vcTokenCode;
+    private $iIdUser;  //atributo do id 
+    private $iIdScope;    //atributo do id do scope 
+    private $vcName;  //atributo do nome 
+    private $vcLastName;  //atributo do sobrenome 
+    private $vcAddress;  //atributo da morada 
+    private $vcPhoneNumber;  //atributo do numero de telemovel 
+    private $vcEmail;  //atributo do email 
+    private $vcCountry;  //atributo do pais 
+    private $vcAfiliation;  //atributo da afiliação 
+    private $vcUsername;  //atributo do username 
+    private $vcPassword;  //atributo da password
+    private $vcCity;  //atributo da cidade 
+    private $vcPostalCode;  //atributo do codigo postal 
+    private $dtBirth;  //atributo da data de nascimento
+    private $iIdUserType;  //atributo do id do tipo de utilizador
+    private $enumUserStatus;  //atributo status
+    private $vcTokenCode;  //atributo do token para o reset password
 
-    //construtor da class user
+    /**
+     * construtor da class user.
+     */
     public function __construct($aColumn="vcUsername")
     {
         parent::__construct("tb_user", $aColumn, "UR");
     }
     
+    /**
+     * lê os dados de um user de acordo com o seu username.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -43,6 +54,9 @@ class User extends Bridge implements JsonSerializable
         }
     }
     
+    /**
+     * Inserir o objecto user na base de dados.
+     */
     public function InsertObject()
     {
         //$this->setIIdUser(420);
@@ -51,6 +65,9 @@ class User extends Bridge implements JsonSerializable
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto user na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -66,6 +83,9 @@ class User extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere, $aData);
     }
     
+    /**
+     * Apagar o objeto user da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -74,6 +94,9 @@ class User extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+    /**
+     * Apaga os dados dos atributos do objeto user.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -81,6 +104,9 @@ class User extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto user para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {

@@ -2,27 +2,35 @@
 ini_set('display_errors', 1);
 
 
-/* ==================================================================== 
-        CLASS EVALUATION
-====================================================================*/
+/**
+ * Class das Evaluations.
+ * 
+ * Class correspondente à tabela de evaluations, onde se encontra e trata a informação das evaluations.
+ * Class evaluations extende a class Brigde.
+ */
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Evaluation extends Bridge implements JsonSerializable
 {
 
-    private $iIdEvaluation;
-    private $iIdWork;
-    private $iIdReviewer;
-    private $vcReview;
-    private $iRate;
+    private $iIdEvaluation; //id da evaluation
+    private $iIdWork; // id do trabalho
+    private $iIdReviewer; // id do reviwer
+    private $vcReview; // review
+    private $iRate; // rate
 
-    //construtor da class evaluation
+    /**
+     * construtor da class evaluation
+     */
     public function __construct()
     {
         parent::__construct("tb_evaluation", "iIdEvaluation", "EVA");
     }
 
+    /**
+     * lê os dados de uma evaluation de acordo com o seu id.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -33,11 +41,17 @@ class Evaluation extends Bridge implements JsonSerializable
         }
     }
 
+    /**
+     * Inserir o objecto evaluation na base de dados.
+     */
     public function InsertObject()
     {
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto evaluation na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -53,6 +67,9 @@ class Evaluation extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
 
+    /**
+     * Apagar o objeto evaluation da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -61,6 +78,10 @@ class Evaluation extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+
+    /**
+     * Apaga os dados dos atributos do objeto evaluation.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -68,6 +89,9 @@ class Evaluation extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto evaluation para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {

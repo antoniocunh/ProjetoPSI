@@ -2,27 +2,35 @@
 ini_set('display_errors', 1);
 
 
-/* ==================================================================== 
-        CLASS Work
-====================================================================*/
+/**
+ * Class dos works.
+ * 
+ * Class correspondente à tabela de works, onde se encontra e trata a informação dos works.
+ * Class works extende a class Brigde.
+ */
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Work extends Bridge implements JsonSerializable
 {
 
-    private $iIdTypeWork;// FK
-    private $iIdScope; // FK
-    private $iIdWork; // PK
-    private $vcTitle;
-    private $vcSummary;
+    private $iIdTypeWork;// id tipode trabalho
+    private $iIdScope; // id do ambito
+    private $iIdWork; // id to trabalho
+    private $vcTitle;//titulo
+    private $vcSummary;// resumo
 
-    //construtor da class Work
+    /**
+     * construtor da class Work
+     */
     public function __construct()
     {
         parent::__construct("tb_work", "iIdWork", "AR");
     }    
 
+    /**
+     * lê os dados de um work de acordo com o seu id.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -33,11 +41,17 @@ class Work extends Bridge implements JsonSerializable
         }
     }
 
+    /**
+     * Inserir o objecto work na base de dados.
+     */
     public function InsertObject()
     {
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto work na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -53,6 +67,9 @@ class Work extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
     
+    /**
+     * Apagar o objeto work da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -61,6 +78,9 @@ class Work extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+    /**
+     * Apaga os dados dos atributos do objeto work.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -68,6 +88,9 @@ class Work extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto work para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {

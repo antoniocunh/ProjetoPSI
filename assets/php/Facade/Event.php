@@ -2,39 +2,47 @@
 ini_set('display_errors', 1);
 
 
-/* ==================================================================== 
-        CLASS EVENT
-====================================================================*/
+/**
+ * Class do Event.
+ * 
+ * Class correspondente à tabela de event, onde se encontra e trata a informação dos event.
+ * Class event extende a class Brigde.
+ */
+
 
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Base/Bridge.php");
 
 class Event extends Bridge implements JsonSerializable
 {
 
-    private $iIdEvent;
-    private $vcTitle;
-    private $vcDescription;
-    private $vcAbout;
-    private $dtIniSubmition;
-    private $dtEndSubmition;
-    private $dtIniEvaluation;
-    private $dtEndEvaluation;
-    private $dtResults;
-    private $dtIniFinalSubmission;
-    private $dtEndFinalSubmission;
-    private $dtIniSubscription;
-    private $dtEndSubscription;
-    private $vcLocal;
-    private $dtIniEvent;
-    private $dtEndEvent;
+    private $iIdEvent;//id do evento
+    private $vcTitle;// titulo 
+    private $vcDescription;// descrição
+    private $vcAbout;//sobre
+    private $dtIniSubmition;//data de inicio de submissao
+    private $dtEndSubmition;//data de fim de submissao
+    private $dtIniEvaluation;//data de inicio de avaliacao
+    private $dtEndEvaluation;//data de fim de avaliacao
+    private $dtResults;//data de resultados
+    private $dtIniFinalSubmission;//data de inicio de submissao final
+    private $dtEndFinalSubmission;//data de fim de submissao final
+    private $dtIniSubscription;// data de inicio d eparticipacao
+    private $dtEndSubscription;//data de fim de participacao
+    private $vcLocal;//local
+    private $dtIniEvent;//data de inicio
+    private $dtEndEvent;//data de fim
 
-    //construtor da class event
+    /**
+     * construtor da class event
+     */
     public function __construct()
     {
         parent::__construct("tb_event", "iIdEvent", "eve");
     }
     
-     
+    /**
+     * lê os dados de um enet de acordo com o seu id.
+     */
     public function readObject($id)
     {
         $count = 0;
@@ -46,7 +54,9 @@ class Event extends Bridge implements JsonSerializable
     }
 
 
-    
+    /**
+     * Inserir o objecto event na base de dados.
+     */
     public function InsertObject()
     {
         //$this->setIIdUser(420);
@@ -55,6 +65,9 @@ class Event extends Bridge implements JsonSerializable
         $this->Insert($this->GetAtributesName(), get_object_vars($this));
     }
 
+    /**
+     * Update da informação do objeto event na base de dados.
+     */
     public function UpdateObject()
     {
         $arrayFieldsUser = array();
@@ -70,6 +83,9 @@ class Event extends Bridge implements JsonSerializable
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
     
+    /**
+     * Apagar o objeto event da base de dados
+     */
     public function DeleteObject()
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
@@ -78,6 +94,9 @@ class Event extends Bridge implements JsonSerializable
         $this->ClearData();
     }
 
+    /**
+     * Apaga os dados dos atributos do objeto event.
+     */
     private function ClearData()
     {
         foreach ($this as &$key)
@@ -85,6 +104,9 @@ class Event extends Bridge implements JsonSerializable
             $key = null;
     }
 
+    /**
+     * Converte o objeto event para Json
+     */
     public function jsonSerialize(){
         $json =  array();
         foreach ($this as $key => &$value) {
