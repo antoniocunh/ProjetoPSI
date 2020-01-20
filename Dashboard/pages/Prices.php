@@ -40,7 +40,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="./css/tableLayout.css"/>
-
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 </head>
 
 <body style="background-color : #f4f3ef">
@@ -62,8 +62,9 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">Preços</h4>
+              <div class="card-header" style="background-color:#2c2c2c !important;">
+                <h4 class="card-title" style="color:#f4f3ef !important;">Preços</h4>
+                <button name="adicionar" id="adicionar" class="btn btn-warning adicionar">Adicionar <i class="fa fa-plus-circle"></i></button>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -75,6 +76,67 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           </div>
         </div>
       </div>
+      <!-- Modal Edit Price-->
+      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel"><i class="fa fa-pencil" aria-hidden="true" style="margin-right:10px;"></i>Editar Preço</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="ModalEditPrice">
+                <div class="form-group">
+                  <label>ID</label>
+                  <input type="text" class="form-control" id="iIdPrice" name="iIdPrice" disabled>
+                </div>
+                <div class="form-group">
+                  <label>Preço</label>
+                  <input type="text" class="form-control" id="dPrice" name="dPrice" pattern="[0-9]+([\.,][0-9]+)?" required />
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Descrição</label>
+                  <textarea class="form-control" id="vcDescription"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button id="editPrice" form="ModalEditPrice" type="submit" class="btn btn-warning">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Add Price-->
+      <div class="modal fade" id="ModalAddPrice" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel"><i class="fa fa-plus" aria-hidden="true" style="margin-right:10px;"></i>Adicionar Preço</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="PriceModal">
+                <div class="form-group">
+                  <label>Preço</label>
+                  <input type="text" class="form-control" id="add_dPrice" name="add_dPrice" pattern="[0-9]+([\.,][0-9]+)?" required/>
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Descrição</label>
+                  <textarea class="form-control" id="add_vcDescription"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button id="insertPrice" form="PriceModal" type="submit" class="btn btn-warning">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- fim Modal -->
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
@@ -112,7 +174,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
       <script src="../../assets/js/plugins/bootstrap-notify.js"></script>
       <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="../../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-      <script src="./script/scr.Prices.js"></script>
+      
+      <script src="./script/scr.Prices.js?v=2"></script>
 </body>
 
 </html>
