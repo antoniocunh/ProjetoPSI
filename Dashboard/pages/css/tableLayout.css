@@ -9,6 +9,19 @@
     border-color: #2c2c2c !important;
 }
 
+.page-link{
+  background-color: #2c2c2c !important;
+  border-color: #2c2c2c !important;
+  color:#fff;
+}
+
+.page-link:hover{
+  border-color: #161616 !important;
+  color: #6d6d6d !important;
+}
+
+
+
 table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
     background-color: #2c2c2c !important;
 }

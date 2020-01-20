@@ -37,7 +37,7 @@ $(function () {
                 }
                 html += "</td>";
             }
-            html = html + '<td align="center"> <button id="a' + index + '" class="btn btn-warning avaliar"><i class="fa fa-pencil-square"></i></button> </td> </tr>';
+            html += '<td align="center"> <button id="a' + index + '" class="btn btn-warning avaliar"><i class="fa fa-pencil-square"></i></button> </td> </tr>';
         })
 
         $("#tb_Work").append(html);
@@ -47,9 +47,7 @@ $(function () {
           })
     }
 
-    
-
-//Click Button ->Show Modal
+    //Click Button ->Show Modal
     $(document).on('click', ".avaliar", function () {
         var id = this.id.substring(1);
         

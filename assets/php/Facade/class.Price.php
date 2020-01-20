@@ -16,6 +16,7 @@ class Price extends Bridge implements JsonSerializable
 
     private $iIdPrice; //id 
     private $dPrice;//valor
+    private $vcDescription;//valor
 
 
     /**
@@ -113,6 +114,14 @@ class Price extends Bridge implements JsonSerializable
         return $this->dPrice;
     }
 
+      /**
+     * Get the value of Description
+     */ 
+    public function getvcDescription()
+    {
+        return $this->vcDescription;
+    }
+
     /**
      * Set the value of iIdPrice
      *
@@ -133,6 +142,18 @@ class Price extends Bridge implements JsonSerializable
     public function setDPrice($dPrice)
     {
         $this->dPrice = $dPrice;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of Description
+     *
+     * @return  self
+     */ 
+    public function setvcDescription($vcDescription)
+    {
+        $this->vcDescription = $vcDescription;
 
         return $this;
     }
