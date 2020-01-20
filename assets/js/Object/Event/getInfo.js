@@ -1,8 +1,13 @@
+/**
+ *  Função ajax que vai buscar as informações do evento à base de dados, utilizando json,
+ *  e vai alterar os detalhes do evento na home page de acordo com os dados recebidos.
+ */
+
 $(function () {
     $(document).ready(function () {
 
         $.ajax({
-            url: "assets/php/Object/getEvento.php",
+            url: "assets/php/Object/obj.GetEvent.php",
             success: function (result) {
                 _Resp = JSON.parse(result);
                 console.log(_Resp);

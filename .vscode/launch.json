@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Dashboard\\pages\\script\\scr_participar.js"
+            "program": "${workspaceFolder}\\Dashboard\\pages\\script\\scr.Participate.js"
         }
     ]
 }

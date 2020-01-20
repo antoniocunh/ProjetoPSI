@@ -15,7 +15,9 @@
 
 	<!-- Fonts and Icons -->
 	<link href="../assets/layout.register/css/themify-icons.css" rel="stylesheet">
-	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	</head>
 
 	<body>
@@ -33,9 +35,7 @@
 		            <div class="wizard-container">
 
 		                <div class="card wizard-card card-register" data-color="black" id="wizardProfile">
-		                    <form name="registo" action="../assets/php/Object/sendRegistration.php" method="POST">
-		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
-
+		                    <form name="registo" id="registo">
 		                    	<div class="wizard-header text-center">
 		                        	<h3 class="wizard-title">Registar</h3>
 									<p class="category">Estas informações são necessárias para poder efetuar um registo.</p>
@@ -86,11 +86,11 @@
 											<div class="col-sm-6 col-sm-offset-1">
 												<div class="form-group">
 													<label>Nome <small> (*)</small></label>
-													<input name="nome" type="text" class="form-control" placeholder="Nome...">
+													<input name="nome" id="nome" type="text" class="form-control" placeholder="Nome...">
 												</div>
 												<div class="form-group">
 													<label>Sobrenome <small> (*)</small></label>
-													<input name="ultimoNome" type="text" class="form-control" placeholder="Sobrenome...">
+													<input name="ultimoNome" id="ultimonome" type="text" class="form-control" placeholder="Sobrenome...">
 												</div>
 											</div>
 											<div class="col-sm-4">
@@ -98,16 +98,16 @@
 												<div class="picture-container">
 													<div class="picture">
 														<img src="../assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview" title="">
-														<input type="file" id="wizard-picture">
+														<!--<input type="file" id="wizard-picture">-->
 													</div>
 													<br>
-													<h6>Choose Picture</h6>
+													<h6>Escolha uma Imagem</h6>
 												</div>
 											</div>
 											<div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
 													<label>Email  <small> (*)</small></label>
-													<input name="email" type="email" class="form-control" placeholder="email@outlook.com">
+													<input name="email" id="email" type="email" class="form-control" placeholder="email@outlook.com">
 												</div>
 											</div>
 										</div>
@@ -128,7 +128,7 @@
 												<div class="col-sm-6">
 													<div class="form-group">
 														<label>Telemóvel <small> (*)</small></label><br>
-														<input name="telefone" type="text" class="form-control" placeholder="Telemóvel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
+														<input name="telefone" id="telefone" type="text" class="form-control" placeholder="Telemóvel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
 													</div>
 													<div class="form-group">
 													</div>
@@ -136,7 +136,7 @@
 												<div class="col-sm-10 col-sm-offset-1">
 													<div class="form-group">
 														<label>Afiliação</label>
-														<input  name="organizacao" type="text" class="form-control" placeholder="Afiliação">
+														<input  name="organizacao" id="organizacao" type="text" class="form-control" placeholder="Afiliação">
 													</div>
 												</div>
 											</div>
@@ -147,25 +147,25 @@
 		                                    <div class="col-sm-7 col-sm-offset-1">
 		                                    	<div class="form-group">
 		                                            <label>Morada <small> (*)</small></label>
-		                                            <input name="morada" type="text" class="form-control" placeholder="Travesso do Rio">
+		                                            <input name="morada" id="morada" type="text" class="form-control" placeholder="Travesso do Rio">
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-sm-3">
 		                                        <div class="form-group">
 		                                            <label>Código Postal</label>
-		                                            <input name="codPostal" type="text" class="form-control" placeholder="0000-000">
+		                                            <input name="codPostal" id="codPostal" type="text" class="form-control" placeholder="0000-000">
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-sm-5 col-sm-offset-1">
 		                                        <div class="form-group">
 		                                            <label>Cidade <small> (*)</small></label>
-		                                            <input  name="cidade" type="text" class="form-control" placeholder="Cidade">
+		                                            <input  name="cidade" id="cidade" type="text" class="form-control" placeholder="Cidade">
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-sm-5">
 		                                        <div class="form-group">
 		                                            <label>País <small> (*)</small></label><br>
-		                                            <select name="pais" class="form-control">
+		                                            <select name="pais" id="pais" class="form-control">
 														<option value="Afganistan">Afghanistan</option>
 														<option value="Albania">Albania</option>
 														<option value="Algeria">Algeria</option>
@@ -444,7 +444,7 @@
 		                        <div class="wizard-footer">
 		                            <div class="pull-right">
 		                                <input type='button' class='btn btn-next btn-fill btn-warning btn-wd' name='next' value='Seguinte' />
-		                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd' value='Registar' />
+		                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd' />
 		                            </div>
 
 		                            <div class="pull-left">
@@ -477,10 +477,12 @@
 
 	<!--  Plugin for the Wizard -->
 	<script src="../assets/layout.register/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
+	<script src="../assets/layout.register/js/jquery.validate.min.js" type="text/javascript"></script>
 
 	<!--  More information about jquery.validate here: https://jqueryvalidation.org/	 -->
-	<script src="../assets/layout.register/js/jquery.validate.min.js" type="text/javascript"></script>
-	<script src="./script/registo.js"></script>
+	
+	
+	<script src="./script/registo2.js"></script>
 
 	<script>
         $(function () {

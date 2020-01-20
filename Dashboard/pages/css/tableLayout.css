@@ -6,13 +6,18 @@
 
 .page-item.disabled .page-link{
     background-color: #2c2c2c !important;
-    border-color: 2c2c2c !important;
+    border-color: #2c2c2c !important;
 }
 
 table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
     background-color: #2c2c2c !important;
 }
 
+/*
+.a .page-link {
+  color:#fbc658 !important;
+}
+*/
 /*
 .card {
     height: auto;

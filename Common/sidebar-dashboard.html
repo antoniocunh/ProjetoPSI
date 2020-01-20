@@ -10,7 +10,7 @@
     <ul class="nav" id="navButoes"></ul>
     <ul class="nav">
       <li class="active-pro">
-        <a href="../../assets/php/Object/logout.php">
+        <a href="../../assets/php/Object/Login/obj.Logout.php">
           <i class="fa fa-sign-out" aria-hidden="true"></i>
           <p>Logout</p>
         </a>
@@ -74,63 +74,64 @@
   var resp1
 
   function rmvDivs() {
-    var botoes, avaliar = " ", resultados = " ", participar = " ", trabalhosEnviados = " ";
+    var botoes, avaliar = " ", resultados = " ", participar = " ", SubmittedWorks = " ";
     if (Date.parse(resp2.dtIniSubmition) < Date.now() && Date.parse(resp2.dtEndSubmition) > Date.now()) {
-      trabalhosEnviados = '<li class="nav-item " id="trabalhosEnviados"> <a class="nav-link" href="./trabalhosEnviados.php"> <span class="sidebar-mini"> Enviados </span> </a> </li>';
-      participar = '<li id="participar"> <a href="./participar.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
+      SubmittedWorks = '<li class="nav-item " id="SubmittedWorks"> <a class="nav-link" href="./SubmittedWorks.php"> <span class="sidebar-mini"> Submetidos </span> </a> </li>';
+      participar = '<li id="participar"> <a href="./Participate.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
     }
     if (Date.parse(resp2.dtResults) < Date.now()) {
-      resultados = '<li class="nav-item " id="resultados"> <a class="nav-link" href="./resultados.php"> <span class="sidebar-mini"> Resultados</span> </a> </li>';
+      resultados = '<li class="nav-item " id="resultados"> <a class="nav-link" href="./Results.php"> <span class="sidebar-mini"> Resultados</span> </a> </li>';
     }
     if (Date.parse(resp2.dtIniEvaluation) < Date.now() && Date.parse(resp2.dtEndEvaluation) > Date.now()) {
-      avaliar = '<li class="nav-item " id="trabalhosAvaliados"> <a class="nav-link" href="./avaliacoesEnviadas.php"> <span class="sidebar-mini"> Avaliados </span> </a> </li>' +
-        '<li class="nav-item "><li class="nav-item " id="avaliar"> <a class="nav-link" href="./avaliar.php"> <span class="sidebar-mini"> Avaliar </span> </a> </li>';
+      avaliar = '<li class="nav-item " id="trabalhosAvaliados"> <a class="nav-link" href="./ReviewedWorks.php"> <span class="sidebar-mini"> Avaliados </span> </a> </li>' +
+        '<li class="nav-item "><li class="nav-item " id="avaliar"> <a class="nav-link" href="./Review.php"> <span class="sidebar-mini"> Avaliar </span> </a> </li>';
 
     }
 
-    if (resp1 == 0) {
+    if (resp1 == 0) { // Admin
       botoes =
-        '<li id="evento"> <a href="./evento.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>' +
+        '<li id="Event"> <a href="./Event.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>' +
         '<li class="nav-item "><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li> <div class="collapse" id="pages1"><ul class="nav">' +
-        resultados +
         avaliar +
-        trabalhosEnviados +
+        SubmittedWorks +
+        resultados +
         '</ul> </div></li>' +
         participar +
-        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>' +
-        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-user-plus" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="criarUser"> <a class="nav-link" href="./criaruser.php"> <span class="sidebar-mini"> Criar Utilizador </span> </a> </li><li class="nav-item" id="gerirUtilizadores"> <a class="nav-link" href="./gerirutilizadores.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>' +
-        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
-      //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
+        '<li id="prices"><a href="./Prices.php"><i class="fa fa-money" aria-hidden="true"></i> <p>Preços</p></a></li>' +
+        '<li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>' +
+        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-users" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="CreateUser"> <a class="nav-link" href="./CreateUser.php"> <span class="sidebar-mini"> Criar</span> </a> </li><li class="nav-item" id="ManageUsers"> <a class="nav-link" href="./ManageUsers.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>' +
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
+      //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else if (resp1 == 1) { // comissão organizadora
       botoes =
         '<li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +
+        SubmittedWorks +
         resultados +
-        trabalhosEnviados +
         '</ul> </div>' +
         participar +
-        '<li id="mandarEmail"><a href="./email.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>E-mail</p></a></li>' +
-        '<li id="gerirUtilizadores"><a href="./gerirutilizadores.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>' +
-        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
-      //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
+        '<li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>' +
+        '<li id="ManageUsers"><a href="./ManageUsers.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>' +
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
+      //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else if (resp1 == 2) { // comissão cientifica
       botoes =
-        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
-      //'<li id="dashboard"><a href="./dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
+      //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
-    } else if (resp1 == 5 || 7) {
+    } else if (resp1 == 5 || resp1 == 7) {
       botoes =
         participar +
-        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
     } else { //autor , orador, 
       botoes =
         '<li class="nav-item"><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +
         resultados +
-        trabalhosEnviados +
+        SubmittedWorks +
         '</ul> </div></li>' +
         participar +
-        '<li id="perfil"><a href="./perfil.php"><i class="fa fa-user-o" aria-hidden="true"></i><p>Perfil</p></a></li>';
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
     }
     $("#navButoes").hide();
     $("#navButoes").html(botoes);
@@ -139,7 +140,7 @@
   };
 
   $.ajax({
-    url: "../../assets/php/Object/obj_GetRoleUser.php",
+    url: "../../assets/php/Object/obj.GetRoleUser.php",
 
     success: function (result) {
       resp1 = JSON.parse(result);
@@ -154,7 +155,7 @@
 
 
   $.ajax({
-    url: "../../assets/php/Object/getEvento.php",
+    url: "../../assets/php/Object/obj.GetEvent.php",
     success: function (result) {
       resp2 = JSON.parse(result);
       load[1] = true;

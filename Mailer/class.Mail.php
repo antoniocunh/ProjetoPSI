@@ -14,7 +14,7 @@ class Mail
     {
         $this->Mail = new PHPMailer;
         $this->Mail->isSMTP();//LocalHost -------------------- TOREMOVE()
-        $this->Mail->CharSet = 'UTF-8';
+        
         $this->Mail->Host = $this->HostServer;
         $this->Mail->Port =  $this->Port;
         $this->Mail->SMTPAuth = true;
@@ -26,6 +26,7 @@ class Mail
 
     function sendMail($aEmail, $aMessage, $aSubject)
     {
+        $this->Mail->CharSet = 'UTF-8';
         $this->Mail->setFrom($this->DefaultMail, $this->DefaultMailTitle);
         $this->Mail->addAddress($aEmail);
         $this->Mail->addReplyTo($this->DefaultMail,  $this->DefaultMailTitle);
@@ -36,16 +37,14 @@ class Mail
 
     function sendMailAttachment($aEmail, $aMessage, $aSubject, $aFile)
     {
+        $this->Mail->CharSet = 'UTF-8';
         $this->Mail->setFrom($this->DefaultMail, $this->DefaultMailTitle);
         $this->Mail->addAddress($aEmail);
         $this->Mail->addReplyTo($this->DefaultMail,  $this->DefaultMailTitle);
-
-
         //Percorre todos os ficheiros e adiciona-os ao corpo de email
 			//for ($i=0; $i < Count($_FILES['file']['tmp_name']) ; $i++) { 
 		$this->Mail->addAttachment($aFile, $aFile);
             //}
-            
         $this->Mail->Subject = $aSubject;
         $this->Mail->MsgHTML($aMessage);
         $this->Mail->Send();
@@ -53,6 +52,7 @@ class Mail
 
     function sendContactMail($aEmail, $aMessage, $aSubject)
     {
+        $this->Mail->CharSet = 'UTF-8';
         $this->Mail->setFrom($aEmail, "Contacto");
         $this->Mail->addAddress($this->DefaultMail);
         $this->Mail->addReplyTo($aEmail, "Contacto");

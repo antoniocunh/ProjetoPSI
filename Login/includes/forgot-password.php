@@ -15,7 +15,7 @@ The above copyright notice and this permission notice shall be included in all c
 -->
 <?php
 require_once("../../assets/php/Proprieties/ConfigDB.php");
-require_once 'obj.ForgotPassword.php';
+require_once("../../assets/php/Object/Login/obj.ForgotPassword.php");
 ?>
 
 <meta charset="utf-8" />
@@ -54,7 +54,7 @@ require_once 'obj.ForgotPassword.php';
                 else
                 { 
              ?>
-                <div class='alert alert-warning'>Please enter your email address. You will receive a link to create a new password via email.!</div>
+                <div class='alert alert-info'>Please enter your email address. You will receive a link to create a new password via email.!</div>
              <?php } ?>
 
               <!--<p style="font-size:12px;  font-style: italic; color:gray; text-align:center;">É enviado um link com a recuperação da palavra-passe caso o email esteja correto. </p>-->

@@ -6,7 +6,7 @@ $(document).ready(function () {
                 minlength: 8,
             },
             confirmPass: {
-                equalTo: "#pass1"
+                equalTo: "#pass"
             },
         },
         messages: {
@@ -24,4 +24,3 @@ $(document).ready(function () {
         }
     });
 });
-

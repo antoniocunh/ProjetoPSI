@@ -14,7 +14,7 @@
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <?php
 require_once("../../assets/php/Proprieties/ConfigDB.php");
-require_once 'obj.ResetPassword.php';
+require_once("../../assets/php/Object/Login/obj.ResetPassword.php");
 ?>
 
 <meta charset="utf-8" />
@@ -45,11 +45,9 @@ require_once 'obj.ResetPassword.php';
       <div class="row">
         <div class="col-lg-4 ml-auto mr-auto">
           <div class="card card-register">
-            <h3 class="title mx-auto">Mudar Palavra-passe</h3>
+            <h3 class="title mx-auto">Definir Palavra-passe</h3>
             <form name="novaPass" class="form-login" method="post" >
-            <div class='alert alert-success'>
-              <?php echo $Result['vcUsername'] ?> redefina a sua palavra-passe.
-              </div>
+            <div class='alert alert-success'><?php echo $Result['vcUsername'] ?> redefina a sua palavra-passe.</div>
               <?php
                 if(isset($msg))
                   echo $msg; 

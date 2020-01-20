@@ -40,7 +40,7 @@ $('document').ready(function()
 				if(_Resp.msg =='ok')
 				{										
 					$("#login_button").html('A autenticar...');
-					setTimeout(' window.location.href = "../Dashboard/pages/perfil.php"; ');
+					setTimeout(' window.location.href = "../Dashboard/pages/Profile.php"; ');
 				} 
 				else 
 				{									

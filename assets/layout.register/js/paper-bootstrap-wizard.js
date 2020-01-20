@@ -62,7 +62,7 @@ transparent = true;
                         required: true,
                         email: true,
                         remote: {
-                            url: "../assets/php/Object/Register/getEmail.php",
+                            url: "../assets/php/Object/obj.GetEmail.php",
                             type: "post",
                             data: {
                               username: function() {
@@ -75,7 +75,7 @@ transparent = true;
                         required: true,
                         minlength: 4,
                         remote: {
-                            url: "../assets/php/Object/Register/getUsername.php",
+                            url: "../assets/php/Object/obj.GetUsername.php",
                             type: "post",
                             data: {
                               username: function() {

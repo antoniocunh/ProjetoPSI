@@ -1,6 +1,6 @@
     <?php
     
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Facade/User.php");
+    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Facade/class.User.php");
     require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/Mailer/class.Mail.php");
     require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/PDF/class.Build.php");
 
@@ -33,13 +33,14 @@
             for ($i=0; $i < Count($Result); $i++) 
             { 
                 $Email=$Result[$i]["vcEmail"];
+                
                 $FirstName=$Result[$i]["vcName"];
                 $LastName=$Result[$i]["vcLastName"];
                 $FullName = $FirstName." ".$LastName;
                 //Definir os SETS
 
-                //if($Result[$i]["iIdUserType"]==0)//       0		Admin
-                  //  $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf",$FullName);     
+                if($Result[$i]["iIdUserType"]==0)// x      0		Admin
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf", $FullName);     
                 if($Result[$i]["iIdUserType"]==1)//       1		Comissão Organizadora
                     $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_CO.pdf", $FullName);
                 if($Result[$i]["iIdUserType"]==2)//       2		Comissão Científica
@@ -52,9 +53,10 @@
                     $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_PARTICIPANTES.pdf", $FullName);
 
                 if(!is_null($GeneratedPDF)){
+                    //echo $Email.'        |           ';
                     $mail->sendMailAttachment($Email, $Message, $Subject, $GeneratedPDF);
                     //Destroy PDF
-                    unlink($GeneratedPDF);
+                    //unlink($GeneratedPDF);
                 }
                 else
                     echo '0';
