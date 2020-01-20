@@ -1,4 +1,4 @@
 <?php
-if ($result[0]["iIdUserType"] != 0) {
+if ($result[0]["iIdUserType"] != 5) {
     $validation = true;
-}
+} 

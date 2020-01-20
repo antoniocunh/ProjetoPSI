@@ -47,7 +47,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
     $(document).ready(function() {
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
-        $("#evento").addClass("active");
+        $("#event").addClass("active");
       })
     })
   </script>
@@ -61,7 +61,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Detalhes da conferância</h4>
+                <h4 class="card-title">Detalhes da conferância </h4>
               </div>
               <div class="card-body">
                 <form name="eventoForm" id="eventoForm" method="POST">

@@ -16,7 +16,6 @@ The above copyright notice and this permission notice shall be included in all c
 <?php
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/ValidationDates/obj.DtSubmition.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.VerifyLogin.php");
-require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.OutOfPermitionRedirect.php");
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +52,9 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
       $.ajax({
         url: "../../assets/php/Object/obj.GetRoleUser.php",
         success: function(result) {
-          resp = JSON.parse(result);
+          var resp = JSON.parse(result);
           var temp = resp[0].iIdUserType;
+          console.log(temp);
           console.log(temp);
           if(temp != 5 && temp != 7){
             $("#participarBox").remove();
@@ -65,7 +65,33 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
             $("#botaoParticipante").remove();
           }
         }
+      }),
+      $.ajax({
+        url: "../../assets/php/Object/obj.GetEvent.php",
+        success: function(result) {
+          var temp= JSON.parse(result);
+          console.log(temp);
+          if(Date.parse(temp.dtIniSubscription) > Date.now()){
+            $("#textParticipar").html("A data de subscrição só está disponível a partir do dia " + temp.dtIniSubscription + ".");
+            $("#botaoParticipante").remove();
+          }else if(Date.parse(temp.dtEndSubscription) < Date.now()){
+            $("#textParticipar").html("A data de subscrição só esteve disponível a até do dia " + temp.dtEndSubscription + ".");
+            $("#botaoParticipante").remove();
+          } 
+
+          if(Date.parse(temp.dtIniSubmition) > Date.now()){
+            $("#textTrabalho").html("A data de submissão só vai estar disponível a partir do dia " + temp.dtIniSubmition + ".");
+            $("#submit").remove();
+          }else if(Date.parse(temp.dtEndSubmition) < Date.now()){
+            $("#textTrabalho").html("A data de submissão só esteve disponível a até ao dia " + temp.dtEndSubmition + ".");
+            $("#submit").remove();
+          }
+        }
       })
+
+
+      
+
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
         $("#participar").addClass("active");
@@ -100,11 +126,11 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           </div>
           <div class="row" id="enviarTrabalho">
             <div class="col-md-12">
-              <div class="card">
+              <div class="card" >
                 <div class="card-header ">
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="textTrabalho">
                   <iframe width="0" height="0" border="0" class="d-none" name="dummyframe" id="dummyframe"></iframe>
                   <form id="InsertWork" name="InsertWork" target="dummyframe" enctype="multipart/form-data">
                     <div class="row">
