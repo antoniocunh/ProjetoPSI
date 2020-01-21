@@ -1,4 +1,5 @@
 <?php
+/*
 require_once 'dbconfig.php';//Mudar o DbConfig Atual para POO
 require 'mailer/PHPMailerAutoload.php';
 // ESTA FUNÇAO PRA REVER
@@ -134,3 +135,5 @@ class USER
     }
 }
 
+*/
+?>

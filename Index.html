@@ -73,7 +73,7 @@ The above copyright notice and this permission notice shall be included in all c
         <h3 id="descricao">The Biggest International IT Professional Conference</h3>
         <h5 id="diasELocal">19 - 21 February, 2018. New York, USA</h5>
         <br />
-        <button onclick="location.href='Registo/register-page.html';" type="button"
+        <button onclick="location.href='Registo/index.php';" type="button"
           class="btn btn-outline-neutral btn-round">Registar</button>
       </div>
     </div>
@@ -228,7 +228,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <i class="nc-icon nc-single-02"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Nome">
+                    <input type="text" class="form-control" placeholder="Nome" name="nomeUser" id="nomeUser">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -239,15 +239,15 @@ The above copyright notice and this permission notice shall be included in all c
                         <i class="nc-icon nc-email-85"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="Email" name="emailUser" id="emailUser">
                   </div>
                 </div>
               </div>
               <label style="color:whitesmoke">Mensagem</label>
-              <textarea class="form-control" rows="4" placeholder="Comentários..."></textarea>
+              <textarea class="form-control" rows="4" placeholder="Comentários..." name="msgUser" id="msgUser"></textarea>
               <div class="row">
-                <div class="col-md-4 ml-auto mr-auto">
-                  <button class="btn btn-default btn-lg btn-fill">Enviar</button>
+                <div class="col-md-2 ml-auto mr-auto">
+                  <button class="btn btn-default  btn-fill" type="submit" name="sendEmail" id="sendEmail">Enviar</button>
                 </div>
               </div>
             </form>
@@ -307,6 +307,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- Scrool Animation -->
   <script src="assets/js/plugins/scrool-animation.js"></script>
   <script src="assets/js/Object/Event/getInfo.js"></script>
+  <script src="scr.contactus.js"></script>
   
   <script>
     $(function () {

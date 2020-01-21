@@ -50,7 +50,7 @@ class User extends Bridge implements JsonSerializable
         $array = $this->ReadObjectBD($id);
         
         foreach ($this as &$key) {
-                $key = $array[$count++];
+            $key = $array[$count++];
         }
     }
     

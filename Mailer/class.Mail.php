@@ -50,14 +50,14 @@ class Mail
         $this->Mail->Send();
     }
 
-    function sendContactMail($aEmail, $aMessage, $aSubject)
+    function sendContactMail($aEmail, $aName, $aMessage, $aSubject)
     {
         $this->Mail->CharSet = 'UTF-8';
-        $this->Mail->setFrom($aEmail, "Contacto");
+        $this->Mail->setFrom($aEmail, $aEmail);
         $this->Mail->addAddress($this->DefaultMail);
-        $this->Mail->addReplyTo($aEmail, "Contacto");
+        $this->Mail->addReplyTo($aEmail,  $aEmail);
         $this->Mail->Subject = $aSubject;
-        $this->Mail->MsgHTML($aMessage);
+        $this->Mail->MsgHTML('Enviado por:'.$aName.'<br>Mail:'.$aEmail.'<br><br>'.$aMessage);
         $this->Mail->Send();
     }
 

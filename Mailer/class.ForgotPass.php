@@ -35,17 +35,17 @@ class ForgotPass{
             $Subject = "Alteração ";
             $Mail->sendMail($aEmail,$Message,$Subject);
             
-            $msg = "<div class='alert alert-success'>
+            return $msg = "<div class='alert alert-success'>
                     <button class='close' data-dismiss='alert'>&times;</button>
-                    We've sent an email to $aEmail.
-                    Please click on the password reset link in the email to generate new password. 
+                    Foi enviado um email para $aEmail.
+                    Por favor, clique no link que lhe foi enviado para redefinir a palavra-passe.
                     </div>";
         }
         else
         {
-            $msg = "<div class='alert alert-danger'>
+           return $msg = "<div class='alert alert-danger'>
                     <button class='close' data-dismiss='alert'>&times;</button>
-                    <strong>Sorry!</strong> This email not found. 
+                    <strong>Desculpe!</strong> O email não consta na base de dados.
                     </div>";
         }
     }

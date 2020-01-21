@@ -12,10 +12,10 @@
 
 	<!-- CSS Files -->
     <link href="../assets/layout.register/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- Fonts and Icons -->
+	<link href="./css/OverrideLayout.css" rel="stylesheet" />
+	<!-- Fonts and Icons-->
 	<link href="../assets/layout.register/css/themify-icons.css" rel="stylesheet">
-
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	</head>
@@ -25,7 +25,6 @@
 	<?php include '../Common/navbar.html' ?>
 
 	<div class="image-container set-full-height" style="background-image: url('../assets/img/register/Sample-Image (6).jpg')">
-	<div class="filter"></div>
 	    <!--   Big container   -->
 	    <div class="container">
 	        <div class="row">
@@ -35,7 +34,7 @@
 		            <div class="wizard-container">
 
 		                <div class="card wizard-card card-register" data-color="black" id="wizardProfile">
-		                    <form name="registo" id="registo">
+		                    <form name="registo" id="registo" method="POST">
 		                    	<div class="wizard-header text-center">
 		                        	<h3 class="wizard-title">Registar</h3>
 									<p class="category">Estas informações são necessárias para poder efetuar um registo.</p>
@@ -115,7 +114,7 @@
 		                            <div class="tab-pane" id="account">
 		                                <div class="row">
 											<div class="row">
-												<div class="col-sm-4 col-sm-offset-1">
+												<div class="col-sm-5 col-sm-offset-1">
 													<div class="form-group">
 														<label>Data de Nascimento  <small> (*)</small></label>
 														<input name="dataNascimento" id="dataNascimento" type="date" placeholder="Data de Nascimento" class="form-control">
@@ -125,7 +124,7 @@
 														<select name="scope" id="scope" class="form-control"></select>
 													</div>
 												</div>
-												<div class="col-sm-6">
+												<div class="col-sm-5">
 													<div class="form-group">
 														<label>Telemóvel <small> (*)</small></label><br>
 														<input name="telefone" id="telefone" type="text" class="form-control" placeholder="Telemóvel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}">
@@ -422,18 +421,18 @@
 											<div class="col-sm-6 col-sm-offset-3">
 												<div class="form-group">
 													<label>Nome de Utilizador <small> (*)</small></label>
-													<input name="username" id="username" type="text" placeholder="Username" class="form-control" pattern="^[A-Za-z0-9_]{1,32}$">
+													<input name="username" id="username" type="text" placeholder="Username" class="form-control" pattern="^[A-Za-z0-9_]{1,32}$" required>
 												</div>
 											</div>
 										
 											<div class="col-sm-8 col-sm-offset-2">
 												<div class="form-group">
 													<label>Palavra-passe  <small> (*)</small></label>
-													<input  id="pass1" name="pass1" type="password" class="form-control" placeholder="Palavra-passe">
+													<input  id="pass1" name="pass1" type="password" class="form-control" placeholder="Palavra-passe" required>
 												</div>
 												<div class="form-group">
 													<label>Repita Palavra-passe  <small> (*)</small></label>
-													<input id="pass2" name="pass2" type="password" class="form-control" placeholder="Repita Palavra-passe">
+													<input id="pass2" name="pass2" type="password" class="form-control" placeholder="Repita Palavra-passe" required>
 												</div>
 												<br>
 												<br>
@@ -443,8 +442,8 @@
 		                        </div>
 		                        <div class="wizard-footer">
 		                            <div class="pull-right">
-		                                <input type='button' class='btn btn-next btn-fill btn-warning btn-wd' name='next' value='Seguinte' />
-		                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd' />
+		                                <input type='button' class='btn btn-next btn-fill btn-default btn-wd' name='next' value='Seguinte' />
+		                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd' value='Registar'/>
 		                            </div>
 
 		                            <div class="pull-left">
@@ -474,15 +473,13 @@
 	<script src="../assets/layout.register/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 	<script src="../assets/layout.register/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="../assets/layout.register/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-
+	
 	<!--  Plugin for the Wizard -->
 	<script src="../assets/layout.register/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
 	<script src="../assets/layout.register/js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="./script/scr.GetScopes.js"></script>
 
 	<!--  More information about jquery.validate here: https://jqueryvalidation.org/	 -->
-	
-	
-	<script src="./script/registo2.js"></script>
 
 	<script>
         $(function () {

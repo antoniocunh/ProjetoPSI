@@ -46,9 +46,14 @@ transparent = true;
                 debug: true,
                 errorElement: "div",
                 rules: {
-                    nome: 'required',
-                    ultimoNome: 'required',
-                    ambito: 'required',
+                    nome: {
+                        required: true,
+                        //pattern: "/^[a-zA-Z]+$/",
+                    },
+                    ultimoNome: {
+                        required: true
+                    },
+                    scope: 'required',
                     morada: 'required',
                     telefone: 'required',
                     pais: 'required',
@@ -77,6 +82,7 @@ transparent = true;
                         remote: {
                             url: "../assets/php/Object/obj.GetUsername.php",
                             type: "post",
+                            pattern: "/^[a-zA-Z0-9]+$/",
                             data: {
                               username: function() {
                                 return $( "#username" ).val();
@@ -93,9 +99,14 @@ transparent = true;
                     },
                 },
                 messages: {
-                    nome: 'Por favor introduza um nome.',
-                    ultimoNome: 'Por favor introduza um sobrenome.',
-                    ambito: 'Por favor selecione um âmbito.',
+                    nome:{
+                        required: 'Por favor introduza um nome.',
+                       // pattern: 'Por favor introduza um nome válido.',
+                    },
+                    ultimoNome: {
+                        required: 'Por favor introduza um sobrenome.'
+                    },
+                    scope: 'Por favor selecione um âmbito.',
                     morada: 'Por favor introduza uma morada.',
                     telefone: 'Por favor introduza um nº de telefone.',
                     pais: 'Por favor selecione um pais.',
@@ -110,7 +121,8 @@ transparent = true;
                     },
                     username: {
                         required: 'Por favor introduza um username.',
-                        minlength: 'O username tem de ter pelo menos 4 caracteres.'
+                        minlength: 'O username tem de ter pelo menos 4 caracteres.',
+                        pattern: "O campo username não permite caracteres especiais ou numeros"
                     },
                     pass1: {
                         required: 'Por favor introduza uma palavra-passe.',
@@ -121,10 +133,31 @@ transparent = true;
                         equalTo: 'A palavra-passe não é igual á introduzida anteriormente'
                     },
                 },
-                submitHandler: function(form){
-                    form.submit();
+                submitHandler: function (form) {
+                    var dataSerialized = $("#registo").serialize();
+                    console.log(dataSerialized);
+
+                    $.ajax({
+                        url: '../assets/php/Object/obj.CreateUser.php',
+                        type: 'POST',
+                        data: dataSerialized,
+                        success: function (msg) {
+                            var text = JSON.parse(msg);
+                            //alert(text.msg);
+                            SuccessMsg(text);
+                            //location.href = '../Login/index.php';
+                        },
+                        error: function(msg){
+                            console.log(msg);
+                        }
+                    })
                 }
             });
+
+            function SuccessMsg(msg) {
+                window.location = '../Login/index.php?msg='+msg;
+            }
+
 
             // Wizard Initialization
           	$('.wizard-card').bootstrapWizard({

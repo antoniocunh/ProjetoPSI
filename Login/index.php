@@ -28,7 +28,7 @@ require_once("../assets/php/Proprieties/ConfigDB.php");
 <!-- CSS Files -->
 <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
-
+<link href="./includes/overrideLayout.css" rel="stylesheet" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -48,16 +48,25 @@ require_once("../assets/php/Proprieties/ConfigDB.php");
 
             <form class="form-login" method="post" id="login-form">
               <div id="div-error"></div>
-              <div class="form-group">
-                <label>User</label>
-                <input class="form-control" placeholder="Username" name="username" id="idUsername" />
-                <span id="check-e"></span>
+              <label>User</label>
+              <div class="input-group form-group-no-border">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-user-o"></i>
+                    </span>
+                  </div>
+                  <input class="form-control" placeholder="Username" name="username" id="idUsername" />
+                </div>
+            
+              <label>Password</label>
+              <div class="input-group form-group-no-border">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-key"></i>
+                    </span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Password" name="password" id="idPassword" />
               </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" placeholder="Password" name="password" id="idPassword" />
-              </div>
-
               <div class="form-group">
                 <button type="submit" class="btn btn-default btn-block btn-round" name="login_button" id="login_button">
                   &nbsp; Autenticar
