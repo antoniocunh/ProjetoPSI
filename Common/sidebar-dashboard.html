@@ -74,23 +74,31 @@
   var resp1
 
   function rmvDivs() {
-    var botoes, avaliar = " ", resultados = " ", participar = " ", SubmittedWorks = " ";
-    if (Date.parse(resp2.dtIniSubmition) < Date.now() && Date.parse(resp2.dtEndSubmition) > Date.now()) {
-      SubmittedWorks = '<li class="nav-item " id="SubmittedWorks"> <a class="nav-link" href="./SubmittedWorks.php"> <span class="sidebar-mini"> Submetidos </span> </a> </li>';
+    console.log(resp2);
+    var botoes, avaliar = " ", resultados = " ", participar = " ", SubmittedWorks = " ", certificados = " ";
+    //if(Date.parse(resp2.dtIniSubscription) <= Date.now() && Date.parse(resp2.dtEndSubscription) >= Date.now()  || Date.parse(resp2.dtIniSubmition) <= Date.now() && Date.parse(resp2.dtEndSubmition) >= Date.now()){
       participar = '<li id="participar"> <a href="./Participate.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
+    //}
+    if (Date.parse(resp2.dtEndEvent) <= Date.now()){
+      certificados = '<li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>';
+    }
+    if (Date.parse(resp2.dtEndSubmition) >= Date.now()) {
+      SubmittedWorks = '<li class="nav-item " id="SubmittedWorks"> <a class="nav-link" href="./SubmittedWorks.php"> <span class="sidebar-mini"> Submetidos </span> </a> </li>';
+
     }
     if (Date.parse(resp2.dtResults) < Date.now()) {
       resultados = '<li class="nav-item " id="resultados"> <a class="nav-link" href="./Results.php"> <span class="sidebar-mini"> Resultados</span> </a> </li>';
     }
     if (Date.parse(resp2.dtIniEvaluation) < Date.now() && Date.parse(resp2.dtEndEvaluation) > Date.now()) {
       avaliar = '<li class="nav-item " id="trabalhosAvaliados"> <a class="nav-link" href="./ReviewedWorks.php"> <span class="sidebar-mini"> Avaliados </span> </a> </li>' +
-        '<li class="nav-item "><li class="nav-item " id="avaliar"> <a class="nav-link" href="./Review.php"> <span class="sidebar-mini"> Avaliar </span> </a> </li>';
+                '<li class="nav-item "><li class="nav-item " id="avaliar"> <a class="nav-link" href="./Review.php"> <span class="sidebar-mini"> Avaliar </span> </a> </li>';
 
     }
+    console.log(SubmittedWorks);
 
     if (resp1 == 0) { // Admin
       botoes =
-        '<li id="Event"> <a href="./Event.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>' +
+        '<li id="event"> <a href="./Event.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>' +
         '<li class="nav-item "><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li> <div class="collapse" id="pages1"><ul class="nav">' +
         avaliar +
         SubmittedWorks +
@@ -98,7 +106,7 @@
         '</ul> </div></li>' +
         participar +
         '<li id="prices"><a href="./Prices.php"><i class="fa fa-money" aria-hidden="true"></i> <p>Preços</p></a></li>' +
-        '<li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>' +
+        certificados + 
         '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-users" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="CreateUser"> <a class="nav-link" href="./CreateUser.php"> <span class="sidebar-mini"> Criar</span> </a> </li><li class="nav-item" id="ManageUsers"> <a class="nav-link" href="./ManageUsers.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>' +
         '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
@@ -110,13 +118,17 @@
         resultados +
         '</ul> </div>' +
         participar +
-        '<li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>' +
-        '<li id="ManageUsers"><a href="./ManageUsers.php"><i class="fa fa-users" aria-hidden="true"></i> <p>Gerir Utilizadores</p></a></li>' +
+        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-users" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="CreateUser"> <a class="nav-link" href="./CreateUser.php"> <span class="sidebar-mini"> Criar</span> </a> </li><li class="nav-item" id="ManageUsers"> <a class="nav-link" href="./ManageUsers.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>' +
         '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else if (resp1 == 2) { // comissão cientifica
       botoes =
+        '<li class="nav-item "><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li> <div class="collapse" id="pages1"><ul class="nav">' +
+        avaliar +
+        SubmittedWorks +
+        resultados +
+        '</ul> </div></li>' +
         '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
       //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 

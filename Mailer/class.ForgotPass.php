@@ -7,18 +7,18 @@ class ForgotPass{
 
     public function ResetPassword($aEmail)
     {
-        $User  = new User('vcEmail');
+        $User2  = new User('vcEmail');
         $Mail = new Mail();
         
-        $User->readObject($aEmail);
-        $ID = $User->getiIdUser();
+        $User2->readObject($aEmail);
+        $ID = $User2->getiIdUser();
     
         if (!is_null($ID))
         {
             $EncodedId = base64_encode($ID);
             $TokenCode = md5(uniqid(rand()));
-            $User->setvcTokenCode($TokenCode);
-            $User->UpdateObject();
+            $User2->setvcTokenCode($TokenCode);
+            $User2->UpdateObject();
         
             //Construção do Url
             $Url  = "http://" . $_SERVER["SERVER_NAME"] . "/ProjetoPSI/Login/includes/reset-password.php?id=$EncodedId&code=$TokenCode";   //TA MAL
