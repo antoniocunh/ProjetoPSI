@@ -11,7 +11,9 @@
     $event = new Event();
     $event->readObject("0");//evento atual
 
-    if(!($event->getDtIniEvent() < date('Y-m-d') && $event->getDtEndEvent() > date('Y-m-d'))){
-       header("location: ../../");
+    if($temp->getIIdUserType() != 0){
+        echo 1;
+        if(!($event->getDtIniEvent() < date('Y-m-d') && $event->getDtEndEvent() > date('Y-m-d'))){
+            header("location: ../../");
+        }
     }
-?>

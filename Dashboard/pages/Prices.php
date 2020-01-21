@@ -64,7 +64,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           <div class="col-md-12">
             <div class="card">
               <div class="card-header" style="background-color:#2c2c2c !important;">
-                <h4 class="card-title" style="color:#f4f3ef !important;">Preços</h4>
+                <h4 class="card-title">Preços</h4>
                 <button name="adicionar" id="adicionar" class="btn btn-warning adicionar">Adicionar <i class="fa fa-plus-circle"></i></button>
               </div>
               <div class="card-body">

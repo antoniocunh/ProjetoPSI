@@ -7,6 +7,7 @@ $(function () {
             url: "../../assets/php/Object/obj.GetResults.php",
             success: function (result) {
                 resp = JSON.parse(result);
+                console.log(resp);
                 if (jQuery.isEmptyObject(resp)) {
                     $("#tb_resultados").html("<p>Neste preciso momento você não recebeu nenhuma avaliação.</p>");
                 }
@@ -17,7 +18,7 @@ $(function () {
 
         function writeRows() {
             $("#tb_resultados").empty();
-            $("#tb_resultados").append('<thead class=" text-primary"> <th>ID</th> <th>Nome do Autor</th><th>Trabalho</th><th>Trabalho Final</th></thead> <tbody>');
+            $("#tb_resultados").append('<thead class=" text-primary"> <th>ID</th><th>Nome do Trabalho</th><th>Nome do Autor</th><th>Trabalho Final</th><th>Critica</th></thead> <tbody>');
                 
             var html="";
 
@@ -25,14 +26,14 @@ $(function () {
                 var index = resp.indexOf(element);
                 html += "<tr id='" + index + "'>";
                 
-                for (var count = 0; count <= 1; count++) {
+                for (var count = 0; count <= 2; count++) {
                     html += "<td>";
-                    html += count == 1 ? element[1] + " " + element[3] : element[count];
+                    html += count == 2 ? element[2] + " " + element[4] : element[count];
                     html += "</td>";
                 }
 
-                html += '<td><form id="form' + element[5] + '"><input id="f' + element[5] + '" type="file" class="submitTrabalho" /></form></td>';
-                html += '<td><button id="c' + element[5] + '" class="btn btn-warning verCritica">Critica</button></td></tr>';
+                html += '<td><form id="form' + element[0] + '"><input id="f' + element[0] + '" type="file" class="submitTrabalho" /></form></td>';
+                html += '<td><button id="c' + element[0] + '" class="btn btn-warning verCritica">Critica</button></td></tr>';
             });
         
             $("#tb_resultados").append(html);
@@ -44,7 +45,6 @@ $(function () {
             e.preventDefault();
             var fd = new FormData();
             var file = $("#" + this.id)[0].files[0];
-            console.log($("#" + this.id)[0]);
             fd.append('file', file);
             fd.append('iIdWork', this.id.substring(1, this.id.length));
             $.ajax({
@@ -64,10 +64,21 @@ $(function () {
             
             $.ajax({
                 url: "../../assets/php/Object/obj.GetCriticas.php",
-                data: this.id.substr(1),
+                data: {
+                    iIdWork:this.id.substr(1)
+                },
                 type: 'POST',
                 success: function (result) {
-                    console.log(result);
+                    var critics = JSON.parse(result);
+                    $("#bdCriticas").empty();
+                    critics.forEach(function(critic){
+                        html = '<div class="container"> <div class="clearfix"> <div class="float-left"> <h6>' + critic.vcName + ' ' +  critic.vcLastName + '</h6> </div>' +
+                        '<div class="float-right"> <h6>Nota: ' + critic.iRate + ' </h6> </div></div>'+ 
+                        '<div class="clearfix"> <p>' + critic.vcReview + '</p><hr/> </div></div>';
+                        $("#bdCriticas").append(html);
+                    })
+                    console.log(critics);
+                    $("#Modal").modal("show");
                 }
             });
         });

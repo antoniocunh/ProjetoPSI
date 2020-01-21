@@ -54,8 +54,6 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         success: function(result) {
           var resp = JSON.parse(result);
           var temp = resp[0].iIdUserType;
-          console.log(temp);
-          console.log(temp);
           if(temp != 5 && temp != 7){
             $("#participarBox").remove();
           }
@@ -70,7 +68,6 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         url: "../../assets/php/Object/obj.GetEvent.php",
         success: function(result) {
           var temp= JSON.parse(result);
-          console.log(temp);
           if(Date.parse(temp.dtIniSubscription) > Date.now()){
             $("#textParticipar").html("A data de subscrição só está disponível a partir do dia " + temp.dtIniSubscription + ".");
             $("#botaoParticipante").remove();
@@ -171,7 +168,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                           <label>Membros do Grupo</label>
                           <span class="autocomplete-select"></span>
                         </div>
-                        <div class="d-none">
+                        <div>
                           <select name="membros[]" id="sendMembros" multiple></select>
                         </div>
                       </div>

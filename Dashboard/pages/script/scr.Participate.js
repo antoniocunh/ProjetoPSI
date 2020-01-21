@@ -34,13 +34,14 @@ $(function () {
       });
     }
 
-    function autocompleteMultiple(users) {
+    function autocompleteMultiple(users, selected) {
       var autocomplete = new SelectPure(".autocomplete-select", {
         options: users,
         multiple: true,
         autocomplete: true,
         icon: "fa fa-times",
         placeholder: "- Escolha Por Favor -",
+        value: selected,
         onChange: value => {
           var user = [];
           $("#sendMembros").empty();
@@ -57,6 +58,7 @@ $(function () {
           autocompleteMulti(user);
         },
       });
+      console.log(autocomplete);
     }
 
     $(document).ready(function () {
@@ -66,16 +68,31 @@ $(function () {
           var users = [];
           resp = JSON.parse(result);
 
-          resp.forEach(element => {
-            var temp = {
-              label: element["vcUsername"],
-              value: element["vcUsername"]
+          $.ajax({
+            url: "../../assets/php/Object/obj.GetMyUsername.php",
+            success: function (result) {
+              username = JSON.parse(result);
+
+              resp.forEach(element => {
+                if(element["vcUsername"] == username){
+                  var temp = {
+                    label: element["vcUsername"],
+                    value: element["vcUsername"],
+                    disabled: true
+                  }
+                }else{
+                  var temp = {
+                    label: element["vcUsername"],
+                    value: element["vcUsername"]
+                  }
+                }
+                users.push(temp);
+              });
+              autocompleteMulti([]);
+              autocompleteUnique([]);
+              autocompleteMultiple(users, [username]);
             }
-            users.push(temp);
           });
-          autocompleteMulti([]);
-          autocompleteUnique([]);
-          autocompleteMultiple(users);
 
         }
       });

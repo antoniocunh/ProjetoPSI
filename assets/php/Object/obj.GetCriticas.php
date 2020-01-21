@@ -4,21 +4,21 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
 //require da class evaluation
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/class.Evaluation.php");
 
-$RelationWorkUser = new Evaluation();
+$evaluation = new Evaluation();
 $Columns = array(
     array("TBU", "vcName"),
     array("TBW", "vcTitle"),
     array(null, "iRate"),
-    array(null, "iIdReviewer"),
+    array(null, "vcReview"),
     array("TBU", "vcLastName"),
 );
-var_dump($_POST["iIdWork"]);
 if (isset($_POST["iIdWork"])) {
     $Query =
-        $RelationWorkUser->SelectJoin($Columns) .
-        $RelationWorkUser->Join(Joins::INNER, "tb_work", [["iIdWork", "iIdWork"]], "TBW") .
-        $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIdReviewer", "iIDUser"]], "TBU") .
-        $RelationWorkUser->Where([["vciIdUser", "=", null]], true);
+        $evaluation->SelectJoin($Columns) .
+        $evaluation->Join(Joins::INNER, "tb_work", [["iIdWork", "iIdWork"]], "TBW") .
+        $evaluation->Join(Joins::INNER, "tb_user", [["iIdReviewer", "iIDUser"]], "TBU") .
+        $evaluation->Where([["iIdWork", "=", null]], true);
 
-    echo json_encode($RelationWorkUser->QueryExecute($Query, [$_POST["iIdWork"]]), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    echo json_encode($evaluation->QueryExecute($Query, [$_POST["iIdWork"]], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 }
+

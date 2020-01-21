@@ -74,7 +74,6 @@
   var resp1
 
   function rmvDivs() {
-    console.log(resp2);
     var botoes, avaliar = " ", resultados = " ", participar = " ", SubmittedWorks = " ", certificados = " ";
     //if(Date.parse(resp2.dtIniSubscription) <= Date.now() && Date.parse(resp2.dtEndSubscription) >= Date.now()  || Date.parse(resp2.dtIniSubmition) <= Date.now() && Date.parse(resp2.dtEndSubmition) >= Date.now()){
       participar = '<li id="participar"> <a href="./Participate.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
@@ -94,7 +93,6 @@
                 '<li class="nav-item "><li class="nav-item " id="avaliar"> <a class="nav-link" href="./Review.php"> <span class="sidebar-mini"> Avaliar </span> </a> </li>';
 
     }
-    console.log(SubmittedWorks);
 
     if (resp1 == 0) { // Admin
       botoes =
