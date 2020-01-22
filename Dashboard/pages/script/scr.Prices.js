@@ -7,7 +7,7 @@ $(function () {
             url: "../../assets/php/Object/obj.GetPrices.php",
             success: function (result) {
                 resp_Price = JSON.parse(result);
-                if(jQuery.isEmptyObject(resp_Price)){
+                if (jQuery.isEmptyObject(resp_Price)) {
                     $("#tb_price").html("<p>Neste preciso momento não existem preços definidos.</p>");
                 }
                 writeRows();
@@ -15,19 +15,17 @@ $(function () {
         });
 
         //Get Rows for table in HTML
-        function writeRows() 
-        {
+        function writeRows() {
             $("#tb_price").empty();
-            $("#tb_price").append('<thead class=" text-primary"> <th>ID</th> <th>Preço</th> <th>Descrição</th> <th>Ação</th> </thead> <tbody>');
+            $("#tb_price").append('<thead class=" text-primary"> <th>ID</th> <th>Preço</th> <th>Descrição</th> <th>Roles</th> <th>Ação</th> </thead> <tbody>');
 
-            var html="";
+            var html = "";
 
             resp_Price.forEach(element => {
                 var index = resp_Price.indexOf(element);
                 html += "<tr id='" + index + "'>";
-                
-                for (var count = 0; count <= 2; count++) 
-                {
+
+                for (var count = 0; count <= 3; count++) {
                     html += "<td>";
                     html += element[count];
                     html += "</td>";
@@ -37,61 +35,62 @@ $(function () {
             })
             $("#tb_price").append(html);
             $("#tb_price").append('</tbody>');
-            $(document).on('DOMNodeInserted', function(e) { $('#tb_price').DataTable(); })
+            $(document).on('DOMNodeInserted', function (e) {
+                $('#tb_price').DataTable();
+            })
         }
 
-    //Click Button ->Show Modal
-    $(document).on('click', ".editar", function () {
-        var id = this.id.substring(1);
-        
-        keys = Object.keys(resp_Price[id]);
-        keys.forEach(element => {
-            $("#" + element).val(resp_Price[id][element]);
+        //Click Button ->Show Modal
+        $(document).on('click', ".editar", function () {
+            var id = this.id.substring(1);
+
+            $("#iIdPrice").val(resp_Price[id][0]);
+            $("#dPrice").val(resp_Price[id][1]);
+            $("#vcDescription").val(resp_Price[id][2]);
+
+            $("#Modal").modal("show");
         });
 
-        $("#Modal").modal("show");
-    });
-   
-       //Insert Price
-       $(document).on('click', "#editPrice", function () {
-        $.ajax({
-            url: '../../assets/php/Object/obj.UpdatePrice.php',
-            type: 'POST',
-            data: {
-                iIdPrice: $("#iIdPrice").val(), 
-                dPrice: $("#dPrice").val(),
-                vcDescription: $("#vcDescription").val()
-            },
-            success: function(msg) {
-                var text = JSON.parse(msg);
-                $("#Modal").modal("toggle");
-                location.reload();
-            }               
+        //Insert Price
+        $(document).on('click', "#editPrice", function () {
+            $.ajax({
+                url: '../../assets/php/Object/obj.UpdatePrice.php',
+                type: 'POST',
+                data: {
+                    iIdPrice: $("#iIdPrice").val(),
+                    dPrice: $("#dPrice").val(),
+                    vcDescription: $("#vcDescription").val()
+                },
+                success: function (msg) {
+                    var text = JSON.parse(msg);
+                    $("#Modal").modal("toggle");
+                    location.reload();
+                }
+            });
         });
-    });
 
-    $(document).on('click', ".adicionar", function () {
-        $("#ModalAddPrice").modal("show");
-    });
-
-    //Insert Price
-     $(document).on('click', "#insertPrice", function () {
-        $.ajax({
-            url: '../../assets/php/Object/obj.InsertPrice.php',
-            type: 'POST',
-            data: {
-                dPrice: $("#add_dPrice").val(),
-                vcDescription: $("#add_vcDescription").val()
-            },
-            success: function(msg) {
-                var text = JSON.parse(msg);
-                $("#ModalAddPrice").modal("toggle");
-                location.reload();
-            }               
+        $(document).on('click', ".adicionar", function () {
+            $("#ModalAddPrice").modal("show");
         });
-    });
-     
-    $(document.body).fadeIn(300);
+
+        //Insert Price
+        $(document).on('click', "#insertPrice", function () {
+            $.ajax({
+                url: '../../assets/php/Object/obj.InsertPrice.php',
+                type: 'POST',
+                data: {
+                    dPrice: $("#add_dPrice").val(),
+                    vcDescription: $("#add_vcDescription").val()
+                },
+                success: function (msg) {
+                    var text = JSON.parse(msg);
+                    $("#ModalAddPrice").modal("toggle");
+                    location.reload();
+                }
+            });
+        });
+
+        $(document.body).fadeIn(300);
     })
 });
 

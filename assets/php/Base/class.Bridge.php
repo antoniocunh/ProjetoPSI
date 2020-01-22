@@ -115,15 +115,14 @@ class Bridge{
     /**
      * Funcção que permite fazer uma execução basica à bd sem usar binds
      */   
-    public function QueryExec($aQuery)
+    public function QueryExec($aQuery, $aValue=1)
     {
         try{
             $stmt = $this->conn->prepare($aQuery);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_BOTH);
+            return $this->fetch($stmt, $aValue);
         }
         catch(PDOException $e){
-            //$stmt->debugDumpParams();
             echo "<br>".$e->getMessage();
             return false;
         }
@@ -133,7 +132,7 @@ class Bridge{
      * Funcção que permite fazer uma execução à bd, mas a user bind parameters.
      * Permite também a realização e escolha de fetch
      */
-    public function QueryExecute($aQuery, $aData, $aValue=0)// $bReturn = false)
+    public function QueryExecute($aQuery, $aData, $aValue=0)
     {
         try{
             if(substr_count($aQuery, '?') != count($aData))
@@ -145,8 +144,6 @@ class Bridge{
                 $stmt->bindParam($count++, $Value);
             }
             $stmt->execute();
-            //if($bReturn)
-            //    return $stmt->fetchAll(PDO::FETCH_BOTH);
 
             return $this->fetch($stmt, $aValue);
         }
@@ -173,6 +170,7 @@ class Bridge{
             case 2:
                 return $aStmt->fetch(PDO::FETCH_ASSOC);
                 break;
+            //...
         }
     }
 
@@ -226,7 +224,6 @@ class Bridge{
             $Columns="";
             $i=1;
             $FieldNums=count($aField);
-
             foreach($aField as &$Name){
                 $Columns = $i < $FieldNums ? $Columns."{$this->Alias}.{$Name}, " : $Columns."{$this->Alias}.{$Name}";
                 $i++;
@@ -263,6 +260,38 @@ class Bridge{
         $Query = $Select.$Columns.$From." AS {$this->Alias}";
         //echo $Query;
         return $Query;
+    }
+
+    public function SelectUnion($aTables){
+        $Query="";
+        $Select="SELECT * FROM (";
+
+
+        
+        /* SelectUnion()
+           .tb1.Select()
+           .Union()
+           .tb1.Select()
+           .Union()
+           .tb1.Select()
+           .tb.WhereUnion()
+           .Join()
+        */
+
+        
+        /*
+                SELECT *  FROM  (
+    		            SELECT * from tb_work as TBW
+    		    UNION ALL
+                        SELECT * from tb_evaluation as EVA 
+                                ) As tbUnion
+                INNER JOIN tb_attachment as ATT ON
+		                ATT.iIDWork = tbUnion.iIdWork
+                INNER JOIN tb_evaluation as AV ON
+		                AV.iIDWork = tbUnion.iIdWork  
+                ORDER BY 
+                        AV.iIdEvaluation ASC
+        */
     }
 
     /**
@@ -326,6 +355,19 @@ class Bridge{
         $Query = $JoinStr.$Condition;
         //echo $Query;
         return $Query;
+    }
+
+    /*
+        UNION - Retorno da string UNION
+        Values - 0 - Union - Remove os duplicados 
+               - 1 - Union All - Junta tudo
+
+        Diferenca dos unions:
+            https://stackoverflow.com/questions/49925/what-is-the-difference-between-union-and-union-all
+    */
+    public function Union($aValue)
+    {
+        return $aValue == 0 ? 'UNION' : 'UNION ALL';
     }
 
     /*

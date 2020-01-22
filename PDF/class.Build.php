@@ -14,6 +14,7 @@ Class BuildPDF
         public function GenerateCertificate($aPath, $aFullName)
         {
             $pdf = new Fpdi();
+            $aFullName = iconv('UTF-8', 'windows-1252', $aFullName);//UTF8 PROBLEMS
             $pageCount = $pdf->setSourceFile($aPath);//'./Certificates/Certificado2019_CC.pdf');
 
             // iterate through all pages

@@ -9,7 +9,7 @@
         array("TBW", "vcTitle"),
         array("TBU", "vcName"),
         array("TBW", "vcTitle"),
-        array("TBU", "vcLastName"),
+        array("TBU", "vcLastName")
     );
 
     $Query =

@@ -17,7 +17,7 @@ $(function () {
     function writeRows() {
 
         $("#tb_Work").empty();
-        $("#tb_Work").append('<thead class=" text-primary"> <th>ID</th> <th>Titulo do Trabalho</th> <th>Descrição do Trabalho</th> <th>Nome</th> <th>Tipo de Trabalho</th> <th>Trabalho</th> <th>Ações</th> </thead>');
+        $("#tb_Work").append('<thead class=" text-primary"> <th>ID</th> <th>Titulo</th> <th>Descrição</th> <th>Autor</th> <th>Tipo</th> <th>Ficheiro</th> <th>Ações</th> </thead>');
         $("#tb_Work").append('<tbody>');
         var html="";
 

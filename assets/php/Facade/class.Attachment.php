@@ -26,7 +26,7 @@ class Attachment extends Bridge implements JsonSerializable
     {
         parent::__construct("tb_attachment", "iIdAttachment", "att");
     }
-    
+
     /**
      * lê os dados de um attachment de acordo com o seu id.
      */
@@ -34,9 +34,11 @@ class Attachment extends Bridge implements JsonSerializable
     {
         $count = 0;
         $array = $this->ReadObjectBD($id);
-        
-        foreach ($this as &$key) {
+
+        if ($array != false) {
+            foreach ($this as &$key) {
                 $key = $array[$count++];
+            }
         }
     }
 
@@ -56,16 +58,16 @@ class Attachment extends Bridge implements JsonSerializable
         $arrayFieldsUser = array();
         $columns = $this->GetAtributesName();
         $aData = get_object_vars($this);
-        $arrayWhere = array(array($this->getColumn(),"=",null));
+        $arrayWhere = array(array($this->getColumn(), "=", null));
 
         array_push($aData, $aData[$this->getColumn()]);
-        foreach($columns as $value){
+        foreach ($columns as $value) {
             array_push($arrayFieldsUser, [$value, "="]);
         }
 
         $this->Update($arrayFieldsUser, $arrayWhere,  $aData);
     }
-    
+
     /**
      * Apagar o objeto attachment da base de dados
      */
@@ -73,7 +75,7 @@ class Attachment extends Bridge implements JsonSerializable
     {
         $arrayWhere = array(array($this->getColumn(), "=", null));
         $Data = array($this->{$this->getColumn()});
-        $Query= $this->Delete($arrayWhere, $Data);
+        $Query = $this->Delete($arrayWhere, $Data);
         $this->ClearData();
     }
 
@@ -83,24 +85,25 @@ class Attachment extends Bridge implements JsonSerializable
     private function ClearData()
     {
         foreach ($this as &$key)
-        if(!($key instanceof Bridge))
-            $key = null;
+            if (!($key instanceof Bridge))
+                $key = null;
     }
 
     /**
      * Converte o objeto attachment para Json
      */
-    public function jsonSerialize(){
+    public function jsonSerialize()
+    {
         $json =  array();
         foreach ($this as $key => &$value) {
-            $json += [$key=>$value];
+            $json += [$key => $value];
         }
         return $json;
     }
 
     /**
      * Get the value of iIdAttachment
-     */ 
+     */
     public function getIIdAttachment()
     {
         return $this->iIdAttachment;
@@ -108,7 +111,7 @@ class Attachment extends Bridge implements JsonSerializable
 
     /**
      * Get the value of iIdWork
-     */ 
+     */
     public function getiIdWork()
     {
         return $this->iIdWork;
@@ -116,7 +119,7 @@ class Attachment extends Bridge implements JsonSerializable
 
     /**
      * Get the value of blAttachment
-     */ 
+     */
     public function getBlAttachment()
     {
         return base64_encode($this->blAttachment);
@@ -124,7 +127,7 @@ class Attachment extends Bridge implements JsonSerializable
 
     /**
      * Get the value of vcTitle
-     */ 
+     */
     public function getVcTitle()
     {
         return $this->vcTitle;
@@ -132,7 +135,7 @@ class Attachment extends Bridge implements JsonSerializable
 
     /**
      * Get the value of enumState
-     */ 
+     */
     public function getEnumState()
     {
         return $this->enumState;
@@ -142,7 +145,7 @@ class Attachment extends Bridge implements JsonSerializable
      * Set the value of iIdAttachment
      *
      * @return  self
-     */ 
+     */
     public function setIIdAttachment($iIdAttachment)
     {
         $this->iIdAttachment = $iIdAttachment;
@@ -154,7 +157,7 @@ class Attachment extends Bridge implements JsonSerializable
      * Set the value of iIdWork
      *
      * @return  self
-     */ 
+     */
     public function setiIdWork($iIdWork)
     {
         $this->iIdWork = $iIdWork;
@@ -166,7 +169,7 @@ class Attachment extends Bridge implements JsonSerializable
      * Set the value of blAttachment
      *
      * @return  self
-     */ 
+     */
     public function setBlAttachment($blAttachment)
     {
         $this->blAttachment = file_get_contents($blAttachment);
@@ -178,7 +181,7 @@ class Attachment extends Bridge implements JsonSerializable
      * Set the value of vcTitle
      *
      * @return  self
-     */ 
+     */
     public function setVcTitle($vcTitle)
     {
         $this->vcTitle = $vcTitle;
@@ -190,7 +193,7 @@ class Attachment extends Bridge implements JsonSerializable
      * Set the value of enumState
      *
      * @return  self
-     */ 
+     */
     public function setEnumState($enumState)
     {
         $this->enumState = $enumState;

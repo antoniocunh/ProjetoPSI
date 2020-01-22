@@ -47,8 +47,8 @@ if($_GET['code'] == "")
 
                     $User->setvcTokenCode(NULL);
                     $User->UpdateObject();
-
-                    header("refresh:1;" . $_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/index.php");
+                    
+                    header("location: http://" . $_SERVER["SERVER_NAME"] . "/ProjetoPSI/Login/index.php");
                 }
             }
         } 

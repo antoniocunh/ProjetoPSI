@@ -164,7 +164,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-danger">Criar Utilizador</button>
+                                    <button type="submit" class="btn btn-warning">Criar Utilizador</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>

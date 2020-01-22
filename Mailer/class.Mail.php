@@ -27,6 +27,7 @@ class Mail
     function sendMail($aEmail, $aMessage, $aSubject)
     {
         $this->Mail->CharSet = 'UTF-8';
+        $this->Mail->Encoding = 'base64';
         $this->Mail->setFrom($this->DefaultMail, $this->DefaultMailTitle);
         $this->Mail->addAddress($aEmail);
         $this->Mail->addReplyTo($this->DefaultMail,  $this->DefaultMailTitle);

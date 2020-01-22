@@ -1,16 +1,20 @@
     <?php
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Object/ValidationDates/obj.DtEvent.php");
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Object/Roles/obj.VerifyLogin.php");
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Object/Roles/obj.VerifyAdminRole.php");
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Object/Roles/obj.OutOfPermitionRedirect.php");
-    
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Facade/class.User.php");
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/Mailer/class.Mail.php");
-    require($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/PDF/class.Build.php");
 
-    $mail = new Mail();
+    /**
+     * Envia certificados para o email para os membros de uma role escolhida pelo utilizado
+     * 
+     */
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Object/Roles/obj.VerifyLogin.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Object/Roles/obj.VerifyAdminRole.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Object/Roles/obj.OutOfPermitionRedirect.php");
+    
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/assets/php/Facade/class.User.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/Mailer/class.Mail.php");
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/PDF/class.Build.php");
+
+    
     $buildPdf = new BuildPDF();
-    $user = new User();
+    $userMail = new User();
     
     $Role = $_POST['role'];
     $Subject = $_POST['subject'];
@@ -25,26 +29,27 @@
         "vcLastName",
         "vcEmail"
     );
-    $Query = $user->Select($Columns).
-             $user->Where([["iIdUserType", '=', null ]], true);
+    $Query = $userMail->Select($Columns).
+             $userMail->Where([["iIdUserType", '=', null ]], true);
     
-    $Result = $user->QueryExecute($Query, [$Role], true);
+    $Result = $userMail->QueryExecute($Query, [$Role], true);
     $PathFile=$_SERVER["CONTEXT_DOCUMENT_ROOT"]."/ProjetoPSI/PDF/Certificates/";
-
     try{
         if(!empty($Result))
         {    
             for ($i=0; $i < Count($Result); $i++) 
             { 
+                $mail = new Mail();
                 $Email=$Result[$i]["vcEmail"];
                 
+                //Concatenar o nome
                 $FirstName=$Result[$i]["vcName"];
                 $LastName=$Result[$i]["vcLastName"];
                 $FullName = $FirstName." ".$LastName;
-                //Definir os SETS
 
+                //Escolher o certificado certo para a role especifica
                 if($Result[$i]["iIdUserType"]==0)// x      0		Admin
-                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf", $FullName);     
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf", $FullName);
                 if($Result[$i]["iIdUserType"]==1)//       1		Comissão Organizadora
                     $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_CO.pdf", $FullName);
                 if($Result[$i]["iIdUserType"]==2)//       2		Comissão Científica

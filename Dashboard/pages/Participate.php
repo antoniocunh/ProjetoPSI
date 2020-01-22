@@ -128,13 +128,14 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                   <h5 class="card-title">Enviar Trabalho</h5>
                 </div>
                 <div class="card-body" id="textTrabalho">
-                  <iframe width="0" height="0" border="0" class="d-none" name="dummyframe" id="dummyframe"></iframe>
-                  <form id="InsertWork" name="InsertWork" target="dummyframe" enctype="multipart/form-data">
+                  <form id="InsertWork" name="InsertWork" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
                           <label>Tipo de Trabalho</label>
                           <select name="iIdTypeWork" id="iIdTypeWork" class="form-control"></select>
+                          <div id="iIdTypeWork_validate">
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -143,6 +144,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                         <div class="form-group">
                           <label>Âmbito</label>
                           <select name="iIdScope" id="iIdScope" class="form-control"></select>
+                          <div id="iIdScope_validate">
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -151,6 +154,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                         <div class="form-group">
                           <label>Titulo</label>
                           <input name="vcTitle" id="vcTitle" type="text" class="form-control" placeholder="Titulo">
+                          <div id="vcTitle_validate">
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -159,6 +164,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                         <div class="form-group">
                           <label>Resumo</label>
                           <textarea name="vcSummary" id="vcSummary" type="text" class="form-control" placeholder="Resumo"> </textarea>
+                          <div id="vcSummary_validate">
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -167,8 +174,10 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                         <div class="form-group">
                           <label>Membros do Grupo</label>
                           <span class="autocomplete-select"></span>
+                          <div id="membros[]_validate">
+                          </div>
                         </div>
-                        <div>
+                        <div class="d-none">
                           <select name="membros[]" id="sendMembros" multiple></select>
                         </div>
                       </div>
@@ -177,6 +186,8 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                       <div class="col-md-5">
                         <div class="form-group" id="principal">
                           <label>Nome do Autor/Orador principal</label>
+                          <div id="autorP_validate">
+                          </div>
                         </div>
                         <div class="d-none">
                           <select name="autorP" id="sendAutorP"></select>
@@ -187,9 +198,11 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                       <div class="col-md-5">
                         <div class="form-group" id="speakers">
                           <label>Membros que vão apresentar</label>
+                          <div id="speakers[]_validate">
+                          </div>
                         </div>
                         <div class="d-none">
-                          <select name="speakers[]" id="sendSpeakers" multiple></select>
+                          <select class="visibility-visible" name="speakers[]" id="sendSpeakers" multiple></select>
                         </div>
                       </div>
                     </div>
@@ -206,7 +219,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                 </div>
                 <div class="card-footer ">
                   <hr>
-                  <button type="submit" class="btn btn-danger" id="submit">
+                  <button type="submit" class="btn btn-warning" id="submit">
                     Enviar Trabalho
                   </button>
                 </div>

@@ -65,7 +65,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
             <div class="card">
               <div class="card-header" style="background-color:#2c2c2c !important;">
                 <h4 class="card-title">Preços</h4>
-                <button name="adicionar" id="adicionar" class="btn btn-warning adicionar">Adicionar <i class="fa fa-plus-circle"></i></button>
+                <!--<button name="adicionar" id="adicionar" class="btn btn-warning adicionar">Adicionar <i class="fa fa-plus-circle"></i></button>-->
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -95,7 +95,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                 </div>
                 <div class="form-group">
                   <label>Preço</label>
-                  <input type="text" class="form-control" id="dPrice" name="dPrice" pattern="[0-9]+([\.,][0-9]+)?" required />
+                  <input type="text" class="form-control" id="dPrice" name="dPrice" pattern="[0-9]+([\.][0-9]+)?" required />
                 </div>
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Descrição</label>
@@ -141,19 +141,6 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li>
-                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
-                </li>
-                <li>
-                  <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
-                </li>
-                <li>
-                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
-                </li>
-              </ul>
-            </nav>
             <div class="credits ml-auto">
               <span class="copyright">
                 ©
