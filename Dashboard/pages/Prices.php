@@ -65,7 +65,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
             <div class="card">
               <div class="card-header" style="background-color:#2c2c2c !important;">
                 <h4 class="card-title">Preços</h4>
-                <!--<button name="adicionar" id="adicionar" class="btn btn-warning adicionar">Adicionar <i class="fa fa-plus-circle"></i></button>-->
+                <button name="adicionar" id="adicionar" class="btn btn-warning adicionar">Adicionar <i class="fa fa-plus-circle"></i></button>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -101,6 +101,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                   <label for="message-text" class="col-form-label">Descrição</label>
                   <textarea class="form-control" id="vcDescription"></textarea>
                 </div>
+                
               </form>
             </div>
             <div class="modal-footer">
@@ -125,6 +126,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                   <label>Preço</label>
                   <input type="text" class="form-control" id="add_dPrice" name="add_dPrice" pattern="[0-9]+([\.,][0-9]+)?" required/>
                 </div>
+              
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Descrição</label>
                   <textarea class="form-control" id="add_vcDescription"></textarea>

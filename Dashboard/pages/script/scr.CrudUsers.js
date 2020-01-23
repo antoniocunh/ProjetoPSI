@@ -45,7 +45,7 @@ $(function () {
             });
             var keys = Object.keys(resp[id]);
             resp.splice($.inArray(resp[id], resp), 1);
-            writeRows();
+            location.reload();
         });
 
         $(document).on('click', "#uploadModal", function () {

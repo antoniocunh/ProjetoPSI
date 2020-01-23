@@ -13,11 +13,23 @@ $(function () {
                 writeRows();
             }
         });
+        
+        $.ajax({
+            url: '../../assets/php/Object/obj.GetRoles.php',
+            type: 'POST',
+            success: function (msg) {
+                var resp = JSON.parse(msg);
+                resp.forEach(function (element) {
+                    console.log(element);
+                    $("#role").append("<option id='role" + element.iIDTypeUser + "' value ='" + element.iIDTypeUser + "'>" + element.vcDescription + "</option>");
+                })
+            }
+        });
 
         //Get Rows for table in HTML
         function writeRows() {
             $("#tb_price").empty();
-            $("#tb_price").append('<thead class=" text-primary"> <th>ID</th> <th>Preço</th> <th>Descrição</th> <th>Roles</th> <th>Ação</th> </thead> <tbody>');
+            $("#tb_price").append('<thead class=" text-primary"> <th style="width: 50px;">ID</th> <th  style="width: 80px;">Preço</th> <th>Descrição</th> <th  style="width: 50px;">Ação</th> </thead> <tbody>');
 
             var html = "";
 
@@ -25,13 +37,13 @@ $(function () {
                 var index = resp_Price.indexOf(element);
                 html += "<tr id='" + index + "'>";
 
-                for (var count = 0; count <= 3; count++) {
+                for (var count = 0; count <= 2; count++) {
                     html += "<td>";
                     html += element[count];
                     html += "</td>";
                 }
 
-                html += '<td align="center"> <button id="e' + index + '" class="btn btn-warning editar"><i class="fa fa-pencil-square"></i></button> </td> </tr>';
+                html += '<td align="center"> <button id="e' + index + '" class="btn btn-warning editar"><i class="fa fa-pencil"></i></button> </td> </tr>';
             })
             $("#tb_price").append(html);
             $("#tb_price").append('</tbody>');
@@ -48,6 +60,9 @@ $(function () {
             $("#dPrice").val(resp_Price[id][1]);
             $("#vcDescription").val(resp_Price[id][2]);
 
+            /*console.log(resp_Price[id][4]);
+            $("#role").val(resp_Price[id][4]);*/
+            
             $("#Modal").modal("show");
         });
 
@@ -59,7 +74,8 @@ $(function () {
                 data: {
                     iIdPrice: $("#iIdPrice").val(),
                     dPrice: $("#dPrice").val(),
-                    vcDescription: $("#vcDescription").val()
+                    vcDescription: $("#vcDescription").val(),
+                    iIDTypeUser: $("#role").val()
                 },
                 success: function (msg) {
                     var text = JSON.parse(msg);
@@ -92,26 +108,24 @@ $(function () {
 
         $(document.body).fadeIn(300);
     })
+
 });
 
 
 /*
-$(function() {
-
-    $("#ModalAddPrice").validate({
-      rules: {
-        add_dPrice: {
-          required: true,
-          pattern: \d+(\.\d{2})?
-        },
-        action: "required"
-      },
-      messages: {
-        add_dPrice: {
-          required: 'Por favor introduza um preço valido.'
-          pattern: 'Preencha um preço valido'
-        },
-        action: "Please provide some data"
-      }
-    });
-  });*/
+  $(function() {
+        $("#ModalAddPrice").validate({
+          rules: {
+            add_dPrice: {
+              required: true,
+            },
+            action: "required"
+          },
+          messages: {
+            add_dPrice: {
+                required: 'Por favor introduza um preço valido.'
+            },
+            action: "Please provide some data"
+          }
+        });
+      });*/

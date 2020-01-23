@@ -49,7 +49,7 @@
 
                 //Escolher o certificado certo para a role especifica
                 if($Result[$i]["iIdUserType"]==0)// x      0		Admin
-                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_ORADORES_CONVIDADOS.pdf", $FullName);
+                    $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_PARTICIPANTES.pdf", $FullName);
                 if($Result[$i]["iIdUserType"]==1)//       1		Comissão Organizadora
                     $GeneratedPDF = $buildPdf->GenerateFile($PathFile."Certificado2019_CO.pdf", $FullName);
                 if($Result[$i]["iIdUserType"]==2)//       2		Comissão Científica

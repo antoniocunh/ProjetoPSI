@@ -58,6 +58,11 @@ $(function () {
 
         $("#Modal").modal("show");
     });
+    $("#Modal").on('hidden.bs.modal', function(){
+        $("#iIdWork").val("");
+        $("#FormControlSelect1").val("1");
+        $("#vcReview").val("");
+    });
    
     //Sent Review
      $(document).on('click', "#insertReview", function () {

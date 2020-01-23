@@ -27,6 +27,7 @@ Class BuildPDF
                 $pdf->useTemplate($templateId, ['adjustPageSize' => true]);
                 //var_dump($pdf->useTemplate($templateId, ['adjustPageSize' => true]));
                 $pdf->SetFont('Helvetica','',18);
+                //Mudar isto para cada certificado
                 $pdf->SetXY(64.9, 100.4);//MM 64.9
                 $pdf->Write(8, $aFullName);
             }

@@ -18,7 +18,7 @@ $(function () {
 
         function writeRows() {
             $("#tb_resultados").empty();
-            $("#tb_resultados").append('<thead class=" text-primary"> <th>ID</th> <th>Autor Principal</th> <th>Titulo</th> <th>Ficheiro Provisório</th> <th>Ficheiro Final </th>  <th>Critica</th> <th>Ver</th></thead> <tbody>');
+            $("#tb_resultados").append('<thead class=" text-primary"> <th>ID</th> <th>Autor Principal</th> <th>Titulo</th> <th>Ficheiro Provisório</th> <th>Ficheiro Final </th>  <th>Critica</th></thead> <tbody>');
                 
             var html="";
             resp.forEach(element => {

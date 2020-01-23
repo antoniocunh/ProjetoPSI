@@ -1,7 +1,7 @@
 $(document.body).hide();
 $(function () {
     $(document).ready(function () {
-        var resp_Scope;
+        var resp_Scope, table;
 
         $.ajax({
             url: "../../assets/php/Object/obj.GetScope.php",
@@ -17,7 +17,7 @@ $(function () {
         //Get Rows for table in HTML
         function writeRows() {
             $("#tb_scope").empty();
-            $("#tb_scope").append('<thead class=" text-primary"> <th>ID</th> <th>Nome</th> <th style="width: 150px;">Ações</th> </thead> <tbody>');
+            $("#tb_scope").append('<thead class=" text-primary"> <th style="width: 50px;">ID</th> <th>Nome</th> <th style="width: 150px;">Ações</th> </thead> <tbody>');
 
             var html = "";
 
@@ -31,7 +31,7 @@ $(function () {
                     html += "</td>";
                 }
 
-                html += '<td align="center"> <button id="e' + index + '" class="btn btn-warning editar"><i class="fa fa-pencil-square"></i></button> <button id="e' + index + '" class="btn btn-danger eliminar"><i class="fa fa-trash"></i></button> </td> </tr>';
+                html += '<td align="center"> <button id="e' + index + '" class="btn btn-warning editar"><i class="fa fa-pencil"></i></button> <button id="e' + index + '" class="btn btn-danger eliminar"><i class="fa fa-trash"></i></button> </td> </tr>';
             })
             $("#tb_scope").append(html);
             $("#tb_scope").append('</tbody>');
@@ -71,23 +71,31 @@ $(function () {
             $("#ModalAddScope").modal("show");
         });
 
-        //Não ta implementado
-        $(document).on('click', ".delete", function () {
+        
+        $(document).on('click', ".eliminar", function () {
             var id = this.id.substring(1);
             $.ajax({
                 url: '../../assets/php/Object/obj.DeleteScope.php',
                 type: 'POST',
                 data: {
-                    iIdScope: resp[id].iIdScope,
+                    iIdScope: resp_Scope[id].iIdScope,
                 },
                 success: function (msg) {
+                  try{
                     var text = JSON.parse(msg);
                     alert(text.msg);
+
+                    resp_Scope.splice($.inArray(resp_Scope[id], resp_Scope), 1);
+                    //writeRows();
+                    location.reload();
+                  }catch(e)
+                  {
+                    alert('Este Âmbito não pode ser apagado pois existem relações com o mesmo.');
+                  }
                 }
+                
             });
-            var keys = Object.keys(resp[id]);
-            resp.splice($.inArray(resp[id], resp), 1);
-            writeRows();
+           
         });
 
         //Insert Scope
@@ -108,5 +116,24 @@ $(function () {
 
         $(document.body).fadeIn(300);
     })
+
+
+    $(function() {
+        $("#ModalAddScope").validate({
+          rules: {
+            vcName: {
+              required: true,
+            },
+            action: "required"
+          },
+          messages: {
+            vcName: {
+                required: 'Por favor introduza um nome.'
+            },
+            action: "Please provide some data"
+          }
+        });
+      });
+
 });
 

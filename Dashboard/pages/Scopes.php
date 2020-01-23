@@ -17,6 +17,7 @@ The above copyright notice and this permission notice shall be included in all c
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/ValidationDates/obj.DtEvaluation.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.VerifyLogin.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.VerifyAdminRole.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.VerifyCO.php");
 require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.OutOfPermitionRedirect.php");
 ?>
 
@@ -42,6 +43,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="./css/tableLayout.css"/>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  
 </head>
 
 <body style="background-color : #f4f3ef">
@@ -49,7 +51,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
        $(document).ready(function() {
       $("#sidebar").load("../../Common/sidebar-dashboard.html");
       $(document).on('DOMNodeInserted', function(e) {
-        $("#Scopes").addClass("active");
+        $("#scopes").addClass("active");
       })
     })
   </script>
@@ -78,7 +80,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         </div>
       </div>
       <form id="ri" method="../../assets/php/Object/obj.DeleteScope.php">
-        <input type="hidden" name="iIdScope"> <!-class="vcUser"-->
+        <input type="hidden" name="iIdScope">
       </form>
       <!-- Modal Edit Scope-->
       <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -98,7 +100,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                 </div>
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Nome</label>
-                  <input type="text" class="form-control" id="vcName"></textarea>
+                  <input type="text" class="form-control" id="vcName" required></textarea>
                 </div>
               </form>
             </div>
@@ -122,7 +124,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
               <form id="ScopeModal">
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Nome</label>
-                  <input type="text" class="form-control" id="add_vcName"></input>
+                  <input type="text" class="form-control" id="add_vcName" required></input>
                 </div>
               </form>
             </div>
@@ -147,6 +149,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
           </div>
         </div>
       </footer>
+      
       <!--   Core JS Files   -->
       <script src="../../assets/js/core/popper.min.js"></script>
       <script src="../../assets/js/core/bootstrap.min.js"></script>

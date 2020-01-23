@@ -23,7 +23,7 @@ class UserType extends Bridge implements JsonSerializable
      */
     public function __construct()
     {
-        parent::__construct("tb_usertype", "iIdUserType", "ut");
+        parent::__construct("tb_usertype", "iIdTypeUser", "ut");
     }
     
 

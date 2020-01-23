@@ -128,13 +128,16 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
                     </div>
                   </div>
                 </div>
+                <hr>
                 <div class="row">
-                  <div class="col ml-2">
+                <div class="col-md-5 pr-1">
                     <div class="form-group">
                       <label>Username</label>
                       <input id="username" type="text" placeholder=" Username" id="username" class="form-control" name="vcUsername" pattern="^[A-Za-z0-9_]{1,32}$" disabled>
                     </div>
                   </div>
+                </div>
+                <div class="row">
                   <div class="col ml-2">
                     <div class="form-group">
                       <label>E-mail</label>

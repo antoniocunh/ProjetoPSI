@@ -1,3 +1,4 @@
+
 <div class="sidebar " data-color="black" data-active-color="warning">
   <div class="logo">
     <a class="simple-text logo-medium">
@@ -16,6 +17,7 @@
         </a>
       </li>
     </ul>
+   
   </div>
 
 
@@ -108,8 +110,13 @@
       participar = '<li id="participar"> <a href="./Participate.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
     //}
     if (Date.parse(respEvent.dtEndEvent) <= Date.now()){
-      certificados = '<li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>';
+      certificados = '<hr><li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>';
     }
+    else
+    {
+      certificados = '<hr><li id="sendCertificates" style="pointer-events:none; opacity:0.4;"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>';
+    }
+
     if (Date.parse(respEvent.dtEndSubmition) >= Date.now()) {
       SubmittedWorks = '<li class="nav-item " id="SubmittedWorks"> <a class="nav-link" href="./SubmittedWorks.php"> <span class="sidebar-mini"> Submetidos </span> </a> </li>';
 
@@ -125,7 +132,11 @@
 
     if (resp1 == 0) { // Admin
       botoes =
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>' +
+        '<hr>' +
         '<li id="event"> <a href="./Event.php"> <i class="fa fa-compass" aria-hidden="true"></i> <p>Evento</p> </a> </li>' +
+        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-users" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="CreateUser"> <a class="nav-link" href="./CreateUser.php"> <span class="sidebar-mini"> Criar</span> </a> </li><li class="nav-item" id="ManageUsers"> <a class="nav-link" href="./ManageUsers.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>'+
+        '<hr>' +
         '<li class="nav-item "><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li> <div class="collapse" id="pages1"><ul class="nav">' +
         avaliar +
         SubmittedWorks +
@@ -133,30 +144,35 @@
         '</ul> </div></li>' +
         participar +
         '<li id="prices"><a href="./Prices.php"><i class="fa fa-money" aria-hidden="true"></i> <p>Preços</p></a></li>' +
-        certificados + 
-        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-users" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="CreateUser"> <a class="nav-link" href="./CreateUser.php"> <span class="sidebar-mini"> Criar</span> </a> </li><li class="nav-item" id="ManageUsers"> <a class="nav-link" href="./ManageUsers.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>' +
-        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
+        '<li id="scopes"><a href="./Scopes.php"><i class="fa fa-graduation-cap aria-hidden="true"></i> <p>Âmbitos</p></a></li>' +
+        certificados + '<hr>';
       //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else if (resp1 == 1) { // comissão organizadora
       botoes =
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>' +
+        '<hr>' +
+        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-users" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="CreateUser"> <a class="nav-link" href="./CreateUser.php"> <span class="sidebar-mini"> Criar</span> </a> </li><li class="nav-item" id="ManageUsers"> <a class="nav-link" href="./ManageUsers.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></link>' +
+        '<hr>' +
         '<li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +
         SubmittedWorks +
         resultados +
         '</ul> </div>' +
         participar +
-        '<li class="nav-item" id="utilizadores"><a class="nav-link" data-toggle="collapse" href="#pages"> <i class="fa fa-users" aria-hidden="true"></i> <p> Utilizadores <b class="caret"></b> </p></a></li><div class="collapse" id="pages"> <ul class="nav"> <li class="nav-item" id="CreateUser"> <a class="nav-link" href="./CreateUser.php"> <span class="sidebar-mini"> Criar</span> </a> </li><li class="nav-item" id="ManageUsers"> <a class="nav-link" href="./ManageUsers.php"><span class="sidebar-mini"> Gerir Utilizadores </span> </a> </li></ul> </div></li>' +
-        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
+        '<li id="scopes"><a href="./Scopes.php"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <p>Âmbitos</p></a></li>'+
+        '<hr>';
       //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else if (resp1 == 2) { // comissão cientifica
       botoes =
-        '<li class="nav-item "><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li> <div class="collapse" id="pages1"><ul class="nav">' +
+       '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>' +  
+       '<hr>' +
+       '<li class="nav-item "><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li> <div class="collapse" id="pages1"><ul class="nav">' +
         avaliar +
         SubmittedWorks +
         resultados +
-        '</ul> </div></li>' +
-        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
+        '</ul> </div></li>'+
+        '<hr>';
       //'<li id="dashboard"><a href="./Dashboard.php"><i class="fa fa-area-chart" aria-hidden="true"></i><p>Dashboard</p></a></li>';
 
     } else if (resp1 == 5 || resp1 == 7) {
@@ -165,12 +181,13 @@
         '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
     } else { //autor , orador, 
       botoes =
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>'+
         '<li class="nav-item"><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +
         resultados +
         SubmittedWorks +
         '</ul> </div></li>' +
-        participar +
-        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
+        participar+
+        '<hr>';
     }
     $("#navButoes").hide();
     $("#navButoes").html(botoes);
