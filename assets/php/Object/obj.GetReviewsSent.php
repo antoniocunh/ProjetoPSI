@@ -2,46 +2,44 @@
     require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.VerifyLogin.php");
     require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Roles/obj.VerifyAdminRole.php");
     require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Facade/class.Evaluation.php");
+
+    require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
     
     $RelationWorkUser = new Evaluation();
     $Columns = array
     (
-        array("TBU", "vcName"),
+        array("distinct TBU", "vcName"),
         array("TBW", "vcTitle"),
-        array(null, "iRate"),
-        array(null, "vcReview"),
         array("TBU", "vcLastName"),
-        array("TBA", "iIdAttachment")
+        array("ATT", "vcTitle"),
+        array("ATT", "iIdAttachment"),
+        array("ATT", "enumState")
     );
 
-    $Query =
-        $RelationWorkUser->SelectJoin($Columns).
-        $RelationWorkUser->Join(Joins::INNER, "tb_work", [["iIdWork", "iIdWork"]], "TBW").
-        $RelationWorkUser->Join(Joins::INNER, "tb_attachment", [["iIdWork", "iIdWork"]], "TBA", "TBW").
-        $RelationWorkUser->Join(Joins::INNER, "tb_relationworkuser", [["iIdWork", "iIdWork"]], "TBRWU", "TBW").
-        $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDUser", "iIDUser"]], "TBU", "TBRWU").
-        $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDReviewer", "iIDUser"]], "TBUA").
-        $RelationWorkUser->Where([["TBRWU.bMainAuthor", "=", "AND"], ["TBA.enumState", "=", null]], false);
+    $Query = "SELECT DISTINCT TW.iIdWork,(SELECT CONCAT( TU.vcName, ' ', TU.vcLastName) As NameAutor FROM tb_relationworkuser AS TBWR INNER JOIN tb_user AS TU ON TU.iIdUser = TBWR.iIdUser WHERE TBWR.iIdWork = TW.iIdWork AND TBWR.bMainAuthor = 1) AS NomeCompletoAutor, TW.vcTitle AS Titulo, ATT.vcTitle AS Ficheiro, (SELECT AT.vcTitle from tb_attachment as AT WHERE AT.iIdWork = TW.iIdWork AND AT.enumState = 'Provisório') AS Provisorio, (SELECT AT.vcTitle from tb_attachment as AT WHERE AT.iIdWork = TW.iIdWork AND AT.enumState = 'Entrega Final') AS Final, (SELECT AT.iIdAttachment from tb_attachment as AT WHERE AT.iIdWork = TW.iIdWork AND AT.enumState = 'Provisório') AS BlobProvisorio, (SELECT AT.iIdAttachment from tb_attachment as AT WHERE AT.iIdWork = TW.iIdWork AND AT.enumState = 'Entrega Final') AS BlobFinal FROM tb_worK as TW INNER JOIN tb_relationworkuser as RWU ON RWU.iIDWork = TW.iIdWork INNER JOIN tb_attachment as ATT ON ATT.iIDWork = TW.iIdWork INNER JOIN tb_evaluation as AV ON AV.iIDWork = TW.iIdWork INNER JOIN tb_user AS TBU ON TBU.iIdUser = AV.iIdReviewer WHERE RWU.bMainAuthor = 1 and ATT.enumState = 'Provisório'";
+    echo json_encode($RelationWorkUser->QueryExec($Query), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 
-        /*
-            SELECT 
-                TBA.iIdWork, 
-                TBA.vcTitle,
-                TBA.vcSummary, 
-                TBU.vcName, 
-                TBU.vcLastName, 
-                TBATT.blAttachment
-         FROM tb_RelationWorkUser AS rwu
-         INNER JOIN tb_work AS TBA ON 
-            rwu.iIdWork = TBA.iIdWork 
-        INNER JOIN tb_user AS TBU ON 
-            rwu.iIDUser = TBU.iIDUser 
-        INNER JOIN tb_attachment AS TBATT ON
-            TBA.iIdWork = TBATT.iIdWork 
-        WHERE rwu.bMainAuthor=?
-        
-        */
+    /*SELECT CONCAT( TBU.vcName, ' ', TBU.vcLastName) As FullName, TW.vcTitle AS Titulo, ATT.vcTitle AS Ficheiro, ATT.iIdAttachment, ATT.enumState
+    FROM 
+     (
+        SELECT * from tb_work as TBW
+        UNION ALL
+        SELECT * from tb_evaluation as EVA
+     ) As tbUnion
+     INNER JOIN tb_attachment as ATT ON
+      ATT.iIDWork = tbUnion.iIdWork
+     INNER JOIN tb_evaluation as AV ON
+      AV.iIDWork = tbUnion.iIdWork
+     INNER JOIN tb_user AS TBU ON
+      TBU.iIdUser = AV.iIdReviewer
+     INNER JOIN tb_work AS TW ON
+      TW.iIdWork = tbUnion.iIdWork
+ORDER BY `AV`.`iIdEvaluation` ASC
+*/
     
-    //<<$obj->picture = base64_encode($binaryData); //Nesse Binary tem de vir so a blob
 
-    echo json_encode($RelationWorkUser->QueryExecute($Query, ["1", "Provisório"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+/*try{
+    echo json_encode($RelationWorkUser->QueryExec($Query), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+}catch(PDOException $e){
+    echo $e->getMessage();
+}*/

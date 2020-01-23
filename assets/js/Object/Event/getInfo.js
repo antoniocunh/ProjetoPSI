@@ -11,6 +11,7 @@ $(function () {
             success: function (result) {
                 _Resp = JSON.parse(result);
                 console.log(_Resp);
+                console.log("asdasdasd");
                 $('#conferenceTitle').html(_Resp.vcTitle);
                 $("#descricao").html(_Resp.vcDescription);
                 var inicio = new Date(_Resp.dtIniEvent);
@@ -20,9 +21,9 @@ $(function () {
                 var dateEnd = fim.getDate() + "/" + fim.getMonth() + "/" + fim.getFullYear();
 
                 var text = "Do dia " + dateInit + " a " + dateEnd + " em " + _Resp.vcLocal;
-                //$("#vcAbout").append(_Resp.vcAbout);
+                $("#vcAbout").append(_Resp.vcAbout);
                 $("#diasELocal").html(text);
-                $("#dataInicioh").html(inicio.getDate() + "/" + inicio.getMonth() + "/" + inicio.getFullYear());
+                $("#dataInicio").html(inicio.getDate() + "/" + inicio.getMonth() + "/" + inicio.getFullYear());
                 $("#cidade").html(_Resp.vcLocal);            
             }
         })

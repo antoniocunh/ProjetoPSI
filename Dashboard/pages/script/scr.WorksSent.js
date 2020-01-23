@@ -19,7 +19,7 @@ $(function () {
         function getRows() 
         {
             $("#tb_Work").empty();
-            $("#tb_Work").append('<thead class=" text-primary"> <th>ID</th> <th>Titulo</th> <th>Descrição</th> <th>Nome</th> <th>Tipo</th> <th>Ficheiro</th> </thead> <tbody>');
+            $("#tb_Work").append('<thead class=" text-primary"> <th>ID</th> <th>Titulo</th> <th>Descrição</th> <th>Autor</th> <th>Tipo</th> <th>Ficheiro</th> </thead> <tbody>');
 
             var html="";
 

@@ -70,31 +70,58 @@
 
 <script type="text/javascript">
   var load = [false, false];
-  var resp2;
+  var respEvent;
   var resp1
 
+  $.ajax({
+    url: "../../assets/php/Object/obj.GetRoleUser.php",
+    async: true,
+    success: function (result) {
+      resp1 = JSON.parse(result);
+      resp1 = resp1[0].iIdUserType;
+      load[0] = true;
+      console.log(load);
+      if (load[0] && load[1]) {
+        rmvDivs();
+      }
+    }
+
+  });
+
+
+  $.ajax({
+    url: "../../assets/php/Object/obj.GetEvent.php",
+    async: true,
+    success: function (result) {
+      respEvent = JSON.parse(result);
+      load[1] = true;
+      console.log(load);
+      if (load[0] && load[1]) {
+      console.log(resp1);
+        rmvDivs();
+      }
+    }
+  })
   function rmvDivs() {
-    console.log(resp2);
     var botoes, avaliar = " ", resultados = " ", participar = " ", SubmittedWorks = " ", certificados = " ";
-    //if(Date.parse(resp2.dtIniSubscription) <= Date.now() && Date.parse(resp2.dtEndSubscription) >= Date.now()  || Date.parse(resp2.dtIniSubmition) <= Date.now() && Date.parse(resp2.dtEndSubmition) >= Date.now()){
+    //if(Date.parse(respEvent.dtIniSubscription) <= Date.now() && Date.parse(respEvent.dtEndSubscription) >= Date.now()  || Date.parse(respEvent.dtIniSubmition) <= Date.now() && Date.parse(respEvent.dtEndSubmition) >= Date.now()){
       participar = '<li id="participar"> <a href="./Participate.php"><i class="fa fa-check-square" aria-hidden="true"></i><p>Participar</p></a> </li>';
     //}
-    if (Date.parse(resp2.dtEndEvent) <= Date.now()){
+    if (Date.parse(respEvent.dtEndEvent) <= Date.now()){
       certificados = '<li id="sendCertificates"><a href="./Certificates.php"><i class="fa fa-envelope" aria-hidden="true"></i> <p>Certificados</p></a></li>';
     }
-    if (Date.parse(resp2.dtEndSubmition) >= Date.now()) {
+    if (Date.parse(respEvent.dtEndSubmition) >= Date.now()) {
       SubmittedWorks = '<li class="nav-item " id="SubmittedWorks"> <a class="nav-link" href="./SubmittedWorks.php"> <span class="sidebar-mini"> Submetidos </span> </a> </li>';
 
     }
-    if (Date.parse(resp2.dtResults) < Date.now()) {
+    if (Date.parse(respEvent.dtResults) < Date.now()) {
       resultados = '<li class="nav-item " id="resultados"> <a class="nav-link" href="./Results.php"> <span class="sidebar-mini"> Resultados</span> </a> </li>';
     }
-    if (Date.parse(resp2.dtIniEvaluation) < Date.now() && Date.parse(resp2.dtEndEvaluation) > Date.now()) {
+    if (Date.parse(respEvent.dtIniEvaluation) < Date.now() && Date.parse(respEvent.dtEndEvaluation) > Date.now()) {
       avaliar = '<li class="nav-item " id="trabalhosAvaliados"> <a class="nav-link" href="./ReviewedWorks.php"> <span class="sidebar-mini"> Avaliados </span> </a> </li>' +
                 '<li class="nav-item "><li class="nav-item " id="avaliar"> <a class="nav-link" href="./Review.php"> <span class="sidebar-mini"> Avaliar </span> </a> </li>';
 
     }
-    console.log(SubmittedWorks);
 
     if (resp1 == 0) { // Admin
       botoes =
@@ -151,31 +178,6 @@
 
   };
 
-  $.ajax({
-    url: "../../assets/php/Object/obj.GetRoleUser.php",
-
-    success: function (result) {
-      resp1 = JSON.parse(result);
-      resp1 = resp1[0].iIdUserType;
-      load[0] = true;
-      if (load[0] && load[1]) {
-        rmvDivs();
-      }
-    }
-
-  });
-
-
-  $.ajax({
-    url: "../../assets/php/Object/obj.GetEvent.php",
-    success: function (result) {
-      resp2 = JSON.parse(result);
-      load[1] = true;
-      if (load[0] && load[1]) {
-        rmvDivs();
-      }
-    }
-  })
 
 
 </script>

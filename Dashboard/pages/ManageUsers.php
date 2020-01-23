@@ -66,7 +66,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         <div class="col-md-12">
 
           <div class="card">
-            <div class="card-header">
+            <div class="card-header" style="background-color:#2c2c2c !important; color:#FBC658 !important;">
               <h4 class="card-title"> Utilizadores</h4>
             </div>
             <div class="card-body">

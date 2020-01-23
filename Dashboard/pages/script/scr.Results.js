@@ -1,5 +1,6 @@
 $(document.body).hide();
 $(function () {
+    var eventData;
     $(document).ready(function () {
         var resp;
 
@@ -14,37 +15,67 @@ $(function () {
             }
         });
 
+        $.ajax({
+            url: "../../assets/php/Object/obj.GetEvent.php",
+            success: function (result) {
+                eventData = JSON.parse(result);
+            }
+        })
+
 
         function writeRows() {
             $("#tb_resultados").empty();
-            $("#tb_resultados").append('<thead class=" text-primary"> <th>ID</th> <th>Nome do Autor</th><th>Trabalho</th><th>Trabalho Final</th></thead> <tbody>');
-                
-            var html="";
+            $("#tb_resultados").append('<thead class=" text-primary"> <th>ID</th><th>Titulo</th><th>Autor</th><th>Trabalho Final (Submeter)</th><th>Critica</th></thead> <tbody>');
+
+            var html = "";
 
             resp.forEach(element => {
+                var msg;
                 var index = resp.indexOf(element);
                 html += "<tr id='" + index + "'>";
-                
-                for (var count = 0; count <= 1; count++) {
+
+                if (Date.parse(respEvent.dtIniFinalSubmission) <= Date.now() && Date.parse(eventData.dtEndFinalSubmission) >= Date.now()) {
+                    msg = '<td><form id="form' + element[0] + '"><input id="f' + element[0] + '" type="file" class="submitTrabalho" /></form></td>';
+                } else {
+                    msg = '<td><p>A data de submissão de trabalho já expirou.</p></td>';
+                }
+                for (var count = 0; count <= 2; count++) {
                     html += "<td>";
-                    html += count == 1 ? element[1] + " " + element[3] : element[count];
+                    html += count == 2 ? element[2] + " " + element[4] : element[count];
                     html += "</td>";
                 }
 
-                html += '<td><form id="form' + element[5] + '"><input id="f' + element[5] + '" type="file" class="submitTrabalho" /></form></td>';
-                html += '<td><button id="c' + element[5] + '" class="btn btn-warning verCritica">Critica</button></td></tr>';
+                    $.ajax({
+                        url: "../../assets/php/Object/obj.GetVerificationFinalWork.php",
+                        async: false,
+                        data: {
+                            iIdWork: element[0]
+                        },
+                        success: function (result) {
+                            var respFW = JSON.parse(result);
+                            if (respFW == -1) {
+                                html += msg;
+                            } else {
+                                html += "<td><a href='../../assets/php/Object/obj.GetWork.php?iIdAttachment=" + respFW[0].iIdAttachment + "'>" + respFW[0].vcTitle + "</a></td>";
+                            }
+                        }
+                    });
+
+                    html += '<td><button id="c' + element[0] + '" class="btn btn-warning verCritica">Critica</button></td></tr>';
+                
             });
-        
+
             $("#tb_resultados").append(html);
             $("#tb_resultados").append('</tbody>');
-            $(document).on('DOMNodeInserted', function(e) { $('#tb_resultados').DataTable(); })
+            $(document).on('DOMNodeInserted', function (e) {
+                $('#tb_resultados').DataTable();
+            })
         }
 
         $(document).on("change", ".submitTrabalho", function (e) {
             e.preventDefault();
             var fd = new FormData();
             var file = $("#" + this.id)[0].files[0];
-            console.log($("#" + this.id)[0]);
             fd.append('file', file);
             fd.append('iIdWork', this.id.substring(1, this.id.length));
             $.ajax({
@@ -56,18 +87,29 @@ $(function () {
                 type: 'POST',
                 success: function (result) {
                     console.log(result);
+                    location.reload();
                 }
             });
         });
 
         $(document).on("click", ".verCritica", function (e) {
-            
+
             $.ajax({
                 url: "../../assets/php/Object/obj.GetCriticas.php",
-                data: this.id.substr(1),
+                data: {
+                    iIdWork: this.id.substr(1)
+                },
                 type: 'POST',
                 success: function (result) {
-                    console.log(result);
+                    var critics = JSON.parse(result);
+                    $("#bdCriticas").empty();
+                    critics.forEach(function (critic) {
+                        html = '<div class="container"> <div class="clearfix"> <div class="float-left"> <h6>' + critic.vcName + ' ' + critic.vcLastName + '</h6> </div>' +
+                            '<div class="float-right"> <h6>Nota: ' + critic.iRate + ' </h6> </div></div>' +
+                            '<div class="clearfix"> <p>' + critic.vcReview + '</p><hr/> </div></div>';
+                        $("#bdCriticas").append(html);
+                    })
+                    $("#Modal").modal("show");
                 }
             });
         });

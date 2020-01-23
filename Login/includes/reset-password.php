@@ -13,8 +13,8 @@
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <?php
-require_once("../../assets/php/Proprieties/ConfigDB.php");
-require_once("../../assets/php/Object/Login/obj.ResetPassword.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Proprieties/ConfigDB.php");
+require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/Login/obj.ResetPassword.php");
 ?>
 
 <meta charset="utf-8" />

@@ -5506,6 +5506,8 @@ License - nucleoapp.com/license/
 
 .card .card-header:not([data-background-color]) {
   background-color: transparent;
+  background-color:#2c2c2c !important;
+   color:#FBC658 !important;
 }
 
 .card .card-header .card-title {

@@ -56,7 +56,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
         <div class="col-md-8">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">Perfil</h4>
+              <h4 class="card-title">Ambito</h4>
             </div>
             <div class="card-body">
               <form name="formPerfil" id="formPerfil" method="post">

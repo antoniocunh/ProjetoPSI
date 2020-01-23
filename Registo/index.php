@@ -82,7 +82,7 @@
 		                        <div class="tab-content">
 		                            <div class="tab-pane" id="about">
 		                            	<div class="row">
-											<div class="col-sm-6 col-sm-offset-1">
+											<div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
 													<label>Nome <small> (*)</small></label>
 													<input name="nome" id="nome" type="text" class="form-control" placeholder="Nome...">
@@ -92,17 +92,17 @@
 													<input name="ultimoNome" id="ultimonome" type="text" class="form-control" placeholder="Sobrenome...">
 												</div>
 											</div>
-											<div class="col-sm-4">
+											<!--<div class="col-sm-4">
 												<br>
 												<div class="picture-container">
 													<div class="picture">
 														<img src="../assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview" title="">
-														<!--<input type="file" id="wizard-picture">-->
+														<input type="file" id="wizard-picture">
 													</div>
 													<br>
 													<h6>Escolha uma Imagem</h6>
 												</div>
-											</div>
+											</div>-->
 											<div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
 													<label>Email  <small> (*)</small></label>

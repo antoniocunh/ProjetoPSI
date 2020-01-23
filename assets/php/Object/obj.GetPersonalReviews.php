@@ -6,10 +6,8 @@
     $RelationWorkUser = new Evaluation();
     $Columns = array
     (
-        array("TBU", "vcName"),
+        array("distinct TBU", "vcName"),
         array("TBW", "vcTitle"),
-        array(null, "iRate"),
-        array(null, "vcReview"),
         array("TBU", "vcLastName"),
         array("TBA", "iIdAttachment")
     );
@@ -23,4 +21,4 @@
         $RelationWorkUser->Join(Joins::INNER, "tb_user", [["iIDReviewer", "iIDUser"]], "TBUA").
         $RelationWorkUser->Where([["TBUA.vcUsername", "=", "AND"], ["TBA.enumState", "=", null]], false);
 
-    echo json_encode($RelationWorkUser->QueryExecute($Query, [$_SESSION["username"], "Provisório"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+    echo json_encode($RelationWorkUser->QueryExecute($Query, [$_SESSION["username"], "Final"], true), JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);

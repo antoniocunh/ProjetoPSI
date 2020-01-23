@@ -12,7 +12,8 @@ class ForgotPass{
         
         $User2->readObject($aEmail);
         $ID = $User2->getiIdUser();
-    
+        $Name = $User2->getVcName().' '.$User2->getVcLastName();
+
         if (!is_null($ID))
         {
             $EncodedId = base64_encode($ID);
@@ -20,11 +21,12 @@ class ForgotPass{
             $User2->setvcTokenCode($TokenCode);
             $User2->UpdateObject();
         
+
             //Construção do Url
             $Url  = "http://" . $_SERVER["SERVER_NAME"] . "/ProjetoPSI/Login/includes/reset-password.php?id=$EncodedId&code=$TokenCode";   //TA MAL
 
             //Construção do corpo de E-mail
-            $Message = "Olá , $aEmail<br/><br/>
+            $Message = "Olá, $Name<br/><br/>
                         Fomos solicitados a redefinir sua senha. Para isso, basta clicar no link a seguir para redefinir sua senha;<br> 
                         Se não, pode apenas ignorar este e-mail<br><br>
                         
