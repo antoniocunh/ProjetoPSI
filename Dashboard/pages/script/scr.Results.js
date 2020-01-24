@@ -34,7 +34,7 @@ $(function () {
                 var index = resp.indexOf(element);
                 html += "<tr id='" + index + "'>";
 
-                if (Date.parse(respEvent.dtIniFinalSubmission) <= Date.now() && Date.parse(eventData.dtEndFinalSubmission) >= Date.now()) {
+                if (Date.parse(eventData.dtIniFinalSubmission) <= Date.now() && Date.parse(eventData.dtEndFinalSubmission) >= Date.now()) {
                     msg = '<td><form id="form' + element[0] + '"><input id="f' + element[0] + '" type="file" class="submitTrabalho" /></form></td>';
                 } else {
                     msg = '<td><p>A data de submissão de trabalho já expirou.</p></td>';
