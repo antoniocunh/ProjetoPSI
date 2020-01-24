@@ -25,7 +25,7 @@ class RelationWorkUser extends Bridge implements JsonSerializable
      */
     public function __construct()
     {
-        parent::__construct("tb_relationworkuser", "iIdRelationWorkUser", "rwu");
+        parent::__construct("tb_relationworkuser", "idRelation", "rwu");
     }
 
     /**

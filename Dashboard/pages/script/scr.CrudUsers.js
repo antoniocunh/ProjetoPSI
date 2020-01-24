@@ -39,13 +39,18 @@ $(function () {
                     username: resp[id].vcUsername,
                 },
                 success: function (msg) {
-                    var text = JSON.parse(msg);
-                    alert(text.msg);
+                    try{
+                        var text = JSON.parse(msg);
+                        alert(text.msg);
+                        
+                        resp.splice($.inArray(resp[id], resp), 1);
+                        location.reload();
+                      }catch(e)
+                      {
+                        alert('Este Utilizador não pode ser apagado pois existem relações com o mesmo.');
+                      }
                 }
             });
-            var keys = Object.keys(resp[id]);
-            resp.splice($.inArray(resp[id], resp), 1);
-            location.reload();
         });
 
         $(document).on('click', "#uploadModal", function () {

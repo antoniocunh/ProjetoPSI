@@ -8,6 +8,7 @@ $evaluation = new Evaluation();
 $Columns = array(
     array("AVG(EVA", "iRate)"),
 );
+
 //if (isset($_POST["iIdWork"])) {
     $_POST["iIdWork"] = 9;
     $Query =

@@ -177,14 +177,11 @@
 
     } else if (resp1 == 5 || resp1 == 7) {
       botoes =
-      '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>'+
-        '<hr>'+
-        participar+
-        '<hr>';
+        participar +
+        '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>';
     } else { //autor , orador, 
       botoes =
         '<li id="perfil"><a href="./Profile.php"><i class="fa fa-user-circle" aria-hidden="true"></i><p>Perfil</p></a></li>'+
-        '<hr>'+
         '<li class="nav-item"><li class="nav-item" id="trabalhos1"><a class="nav-link" data-toggle="collapse" href="#pages1"> <i class="fa fa-book" aria-hidden="true"></i> <p> Trabalhos <b class="caret"></b> </p></a></li><div class="collapse" id="pages1"><ul class="nav">' +
         resultados +
         SubmittedWorks +

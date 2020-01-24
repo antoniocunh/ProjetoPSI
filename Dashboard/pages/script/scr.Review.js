@@ -77,6 +77,7 @@ $(function () {
             success: function(msg) {
                 var text = JSON.parse(msg);
                 $("#Modal").modal("toggle");
+                location.reload();
             }               
         });
     });
