@@ -68,6 +68,7 @@ require_once($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/ProjetoPSI/assets/php/Object/
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Trabalhos Avaliados</h4>
+                 
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">

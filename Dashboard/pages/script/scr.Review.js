@@ -4,7 +4,7 @@ $(function () {
     var resp;
 
     $.ajax({
-        url: "../../assets/php/Object/obj.GetWorks.php",
+        url: "../../assets/php/Object/obj.GetWorksToEvaluate.php",
         success: function (result) {
             resp = JSON.parse(result);
             if(jQuery.isEmptyObject(resp)){
