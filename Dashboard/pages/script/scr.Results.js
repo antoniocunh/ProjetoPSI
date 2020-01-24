@@ -4,6 +4,14 @@ $(function () {
     $(document).ready(function () {
         var resp;
 
+            $.ajax({
+                async:false,
+                url: "../../assets/php/Object/obj.GetEvent.php",
+                    success: function (result) {
+                    eventData = JSON.parse(result);
+                }
+            })
+
         $.ajax({
             url: "../../assets/php/Object/obj.GetResults.php",
             success: function (result) {
@@ -14,14 +22,6 @@ $(function () {
                 writeRows();
             }
         });
-
-        $.ajax({
-            url: "../../assets/php/Object/obj.GetEvent.php",
-            success: function (result) {
-                eventData = JSON.parse(result);
-            }
-        })
-
 
         function writeRows() {
             $("#tb_resultados").empty();
@@ -39,6 +39,7 @@ $(function () {
                 } else {
                     msg = '<td><p>A data de submissão de trabalho já expirou.</p></td>';
                 }
+
                 for (var count = 0; count <= 2; count++) {
                     html += "<td>";
                     html += count == 2 ? element[2] + " " + element[4] : element[count];

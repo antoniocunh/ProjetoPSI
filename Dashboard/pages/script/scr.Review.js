@@ -27,7 +27,7 @@ $(function () {
 
             for (var count = 0; count <= 5; count++) {
                 html += "<td>";
-                //apagar para o Ciro
+                
                 if(count == 3){
                     html += element[count] + " " + element.vcLastName;
                 }else if(count == 5){
