@@ -2944,6 +2944,11 @@ textarea.form-control {
   color: #f5593d;
 }
 
+.nav-black>li.active a {
+  color: #181818;
+}
+
+
 .nav-text {
   margin: 0 0 10px 0;
 }
@@ -6574,6 +6579,10 @@ License - nucleoapp.com/license/
 
 .card[data-color="orange"] {
   background: #f7765f;
+}
+
+.card[data-color="black"] {
+  background: #121212;
 }
 
 .btn-center {

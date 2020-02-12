@@ -1,9 +1,10 @@
 
 <?php
-    $host = "localhost";
-    $dbname = "ppsi-2019-gr5";
-    $user = "root";
-    $password = "";
+ini_set('display_errors', 1);
+     $host = "localhost";
+     $dbname = "ppsi-2019-gr5";
+     $user = "root";
+     $password = "";
 
     try
     {
@@ -13,4 +14,5 @@
     catch(PDOException $e){
         echo $e->getMessage();
     }
+    
 ?>

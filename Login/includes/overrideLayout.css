@@ -1,0 +1,13 @@
+.input-group-text {
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #ddd !important;
+    border-right: none;
+}
+
+
+.input-group-focus .input-group-prepend .input-group-text,
+.input-group-focus .input-group-append .input-group-text {
+  background-color: #FFFFFF;
+  border-color: #9A9A9A !important;
+}
